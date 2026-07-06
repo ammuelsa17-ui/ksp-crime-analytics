@@ -1,0 +1,7 @@
+{
+  "stack": "python-3.9",
+  "command": "uvicorn main:app --host 0.0.0.0 --port $PORT",
+  "env_variables": {
+    "PYTHONUNBUFFERED": "1"
+  }
+}

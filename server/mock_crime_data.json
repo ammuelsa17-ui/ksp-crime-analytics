@@ -1,0 +1,204 @@
+{
+  "locations": [
+    {
+      "ROWID": 1,
+      "district": "Bengaluru",
+      "police_station": "Koramangala PS",
+      "latitude": 12.9352,
+      "longitude": 77.6245
+    },
+    {
+      "ROWID": 2,
+      "district": "Bengaluru",
+      "police_station": "Indiranagar PS",
+      "latitude": 12.9784,
+      "longitude": 77.6408
+    },
+    {
+      "ROWID": 3,
+      "district": "Mysuru",
+      "police_station": "Lashkar PS",
+      "latitude": 12.3168,
+      "longitude": 76.6534
+    },
+    {
+      "ROWID": 4,
+      "district": "Hubballi-Dharwad",
+      "police_station": "Suburban PS",
+      "latitude": 15.3524,
+      "longitude": 75.1385
+    },
+    {
+      "ROWID": 5,
+      "district": "Udupi",
+      "police_station": "Manipal PS",
+      "latitude": 13.3529,
+      "longitude": 74.7842
+    },
+    {
+      "ROWID": 6,
+      "district": "Bengaluru",
+      "police_station": "HSR Layout PS",
+      "latitude": 12.9716,
+      "longitude": 77.5946
+    }
+  ],
+  "crime_cases": [
+    {
+      "ROWID": 1,
+      "fir_number": "FIR/BLR/2026/0001",
+      "location_id": 1,
+      "category": "Cybercrime",
+      "incident_date": "2026-06-15 22:30:00",
+      "summary": "Ransomware lock on admin terminals."
+    },
+    {
+      "ROWID": 2,
+      "fir_number": "FIR/BLR/2026/0002",
+      "location_id": 2,
+      "category": "Cybercrime",
+      "incident_date": "2026-06-18 11:15:00",
+      "summary": "Victim received a phone call from an unknown suspect claiming to be a Google Pay verification officer. Suspect tricked victim into sharing OTP, transferring Rs 45,000 from victim's bank account."
+    },
+    {
+      "ROWID": 3,
+      "fir_number": "FIR/MYS/2026/0003",
+      "location_id": 3,
+      "category": "Assault",
+      "incident_date": "2026-06-20 16:45:00",
+      "summary": "A physical clash occurred between two vendors at Lashkar Market over a display table layout. Suspect assaulted complainant with a metal stand, causing minor head injuries."
+    },
+    {
+      "ROWID": 4,
+      "fir_number": "FIR/HUB/2026/0004",
+      "location_id": 4,
+      "category": "Fraud",
+      "incident_date": "2026-06-22 14:00:00",
+      "summary": "Suspect collected Rs 1,50,000 from victim under false promise of securing a contract job at the Hubballi railway office. Suspect switched off phone and is absconding."
+    },
+    {
+      "ROWID": 5,
+      "fir_number": "FIR/UDP/2026/0005",
+      "location_id": 5,
+      "category": "Theft",
+      "incident_date": "2026-06-25 03:00:00",
+      "summary": "Complainant reported a house burglary at their locked apartment in Manipal. Suspect broke open the window grill and stole a laptop, camera, and gold ring worth Rs 1,10,000."
+    }
+  ],
+  "accused": [
+    {
+      "ROWID": 1,
+      "case_id": 1,
+      "name": "Kiran Kumar",
+      "age": 24,
+      "status": "Absconding"
+    },
+    {
+      "ROWID": 2,
+      "case_id": 2,
+      "name": "Unknown Phisher",
+      "age": 0,
+      "status": "Under Investigation"
+    },
+    {
+      "ROWID": 3,
+      "case_id": 3,
+      "name": "Girish M",
+      "age": 34,
+      "status": "Arrested"
+    },
+    {
+      "ROWID": 4,
+      "case_id": 4,
+      "name": "Santosh Patil",
+      "age": 41,
+      "status": "Absconding"
+    },
+    {
+      "ROWID": 5,
+      "case_id": 5,
+      "name": "Ravi Naik",
+      "age": 28,
+      "status": "Arrested"
+    }
+  ],
+  "victims": [
+    {
+      "ROWID": 1,
+      "case_id": 1,
+      "name": "Anil Deshpande",
+      "age": 29,
+      "gender": "Male"
+    },
+    {
+      "ROWID": 2,
+      "case_id": 2,
+      "name": "Sunitha Gowda",
+      "age": 52,
+      "gender": "Female"
+    },
+    {
+      "ROWID": 3,
+      "case_id": 3,
+      "name": "Nagaraj Rao",
+      "age": 45,
+      "gender": "Male"
+    },
+    {
+      "ROWID": 4,
+      "case_id": 4,
+      "name": "Vijay K",
+      "age": 27,
+      "gender": "Male"
+    },
+    {
+      "ROWID": 5,
+      "case_id": 5,
+      "name": "Preeti Shenoy",
+      "age": 22,
+      "gender": "Female"
+    }
+  ],
+  "investigation_records": [
+    {
+      "ROWID": 1,
+      "case_id": 1,
+      "officer_name": "Inspector Raghav",
+      "diary_entry": "FIR registered. CCTV footage of surrounding streets being analyzed.",
+      "status": "Active",
+      "last_updated": "2026-06-16 10:00:00"
+    },
+    {
+      "ROWID": 2,
+      "case_id": 2,
+      "officer_name": "Inspector Shaila",
+      "diary_entry": "Bank statement obtained. IP address of request traced to Jamtara.",
+      "status": "Active",
+      "last_updated": "2026-06-19 14:30:00"
+    },
+    {
+      "ROWID": 3,
+      "case_id": 3,
+      "officer_name": "Inspector Manjunath",
+      "diary_entry": "Accused apprehended at the scene. Statements recorded. Chargesheet drafted.",
+      "status": "Closed",
+      "last_updated": "2026-06-21 17:00:00"
+    },
+    {
+      "ROWID": 4,
+      "case_id": 4,
+      "officer_name": "Inspector Praveen",
+      "diary_entry": "Search warrant issued for Patil's primary residence. Accused missing.",
+      "status": "Active",
+      "last_updated": "2026-06-23 09:15:00"
+    },
+    {
+      "ROWID": 5,
+      "case_id": 5,
+      "officer_name": "Inspector Raghav",
+      "diary_entry": "Stolen laptop recovered from local pawn shop. Accused arrested.",
+      "status": "Closed",
+      "last_updated": "2026-06-26 12:00:00"
+    }
+  ]
+}
