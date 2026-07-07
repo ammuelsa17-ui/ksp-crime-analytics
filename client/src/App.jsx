@@ -42,6 +42,13 @@ function App() {
   const [updateLoading, setUpdateLoading] = useState(false)
   const [updateError, setUpdateError] = useState(null)
 
+  // Search, Filter, and Sort states
+  const [searchQuery, setSearchQuery] = useState('')
+  const [filterCategory, setFilterCategory] = useState('All')
+  const [filterDistrict, setFilterDistrict] = useState('All')
+  const [sortOrder, setSortOrder] = useState('latest')
+
+
   const fetchCases = async () => {
     setLoading(true)
     setError(null)
@@ -254,7 +261,44 @@ function App() {
     }
   }
 
+  // Compute Dashboard Statistics
+  const totalCases = cases.length;
+
+  const casesToday = cases.filter(item => {
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    const todayStr = `${year}-${month}-${day}`;
+    return item.incident_date.startsWith(todayStr);
+  }).length;
+
+  const uniqueCategories = new Set(cases.map(item => item.category)).size;
+  const uniqueStations = new Set(cases.map(item => item.police_station.toLowerCase().trim())).size;
+
+  // Filter and Sort cases
+  const filteredCases = cases
+    .filter(item => {
+      // 1. Search by FIR number
+      const matchesSearch = item.fir_number.toLowerCase().includes(searchQuery.toLowerCase());
+      // 2. Filter by Category
+      const matchesCategory = filterCategory === 'All' || item.category === filterCategory;
+      // 3. Filter by District
+      const matchesDistrict = filterDistrict === 'All' || item.district === filterDistrict;
+      
+      return matchesSearch && matchesCategory && matchesDistrict;
+    })
+    .sort((a, b) => {
+      // 4. Sort
+      if (sortOrder === 'latest') {
+        return b.id - a.id;
+      } else {
+        return a.id - b.id;
+      }
+    });
+
   return (
+
     <div className="dashboard-container">
       {/* Top Police Banner Header */}
       <header className="dashboard-header">
@@ -267,6 +311,44 @@ function App() {
           API Status: {apiStatus}
         </div>
       </header>
+
+      {/* Top Statistics Cards Panel */}
+      <section className="stats-panel-container">
+        <div className="stats-grid">
+          <div className="stat-card">
+            <div className="stat-icon total">📂</div>
+            <div className="stat-info">
+              <span className="stat-label">Total Cases</span>
+              <span className="stat-value">{totalCases}</span>
+            </div>
+          </div>
+          
+          <div className="stat-card">
+            <div className="stat-icon today">🚨</div>
+            <div className="stat-info">
+              <span className="stat-label">Cases Today</span>
+              <span className="stat-value">{casesToday}</span>
+            </div>
+          </div>
+
+          <div className="stat-card">
+            <div className="stat-icon categories">🏷️</div>
+            <div className="stat-info">
+              <span className="stat-label">Crime Categories</span>
+              <span className="stat-value">{uniqueCategories}</span>
+            </div>
+          </div>
+
+          <div className="stat-card">
+            <div className="stat-icon stations">🏢</div>
+            <div className="stat-info">
+              <span className="stat-label">Stations Covered</span>
+              <span className="stat-value">{uniqueStations}</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
 
       {/* Main Dashboard Grid */}
       <main className="dashboard-grid">
@@ -393,6 +475,67 @@ function App() {
             </button>
           </div>
 
+          {/* Search, Filters, and Sorting Controls */}
+          {!loading && !error && (
+            <div className="filter-controls-bar">
+              <div className="search-box">
+                <span className="search-icon">🔍</span>
+                <input
+                  type="text"
+                  placeholder="Search by FIR number..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+                {searchQuery && (
+                  <button className="clear-search-btn" onClick={() => setSearchQuery('')}>&times;</button>
+                )}
+              </div>
+
+              <div className="filter-select-group">
+                <div className="filter-select-item">
+                  <label htmlFor="filter-category">Category</label>
+                  <select
+                    id="filter-category"
+                    value={filterCategory}
+                    onChange={(e) => setFilterCategory(e.target.value)}
+                  >
+                    <option value="All">All Categories</option>
+                    <option value="Theft">Theft</option>
+                    <option value="Cybercrime">Cybercrime</option>
+                    <option value="Assault">Assault</option>
+                    <option value="Fraud">Fraud</option>
+                  </select>
+                </div>
+
+                <div className="filter-select-item">
+                  <label htmlFor="filter-district">District</label>
+                  <select
+                    id="filter-district"
+                    value={filterDistrict}
+                    onChange={(e) => setFilterDistrict(e.target.value)}
+                  >
+                    <option value="All">All Districts</option>
+                    <option value="Bengaluru">Bengaluru</option>
+                    <option value="Mysuru">Mysuru</option>
+                    <option value="Hubballi-Dharwad">Hubballi-Dharwad</option>
+                    <option value="Udupi">Udupi</option>
+                  </select>
+                </div>
+
+                <div className="filter-select-item">
+                  <label>Sort Order</label>
+                  <button
+                    type="button"
+                    className="sort-toggle-btn"
+                    onClick={() => setSortOrder(prev => prev === 'latest' ? 'oldest' : 'latest')}
+                  >
+                    {sortOrder === 'latest' ? '📅 Newest' : '📅 Oldest'}
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* Loading / Error States */}
           {loading && (
             <div className="state-card loading">
@@ -429,12 +572,16 @@ function App() {
                   </tr>
                 </thead>
                 <tbody>
-                  {cases.length === 0 ? (
+                  {filteredCases.length === 0 ? (
                     <tr>
-                      <td colSpan="6" className="no-cases-cell">No crime cases found. Register a case on the left!</td>
+                      <td colSpan="6" className="no-cases-cell">
+                        {cases.length === 0 
+                          ? "No crime cases found. Register a case on the left!" 
+                          : "No matching crime cases found. Adjust your search or filters!"}
+                      </td>
                     </tr>
                   ) : (
-                    cases.map((item) => (
+                    filteredCases.map((item) => (
                       <tr key={item.id} className="case-row-clickable case-row-new" onClick={() => handleRowClick(item)}>
                         <td className="fir-col">{item.fir_number}</td>
                         <td>
@@ -454,6 +601,7 @@ function App() {
             </div>
           )}
         </section>
+
 
       </main>
 
