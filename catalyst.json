@@ -1,8 +1,15 @@
 {
-  "appSail": {
-    "source": "server"
-  },
+  "appsail": [
+    {
+      "name": "server",
+      "source": "server",
+      "build_path": "server",
+      "stack": "python_3_9",
+      "ignore": ["venv", "__pycache__", ".git"]
+    }
+  ],
   "client": {
-    "source": "client"
+    "source": "client",
+    "ignore": ["node_modules", "src", "public", ".git"]
   }
 }
