@@ -9,7 +9,7 @@
     }
   ],
   "client": {
-    "source": "client",
-    "ignore": ["node_modules", "src", "public", ".git"]
+    "source": "client/dist"
   }
 }
+
