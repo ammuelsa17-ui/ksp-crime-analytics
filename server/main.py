@@ -1,9 +1,17 @@
 import os
+import sys
+import traceback
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from app.database import get_all_cases, create_case, update_case, delete_case
 from pydantic import BaseModel
 
+log_path = "/tmp/app.log"
+log_file = open(log_path, "w", buffering=1)
+sys.stdout = log_file
+sys.stderr = log_file
+
+print("FastAPI app starting...")
 
 app = FastAPI(
     title="KSP Crime Intelligence Platform API",
@@ -11,11 +19,25 @@ app = FastAPI(
     version="1.0.0"
 )
 
+@app.get("/api/v1/logs")
+def get_logs():
+    try:
+        log_file.flush()
+        if os.path.exists(log_path):
+            with open(log_path, "r") as f:
+                logs = f.read()
+        else:
+            logs = "Log file not found."
+        from fastapi.responses import Response
+        return Response(content=logs, media_type="text/plain")
+    except Exception as e:
+        return f"Error reading logs: {e}"
+
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],  # Restrict to specific domains in production
-    allow_credentials=True,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
