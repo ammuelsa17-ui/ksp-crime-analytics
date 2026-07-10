@@ -1,10 +1,6 @@
 import os
 import sys
 import traceback
-from fastapi import FastAPI, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
-from app.database import get_all_cases, create_case, update_case, delete_case
-from pydantic import BaseModel
 
 log_path = "/tmp/app.log"
 log_file = open(log_path, "w", buffering=1)
@@ -12,6 +8,11 @@ sys.stdout = log_file
 sys.stderr = log_file
 
 print("FastAPI app starting...")
+
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.middleware.cors import CORSMiddleware
+from app.database import get_all_cases, create_case, update_case, delete_case
+from pydantic import BaseModel
 
 app = FastAPI(
     title="KSP Crime Intelligence Platform API",
@@ -32,6 +33,29 @@ def get_logs():
         return Response(content=logs, media_type="text/plain")
     except Exception as e:
         return f"Error reading logs: {e}"
+
+@app.get("/api/v1/debug/db")
+def debug_db(request: Request):
+    try:
+        from app.database import use_fallback, init_error, get_catalyst_app
+        app_instance = get_catalyst_app(request)
+        if use_fallback or app_instance is None:
+            return {
+                "mode": "fallback (local JSON)",
+                "info": "Catalyst SDK initialization was skipped.",
+                "init_error": init_error
+            }
+        
+        zcql = app_instance.zcql()
+        cases = zcql.execute_query("SELECT * FROM crime_cases")
+        locations = zcql.execute_query("SELECT * FROM location")
+        return {
+            "mode": "live (Catalyst Data Store)",
+            "crime_cases_rows": cases,
+            "location_rows": locations
+        }
+    except Exception as e:
+        return {"error": str(e), "traceback": traceback.format_exc()}
 
 # Configure CORS
 app.add_middleware(
@@ -57,9 +81,9 @@ def health_check():
     }
 
 @app.get("/api/v1/cases")
-def read_cases():
+def read_cases(request: Request):
     try:
-        cases = get_all_cases()
+        cases = get_all_cases(request)
         return {
             "success": True,
             "count": len(cases),
@@ -77,9 +101,9 @@ class CaseCreate(BaseModel):
     summary: str
 
 @app.post("/api/v1/cases")
-def add_case(case: CaseCreate):
+def add_case(case: CaseCreate, request: Request):
     try:
-        new_case = create_case(case.model_dump())
+        new_case = create_case(case.model_dump(), request)
         return {
             "success": True,
             "data": new_case
@@ -88,9 +112,9 @@ def add_case(case: CaseCreate):
         raise HTTPException(status_code=500, detail=f"Failed to create case: {str(e)}")
 
 @app.put("/api/v1/cases/{case_id}")
-def edit_case(case_id: int, case: CaseCreate):
+def edit_case(case_id: int, case: CaseCreate, request: Request):
     try:
-        updated_case = update_case(case_id, case.model_dump())
+        updated_case = update_case(case_id, case.model_dump(), request)
         return {
             "success": True,
             "data": updated_case
@@ -99,9 +123,9 @@ def edit_case(case_id: int, case: CaseCreate):
         raise HTTPException(status_code=500, detail=f"Failed to update case: {str(e)}")
 
 @app.delete("/api/v1/cases/{case_id}")
-def remove_case(case_id: int):
+def remove_case(case_id: int, request: Request):
     try:
-        success = delete_case(case_id)
+        success = delete_case(case_id, request)
         if not success:
             raise HTTPException(status_code=404, detail="Case not found")
         return {
