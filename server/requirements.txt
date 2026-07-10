@@ -1,9 +1,7 @@
 fastapi
 uvicorn
 zcatalyst-sdk>=1.4.0
-pandas
-scikit-learn
-numpy
 pydantic
-jinja2
-requests
+exceptiongroup
+sniffio
+
