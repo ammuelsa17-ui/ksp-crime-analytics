@@ -57,6 +57,52 @@ def debug_db(request: Request):
     except Exception as e:
         return {"error": str(e), "traceback": traceback.format_exc()}
 
+@app.post("/api/v1/debug/seed-large")
+def seed_large(request: Request):
+    try:
+        # 1. Fetch existing cases to prevent duplicates
+        existing_cases = get_all_cases(request)
+        existing_firs = {c.get("fir_number") for c in existing_cases}
+        
+        # 2. Define the 20 realistic records
+        large_dataset = [
+            {"fir_number": "FIR/BLR/2026/0006", "category": "Cybercrime", "district": "Bengaluru", "police_station": "Koramangala PS", "incident_date": "2026-07-01 10:15:00", "summary": "Phishing campaign targeted elderly residents in Koramangala, leading to unauthorized withdrawals totaling Rs 2,40,000."},
+            {"fir_number": "FIR/BLR/2026/0007", "category": "Theft", "district": "Bengaluru", "police_station": "Indiranagar PS", "incident_date": "2026-07-02 03:00:00", "summary": "Nighttime burglary at a boutique shop on Indiranagar 100 Feet Road. Designer apparel and cash box stolen."},
+            {"fir_number": "FIR/MYS/2026/0008", "category": "Assault", "district": "Mysuru", "police_station": "Lashkar PS", "incident_date": "2026-07-02 18:30:00", "summary": "Street confrontation near Suburban Bus Stand. Two rival groups clashed over auto parking slots, resulting in minor injuries."},
+            {"fir_number": "FIR/HUB/2026/0009", "category": "Fraud", "district": "Hubballi-Dharwad", "police_station": "Suburban PS", "incident_date": "2026-07-03 14:00:00", "summary": "Fake employment agency operating near Hubballi Station cheated 12 candidates under the pretext of railways job placement."},
+            {"fir_number": "FIR/UDP/2026/0010", "category": "Theft", "district": "Udupi", "police_station": "Manipal PS", "incident_date": "2026-07-04 22:00:00", "summary": "Motorcycle theft reported from the student parking lot at Manipal University campus. Red Pulsar 150 stolen."},
+            {"fir_number": "FIR/BLR/2026/0011", "category": "Cybercrime", "district": "Bengaluru", "police_station": "HSR Layout PS", "incident_date": "2026-07-04 11:30:00", "summary": "Identity theft report. Complainant's credit card cloned online and used for transactions worth Rs 1,15,000 in foreign currencies."},
+            {"fir_number": "FIR/BLR/2026/0012", "category": "Fraud", "district": "Bengaluru", "police_station": "Koramangala PS", "incident_date": "2026-07-05 16:45:00", "summary": "Investment scam promising 25% monthly returns. Suspect vanished after collecting deposits from local merchants."},
+            {"fir_number": "FIR/MYS/2026/0013", "category": "Theft", "district": "Mysuru", "police_station": "Lashkar PS", "incident_date": "2026-07-05 12:00:00", "summary": "Pickpocket incident at Mysuru Palace grounds. Complainant lost a gold necklace and a smartphone worth Rs 85,000."},
+            {"fir_number": "FIR/HUB/2026/0014", "category": "Assault", "district": "Hubballi-Dharwad", "police_station": "Suburban PS", "incident_date": "2026-07-06 20:00:00", "summary": "Physical assault inside a restaurant following an argument over billing dispute. Complainant was punched by a staff member."},
+            {"fir_number": "FIR/UDP/2026/0015", "category": "Cybercrime", "district": "Udupi", "police_station": "Manipal PS", "incident_date": "2026-07-06 09:00:00", "summary": "Ransomware attack on local clinic database, locking patient medical records. Suspects demanded payments in Bitcoin."},
+            {"fir_number": "FIR/BLR/2026/0016", "category": "Assault", "district": "Bengaluru", "police_station": "Indiranagar PS", "incident_date": "2026-07-07 23:45:00", "summary": "Late-night road rage fight on Indiranagar Double Road. Driver assaulted after overtaking dispute."},
+            {"fir_number": "FIR/BLR/2026/0017", "category": "Theft", "district": "Bengaluru", "police_station": "HSR Layout PS", "incident_date": "2026-07-08 04:30:00", "summary": "Laptops and tablet stolen from a software startup office located in Sector 3 of HSR Layout."},
+            {"fir_number": "FIR/MYS/2026/0018", "category": "Fraud", "district": "Mysuru", "police_station": "Lashkar PS", "incident_date": "2026-07-08 11:00:00", "summary": "Fake property document scam. Suspect sold a residential plot using forged ownership records."},
+            {"fir_number": "FIR/HUB/2026/0019", "category": "Theft", "district": "Hubballi-Dharwad", "police_station": "Suburban PS", "incident_date": "2026-07-09 17:15:00", "summary": "Shoplifting incident at a grocery supermarket. Goods worth Rs 12,000 recovered from the suspect."},
+            {"fir_number": "FIR/UDP/2026/0020", "category": "Assault", "district": "Udupi", "police_station": "Manipal PS", "incident_date": "2026-07-09 21:00:00", "summary": "Fight between hostel roommates over loud music, leading to physical altercation and minor hand injuries."},
+            {"fir_number": "FIR/BLR/2026/0021", "category": "Cybercrime", "district": "Bengaluru", "police_station": "Koramangala PS", "incident_date": "2026-07-10 13:00:00", "summary": "Business Email Compromise (BEC) scam. Accounts department tricked into paying Rs 4,50,000 to a dummy contractor account."},
+            {"fir_number": "FIR/BLR/2026/0022", "category": "Theft", "district": "Bengaluru", "police_station": "Indiranagar PS", "incident_date": "2026-07-10 15:30:00", "summary": "Smartphone snatched by two bike-borne riders from a pedestrian near Indiranagar Metro Station."},
+            {"fir_number": "FIR/MYS/2026/0023", "category": "Cybercrime", "district": "Mysuru", "police_station": "Lashkar PS", "incident_date": "2026-07-11 08:30:00", "summary": "Fake police officer scam call. Victim transferred Rs 50,000 online to clear dynamic customs duty fraud allegations."},
+            {"fir_number": "FIR/HUB/2026/0024", "category": "Fraud", "district": "Hubballi-Dharwad", "police_station": "Suburban PS", "incident_date": "2026-07-11 11:45:00", "summary": "Suspect leased out a rented vehicle using fake papers, and is currently uncontactable."},
+            {"fir_number": "FIR/UDP/2026/0025", "category": "Theft", "district": "Udupi", "police_station": "Manipal PS", "incident_date": "2026-07-11 14:15:00", "summary": "Bicycle theft from a private apartment cellar in Manipal. High-end mountain bike stolen."}
+        ]
+        
+        # 3. Insert non-duplicate entries
+        inserted_count = 0
+        for case in large_dataset:
+            if case["fir_number"] not in existing_firs:
+                create_case(case, request)
+                inserted_count += 1
+                
+        return {
+            "success": True,
+            "message": f"Successfully seeded {inserted_count} new cases to database.",
+            "total_inserted": inserted_count
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Database seeding failed: {str(e)}")
+
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
