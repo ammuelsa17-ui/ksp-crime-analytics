@@ -17,6 +17,7 @@ function App() {
   // Tab State & Toasts
   const [activeTab, setActiveTab] = useState('records')
   const [toasts, setToasts] = useState([])
+  const [activityLog, setActivityLog] = useState([])
 
   const showToast = (message, type = 'info') => {
     const id = Math.random().toString(36).substr(2, 9)
@@ -24,6 +25,11 @@ function App() {
     setTimeout(() => {
       setToasts(prev => prev.filter(t => t.id !== id))
     }, 4000)
+  }
+
+  const addActivity = (action, detail) => {
+    const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' })
+    setActivityLog(prev => [{ time, action, detail }, ...prev].slice(0, 5))
   }
 
   // Form State for creating new cases
@@ -75,6 +81,7 @@ function App() {
         const sortedCases = [...result.data].sort((a, b) => b.id - a.id)
         setCases(sortedCases)
         setApiStatus("Online")
+        addActivity("Database Synced", `Loaded ${sortedCases.length} case records`)
       } else {
         throw new Error(result.detail || "Failed to fetch cases")
       }
@@ -133,6 +140,7 @@ function App() {
       const result = await response.json()
       if (result.success) {
         showToast(`FIR ${result.data.fir_number} registered successfully!`, "success")
+        addActivity("FIR Registered", result.data.fir_number)
         // Reset form fields except district & category
         setFormData({
           fir_number: '',
@@ -232,6 +240,7 @@ function App() {
         setSelectedCase(result.data)
         setIsEditing(false)
         showToast("Case updated successfully!", "success")
+        addActivity("Record Updated", result.data.fir_number)
       } else {
         throw new Error(result.detail || 'Failed to update case')
       }
@@ -264,6 +273,7 @@ function App() {
         setCases(prev => prev.filter(c => c.id !== selectedCase.id))
         handleCloseModal()
         showToast(`FIR ${deletedNumber} deleted successfully!`, "info")
+        addActivity("Record Deleted", deletedNumber)
       } else {
         throw new Error(result.detail || 'Failed to delete case')
       }
@@ -310,9 +320,76 @@ function App() {
     link.setAttribute("href", encodedUri);
     link.setAttribute("download", `ksp_crime_cases_${new Date().toISOString().split('T')[0]}.csv`);
     document.body.appendChild(link);
-    link.click();
+link.click();
     document.body.removeChild(link);
     showToast(`Successfully exported ${filteredCases.length} cases to CSV!`, "success");
+  }
+
+  // Search Highlighter Helper
+  const highlightText = (text, highlight) => {
+    if (!highlight || !highlight.trim()) {
+      return <span>{text}</span>;
+    }
+    const regex = new RegExp(`(${highlight.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')})`, 'gi');
+    const parts = text.split(regex);
+    return (
+      <span>
+        {parts.map((part, i) => 
+          regex.test(part) 
+            ? <mark key={i} className="search-highlight">{part}</mark> 
+            : part
+        )}
+      </span>
+    );
+  }
+
+  // Print FIR Report Helper
+  const handlePrintCase = () => {
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+      <html>
+        <head>
+          <title>KSP Case Record - ${selectedCase.fir_number}</title>
+          <style>
+            body { font-family: 'Segoe UI', system-ui, sans-serif; padding: 40px; color: #1e293b; line-height: 1.5; }
+            .header { border-bottom: 3px double #0f172a; padding-bottom: 20px; margin-bottom: 30px; text-align: center; }
+            .title { font-size: 24px; font-weight: bold; text-transform: uppercase; color: #0b3c5d; letter-spacing: 0.5px; }
+            .subtitle { font-size: 14px; color: #64748b; margin-top: 5px; font-weight: 600; }
+            .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 30px; }
+            .item { border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; }
+            .label { font-size: 10px; text-transform: uppercase; font-weight: 700; color: #64748b; letter-spacing: 0.5px; }
+            .value { font-size: 15px; font-weight: 600; margin-top: 4px; color: #0f172a; }
+            .summary { border: 1px solid #cbd5e1; padding: 20px; border-radius: 8px; background-color: #f8fafc; margin-top: 10px; }
+            .summary-title { font-size: 12px; font-weight: bold; text-transform: uppercase; margin-bottom: 10px; color: #0b3c5d; border-bottom: 1px solid #cbd5e1; padding-bottom: 5px; letter-spacing: 0.5px; }
+            .footer { margin-top: 60px; text-align: right; font-size: 11px; color: #64748b; border-top: 1px solid #e2e8f0; padding-top: 10px; }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <div class="title">Karnataka State Police</div>
+            <div class="subtitle">Official FIR Case Record Summary</div>
+          </div>
+          <div class="grid">
+            <div class="item"><div class="label">FIR Number</div><div class="value">${selectedCase.fir_number}</div></div>
+            <div class="item"><div class="label">Crime Category</div><div class="value">${selectedCase.category}</div></div>
+            <div class="item"><div class="label">District Jurisdiction</div><div class="value">${selectedCase.district}</div></div>
+            <div class="item"><div class="label">Police Station</div><div class="value">${selectedCase.police_station}</div></div>
+            <div class="item"><div class="label">Incident Date & Time</div><div class="value">${selectedCase.incident_date}</div></div>
+            <div class="item"><div class="label">Geospatial Coordinates</div><div class="value">Lat: ${selectedCase.latitude?.toFixed(4) || "0.0000"}, Lng: ${selectedCase.longitude?.toFixed(4) || "0.0000"}</div></div>
+          </div>
+          <div class="summary">
+            <div class="summary-title">FIR Summary Statement</div>
+            <p style="margin: 0; font-size: 14px; color: #334155;">${selectedCase.summary}</p>
+          </div>
+          <div class="footer">
+            Report generated on: ${new Date().toLocaleString()}<br>
+            Karnataka Police Crime Analytics Portal (Catalyst Cloud Storage)
+          </div>
+          <script>window.print(); window.close();</script>
+        </body>
+      </html>
+    `);
+    printWindow.document.close();
   }
 
   // Compute Dashboard Statistics
@@ -472,8 +549,13 @@ function App() {
           <h1>Karnataka State Police</h1>
           <h2>Crime Analytics Platform — Prototype</h2>
         </div>
-        <div className={`status-badge ${apiStatus.toLowerCase()}`}>
-          API Status: {apiStatus}
+        <div className="header-badges">
+          <div className="storage-mode-badge">
+            Storage: <span>🟢 Catalyst Data Store</span>
+          </div>
+          <div className={`status-badge ${apiStatus.toLowerCase()}`}>
+            API Status: {apiStatus}
+          </div>
         </div>
       </header>
 
@@ -534,7 +616,7 @@ function App() {
       <main className="dashboard-grid">
         {activeTab === 'records' ? (
           <>
-            {/* Left: Register Case Form Card */}
+            {/* Left: Register Case Form Card & Recent Activity */}
             <section className="form-card-wrapper">
               <div className="form-card">
                 <h3>📝 Register New Case</h3>
@@ -636,6 +718,27 @@ function App() {
                     {submitting ? 'Registering in Datastore...' : 'Register FIR Record'}
                   </button>
                 </form>
+              </div>
+
+              {/* Recent Activity Card */}
+              <div className="form-card activity-card">
+                <h3>🔔 Recent Activity Feed</h3>
+                <p className="form-subtitle">Live action log of operations in this session</p>
+                <div className="activity-feed-list">
+                  {activityLog.length === 0 ? (
+                    <div className="empty-activity">No actions recorded in this session.</div>
+                  ) : (
+                    activityLog.map((log, idx) => (
+                      <div className="activity-feed-item" key={idx}>
+                        <span className="activity-time">{log.time}</span>
+                        <div className="activity-details">
+                          <span className="activity-action">{log.action}</span>
+                          <span className="activity-desc">{log.detail}</span>
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </div>
               </div>
             </section>
 
@@ -776,7 +879,7 @@ function App() {
                       ) : (
                         filteredCases.map((item) => (
                           <tr key={item.id} className="case-row-clickable case-row-new" onClick={() => handleRowClick(item)}>
-                            <td className="fir-col">{item.fir_number}</td>
+                            <td className="fir-col">{highlightText(item.fir_number, searchQuery)}</td>
                             <td>
                               <span className={`category-tag ${item.category.toLowerCase()}`}>
                                 {item.category}
@@ -785,7 +888,7 @@ function App() {
                             <td>{item.district}</td>
                             <td>{item.police_station}</td>
                             <td className="date-col">{item.incident_date}</td>
-                            <td className="summary-col">{item.summary}</td>
+                            <td className="summary-col">{highlightText(item.summary, searchQuery)}</td>
                           </tr>
                         ))
                       )}
@@ -1128,6 +1231,9 @@ function App() {
                   </div>
 
                   <div className="modal-actions">
+                    <button type="button" className="print-btn" onClick={handlePrintCase} title="Open print preview for this FIR summary">
+                      🖨️ Print FIR
+                    </button>
                     <button className="edit-btn" onClick={handleEditClick}>
                       ✏️ Edit Case
                     </button>
