@@ -150,3 +150,14 @@ To populate your live dashboard with realistic records:
     ```bash
     curl -X POST https://server-50043662505.development.catalystappsail.in/api/v1/debug/seed-large
     ```
+
+---
+
+## 🔮 Future Roadmap & Scope
+While this prototype represents a fully functional, cloud-native case records and analytics core, a production-grade rollout would implement:
+*   **Predictive Hotspot Analytics**: Train machine learning models using historical Data Store records to predict high-probability crime coordinates by time, day, and weather patterns.
+*   **Interactive GIS & Map Mapping**: Replace grid coordinates with a dynamic Google Maps / Leaflet overlay mapping incident markers, cluster zones, and jurisdictional boundaries.
+*   **Secure Officer Authentication**: Integrate Zoho Catalyst Authentication for role-based login (e.g. Field Officer for registration, Station Inspector for editing/deleting, Superintendent for analytics access).
+*   **Instant Dispatch Alerts**: Implement Zoho Catalyst Eventing and Integration to dispatch real-time SMS/Email alerts to local stations whenever high-priority category cases (e.g. Assault, Cybercrime) are registered.
+*   **AI Document Parsing & OCR**: Include OCR tools in the FIR form to scan physical handwritten police sheets and automatically extract category, date, and summaries to autofill inputs.
+
