@@ -1383,6 +1383,165 @@ body {
   }
 }
 
+/* Usability Features Styling: CSV Export, Copy buttons, Filter tools, Results Counter & Insights */
+
+.action-buttons-group {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.export-csv-btn {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: #10B981;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 0.75rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.export-csv-btn:hover {
+  background-color: #10B981;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.filter-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 0.75rem;
+}
+
+.results-counter {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.results-counter strong {
+  color: var(--text-primary);
+}
+
+.clear-filters-btn {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #EF4444;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  padding: 0.35rem 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.clear-filters-btn:hover {
+  background-color: #EF4444;
+  color: #ffffff;
+}
+
+.filter-controls-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.copy-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.copy-fir-btn {
+  background-color: rgba(217, 179, 16, 0.15);
+  color: var(--police-gold);
+  border: 1px solid rgba(217, 179, 16, 0.3);
+  padding: 0.2rem 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.copy-fir-btn:hover {
+  background-color: var(--police-gold);
+  color: #0F172A;
+}
+
+/* Quick Crime Insights Card */
+.quick-insights-card {
+  grid-column: span 2;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.8) 100%);
+  border-left: 4px solid var(--police-gold);
+}
+
+.insights-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.insight-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  background-color: rgba(15, 23, 42, 0.4);
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.insight-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  letter-spacing: 0.5px;
+}
+
+.insight-value {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+@media (max-width: 1024px) {
+  .insights-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 580px) {
+  .insights-list {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  
+  .filter-top-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+  
+  .clear-filters-btn {
+    text-align: center;
+  }
+}
+
+
 
 
 

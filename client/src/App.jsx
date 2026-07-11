@@ -276,6 +276,45 @@ function App() {
     }
   }
 
+  // Copy to Clipboard Helper
+  const copyToClipboard = (text, label = "FIR Number") => {
+    navigator.clipboard.writeText(text);
+    showToast(`${label} copied to clipboard!`, "success");
+  }
+
+  // Export Filtered Cases to CSV Helper
+  const exportToCSV = () => {
+    if (filteredCases.length === 0) {
+      showToast("No cases available to export", "error");
+      return;
+    }
+    
+    const headers = ["FIR Number", "Category", "District", "Police Station", "Incident Date", "Summary", "Latitude", "Longitude"];
+    const csvRows = [
+      headers.join(","),
+      ...filteredCases.map(c => [
+        `"${c.fir_number.replace(/"/g, '""')}"`,
+        `"${c.category.replace(/"/g, '""')}"`,
+        `"${c.district.replace(/"/g, '""')}"`,
+        `"${c.police_station.replace(/"/g, '""')}"`,
+        `"${c.incident_date.replace(/"/g, '""')}"`,
+        `"${c.summary.replace(/"/g, '""')}"`,
+        c.latitude || 0,
+        c.longitude || 0
+      ].join(","))
+    ];
+    
+    const csvContent = "data:text/csv;charset=utf-8," + csvRows.join("\n");
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement("a");
+    link.setAttribute("href", encodedUri);
+    link.setAttribute("download", `ksp_crime_cases_${new Date().toISOString().split('T')[0]}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    showToast(`Successfully exported ${filteredCases.length} cases to CSV!`, "success");
+  }
+
   // Compute Dashboard Statistics
   const totalCases = cases.length;
 
@@ -373,6 +412,31 @@ function App() {
   const areaPath = points.length > 1
     ? `${linePath} L ${points[points.length - 1].x} ${chartHeight - padding} L ${points[0].x} ${chartHeight - padding} Z`
     : ''
+
+  // Quick Crime Insights Calculation
+  let mostCommonCategory = "None";
+  if (cases.length > 0) {
+    const catMap = {};
+    cases.forEach(c => { catMap[c.category] = (catMap[c.category] || 0) + 1; });
+    mostCommonCategory = Object.keys(catMap).reduce((a, b) => catMap[a] > catMap[b] ? a : b);
+  }
+
+  let highestDistrict = "None";
+  if (cases.length > 0) {
+    const distMap = {};
+    cases.forEach(c => { distMap[c.district] = (distMap[c.district] || 0) + 1; });
+    highestDistrict = Object.keys(distMap).reduce((a, b) => distMap[a] > distMap[b] ? a : b);
+  }
+
+  const latestFIR = cases.length > 0 ? cases[0].fir_number : "None";
+  const hasActiveFilters = searchQuery !== '' || filterCategory !== 'All' || filterDistrict !== 'All';
+
+  const handleClearFilters = () => {
+    setSearchQuery('');
+    setFilterCategory('All');
+    setFilterDistrict('All');
+    showToast("All filters cleared", "info");
+  };
 
   return (
     <div className="dashboard-container">
@@ -581,67 +645,85 @@ function App() {
                 <p className="subtitle">
                   Verify end-to-end data flow. Cases are persisted to Catalyst or local JSON backup. Click a row to view details, edit, or delete.
                 </p>
-                <button className="refresh-btn" onClick={fetchCases}>
-                  🔄 Refresh
-                </button>
+                <div className="action-buttons-group">
+                  <button className="export-csv-btn" onClick={exportToCSV} title="Export current results to CSV file">
+                    📥 Export CSV
+                  </button>
+                  <button className="refresh-btn" onClick={fetchCases}>
+                    🔄 Refresh
+                  </button>
+                </div>
               </div>
 
               {/* Search, Filters, and Sorting Controls */}
               {!loading && !error && (
                 <div className="filter-controls-bar">
-                  <div className="search-box">
-                    <span className="search-icon">🔍</span>
-                    <input
-                      type="text"
-                      placeholder="Search by FIR number..."
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                    />
-                    {searchQuery && (
-                      <button className="clear-search-btn" onClick={() => setSearchQuery('')}>&times;</button>
+                  <div className="filter-top-row">
+                    <div className="results-counter">
+                      Showing <strong>{filteredCases.length}</strong> of <strong>{cases.length}</strong> cases
+                    </div>
+                    {hasActiveFilters && (
+                      <button className="clear-filters-btn" onClick={handleClearFilters}>
+                        🧹 Clear Filters
+                      </button>
                     )}
                   </div>
 
-                  <div className="filter-select-group">
-                    <div className="filter-select-item">
-                      <label htmlFor="filter-category">Category</label>
-                      <select
-                        id="filter-category"
-                        value={filterCategory}
-                        onChange={(e) => setFilterCategory(e.target.value)}
-                      >
-                        <option value="All">All Categories</option>
-                        <option value="Theft">Theft</option>
-                        <option value="Cybercrime">Cybercrime</option>
-                        <option value="Assault">Assault</option>
-                        <option value="Fraud">Fraud</option>
-                      </select>
+                  <div className="filter-controls-row">
+                    <div className="search-box">
+                      <span className="search-icon">🔍</span>
+                      <input
+                        type="text"
+                        placeholder="Search by FIR number..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                      />
+                      {searchQuery && (
+                        <button className="clear-search-btn" onClick={() => setSearchQuery('')}>&times;</button>
+                      )}
                     </div>
 
-                    <div className="filter-select-item">
-                      <label htmlFor="filter-district">District</label>
-                      <select
-                        id="filter-district"
-                        value={filterDistrict}
-                        onChange={(e) => setFilterDistrict(e.target.value)}
-                      >
-                        <option value="All">All Districts</option>
-                        <option value="Bengaluru">Bengaluru</option>
-                        <option value="Mysuru">Mysuru</option>
-                        <option value="Hubballi-Dharwad">Hubballi-Dharwad</option>
-                        <option value="Udupi">Udupi</option>
-                      </select>
-                    </div>
+                    <div className="filter-select-group">
+                      <div className="filter-select-item">
+                        <label htmlFor="filter-category">Category</label>
+                        <select
+                          id="filter-category"
+                          value={filterCategory}
+                          onChange={(e) => setFilterCategory(e.target.value)}
+                        >
+                          <option value="All">All Categories</option>
+                          <option value="Theft">Theft</option>
+                          <option value="Cybercrime">Cybercrime</option>
+                          <option value="Assault">Assault</option>
+                          <option value="Fraud">Fraud</option>
+                        </select>
+                      </div>
 
-                    <div className="filter-select-item">
-                      <label>Sort Order</label>
-                      <button
-                        type="button"
-                        className="sort-toggle-btn"
-                        onClick={() => setSortOrder(prev => prev === 'latest' ? 'oldest' : 'latest')}
-                      >
-                        {sortOrder === 'latest' ? '📅 Newest' : '📅 Oldest'}
-                      </button>
+                      <div className="filter-select-item">
+                        <label htmlFor="filter-district">District</label>
+                        <select
+                          id="filter-district"
+                          value={filterDistrict}
+                          onChange={(e) => setFilterDistrict(e.target.value)}
+                        >
+                          <option value="All">All Districts</option>
+                          <option value="Bengaluru">Bengaluru</option>
+                          <option value="Mysuru">Mysuru</option>
+                          <option value="Hubballi-Dharwad">Hubballi-Dharwad</option>
+                          <option value="Udupi">Udupi</option>
+                        </select>
+                      </div>
+
+                      <div className="filter-select-item">
+                        <label>Sort Order</label>
+                        <button
+                          type="button"
+                          className="sort-toggle-btn"
+                          onClick={() => setSortOrder(prev => prev === 'latest' ? 'oldest' : 'latest')}
+                        >
+                          {sortOrder === 'latest' ? '📅 Newest' : '📅 Oldest'}
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -716,6 +798,30 @@ function App() {
         ) : (
           /* Analytics tab view with custom charts */
           <section className="analytics-dashboard-view">
+            {/* Quick Crime Insights Panel */}
+            <div className="analytics-card quick-insights-card">
+              <h3>📌 Quick Crime Insights</h3>
+              <p className="chart-subtitle">Key trends computed dynamically from current case records</p>
+              <div className="insights-list">
+                <div className="insight-item">
+                  <span className="insight-label">🔥 Most Common Crime:</span>
+                  <span className="insight-value">{mostCommonCategory}</span>
+                </div>
+                <div className="insight-item">
+                  <span className="insight-label">📍 Highest Case Volume:</span>
+                  <span className="insight-value">{highestDistrict}</span>
+                </div>
+                <div className="insight-item">
+                  <span className="insight-label">🆕 Latest Registered FIR:</span>
+                  <span className="insight-value fir-code">{latestFIR}</span>
+                </div>
+                <div className="insight-item">
+                  <span className="insight-label">📂 Total Records Analyzed:</span>
+                  <span className="insight-value">{cases.length} cases</span>
+                </div>
+              </div>
+            </div>
+
             <div className="analytics-grid">
               
               {/* Category Chart (Horizontal Bar Chart) */}
@@ -980,7 +1086,17 @@ function App() {
                   <div className="details-grid">
                     <div className="detail-item">
                       <span className="label">FIR Number</span>
-                      <span className="val fir-code">{selectedCase.fir_number}</span>
+                      <span className="val fir-code copy-container">
+                        {selectedCase.fir_number}
+                        <button 
+                          type="button"
+                          className="copy-fir-btn" 
+                          onClick={() => copyToClipboard(selectedCase.fir_number, "FIR Number")}
+                          title="Copy FIR Number to Clipboard"
+                        >
+                          📋 Copy
+                        </button>
+                      </span>
                     </div>
                     <div className="detail-item">
                       <span className="label">Category</span>
