@@ -14,6 +14,18 @@ function App() {
   const [error, setError] = useState(null)
   const [apiStatus, setApiStatus] = useState("Checking...")
 
+  // Tab State & Toasts
+  const [activeTab, setActiveTab] = useState('records')
+  const [toasts, setToasts] = useState([])
+
+  const showToast = (message, type = 'info') => {
+    const id = Math.random().toString(36).substr(2, 9)
+    setToasts(prev => [...prev, { id, message, type }])
+    setTimeout(() => {
+      setToasts(prev => prev.filter(t => t.id !== id))
+    }, 4000)
+  }
+
   // Form State for creating new cases
   const [formData, setFormData] = useState({
     fir_number: '',
@@ -70,6 +82,7 @@ function App() {
       console.error("API Connection Error:", err)
       setError(err.message)
       setApiStatus("Offline")
+      showToast("API Connection failed: " + err.message, "error")
     } finally {
       setLoading(false)
     }
@@ -91,7 +104,6 @@ function App() {
     e.preventDefault()
     setSubmitting(true)
     setSubmitError(null)
-    setSubmitSuccess(false)
 
     // Convert date format from YYYY-MM-DDTHH:MM to YYYY-MM-DD HH:MM:SS
     let formattedDate = formData.incident_date
@@ -120,7 +132,7 @@ function App() {
 
       const result = await response.json()
       if (result.success) {
-        setSubmitSuccess(true)
+        showToast(`FIR ${result.data.fir_number} registered successfully!`, "success")
         // Reset form fields except district & category
         setFormData({
           fir_number: '',
@@ -133,15 +145,13 @@ function App() {
 
         // Instantly prepend new case to the state list
         setCases(prev => [result.data, ...prev])
-
-        // Hide success message after a delay
-        setTimeout(() => setSubmitSuccess(false), 5000)
       } else {
         throw new Error(result.detail || "Failed to register case")
       }
     } catch (err) {
       console.error("Submission Error:", err)
       setSubmitError(err.message)
+      showToast("Failed to register case: " + err.message, "error")
     } finally {
       setSubmitting(false)
     }
@@ -221,12 +231,14 @@ function App() {
         setCases(prev => prev.map(c => c.id === selectedCase.id ? result.data : c))
         setSelectedCase(result.data)
         setIsEditing(false)
+        showToast("Case updated successfully!", "success")
       } else {
         throw new Error(result.detail || 'Failed to update case')
       }
     } catch (err) {
       console.error(err)
       setUpdateError(err.message)
+      showToast("Update failed: " + err.message, "error")
     } finally {
       setUpdateLoading(false)
     }
@@ -248,14 +260,17 @@ function App() {
 
       const result = await response.json()
       if (result.success) {
+        const deletedNumber = selectedCase.fir_number
         setCases(prev => prev.filter(c => c.id !== selectedCase.id))
         handleCloseModal()
+        showToast(`FIR ${deletedNumber} deleted successfully!`, "info")
       } else {
         throw new Error(result.detail || 'Failed to delete case')
       }
     } catch (err) {
       console.error(err)
       setUpdateError(err.message)
+      showToast("Deletion failed: " + err.message, "error")
     } finally {
       setUpdateLoading(false)
     }
@@ -297,9 +312,95 @@ function App() {
       }
     });
 
-  return (
+  // Categories chart aggregation
+  const categories = ['Theft', 'Cybercrime', 'Assault', 'Fraud']
+  const categoryCounts = categories.reduce((acc, cat) => ({ ...acc, [cat]: 0 }), {})
+  cases.forEach(c => {
+    if (categoryCounts[c.category] !== undefined) {
+      categoryCounts[c.category]++
+    }
+  })
+  const maxCategoryCount = Math.max(...Object.values(categoryCounts), 1)
 
+  // District chart aggregation
+  const districts = ['Bengaluru', 'Mysuru', 'Hubballi-Dharwad', 'Udupi']
+  const districtCounts = districts.reduce((acc, dist) => ({ ...acc, [dist]: 0 }), {})
+  cases.forEach(c => {
+    if (districtCounts[c.district] !== undefined) {
+      districtCounts[c.district]++
+    }
+  })
+  const totalCasesVal = cases.length || 1
+  let accumulatedPercentage = 0
+  const donutSegments = districts.map((district, idx) => {
+    const count = districtCounts[district]
+    const percentage = (count / totalCasesVal) * 100
+    const dashArray = 314.159
+    const dashOffset = dashArray - (dashArray * percentage) / 100
+    const rotation = (accumulatedPercentage * 360) / 100
+    accumulatedPercentage += percentage
+    return {
+      district,
+      count,
+      percentage,
+      dashArray,
+      dashOffset,
+      rotation
+    }
+  })
+
+  // Timeline chart aggregation
+  const dateGroups = {}
+  cases.forEach(c => {
+    const dateStr = c.incident_date.split(' ')[0]
+    dateGroups[dateStr] = (dateGroups[dateStr] || 0) + 1
+  })
+  const sortedDates = Object.keys(dateGroups).sort()
+  const maxDateCount = Math.max(...Object.values(dateGroups), 1)
+  const chartWidth = 500
+  const chartHeight = 150
+  const padding = 25
+  const points = sortedDates.map((date, idx) => {
+    const x = sortedDates.length > 1 
+      ? padding + (idx * (chartWidth - 2 * padding)) / (sortedDates.length - 1)
+      : chartWidth / 2
+    const y = chartHeight - padding - (dateGroups[date] / maxDateCount) * (chartHeight - 2 * padding)
+    return { date, count: dateGroups[date], x, y }
+  })
+  const linePath = points.length > 1
+    ? points.map((p, idx) => `${idx === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ')
+    : ''
+  const areaPath = points.length > 1
+    ? `${linePath} L ${points[points.length - 1].x} ${chartHeight - padding} L ${points[0].x} ${chartHeight - padding} Z`
+    : ''
+
+  return (
     <div className="dashboard-container">
+      {/* Toast Messages */}
+      <div className="toast-container">
+        {toasts.map(t => (
+          <div key={t.id} className={`toast-message ${t.type}`}>
+            <span className="toast-icon">
+              {t.type === 'success' && '✅'}
+              {t.type === 'error' && '❌'}
+              {t.type === 'info' && 'ℹ️'}
+            </span>
+            <span className="toast-text">{t.message}</span>
+            <button className="toast-close" onClick={() => setToasts(prev => prev.filter(x => x.id !== t.id))}>&times;</button>
+          </div>
+        ))}
+      </div>
+
+      {/* Loading Overlay */}
+      {(loading || submitting || updateLoading) && (
+        <div className="loading-overlay">
+          <div className="spinner-container">
+            <span className="spinner">🚨</span>
+            <p>Processing Request...</p>
+          </div>
+        </div>
+      )}
+
       {/* Top Police Banner Header */}
       <header className="dashboard-header">
         <div className="header-logo">🛡️</div>
@@ -349,260 +450,395 @@ function App() {
         </div>
       </section>
 
+      {/* Navigation Tabs */}
+      <div className="tabs-navigation">
+        <button 
+          className={`tab-btn ${activeTab === 'records' ? 'active' : ''}`}
+          onClick={() => setActiveTab('records')}
+        >
+          📂 FIR Case Records
+        </button>
+        <button 
+          className={`tab-btn ${activeTab === 'analytics' ? 'active' : ''}`}
+          onClick={() => setActiveTab('analytics')}
+        >
+          📊 Analytics Dashboard
+        </button>
+      </div>
 
       {/* Main Dashboard Grid */}
       <main className="dashboard-grid">
-        
-        {/* Left: Register Case Form Card */}
-        <section className="form-card-wrapper">
-          <div className="form-card">
-            <h3>📝 Register New Case</h3>
-            <p className="form-subtitle">Submit details of the FIR to insert into Catalyst Data Store.</p>
-            
-            {submitSuccess && (
-              <div className="alert success">
-                ✅ Case registered successfully in database!
-              </div>
-            )}
-            
-            {submitError && (
-              <div className="alert error">
-                ❌ Error: {submitError}
-              </div>
-            )}
-
-            <form onSubmit={handleSubmit} className="crime-form">
-              <div className="form-group">
-                <label htmlFor="fir_number">FIR Number</label>
-                <input
-                  type="text"
-                  id="fir_number"
-                  name="fir_number"
-                  value={formData.fir_number}
-                  onChange={handleInputChange}
-                  placeholder="e.g. FIR/BLR/2026/0010"
-                  required
-                />
-              </div>
-
-              <div className="form-row">
-                <div className="form-group">
-                  <label htmlFor="category">Category</label>
-                  <select
-                    id="category"
-                    name="category"
-                    value={formData.category}
-                    onChange={handleInputChange}
-                    required
-                  >
-                    <option value="Theft">Theft</option>
-                    <option value="Cybercrime">Cybercrime</option>
-                    <option value="Assault">Assault</option>
-                    <option value="Fraud">Fraud</option>
-                  </select>
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="district">District</label>
-                  <select
-                    id="district"
-                    name="district"
-                    value={formData.district}
-                    onChange={handleInputChange}
-                    required
-                  >
-                    <option value="Bengaluru">Bengaluru</option>
-                    <option value="Mysuru">Mysuru</option>
-                    <option value="Hubballi-Dharwad">Hubballi-Dharwad</option>
-                    <option value="Udupi">Udupi</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="police_station">Police Station</label>
-                <input
-                  type="text"
-                  id="police_station"
-                  name="police_station"
-                  value={formData.police_station}
-                  onChange={handleInputChange}
-                  placeholder="e.g. Koramangala PS"
-                  required
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="incident_date">Incident Date & Time</label>
-                <input
-                  type="datetime-local"
-                  id="incident_date"
-                  name="incident_date"
-                  value={formData.incident_date}
-                  onChange={handleInputChange}
-                  required
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="summary">Case Summary</label>
-                <textarea
-                  id="summary"
-                  name="summary"
-                  value={formData.summary}
-                  onChange={handleInputChange}
-                  placeholder="Enter detailed crime description..."
-                  rows={4}
-                  required
-                />
-              </div>
-
-              <button type="submit" className="submit-btn" disabled={submitting}>
-                {submitting ? 'Registering in Datastore...' : 'Register FIR Record'}
-              </button>
-            </form>
-          </div>
-        </section>
-
-        {/* Right: Table / States */}
-        <section className="data-view-wrapper">
-          <div className="action-bar">
-            <p className="subtitle">
-              Verify end-to-end data flow. Cases are persisted to Catalyst or local JSON backup. Click a row to view details, edit, or delete.
-            </p>
-            <button className="refresh-btn" onClick={fetchCases}>
-              🔄 Refresh
-            </button>
-          </div>
-
-          {/* Search, Filters, and Sorting Controls */}
-          {!loading && !error && (
-            <div className="filter-controls-bar">
-              <div className="search-box">
-                <span className="search-icon">🔍</span>
-                <input
-                  type="text"
-                  placeholder="Search by FIR number..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-                {searchQuery && (
-                  <button className="clear-search-btn" onClick={() => setSearchQuery('')}>&times;</button>
+        {activeTab === 'records' ? (
+          <>
+            {/* Left: Register Case Form Card */}
+            <section className="form-card-wrapper">
+              <div className="form-card">
+                <h3>📝 Register New Case</h3>
+                <p className="form-subtitle">Submit details of the FIR to insert into Catalyst Data Store.</p>
+                
+                {submitError && (
+                  <div className="alert error">
+                    ❌ Error: {submitError}
+                  </div>
                 )}
-              </div>
 
-              <div className="filter-select-group">
-                <div className="filter-select-item">
-                  <label htmlFor="filter-category">Category</label>
-                  <select
-                    id="filter-category"
-                    value={filterCategory}
-                    onChange={(e) => setFilterCategory(e.target.value)}
-                  >
-                    <option value="All">All Categories</option>
-                    <option value="Theft">Theft</option>
-                    <option value="Cybercrime">Cybercrime</option>
-                    <option value="Assault">Assault</option>
-                    <option value="Fraud">Fraud</option>
-                  </select>
-                </div>
+                <form onSubmit={handleSubmit} className="crime-form">
+                  <div className="form-group">
+                    <label htmlFor="fir_number">FIR Number</label>
+                    <input
+                      type="text"
+                      id="fir_number"
+                      name="fir_number"
+                      value={formData.fir_number}
+                      onChange={handleInputChange}
+                      placeholder="e.g. FIR/BLR/2026/0010"
+                      required
+                    />
+                  </div>
 
-                <div className="filter-select-item">
-                  <label htmlFor="filter-district">District</label>
-                  <select
-                    id="filter-district"
-                    value={filterDistrict}
-                    onChange={(e) => setFilterDistrict(e.target.value)}
-                  >
-                    <option value="All">All Districts</option>
-                    <option value="Bengaluru">Bengaluru</option>
-                    <option value="Mysuru">Mysuru</option>
-                    <option value="Hubballi-Dharwad">Hubballi-Dharwad</option>
-                    <option value="Udupi">Udupi</option>
-                  </select>
-                </div>
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label htmlFor="category">Category</label>
+                      <select
+                        id="category"
+                        name="category"
+                        value={formData.category}
+                        onChange={handleInputChange}
+                        required
+                      >
+                        <option value="Theft">Theft</option>
+                        <option value="Cybercrime">Cybercrime</option>
+                        <option value="Assault">Assault</option>
+                        <option value="Fraud">Fraud</option>
+                      </select>
+                    </div>
 
-                <div className="filter-select-item">
-                  <label>Sort Order</label>
-                  <button
-                    type="button"
-                    className="sort-toggle-btn"
-                    onClick={() => setSortOrder(prev => prev === 'latest' ? 'oldest' : 'latest')}
-                  >
-                    {sortOrder === 'latest' ? '📅 Newest' : '📅 Oldest'}
+                    <div className="form-group">
+                      <label htmlFor="district">District</label>
+                      <select
+                        id="district"
+                        name="district"
+                        value={formData.district}
+                        onChange={handleInputChange}
+                        required
+                      >
+                        <option value="Bengaluru">Bengaluru</option>
+                        <option value="Mysuru">Mysuru</option>
+                        <option value="Hubballi-Dharwad">Hubballi-Dharwad</option>
+                        <option value="Udupi">Udupi</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="police_station">Police Station</label>
+                    <input
+                      type="text"
+                      id="police_station"
+                      name="police_station"
+                      value={formData.police_station}
+                      onChange={handleInputChange}
+                      placeholder="e.g. Koramangala PS"
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="incident_date">Incident Date & Time</label>
+                    <input
+                      type="datetime-local"
+                      id="incident_date"
+                      name="incident_date"
+                      value={formData.incident_date}
+                      onChange={handleInputChange}
+                      required
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="summary">Case Summary</label>
+                    <textarea
+                      id="summary"
+                      name="summary"
+                      value={formData.summary}
+                      onChange={handleInputChange}
+                      placeholder="Enter detailed crime description..."
+                      rows={4}
+                      required
+                    />
+                  </div>
+
+                  <button type="submit" className="submit-btn" disabled={submitting}>
+                    {submitting ? 'Registering in Datastore...' : 'Register FIR Record'}
                   </button>
+                </form>
+              </div>
+            </section>
+
+            {/* Right: Table / States */}
+            <section className="data-view-wrapper">
+              <div className="action-bar">
+                <p className="subtitle">
+                  Verify end-to-end data flow. Cases are persisted to Catalyst or local JSON backup. Click a row to view details, edit, or delete.
+                </p>
+                <button className="refresh-btn" onClick={fetchCases}>
+                  🔄 Refresh
+                </button>
+              </div>
+
+              {/* Search, Filters, and Sorting Controls */}
+              {!loading && !error && (
+                <div className="filter-controls-bar">
+                  <div className="search-box">
+                    <span className="search-icon">🔍</span>
+                    <input
+                      type="text"
+                      placeholder="Search by FIR number..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                    />
+                    {searchQuery && (
+                      <button className="clear-search-btn" onClick={() => setSearchQuery('')}>&times;</button>
+                    )}
+                  </div>
+
+                  <div className="filter-select-group">
+                    <div className="filter-select-item">
+                      <label htmlFor="filter-category">Category</label>
+                      <select
+                        id="filter-category"
+                        value={filterCategory}
+                        onChange={(e) => setFilterCategory(e.target.value)}
+                      >
+                        <option value="All">All Categories</option>
+                        <option value="Theft">Theft</option>
+                        <option value="Cybercrime">Cybercrime</option>
+                        <option value="Assault">Assault</option>
+                        <option value="Fraud">Fraud</option>
+                      </select>
+                    </div>
+
+                    <div className="filter-select-item">
+                      <label htmlFor="filter-district">District</label>
+                      <select
+                        id="filter-district"
+                        value={filterDistrict}
+                        onChange={(e) => setFilterDistrict(e.target.value)}
+                      >
+                        <option value="All">All Districts</option>
+                        <option value="Bengaluru">Bengaluru</option>
+                        <option value="Mysuru">Mysuru</option>
+                        <option value="Hubballi-Dharwad">Hubballi-Dharwad</option>
+                        <option value="Udupi">Udupi</option>
+                      </select>
+                    </div>
+
+                    <div className="filter-select-item">
+                      <label>Sort Order</label>
+                      <button
+                        type="button"
+                        className="sort-toggle-btn"
+                        onClick={() => setSortOrder(prev => prev === 'latest' ? 'oldest' : 'latest')}
+                      >
+                        {sortOrder === 'latest' ? '📅 Newest' : '📅 Oldest'}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Error State */}
+              {error && (
+                <div className="state-card error">
+                  <h3>⚠️ Connection Failure</h3>
+                  <p className="error-text">Could not fetch cases from FastAPI backend.</p>
+                  <div className="troubleshooting">
+                    <strong>Troubleshooting:</strong>
+                    <ol>
+                      <li>Ensure the FastAPI server is running on port 8000.</li>
+                      <li>Verify local fallback mode is active if Catalyst credentials are omitted.</li>
+                    </ol>
+                  </div>
+                </div>
+              )}
+
+              {/* Cases Table */}
+              {!loading && !error && (
+                <div className="table-wrapper">
+                  <table className="crime-table">
+                    <thead>
+                      <tr>
+                        <th>FIR Number</th>
+                        <th>Category</th>
+                        <th>District</th>
+                        <th>Police Station</th>
+                        <th>Incident Date</th>
+                        <th>Summary</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {filteredCases.length === 0 ? (
+                        <tr>
+                          <td colSpan="6" className="no-cases-cell">
+                            <div className="empty-state-container">
+                              <span className="empty-state-icon">🔍</span>
+                              <h4>No Records Found</h4>
+                              <p>
+                                {cases.length === 0 
+                                  ? "No crime cases found. Register a case on the left!" 
+                                  : "No matching crime cases found. Adjust your search or filters!"}
+                              </p>
+                            </div>
+                          </td>
+                        </tr>
+                      ) : (
+                        filteredCases.map((item) => (
+                          <tr key={item.id} className="case-row-clickable case-row-new" onClick={() => handleRowClick(item)}>
+                            <td className="fir-col">{item.fir_number}</td>
+                            <td>
+                              <span className={`category-tag ${item.category.toLowerCase()}`}>
+                                {item.category}
+                              </span>
+                            </td>
+                            <td>{item.district}</td>
+                            <td>{item.police_station}</td>
+                            <td className="date-col">{item.incident_date}</td>
+                            <td className="summary-col">{item.summary}</td>
+                          </tr>
+                        ))
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </section>
+          </>
+        ) : (
+          /* Analytics tab view with custom charts */
+          <section className="analytics-dashboard-view">
+            <div className="analytics-grid">
+              
+              {/* Category Chart (Horizontal Bar Chart) */}
+              <div className="analytics-card">
+                <h3>📊 Cases by Category</h3>
+                <p className="chart-subtitle">Distribution of crimes grouped by FIR categories</p>
+                <div className="category-chart-container">
+                  {categories.map((cat, idx) => {
+                    const count = categoryCounts[cat]
+                    const pct = (count / maxCategoryCount) * 100
+                    return (
+                      <div className="chart-bar-item" key={cat}>
+                        <div className="chart-bar-header">
+                          <span className="chart-bar-label">{cat}</span>
+                          <span className="chart-bar-value">{count} {count === 1 ? 'case' : 'cases'}</span>
+                        </div>
+                        <div className="chart-bar-track">
+                          <div 
+                            className={`chart-bar-fill category-color-${idx}`} 
+                            style={{ width: `${pct}%` }}
+                          />
+                        </div>
+                      </div>
+                    )
+                  })}
                 </div>
               </div>
-            </div>
-          )}
 
-          {/* Loading / Error States */}
-          {loading && (
-            <div className="state-card loading">
-              <span className="spinner">⏳</span> Fetching database records...
-            </div>
-          )}
-
-          {error && (
-            <div className="state-card error">
-              <h3>⚠️ Connection Failure</h3>
-              <p className="error-text">Could not fetch cases from FastAPI backend.</p>
-              <div className="troubleshooting">
-                <strong>Troubleshooting:</strong>
-                <ol>
-                  <li>Ensure the FastAPI server is running on port 8000.</li>
-                  <li>Verify local fallback mode is active if Catalyst credentials are omitted.</li>
-                </ol>
+              {/* District Chart (Donut Chart) */}
+              <div className="analytics-card donut-card">
+                <h3>📍 Cases by District</h3>
+                <p className="chart-subtitle">Regional distribution of reported offenses</p>
+                <div className="donut-chart-wrapper">
+                  <div className="donut-svg-container">
+                    <svg width="180" height="180" viewBox="0 0 120 120" className="donut-chart-svg">
+                      <circle cx="60" cy="60" r="50" fill="transparent" stroke="#101a2f" strokeWidth="12" />
+                      {donutSegments.map((seg, idx) => seg.count > 0 && (
+                        <circle
+                          key={seg.district}
+                          cx="60"
+                          cy="60"
+                          r="50"
+                          fill="transparent"
+                          stroke={`var(--district-${idx})`}
+                          strokeWidth="12"
+                          strokeDasharray={seg.dashArray}
+                          strokeDashoffset={seg.dashOffset}
+                          transform={`rotate(${seg.rotation - 90} 60 60)`}
+                          strokeLinecap="round"
+                          className="donut-segment"
+                        />
+                      ))}
+                      <text x="60" y="58" textAnchor="middle" className="donut-center-num" fill="#ffffff">
+                        {cases.length}
+                      </text>
+                      <text x="60" y="72" textAnchor="middle" className="donut-center-label" fill="#a0aec0">
+                        Total
+                      </text>
+                    </svg>
+                  </div>
+                  <div className="donut-legend">
+                    {districts.map((dist, idx) => (
+                      <div className="legend-item" key={dist}>
+                        <span className="legend-dot" style={{ backgroundColor: `var(--district-${idx})` }} />
+                        <span className="legend-label">{dist}</span>
+                        <span className="legend-val">({districtCounts[dist]})</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
-            </div>
-          )}
 
-          {/* Cases Table */}
-          {!loading && !error && (
-            <div className="table-wrapper">
-              <table className="crime-table">
-                <thead>
-                  <tr>
-                    <th>FIR Number</th>
-                    <th>Category</th>
-                    <th>District</th>
-                    <th>Police Station</th>
-                    <th>Incident Date</th>
-                    <th>Summary</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filteredCases.length === 0 ? (
-                    <tr>
-                      <td colSpan="6" className="no-cases-cell">
-                        {cases.length === 0 
-                          ? "No crime cases found. Register a case on the left!" 
-                          : "No matching crime cases found. Adjust your search or filters!"}
-                      </td>
-                    </tr>
+              {/* Timeline Chart (Area / Line Chart) */}
+              <div className="analytics-card timeline-card">
+                <h3>📅 Incident Timeline</h3>
+                <p className="chart-subtitle">Chronological timeline of registered FIRs</p>
+                <div className="timeline-chart-container">
+                  {points.length > 0 ? (
+                    <svg viewBox={`0 0 ${chartWidth} ${chartHeight}`} className="timeline-svg">
+                      <defs>
+                        <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="var(--accent-blue)" stopOpacity="0.4"/>
+                          <stop offset="100%" stopColor="var(--accent-blue)" stopOpacity="0.0"/>
+                        </linearGradient>
+                      </defs>
+                      
+                      {/* Grid Lines */}
+                      <line x1={padding} y1={padding} x2={chartWidth - padding} y2={padding} stroke="#1a263f" strokeDasharray="3,3" />
+                      <line x1={padding} y1={chartHeight / 2} x2={chartWidth - padding} y2={chartHeight / 2} stroke="#1a263f" strokeDasharray="3,3" />
+                      <line x1={padding} y1={chartHeight - padding} x2={chartWidth - padding} y2={chartHeight - padding} stroke="#1a263f" />
+
+                      {/* Area Fill */}
+                      {areaPath && <path d={areaPath} fill="url(#areaGrad)" />}
+                      
+                      {/* Line Path */}
+                      {linePath && <path d={linePath} fill="none" stroke="var(--accent-blue)" strokeWidth="3" strokeLinecap="round" />}
+                      
+                      {/* Points */}
+                      {points.map((p, idx) => (
+                        <g key={idx} className="timeline-dot-group">
+                          <circle cx={p.x} cy={p.y} r="5" fill="#ffffff" stroke="var(--accent-blue)" strokeWidth="2" className="timeline-dot" />
+                          <title>{p.date}: {p.count} {p.count === 1 ? 'case' : 'cases'}</title>
+                        </g>
+                      ))}
+
+                      {/* X Axis Labels */}
+                      {points.map((p, idx) => (idx === 0 || idx === points.length - 1 || points.length <= 5) && (
+                        <text key={idx} x={p.x} y={chartHeight - 8} textAnchor="middle" className="timeline-axis-text" fill="#a0aec0">
+                          {p.date.slice(5)}
+                        </text>
+                      ))}
+                    </svg>
                   ) : (
-                    filteredCases.map((item) => (
-                      <tr key={item.id} className="case-row-clickable case-row-new" onClick={() => handleRowClick(item)}>
-                        <td className="fir-col">{item.fir_number}</td>
-                        <td>
-                          <span className={`category-tag ${item.category.toLowerCase()}`}>
-                            {item.category}
-                          </span>
-                        </td>
-                        <td>{item.district}</td>
-                        <td>{item.police_station}</td>
-                        <td className="date-col">{item.incident_date}</td>
-                        <td className="summary-col">{item.summary}</td>
-                      </tr>
-                    ))
+                    <div className="empty-state-container min-h-120">
+                      <p>Register cases to view timeline history.</p>
+                    </div>
                   )}
-                </tbody>
-              </table>
+                </div>
+              </div>
+
             </div>
-          )}
-        </section>
-
-
+          </section>
+        )}
       </main>
 
       {/* Selected Case Details / Edit Modal */}
