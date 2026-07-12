@@ -1547,6 +1547,15 @@ body {
     position: static;
   }
 
+  /* Prevent iOS zoom on focus */
+  .form-group input,
+  .form-group select,
+  .form-group textarea,
+  .search-box input,
+  .filter-select-item select {
+    font-size: 16px !important;
+  }
+
   /* Single column stats panels */
   .stats-panel-container {
     padding: 1rem 1rem 0 1rem;
