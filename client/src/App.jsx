@@ -6,7 +6,7 @@ import './App.css'
 // - Resolves to the deployed Catalyst AppSail URL in production (customizable via VITE_API_URL env variable).
 const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
   ? 'http://localhost:8000'
-  : (import.meta.env.VITE_API_URL || 'https://server-50043662505.development.catalystappsail.in');
+  : window.location.origin;
 
 function App() {
   const [cases, setCases] = useState([])

@@ -11,6 +11,8 @@ print("FastAPI app starting...")
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from app.database import get_all_cases, create_case, update_case, delete_case
 from pydantic import BaseModel
 
@@ -112,12 +114,20 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Serve static assets compiled from client build
+app.mount("/assets", StaticFiles(directory="static/assets"), name="assets")
+
+@app.get("/favicon.svg")
+def get_favicon():
+    return FileResponse("static/favicon.svg")
+
+@app.get("/icons.svg")
+def get_icons():
+    return FileResponse("static/icons.svg")
+
 @app.get("/")
 def read_root():
-    return {
-        "status": "Online",
-        "message": "Welcome to the KSP Crime Intelligence Platform API!"
-    }
+    return FileResponse("static/index.html")
 
 @app.get("/api/v1/health")
 def health_check():
@@ -182,6 +192,12 @@ def remove_case(case_id: int, request: Request):
         raise he
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to delete case: {str(e)}")
+@app.get("/{full_path:path}")
+def catch_all(full_path: str):
+    if full_path.startswith("api/"):
+        raise HTTPException(status_code=404, detail="API route not found")
+    return FileResponse("static/index.html")
+
 
 
 if __name__ == "__main__":
