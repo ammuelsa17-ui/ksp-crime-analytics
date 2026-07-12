@@ -102,6 +102,42 @@ def get_catalyst_app(request=None):
             return None
     return None
 
+DISTRICT_COORDINATES = {
+    "bagalkot": (16.1813, 75.6999),
+    "ballari": (15.1394, 76.9214),
+    "belagavi": (15.8497, 74.4977),
+    "bengaluru rural": (13.2284, 77.5794),
+    "bengaluru urban": (12.9716, 77.5946),
+    "bengaluru": (12.9716, 77.5946),
+    "bidar": (17.9104, 77.5199),
+    "chamarajanagar": (11.9261, 76.9437),
+    "chikkaballapur": (13.4328, 77.7275),
+    "chikkamagaluru": (13.3161, 75.7720),
+    "chitradurga": (14.2251, 76.4002),
+    "dakshina kannada": (12.8703, 74.8826),
+    "davanagere": (14.4644, 75.9218),
+    "dharwad": (15.4589, 75.0078),
+    "hubballi-dharwad": (15.3647, 75.1240),
+    "gadag": (15.4262, 75.6324),
+    "hassan": (13.0072, 76.1030),
+    "haveri": (14.7954, 75.3996),
+    "kalaburagi": (17.3297, 76.8343),
+    "kodagu": (12.4244, 75.7389),
+    "kolar": (13.1362, 78.1293),
+    "koppal": (15.3478, 76.1554),
+    "mandya": (12.5218, 76.8951),
+    "mysuru": (12.2958, 76.6394),
+    "raichur": (16.2076, 77.3463),
+    "ramanagara": (12.7156, 77.2811),
+    "shivamogga": (13.9299, 75.5681),
+    "tumakuru": (13.3392, 77.1140),
+    "udupi": (13.3409, 74.7421),
+    "uttara kannada": (14.8080, 74.1300),
+    "vijayapura": (16.8302, 75.7100),
+    "yadgir": (16.7600, 77.1300),
+    "vijayanagara": (15.2750, 76.3860),
+}
+
 def seed_database(app_instance):
     """Seeds the live Catalyst Data Store with the default cases from mock_crime_data.json."""
     try:
@@ -250,14 +286,7 @@ def create_case(case_data: dict, request=None) -> dict:
         # 3. Find or create location entry
         locations = data.get("locations", [])
         location_id = None
-        lat, lng = 12.9716, 77.5946  # Default coordinates for Bengaluru
-        
-        if district.lower() == "mysuru":
-            lat, lng = 12.2958, 76.6394
-        elif district.lower() == "udupi":
-            lat, lng = 13.3409, 74.7421
-        elif district.lower() == "hubballi-dharwad":
-            lat, lng = 15.3647, 75.1240
+        lat, lng = DISTRICT_COORDINATES.get(district.lower(), (12.9716, 77.5946))
 
         for loc in locations:
             if loc.get("district") == district and loc.get("police_station") == police_station:
@@ -317,13 +346,7 @@ def create_case(case_data: dict, request=None) -> dict:
         query_results = zcql.execute_query(query)
 
         location_id = None
-        lat, lng = 12.9716, 77.5946  # Default coordinates for Bengaluru
-        if district.lower() == "mysuru":
-            lat, lng = 12.2958, 76.6394
-        elif district.lower() == "udupi":
-            lat, lng = 13.3409, 74.7421
-        elif district.lower() == "hubballi-dharwad":
-            lat, lng = 15.3647, 75.1240
+        lat, lng = DISTRICT_COORDINATES.get(district.lower(), (12.9716, 77.5946))
 
         if query_results:
             loc_data = query_results[0].get("location", {})

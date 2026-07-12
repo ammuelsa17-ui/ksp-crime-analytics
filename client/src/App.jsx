@@ -8,6 +8,42 @@ const API_BASE_URL = window.location.hostname === 'localhost' || window.location
   ? 'http://localhost:8000'
   : window.location.origin;
 
+const DISTRICT_STATIONS = {
+  "Bagalkot": ["Bagalkot Town PS", "Navanagar PS", "Ilkal Town PS"],
+  "Ballari": ["Ballari Cowl Bazaar PS", "Gandhinagar PS", "Siruguppa PS"],
+  "Belagavi": ["Khade Bazaar PS", "Belagavi Camp PS", "Gokak PS"],
+  "Bengaluru Rural": ["Doddaballapur PS", "Devanahalli Town PS", "Hosakote PS"],
+  "Bengaluru Urban": ["Koramangala PS", "Indiranagar PS", "Whitefield PS", "Jayanagar PS", "Electronic City PS"],
+  "Bidar": ["Bidar Town PS", "Gandhi Gunj PS", "Bhalki Town PS"],
+  "Chamarajanagar": ["Chamarajanagar Town PS", "Kollegal Town PS", "Gundlupet PS"],
+  "Chikkaballapur": ["Chikkaballapur Town PS", "Chintamani Town PS", "Sidlaghatta Town PS"],
+  "Chikkamagaluru": ["Chikkamagaluru Town PS", "Mudur Town PS", "Kadur PS"],
+  "Chitradurga": ["Chitradurga Town PS", "Challakere PS", "Hiriyur PS"],
+  "Dakshina Kannada": ["Mangaluru North PS", "Mangaluru East PS", "Puttur Town PS"],
+  "Davanagere": ["Davanagere Town PS", "Harihar PS", "Channagiri PS"],
+  "Dharwad": ["Dharwad Suburban PS", "Dharwad Town PS", "Hubballi Town PS"],
+  "Gadag": ["Gadag Town PS", "Mulgund PS", "Shirhatti PS"],
+  "Hassan": ["Hassan Town PS", "Arsikere Town PS", "Sakleshpur PS"],
+  "Haveri": ["Haveri Town PS", "Ranebennur Town PS", "Savanur PS"],
+  "Kalaburagi": ["Kalaburagi Station Bazaar PS", "Chowk PS", "Shahabad PS"],
+  "Kodagu": ["Madikeri Town PS", "Virajpet Town PS", "Somwarpet PS"],
+  "Kolar": ["Kolar Town PS", "Bangarapet PS", "Mulbagal PS"],
+  "Koppal": ["Koppal Town PS", "Gangavathi Town PS", "Yelbarga PS"],
+  "Mandya": ["Mandya Town PS", "Maddur PS", "Srirangapatna PS"],
+  "Mysuru": ["Lashkar PS", "Nazarbad PS", "Vijayanagar PS", "Alanahalli PS"],
+  "Raichur": ["Raichur West PS", "Netaji Nagar PS", "Manvi PS"],
+  "Ramanagara": ["Ramanagara Town PS", "Channapatna Town PS", "Kanakapura Town PS"],
+  "Shivamogga": ["Shivamogga Town PS", "Doddapete PS", "Sagar Town PS"],
+  "Tumakuru": ["Tumakuru Town PS", "Sira PS", "Tiptur PS"],
+  "Udupi": ["Udupi Town PS", "Manipal PS", "Malpe PS", "Kundapura PS"],
+  "Uttara Kannada": ["Karwar Town PS", "Sirsi Town PS", "Bhatkal Town PS"],
+  "Vijayapura": ["Vijayapura Town PS", "Gol Gumbaz PS", "Muddebihal PS"],
+  "Yadgir": ["Yadgir Town PS", "Shahapur PS", "Shorapur PS"],
+  "Vijayanagara": ["Hospet Town PS", "Kampli PS", "Hagaribommanahalli PS"]
+};
+
+const ALL_DISTRICTS = Object.keys(DISTRICT_STATIONS).sort();
+
 function App() {
   const [cases, setCases] = useState([])
   const [loading, setLoading] = useState(true)
@@ -36,8 +72,8 @@ function App() {
   const [formData, setFormData] = useState({
     fir_number: '',
     category: 'Theft',
-    district: 'Bengaluru',
-    police_station: '',
+    district: 'Bengaluru Urban',
+    police_station: 'Koramangala PS',
     incident_date: '',
     summary: ''
   })
@@ -101,10 +137,19 @@ function App() {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }))
+    if (name === 'district') {
+      const stations = DISTRICT_STATIONS[value] || []
+      setFormData(prev => ({
+        ...prev,
+        district: value,
+        police_station: stations[0] || ''
+      }))
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }))
+    }
   }
 
   const handleSubmit = async (e) => {
@@ -195,10 +240,19 @@ function App() {
 
   const handleEditInputChange = (e) => {
     const { name, value } = e.target
-    setEditFormData(prev => ({
-      ...prev,
-      [name]: value
-    }))
+    if (name === 'district') {
+      const stations = DISTRICT_STATIONS[value] || []
+      setEditFormData(prev => ({
+        ...prev,
+        district: value,
+        police_station: stations[0] || ''
+      }))
+    } else {
+      setEditFormData(prev => ({
+        ...prev,
+        [name]: value
+      }))
+    }
   }
 
   const handleSaveUpdate = async (e) => {
@@ -669,25 +723,26 @@ link.click();
                         onChange={handleInputChange}
                         required
                       >
-                        <option value="Bengaluru">Bengaluru</option>
-                        <option value="Mysuru">Mysuru</option>
-                        <option value="Hubballi-Dharwad">Hubballi-Dharwad</option>
-                        <option value="Udupi">Udupi</option>
+                        {ALL_DISTRICTS.map(dist => (
+                          <option key={dist} value={dist}>{dist}</option>
+                        ))}
                       </select>
                     </div>
                   </div>
 
                   <div className="form-group">
                     <label htmlFor="police_station">Police Station</label>
-                    <input
-                      type="text"
+                    <select
                       id="police_station"
                       name="police_station"
                       value={formData.police_station}
                       onChange={handleInputChange}
-                      placeholder="e.g. Koramangala PS"
                       required
-                    />
+                    >
+                      {(DISTRICT_STATIONS[formData.district] || []).map(ps => (
+                        <option key={ps} value={ps}>{ps}</option>
+                      ))}
+                    </select>
                   </div>
 
                   <div className="form-group">
@@ -811,10 +866,9 @@ link.click();
                           onChange={(e) => setFilterDistrict(e.target.value)}
                         >
                           <option value="All">All Districts</option>
-                          <option value="Bengaluru">Bengaluru</option>
-                          <option value="Mysuru">Mysuru</option>
-                          <option value="Hubballi-Dharwad">Hubballi-Dharwad</option>
-                          <option value="Udupi">Udupi</option>
+                          {ALL_DISTRICTS.map(dist => (
+                            <option key={dist} value={dist}>{dist}</option>
+                          ))}
                         </select>
                       </div>
 
@@ -1131,24 +1185,26 @@ link.click();
                         onChange={handleEditInputChange}
                         required
                       >
-                        <option value="Bengaluru">Bengaluru</option>
-                        <option value="Mysuru">Mysuru</option>
-                        <option value="Hubballi-Dharwad">Hubballi-Dharwad</option>
-                        <option value="Udupi">Udupi</option>
+                        {ALL_DISTRICTS.map(dist => (
+                          <option key={dist} value={dist}>{dist}</option>
+                        ))}
                       </select>
                     </div>
                   </div>
 
                   <div className="form-group">
                     <label htmlFor="edit_police_station">Police Station</label>
-                    <input
-                      type="text"
+                    <select
                       id="edit_police_station"
                       name="police_station"
                       value={editFormData.police_station}
                       onChange={handleEditInputChange}
                       required
-                    />
+                    >
+                      {(DISTRICT_STATIONS[editFormData.district] || []).map(ps => (
+                        <option key={ps} value={ps}>{ps}</option>
+                      ))}
+                    </select>
                   </div>
 
                   <div className="form-group">
