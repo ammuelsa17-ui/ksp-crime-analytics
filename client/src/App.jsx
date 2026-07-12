@@ -542,19 +542,20 @@ link.click();
         </div>
       )}
 
-      {/* Top Police Banner Header */}
       <header className="dashboard-header">
-        <div className="header-logo">🛡️</div>
-        <div className="header-text">
-          <h1>Karnataka State Police</h1>
-          <h2>Crime Analytics Platform — Prototype</h2>
-        </div>
-        <div className="header-badges">
-          <div className="storage-mode-badge">
-            Storage: <span>🟢 Catalyst Data Store</span>
+        <div className="header-inner">
+          <div className="header-logo">🛡️</div>
+          <div className="header-text">
+            <h1>Karnataka State Police</h1>
+            <h2>Crime Analytics Platform — Prototype</h2>
           </div>
-          <div className={`status-badge ${apiStatus.toLowerCase()}`}>
-            API Status: {apiStatus}
+          <div className="header-badges">
+            <div className="storage-mode-badge">
+              Storage: <span>🟢 Catalyst Data Store</span>
+            </div>
+            <div className={`status-badge ${apiStatus.toLowerCase()}`}>
+              API Status: {apiStatus}
+            </div>
           </div>
         </div>
       </header>
