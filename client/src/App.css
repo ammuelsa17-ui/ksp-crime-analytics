@@ -1525,17 +1525,116 @@ body {
 }
 
 @media (max-width: 580px) {
-  .insights-list {
-    grid-template-columns: 1fr;
+  /* Dynamic 1-column layout stacking table first on phone */
+  .dashboard-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1rem;
+    width: calc(100% - 2rem);
+  }
+  .data-view-wrapper {
+    order: 1;
+  }
+  .form-card-wrapper {
+    order: 2;
+    position: static;
+  }
+
+  /* Single column stats panels */
+  .stats-panel-container {
+    padding: 1rem 1rem 0 1rem;
+    width: calc(100% - 2rem);
+  }
+  .stats-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem;
+  }
+  .stat-card {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  /* Filter layout styling */
+  .filter-top-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+  .filter-select-group {
+    grid-template-columns: 1fr !important;
     gap: 0.75rem;
   }
   
-  .filter-top-row {
+  /* Action buttons groups stack */
+  .action-buttons-group {
+    width: 100%;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .action-buttons-group button {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  /* Hide details table columns on small screens to fit perfectly */
+  .crime-table th:nth-child(4),
+  .crime-table td:nth-child(4),
+  .crime-table th:nth-child(5),
+  .crime-table td:nth-child(5),
+  .crime-table th:nth-child(6),
+  .crime-table td:nth-child(6) {
+    display: none;
+  }
+
+  /* Mobile Details Modal styling */
+  .modal-content {
+    width: 95%;
+    max-width: 95%;
+  }
+  .modal-body {
+    padding: 1.25rem 1rem;
+  }
+  .detail-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  .modal-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .modal-actions button {
+    width: 100%;
+  }
+  .print-btn {
+    margin-right: 0;
+  }
+
+  /* Header badges formatting */
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1.25rem 1rem;
+  }
+  .header-badges {
+    margin-left: 0;
+    width: 100%;
     flex-direction: column;
     align-items: stretch;
     gap: 0.5rem;
   }
-  
+  .storage-mode-badge, .status-badge {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Insights panel grid */
+  .insights-list {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
   .clear-filters-btn {
     text-align: center;
   }
