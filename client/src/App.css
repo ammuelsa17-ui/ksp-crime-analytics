@@ -243,14 +243,14 @@ html, body {
   background-color: rgba(51, 65, 85, 0.25) !important;
 }
 
-/* Specific column proportion overrides */
-.crime-table th:nth-child(1), .crime-table td:nth-child(1) { width: 22%; word-break: break-all; } /* FIR Number */
-.crime-table th:nth-child(2), .crime-table td:nth-child(2) { width: 14%; } /* Category */
-.crime-table th:nth-child(3), .crime-table td:nth-child(3) { width: 15%; } /* District */
-.crime-table th:nth-child(4), .crime-table td:nth-child(4) { width: 17%; } /* Police Station */
-.crime-table th:nth-child(5), .crime-table td:nth-child(5) { width: 16%; } /* Incident Date */
+/* Specific column width overrides to prevent overlapping */
+.crime-table th:nth-child(1), .crime-table td:nth-child(1) { width: 170px; min-width: 170px; max-width: 170px; word-break: break-all; } /* FIR */
+.crime-table th:nth-child(2), .crime-table td:nth-child(2) { width: 120px; min-width: 120px; max-width: 120px; } /* Category */
+.crime-table th:nth-child(3), .crime-table td:nth-child(3) { width: 160px; min-width: 160px; max-width: 160px; } /* District */
+.crime-table th:nth-child(4), .crime-table td:nth-child(4) { width: 180px; min-width: 180px; max-width: 180px; } /* Police Station */
+.crime-table th:nth-child(5), .crime-table td:nth-child(5) { width: 170px; min-width: 170px; max-width: 170px; white-space: nowrap; } /* Incident Date */
 .crime-table th:nth-child(6), .crime-table td:nth-child(6) { 
-  width: 16%; 
+  width: auto; 
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -314,10 +314,11 @@ html, body {
 }
 
 /* Dashboard Grid Layout */
+/* Dashboard Grid Layout */
 .dashboard-grid {
   flex: 1;
   display: grid;
-  grid-template-columns: 420px 1fr;
+  grid-template-columns: 35fr 65fr; /* 35% Form / 65% Records on Desktop */
   gap: 2rem;
   padding: 2rem;
   max-width: 1400px;
@@ -326,9 +327,17 @@ html, body {
   width: 100%;
 }
 
+@media (max-width: 1366px) {
+  .dashboard-grid {
+    grid-template-columns: 40fr 60fr; /* 40% Form / 60% Records on Laptop */
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+}
+
 @media (max-width: 1024px) {
   .dashboard-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Stack layout on Tablet and Mobile */
     padding: 1.5rem;
     gap: 1.5rem;
     width: 100%;
@@ -342,6 +351,13 @@ html, body {
 }
 
 .form-card, .analytics-card, .activity-card {
+  background: rgba(30, 41, 59, 0.65);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.75rem;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
   transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
@@ -351,13 +367,7 @@ html, body {
 }
 
 .form-card {
-  background: rgba(30, 41, 59, 0.65);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 12px;
-  padding: 1.75rem;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+  /* Inherits background, border-radius, shadows, transitions */
 }
 
 .form-card h3 {
@@ -1228,11 +1238,6 @@ html, body {
 }
 
 .analytics-card {
-  background: rgba(30, 41, 59, 0.4);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 1.75rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
 }
