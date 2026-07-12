@@ -1824,6 +1824,12 @@ html, body {
   transform: translateY(-1px);
 }
 
+.required-asterisk {
+  color: var(--accent-red);
+  margin-left: 2px;
+  font-weight: bold;
+}
+
 @media (max-width: 1024px) {
   .header-badges {
     flex-direction: column;

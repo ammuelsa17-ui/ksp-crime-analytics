@@ -685,7 +685,7 @@ link.click();
 
                 <form onSubmit={handleSubmit} className="crime-form">
                   <div className="form-group">
-                    <label htmlFor="fir_number">FIR Number</label>
+                    <label htmlFor="fir_number">FIR Number <span className="required-asterisk">*</span></label>
                     <input
                       type="text"
                       id="fir_number"
@@ -699,7 +699,7 @@ link.click();
 
                   <div className="form-row">
                     <div className="form-group">
-                      <label htmlFor="category">Category</label>
+                      <label htmlFor="category">Category <span className="required-asterisk">*</span></label>
                       <select
                         id="category"
                         name="category"
@@ -715,7 +715,7 @@ link.click();
                     </div>
 
                     <div className="form-group">
-                      <label htmlFor="district">District</label>
+                      <label htmlFor="district">District <span className="required-asterisk">*</span></label>
                       <select
                         id="district"
                         name="district"
@@ -731,7 +731,7 @@ link.click();
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="police_station">Police Station</label>
+                    <label htmlFor="police_station">Police Station <span className="required-asterisk">*</span></label>
                     <select
                       id="police_station"
                       name="police_station"
@@ -746,7 +746,7 @@ link.click();
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="incident_date">Incident Date & Time</label>
+                    <label htmlFor="incident_date">Incident Date & Time <span className="required-asterisk">*</span></label>
                     <input
                       type="datetime-local"
                       id="incident_date"
@@ -758,7 +758,7 @@ link.click();
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="summary">Case Summary</label>
+                    <label htmlFor="summary">Case Summary <span className="required-asterisk">*</span></label>
                     <textarea
                       id="summary"
                       name="summary"
@@ -1148,7 +1148,7 @@ link.click();
                 /* Edit Case Form View */
                 <form onSubmit={handleSaveUpdate} className="crime-form">
                   <div className="form-group">
-                    <label htmlFor="edit_fir_number">FIR Number</label>
+                    <label htmlFor="edit_fir_number">FIR Number <span className="required-asterisk">*</span></label>
                     <input
                       type="text"
                       id="edit_fir_number"
@@ -1161,7 +1161,7 @@ link.click();
 
                   <div className="form-row">
                     <div className="form-group">
-                      <label htmlFor="edit_category">Category</label>
+                      <label htmlFor="edit_category">Category <span className="required-asterisk">*</span></label>
                       <select
                         id="edit_category"
                         name="category"
@@ -1177,7 +1177,7 @@ link.click();
                     </div>
 
                     <div className="form-group">
-                      <label htmlFor="edit_district">District</label>
+                      <label htmlFor="edit_district">District <span className="required-asterisk">*</span></label>
                       <select
                         id="edit_district"
                         name="district"
@@ -1193,7 +1193,7 @@ link.click();
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="edit_police_station">Police Station</label>
+                    <label htmlFor="edit_police_station">Police Station <span className="required-asterisk">*</span></label>
                     <select
                       id="edit_police_station"
                       name="police_station"
@@ -1208,7 +1208,7 @@ link.click();
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="edit_incident_date">Incident Date & Time</label>
+                    <label htmlFor="edit_incident_date">Incident Date & Time <span className="required-asterisk">*</span></label>
                     <input
                       type="datetime-local"
                       id="edit_incident_date"
@@ -1220,7 +1220,7 @@ link.click();
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="edit_summary">Case Summary</label>
+                    <label htmlFor="edit_summary">Case Summary <span className="required-asterisk">*</span></label>
                     <textarea
                       id="edit_summary"
                       name="summary"
