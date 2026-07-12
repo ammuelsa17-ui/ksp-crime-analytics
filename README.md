@@ -2,8 +2,7 @@
 
 An end-to-end cloud-native prototype of the **KSP Crime Intelligence & Analytics Platform** built for **Datathon 2026**. This enterprise-quality dashboard enables real-time crime case recording, instant visualization of key trends, export utilities, and live storage integration, running exclusively serverless on **Zoho Catalyst**.
 
-*   **Live Deployed Frontend (Catalyst Slate):** [https://server-50043662505.development.catalystappsail.in/client/index.html](https://server-50043662505.development.catalystappsail.in/client/index.html)
-*   **Live Deployed API (Catalyst AppSail):** [https://server-50043662505.development.catalystappsail.in/](https://server-50043662505.development.catalystappsail.in/)
+*   **Live Deployed Platform (Catalyst AppSail):** [https://server-50043662505.development.catalystappsail.in/](https://server-50043662505.development.catalystappsail.in/)
 
 ---
 
