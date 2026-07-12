@@ -12,8 +12,15 @@
   --border-color: #334155;
 }
 
-body {
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
   margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
   background-color: var(--bg-primary);
   color: var(--text-primary);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -181,6 +188,8 @@ body {
   border: 1px solid var(--border-color);
   border-radius: 12px;
   overflow-x: auto;
+  max-height: 580px;
+  overflow-y: auto;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
 }
 
@@ -193,29 +202,59 @@ body {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
+  table-layout: fixed;
 }
 
 .crime-table th {
-  background-color: rgba(15, 23, 42, 0.5);
+  background-color: #1e293b; /* Solid background for sticky overlay transparency prevention */
   border-bottom: 2px solid var(--border-color);
   padding: 1rem 1.25rem;
   font-weight: 700;
   color: var(--text-secondary);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 }
 
 .crime-table td {
   padding: 1rem 1.25rem;
   border-bottom: 1px solid var(--border-color);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   vertical-align: middle;
 }
 
-.crime-table tr:hover {
-  background-color: rgba(51, 65, 85, 0.3);
+.crime-table tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.015);
 }
+
+.crime-table tbody tr:nth-child(odd) {
+  background-color: transparent;
+}
+
+.crime-table tbody tr {
+  transition: background-color 0.15s ease;
+  cursor: pointer;
+}
+
+.crime-table tbody tr:hover {
+  background-color: rgba(51, 65, 85, 0.25) !important;
+}
+
+/* Specific column proportion overrides */
+.crime-table th:nth-child(1), .crime-table td:nth-child(1) { width: 22%; word-break: break-all; } /* FIR Number */
+.crime-table th:nth-child(2), .crime-table td:nth-child(2) { width: 14%; } /* Category */
+.crime-table th:nth-child(3), .crime-table td:nth-child(3) { width: 15%; } /* District */
+.crime-table th:nth-child(4), .crime-table td:nth-child(4) { width: 17%; } /* Police Station */
+.crime-table th:nth-child(5), .crime-table td:nth-child(5) { width: 16%; } /* Incident Date */
+.crime-table th:nth-child(6), .crime-table td:nth-child(6) { 
+  width: 16%; 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+} /* Summary */
 
 .fir-col {
   font-family: monospace;
@@ -281,10 +320,10 @@ body {
   grid-template-columns: 420px 1fr;
   gap: 2rem;
   padding: 2rem;
-  max-width: 1600px;
+  max-width: 1400px;
   margin: 0 auto;
   align-items: start;
-  width: calc(100% - 4rem);
+  width: 100%;
 }
 
 @media (max-width: 1024px) {
@@ -292,7 +331,7 @@ body {
     grid-template-columns: 1fr;
     padding: 1.5rem;
     gap: 1.5rem;
-    width: calc(100% - 3rem);
+    width: 100%;
   }
 }
 
@@ -300,6 +339,15 @@ body {
 .form-card-wrapper {
   position: sticky;
   top: 2rem;
+}
+
+.form-card, .analytics-card, .activity-card {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.form-card:hover, .analytics-card:hover, .activity-card:hover {
+  border-color: rgba(255, 255, 255, 0.15) !important;
+  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(255, 255, 255, 0.05) inset;
 }
 
 .form-card {
@@ -702,12 +750,11 @@ body {
   to { transform: translateY(0); opacity: 1; }
 }
 
-/* Dashboard Statistics Section */
 .stats-panel-container {
-  max-width: 1600px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 1.5rem 2rem 0.5rem 2rem;
-  width: calc(100% - 4rem);
+  width: 100%;
 }
 
 .stats-grid {
@@ -969,12 +1016,11 @@ body {
   --accent-blue: #3b82f6;
 }
 
-/* Tabs Navigation Bar */
 .tabs-navigation {
-  max-width: 1600px;
+  max-width: 1400px;
   margin: 1.5rem auto 0 auto;
   padding: 0 2rem;
-  width: calc(100% - 4rem);
+  width: 100%;
   display: flex;
   gap: 1rem;
   border-bottom: 1px solid var(--border-color);
