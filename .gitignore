@@ -1,5 +1,7 @@
 # Python virtual environment and caches
 venv/
+venv312/
+_old_bundles/
 .venv/
 __pycache__/
 *.pyc

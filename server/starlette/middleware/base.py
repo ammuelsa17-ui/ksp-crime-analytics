@@ -1,19 +1,19 @@
 from __future__ import annotations
 
-from collections.abc import AsyncGenerator, AsyncIterable, Awaitable, Mapping, MutableMapping
-from typing import Any, Callable, TypeVar, Union
+from collections.abc import AsyncGenerator, AsyncIterable, Awaitable, Callable, Mapping, MutableMapping
+from typing import Any, TypeVar
 
 import anyio
 
-from starlette._utils import collapse_excgroups
+from starlette._utils import create_collapsing_task_group
 from starlette.requests import ClientDisconnect, Request
 from starlette.responses import Response
 from starlette.types import ASGIApp, Message, Receive, Scope, Send
 
 RequestResponseEndpoint = Callable[[Request], Awaitable[Response]]
 DispatchFunction = Callable[[Request, RequestResponseEndpoint], Awaitable[Response]]
-BodyStreamGenerator = AsyncGenerator[Union[bytes, MutableMapping[str, Any]], None]
-AsyncContentStream = AsyncIterable[Union[str, bytes, memoryview, MutableMapping[str, Any]]]
+BodyStreamGenerator = AsyncGenerator[bytes | MutableMapping[str, Any], None]
+AsyncContentStream = AsyncIterable[str | bytes | memoryview | MutableMapping[str, Any]]
 T = TypeVar("T")
 
 
@@ -188,8 +188,8 @@ class BaseHTTPMiddleware:
 
         streams: anyio.create_memory_object_stream[Message] = anyio.create_memory_object_stream()
         send_stream, recv_stream = streams
-        with recv_stream, send_stream, collapse_excgroups():
-            async with anyio.create_task_group() as task_group:
+        with recv_stream, send_stream:
+            async with create_collapsing_task_group() as task_group:
                 response = await self.dispatch_func(request, call_next)
                 await response(scope, wrapped_receive, send)
                 response_sent.set()

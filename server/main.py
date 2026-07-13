@@ -2,11 +2,6 @@ import os
 import sys
 import traceback
 
-log_path = "/tmp/app.log"
-log_file = open(log_path, "w", buffering=1)
-sys.stdout = log_file
-sys.stderr = log_file
-
 print("FastAPI app starting...")
 
 from fastapi import FastAPI, HTTPException, Request
@@ -156,6 +151,16 @@ class CaseCreate(BaseModel):
     incident_date: str
     summary: str
 
+from typing import Optional
+
+class CaseUpdate(BaseModel):
+    fir_number: Optional[str] = None
+    category: Optional[str] = None
+    district: Optional[str] = None
+    police_station: Optional[str] = None
+    incident_date: Optional[str] = None
+    summary: Optional[str] = None
+
 @app.post("/api/v1/cases")
 def add_case(case: CaseCreate, request: Request):
     try:
@@ -168,9 +173,11 @@ def add_case(case: CaseCreate, request: Request):
         raise HTTPException(status_code=500, detail=f"Failed to create case: {str(e)}")
 
 @app.put("/api/v1/cases/{case_id}")
-def edit_case(case_id: int, case: CaseCreate, request: Request):
+def edit_case(case_id: int, case: CaseUpdate, request: Request):
     try:
-        updated_case = update_case(case_id, case.model_dump(), request)
+        # Only pass fields that were actually provided
+        updates = {k: v for k, v in case.model_dump().items() if v is not None}
+        updated_case = update_case(case_id, updates, request)
         return {
             "success": True,
             "data": updated_case

@@ -4,9 +4,11 @@
       "name": "server",
       "source": "server",
       "build_path": "server",
-      "stack": "python_3_9",
+      "stack": "python_3_12",
       "ignore": [
         "venv",
+        "venv312",
+        "_old_bundles",
         "__pycache__",
         ".git"
       ]

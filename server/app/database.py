@@ -397,13 +397,6 @@ def update_case(case_id: int, case_data: dict, request=None) -> dict:
     
     app_instance = get_catalyst_app(request)
 
-    fir_number = case_data.get("fir_number")
-    category = case_data.get("category")
-    district = case_data.get("district")
-    police_station = case_data.get("police_station")
-    incident_date = case_data.get("incident_date")
-    summary = case_data.get("summary")
-
     if use_fallback or app_instance is None:
         target_path = get_fallback_write_path()
 
@@ -424,53 +417,59 @@ def update_case(case_id: int, case_data: dict, request=None) -> dict:
         if not case_to_update:
             raise Exception(f"Case with ID {case_id} not found")
 
-        # Find or create location entry
+        # Merge only provided fields (partial update support)
+        if case_data.get("fir_number"):
+            case_to_update["fir_number"] = case_data["fir_number"]
+        if case_data.get("category"):
+            case_to_update["category"] = case_data["category"]
+        if case_data.get("incident_date"):
+            case_to_update["incident_date"] = case_data["incident_date"]
+        if case_data.get("summary"):
+            case_to_update["summary"] = case_data["summary"]
+
+        # Handle location change only if district/station are provided
+        district = case_data.get("district")
+        police_station = case_data.get("police_station")
         locations = data.get("locations", [])
-        location_id = None
-        lat, lng = 12.9716, 77.5946  # Default coordinates for Bengaluru
-        
-        if district.lower() == "mysuru":
-            lat, lng = 12.2958, 76.6394
-        elif district.lower() == "udupi":
-            lat, lng = 13.3409, 74.7421
-        elif district.lower() == "hubballi-dharwad":
-            lat, lng = 15.3647, 75.1240
+        lat, lng = 12.9716, 77.5946
 
-        for loc in locations:
-            if loc.get("district") == district and loc.get("police_station") == police_station:
-                location_id = loc.get("ROWID")
-                lat = loc.get("latitude", lat)
-                lng = loc.get("longitude", lng)
-                break
-        
-        if location_id is None:
-            location_id = max([loc.get("ROWID", 0) for loc in locations] + [0]) + 1
-            new_loc = {
-                "ROWID": location_id,
-                "district": district,
-                "police_station": police_station,
-                "latitude": lat,
-                "longitude": lng
-            }
-            locations.append(new_loc)
-            data["locations"] = locations
+        if district and police_station:
+            location_id = None
+            lat, lng = DISTRICT_COORDINATES.get(district.lower(), (12.9716, 77.5946))
 
-        # Update case fields
-        case_to_update["fir_number"] = fir_number
-        case_to_update["category"] = category
-        case_to_update["location_id"] = location_id
-        case_to_update["incident_date"] = incident_date
-        case_to_update["summary"] = summary
+            for loc in locations:
+                if loc.get("district") == district and loc.get("police_station") == police_station:
+                    location_id = loc.get("ROWID")
+                    lat = loc.get("latitude", lat)
+                    lng = loc.get("longitude", lng)
+                    break
+            
+            if location_id is None:
+                location_id = max([loc.get("ROWID", 0) for loc in locations] + [0]) + 1
+                locations.append({"ROWID": location_id, "district": district, "police_station": police_station, "latitude": lat, "longitude": lng})
+                data["locations"] = locations
+
+            case_to_update["location_id"] = location_id
+        else:
+            # Resolve existing location for return value
+            loc_id = case_to_update.get("location_id")
+            for loc in locations:
+                if loc.get("ROWID") == loc_id:
+                    district = loc.get("district", "Unknown")
+                    police_station = loc.get("police_station", "Unknown")
+                    lat = loc.get("latitude", lat)
+                    lng = loc.get("longitude", lng)
+                    break
 
         with open(target_path, "w") as f:
             json.dump(data, f, indent=2)
 
         return {
             "id": case_id,
-            "fir_number": fir_number,
-            "category": category,
-            "incident_date": incident_date,
-            "summary": summary,
+            "fir_number": case_to_update.get("fir_number"),
+            "category": case_to_update.get("category"),
+            "incident_date": case_to_update.get("incident_date"),
+            "summary": case_to_update.get("summary"),
             "district": district,
             "police_station": police_station,
             "latitude": lat,
@@ -481,45 +480,38 @@ def update_case(case_id: int, case_data: dict, request=None) -> dict:
         datastore = app_instance.datastore()
         zcql = app_instance.zcql()
 
-        # 1. Search for existing location
-        query = f"SELECT ROWID, latitude, longitude FROM location WHERE district = '{district}' AND police_station = '{police_station}'"
-        query_results = zcql.execute_query(query)
+        # Extract fields (may be partial)
+        fir_number = case_data.get("fir_number")
+        category = case_data.get("category")
+        district = case_data.get("district")
+        police_station = case_data.get("police_station")
+        incident_date = case_data.get("incident_date")
+        summary = case_data.get("summary")
 
-        location_id = None
+        update_payload = {"ROWID": case_id}
+        if fir_number: update_payload["fir_number"] = fir_number
+        if category: update_payload["category"] = category
+        if incident_date: update_payload["incident_date"] = incident_date
+        if summary: update_payload["summary"] = summary
+
         lat, lng = 12.9716, 77.5946
-        if district.lower() == "mysuru":
-            lat, lng = 12.2958, 76.6394
-        elif district.lower() == "udupi":
-            lat, lng = 13.3409, 74.7421
-        elif district.lower() == "hubballi-dharwad":
-            lat, lng = 15.3647, 75.1240
 
-        if query_results:
-            loc_data = query_results[0].get("location", {})
-            location_id = loc_data.get("ROWID")
-            lat = float(loc_data.get("latitude", lat))
-            lng = float(loc_data.get("longitude", lng))
-        else:
-            # Create new location row
-            location_table = datastore.table("location")
-            inserted_loc = location_table.insert_row({
-                "district": district,
-                "police_station": police_station,
-                "latitude": lat,
-                "longitude": lng
-            })
-            location_id = inserted_loc.get("ROWID")
+        if district and police_station:
+            lat, lng = DISTRICT_COORDINATES.get(district.lower(), (12.9716, 77.5946))
+            query = f"SELECT ROWID, latitude, longitude FROM location WHERE district = '{district}' AND police_station = '{police_station}'"
+            query_results = zcql.execute_query(query)
+            if query_results:
+                loc_data = query_results[0].get("location", {})
+                update_payload["location_id"] = loc_data.get("ROWID")
+                lat = float(loc_data.get("latitude", lat))
+                lng = float(loc_data.get("longitude", lng))
+            else:
+                location_table = datastore.table("location")
+                inserted_loc = location_table.insert_row({"district": district, "police_station": police_station, "latitude": lat, "longitude": lng})
+                update_payload["location_id"] = inserted_loc.get("ROWID")
 
-        # 2. Update the crime case
         case_table = datastore.table("crime_cases")
-        case_table.update_row({
-            "ROWID": case_id,
-            "fir_number": fir_number,
-            "location_id": location_id,
-            "category": category,
-            "incident_date": incident_date,
-            "summary": summary
-        })
+        case_table.update_row(update_payload)
 
         return {
             "id": case_id,
@@ -530,7 +522,8 @@ def update_case(case_id: int, case_data: dict, request=None) -> dict:
             "district": district,
             "police_station": police_station,
             "latitude": lat,
-            "longitude": lng
+            "longitude": lng,
+            "success": True
         }
     except Exception as e:
         print(f"Error updating in Catalyst Data Store: {e}. Falling back to local database update.")

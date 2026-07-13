@@ -1,5 +1,5 @@
 {
-  "stack": "python_3_9",
+  "stack": "python_3_12",
   "command": "python3 main.py",
   "buildPath": ".",
   "env_variables": {
