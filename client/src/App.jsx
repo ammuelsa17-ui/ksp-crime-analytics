@@ -54,6 +54,7 @@ function App() {
   const [activeTab, setActiveTab] = useState('records')
   const [toasts, setToasts] = useState([])
   const [activityLog, setActivityLog] = useState([])
+  const [mapInstance, setMapInstance] = useState(null)
 
   const showToast = (message, type = 'info') => {
     const id = Math.random().toString(36).substr(2, 9)
@@ -75,7 +76,10 @@ function App() {
     district: 'Bengaluru Urban',
     police_station: 'Koramangala PS',
     incident_date: '',
-    summary: ''
+    summary: '',
+    officer: '',
+    priority: 'Medium',
+    status: 'FIR Registered'
   })
   const [submitting, setSubmitting] = useState(false)
   const [submitError, setSubmitError] = useState(null)
@@ -91,7 +95,10 @@ function App() {
     district: '',
     police_station: '',
     incident_date: '',
-    summary: ''
+    summary: '',
+    officer: '',
+    priority: '',
+    status: ''
   })
   const [updateLoading, setUpdateLoading] = useState(false)
   const [updateError, setUpdateError] = useState(null)
@@ -101,6 +108,35 @@ function App() {
   const [filterCategory, setFilterCategory] = useState('All')
   const [filterDistrict, setFilterDistrict] = useState('All')
   const [sortOrder, setSortOrder] = useState('latest')
+
+  const parseCaseMetadata = (caseItem) => {
+    if (!caseItem) return { officer: 'Unassigned', priority: 'Medium', status: 'FIR Registered', cleanSummary: '' };
+    const summaryText = caseItem.summary || '';
+    const regex = /^\[Officer:\s*(.*?)\]\[Priority:\s*(.*?)\]\[Status:\s*(.*?)\]\s*(.*)$/s;
+    const match = summaryText.match(regex);
+    if (match) {
+      return {
+        officer: match[1] || 'Unassigned',
+        priority: match[2] || 'Medium',
+        status: match[3] || 'FIR Registered',
+        cleanSummary: match[4] || ''
+      };
+    }
+    return {
+      officer: 'Unassigned',
+      priority: 'Medium',
+      status: 'FIR Registered',
+      cleanSummary: summaryText
+    };
+  }
+
+  const buildCaseSummary = (cleanSummary, officer, priority, status) => {
+    const off = officer.trim() ? officer.trim() : 'Unassigned';
+    const pri = priority || 'Medium';
+    const sta = status || 'FIR Registered';
+    return `[Officer: ${off}][Priority: ${pri}][Status: ${sta}] ${cleanSummary}`;
+  }
+
 
 
   const fetchCases = async () => {
@@ -135,6 +171,116 @@ function App() {
     fetchCases()
   }, [])
 
+  useEffect(() => {
+    if (activeTab !== 'map') {
+      if (mapInstance) {
+        mapInstance.remove();
+        setMapInstance(null);
+      }
+      return;
+    }
+
+    // Wait for the container to render in the DOM
+    const timer = setTimeout(() => {
+      const mapContainer = document.getElementById('crime-map');
+      if (!mapContainer || typeof L === 'undefined') return;
+
+      // Karnataka Center
+      const map = L.map('crime-map').setView([14.9754, 76.1368], 7);
+
+      // CartoDB Dark Matter tile layer
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 20
+      }).addTo(map);
+
+      // District Coordinates Mapping
+      const DISTRICT_MAP_COORDS = {
+        'bengaluru': [12.9716, 77.5946],
+        'mysuru': [12.2958, 76.6394],
+        'hubballi-dharwad': [15.3647, 75.1240],
+        'hubballi': [15.3647, 75.1240],
+        'udupi': [13.3409, 74.7421],
+        'belagavi': [15.8497, 74.4977],
+        'mangaluru': [12.9141, 74.8560],
+        'kalaburagi': [17.3297, 76.8343],
+        'ballari': [15.1394, 76.9214],
+        'davanagere': [14.4644, 75.9218]
+      };
+
+      // 1. Draw dynamic district circles based on case volumes/risk scores
+      districtRiskScoresWithOverrides.forEach(item => {
+        const nameKey = item.district.toLowerCase();
+        const coords = DISTRICT_MAP_COORDS[nameKey] || DISTRICT_MAP_COORDS[Object.keys(DISTRICT_MAP_COORDS).find(k => nameKey.includes(k))] || null;
+        if (!coords) return;
+
+        // Color based on risk level
+        const color = item.level === 'HIGH' ? '#EF4444' : item.level === 'MEDIUM' ? '#F59E0B' : '#22C55E';
+
+        // Draw hotspot circle
+        const circle = L.circle(coords, {
+          color: color,
+          fillColor: color,
+          fillOpacity: 0.25,
+          radius: 20000 + (item.count * 8000), // radius proportional to count
+          weight: 1.5
+        }).addTo(map);
+
+        // Bind interactive popup showing detailed statistics
+        const popupContent = `
+          <div style="font-family: system-ui; min-width: 200px; padding: 5px; color: #1e293b;">
+            <h4 style="margin: 0 0 5px 0; font-size: 1rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">
+              📍 District: ${item.district}
+            </h4>
+            <div style="margin: 8px 0; font-size: 0.85rem;">
+              <div><strong>Status:</strong> <span style="color: ${color}; font-weight: bold;">${item.level} RISK</span></div>
+              <div><strong>Total Crimes:</strong> ${item.count} case(s)</div>
+              <div><strong>Statewide Share:</strong> ${item.score}%</div>
+              <div><strong>Patrol Status:</strong> ${item.level === 'HIGH' ? '🚨 High Patrol Dispatch' : '🛡️ Standard Patrol'}</div>
+            </div>
+            <div style="font-size: 0.75rem; color: #64748b; font-style: italic;">
+              Click case markers inside for details.
+            </div>
+          </div>
+        `;
+        circle.bindPopup(popupContent);
+      });
+
+      // 2. Plot exact case pins
+      cases.forEach(c => {
+        if (!c.latitude || !c.longitude) return;
+
+        // Create marker
+        const marker = L.marker([c.latitude, c.longitude]).addTo(map);
+        const meta = parseCaseMetadata(c);
+
+        const popupContent = `
+          <div style="font-family: system-ui; min-width: 180px; padding: 5px; color: #1e293b;">
+            <h5 style="margin: 0 0 3px 0; color: #0f172a; font-size: 0.85rem;">📝 FIR: ${c.fir_number}</h5>
+            <div style="font-size: 0.75rem; margin-bottom: 5px;">
+              <strong>Category:</strong> <span style="font-weight: 600;">${c.category}</span>
+            </div>
+            <div style="font-size: 0.7rem; color: #475569; margin: 3px 0;">
+              <strong>Officer:</strong> ${meta.officer} | <strong>Status:</strong> ${meta.status}
+            </div>
+            <p style="margin: 5px 0; font-size: 0.8rem; color: #334155; line-height: 1.3;">
+              ${meta.cleanSummary ? (meta.cleanSummary.length > 60 ? meta.cleanSummary.slice(0, 60) + '...' : meta.cleanSummary) : 'No summary.'}
+            </p>
+            <div style="font-size: 0.7rem; color: #64748b; border-top: 1px solid #f1f5f9; padding-top: 3px; margin-top: 5px;">
+              Station: ${c.police_station}
+            </div>
+          </div>
+        `;
+        marker.bindPopup(popupContent);
+      });
+
+      setMapInstance(map);
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [activeTab, cases]);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target
     if (name === 'district') {
@@ -163,9 +309,15 @@ function App() {
       formattedDate = formattedDate.replace('T', ' ') + ':00'
     }
 
+    const structuredSummary = buildCaseSummary(formData.summary, formData.officer, formData.priority, formData.status)
+
     const payload = {
-      ...formData,
-      incident_date: formattedDate
+      fir_number: formData.fir_number,
+      category: formData.category,
+      district: formData.district,
+      police_station: formData.police_station,
+      incident_date: formattedDate,
+      summary: structuredSummary
     }
 
     try {
@@ -191,9 +343,12 @@ function App() {
           fir_number: '',
           category: formData.category,
           district: formData.district,
-          police_station: '',
+          police_station: (DISTRICT_STATIONS[formData.district] || [])[0] || '',
           incident_date: '',
-          summary: ''
+          summary: '',
+          officer: '',
+          priority: 'Medium',
+          status: 'FIR Registered'
         })
 
         // Instantly prepend new case to the state list
@@ -226,13 +381,17 @@ function App() {
   }
 
   const handleEditClick = () => {
+    const meta = parseCaseMetadata(selectedCase);
     setEditFormData({
       fir_number: selectedCase.fir_number,
       category: selectedCase.category,
       district: selectedCase.district,
       police_station: selectedCase.police_station,
       incident_date: selectedCase.incident_date.replace(' ', 'T').slice(0, 16),
-      summary: selectedCase.summary
+      summary: meta.cleanSummary,
+      officer: meta.officer === 'Unassigned' ? '' : meta.officer,
+      priority: meta.priority,
+      status: meta.status
     })
     setIsEditing(true)
     setUpdateError(null)
@@ -269,9 +428,15 @@ function App() {
       }
     }
 
+    const structuredSummary = buildCaseSummary(editFormData.summary, editFormData.officer, editFormData.priority, editFormData.status)
+
     const payload = {
-      ...editFormData,
-      incident_date: formattedDate
+      fir_number: editFormData.fir_number,
+      category: editFormData.category,
+      district: editFormData.district,
+      police_station: editFormData.police_station,
+      incident_date: formattedDate,
+      summary: structuredSummary
     }
 
     try {
@@ -398,7 +563,9 @@ link.click();
   }
 
   // Print FIR Report Helper
+  // Print FIR Report Helper
   const handlePrintCase = () => {
+    const meta = parseCaseMetadata(selectedCase);
     const printWindow = window.open('', '_blank');
     printWindow.document.write(`
       <html>
@@ -429,11 +596,14 @@ link.click();
             <div class="item"><div class="label">District Jurisdiction</div><div class="value">${selectedCase.district}</div></div>
             <div class="item"><div class="label">Police Station</div><div class="value">${selectedCase.police_station}</div></div>
             <div class="item"><div class="label">Incident Date & Time</div><div class="value">${selectedCase.incident_date}</div></div>
+            <div class="item"><div class="label">Assigned Officer</div><div class="value">${meta.officer}</div></div>
+            <div class="item"><div class="label">Case Priority</div><div class="value">${meta.priority}</div></div>
+            <div class="item"><div class="label">Investigation Status</div><div class="value">${meta.status}</div></div>
             <div class="item"><div class="label">Geospatial Coordinates</div><div class="value">Lat: ${selectedCase.latitude?.toFixed(4) || "0.0000"}, Lng: ${selectedCase.longitude?.toFixed(4) || "0.0000"}</div></div>
           </div>
           <div class="summary">
             <div class="summary-title">FIR Summary Statement</div>
-            <p style="margin: 0; font-size: 14px; color: #334155;">${selectedCase.summary}</p>
+            <p style="margin: 0; font-size: 14px; color: #334155; white-space: pre-wrap;">${meta.cleanSummary}</p>
           </div>
           <div class="footer">
             Report generated on: ${new Date().toLocaleString()}<br>
@@ -831,6 +1001,12 @@ link.click();
         >
           🧠 Crime Intelligence Center
         </button>
+        <button 
+          className={`tab-btn ${activeTab === 'map' ? 'active' : ''}`}
+          onClick={() => setActiveTab('map')}
+        >
+          🗺️ Crime Map
+        </button>
       </div>
 
       {/* Main Dashboard Grid */}
@@ -924,7 +1100,51 @@ link.click();
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="summary">Case Summary <span className="required-asterisk">*</span></label>
+                    <label htmlFor="officer">Assigned Officer</label>
+                    <input
+                      type="text"
+                      id="officer"
+                      name="officer"
+                      value={formData.officer}
+                      onChange={handleInputChange}
+                      placeholder="e.g. Rajesh Kumar"
+                    />
+                  </div>
+
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label htmlFor="priority">Case Priority</label>
+                      <select
+                        id="priority"
+                        name="priority"
+                        value={formData.priority}
+                        onChange={handleInputChange}
+                      >
+                        <option value="Low">Low Priority</option>
+                        <option value="Medium">Medium Priority</option>
+                        <option value="High">High Priority</option>
+                      </select>
+                    </div>
+
+                    <div className="form-group">
+                      <label htmlFor="status">Case Status</label>
+                      <select
+                        id="status"
+                        name="status"
+                        value={formData.status}
+                        onChange={handleInputChange}
+                      >
+                        <option value="FIR Registered">FIR Registered</option>
+                        <option value="Officer Assigned">Officer Assigned</option>
+                        <option value="Evidence Collection">Evidence Collection</option>
+                        <option value="Charge Sheet">Charge Sheet Filed</option>
+                        <option value="Closed">Case Closed</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="summary">Case Summary Description <span className="required-asterisk">*</span></label>
                     <textarea
                       id="summary"
                       name="summary"
@@ -1076,16 +1296,17 @@ link.click();
                       <tr>
                         <th>FIR Number</th>
                         <th>Category</th>
-                        <th>District</th>
-                        <th>Police Station</th>
+                        <th>District / Station</th>
                         <th>Incident Date</th>
+                        <th>Priority</th>
+                        <th>Status</th>
                         <th>Summary</th>
                       </tr>
                     </thead>
                     <tbody>
                       {filteredCases.length === 0 ? (
                         <tr>
-                          <td colSpan="6" className="no-cases-cell">
+                          <td colSpan="8" className="no-cases-cell">
                             <div className="empty-state-container">
                               <span className="empty-state-icon">🔍</span>
                               <h4>No Records Found</h4>
@@ -1098,20 +1319,36 @@ link.click();
                           </td>
                         </tr>
                       ) : (
-                        filteredCases.map((item) => (
-                          <tr key={item.id} className="case-row-clickable case-row-new" onClick={() => handleRowClick(item)}>
-                            <td className="fir-col">{highlightText(item.fir_number, searchQuery)}</td>
-                            <td>
-                              <span className={`category-tag ${item.category.toLowerCase()}`}>
-                                {item.category}
-                              </span>
-                            </td>
-                            <td>{item.district}</td>
-                            <td>{item.police_station}</td>
-                            <td className="date-col">{item.incident_date}</td>
-                            <td className="summary-col">{highlightText(item.summary, searchQuery)}</td>
-                          </tr>
-                        ))
+                        filteredCases.map((item) => {
+                          const meta = parseCaseMetadata(item);
+                          const prioClass = meta.priority.toLowerCase();
+                          return (
+                            <tr key={item.id} className="case-row-clickable case-row-new" onClick={() => handleRowClick(item)}>
+                              <td className="fir-col">{highlightText(item.fir_number, searchQuery)}</td>
+                              <td>
+                                <span className={`category-tag ${item.category.toLowerCase()}`}>
+                                  {item.category}
+                                </span>
+                              </td>
+                              <td>
+                                <div style={{ fontWeight: '600' }}>{item.district}</div>
+                                <div style={{ fontSize: '0.75rem', color: '#94A3B8' }}>{item.police_station}</div>
+                              </td>
+                              <td className="date-col">{item.incident_date}</td>
+                              <td>
+                                <span className={`risk-badge risk-${prioClass}`} style={{ display: 'inline-block', fontSize: '0.7rem', padding: '0.1rem 0.4rem', borderRadius: '4px', textTransform: 'uppercase', fontWeight: 'bold' }}>
+                                  {meta.priority}
+                                </span>
+                              </td>
+                              <td>
+                                <span style={{ fontSize: '0.75rem', color: '#60A5FA', border: '1px solid rgba(96, 165, 250, 0.3)', padding: '0.1rem 0.4rem', borderRadius: '4px', backgroundColor: 'rgba(96, 165, 250, 0.05)', whiteSpace: 'nowrap' }}>
+                                  {meta.status}
+                                </span>
+                              </td>
+                              <td className="summary-col">{highlightText(meta.cleanSummary, searchQuery)}</td>
+                            </tr>
+                          );
+                        })
                       )}
                     </tbody>
                   </table>
@@ -1590,6 +1827,41 @@ link.click();
             </div>
 
           </section>
+        ) : activeTab === 'map' ? (
+          /* Map View tab */
+          <section className="intelligence-dashboard-view">
+            <div className="analytics-card map-panel-card" style={{ padding: '1.5rem' }}>
+              <div className="cc-header">
+                <div>
+                  <h3>🗺️ Geospatial Intelligence Map</h3>
+                  <p className="chart-subtitle">Real-time geospatial visualization of crime hotspots and active patrol sectors across Karnataka</p>
+                </div>
+                <div className="cc-live-badge">
+                  <span className="live-dot pulse-dot" />
+                  LIVE MAP
+                </div>
+              </div>
+              <div className="cc-divider" style={{ margin: '1rem 0 1.5rem 0' }} />
+              
+              {/* Map Mount Point */}
+              <div 
+                id="crime-map" 
+                style={{ 
+                  height: '580px', 
+                  width: '100%', 
+                  borderRadius: '12px', 
+                  border: '1px solid rgba(59, 130, 246, 0.25)', 
+                  position: 'relative', 
+                  zIndex: 1 
+                }} 
+              />
+              
+              <div className="map-footer-notes" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1rem', fontSize: '0.75rem', color: 'var(--text-muted, #64748b)' }}>
+                <span>💡 Tip: Click on district hotspot circles or case pin markers to view detailed stats and dispatches.</span>
+                <span>🟢 Connected to Catalyst Data Store API</span>
+              </div>
+            </div>
+          </section>
         ) : null}
       </main>
 
@@ -1707,6 +1979,50 @@ link.click();
                     />
                   </div>
 
+                   <div className="form-group">
+                    <label htmlFor="edit_officer">Assigned Officer</label>
+                    <input
+                      type="text"
+                      id="edit_officer"
+                      name="officer"
+                      value={editFormData.officer}
+                      onChange={handleEditInputChange}
+                      placeholder="e.g. Rajesh Kumar"
+                    />
+                  </div>
+
+                  <div className="form-row">
+                    <div className="form-group">
+                      <label htmlFor="edit_priority">Case Priority</label>
+                      <select
+                        id="edit_priority"
+                        name="priority"
+                        value={editFormData.priority}
+                        onChange={handleEditInputChange}
+                      >
+                        <option value="Low">Low Priority</option>
+                        <option value="Medium">Medium Priority</option>
+                        <option value="High">High Priority</option>
+                      </select>
+                    </div>
+
+                    <div className="form-group">
+                      <label htmlFor="edit_status">Case Status</label>
+                      <select
+                        id="edit_status"
+                        name="status"
+                        value={editFormData.status}
+                        onChange={handleEditInputChange}
+                      >
+                        <option value="FIR Registered">FIR Registered</option>
+                        <option value="Officer Assigned">Officer Assigned</option>
+                        <option value="Evidence Collection">Evidence Collection</option>
+                        <option value="Charge Sheet">Charge Sheet Filed</option>
+                        <option value="Closed">Case Closed</option>
+                      </select>
+                    </div>
+                  </div>
+
                   <div className="form-group">
                     <label htmlFor="edit_summary">Case Summary <span className="required-asterisk">*</span></label>
                     <textarea
@@ -1728,66 +2044,139 @@ link.click();
                     </button>
                   </div>
                 </form>
-              ) : (
-                /* Standard Details View */
-                <div className="details-view">
-                  <div className="details-grid">
-                    <div className="detail-item">
-                      <span className="label">FIR Number</span>
-                      <span className="val fir-code copy-container">
-                        {selectedCase.fir_number}
-                        <button 
-                          type="button"
-                          className="copy-fir-btn" 
-                          onClick={() => copyToClipboard(selectedCase.fir_number, "FIR Number")}
-                          title="Copy FIR Number to Clipboard"
-                        >
-                          📋 Copy
+              ) : (() => {
+                  const meta = parseCaseMetadata(selectedCase);
+                  const workflowSteps = [
+                    { label: 'FIR Registered', icon: '📝' },
+                    { label: 'Officer Assigned', icon: '👤' },
+                    { label: 'Evidence Collection', icon: '🔍' },
+                    { label: 'Charge Sheet', icon: '⚖️' },
+                    { label: 'Closed', icon: '🟢' }
+                  ];
+                  const currentStepIndex = workflowSteps.findIndex(s => s.label === meta.status);
+                  const activeStepIndex = currentStepIndex !== -1 ? currentStepIndex : 0;
+
+                  return (
+                    <div className="details-view">
+                      <div className="details-grid">
+                        <div className="detail-item">
+                          <span className="label">FIR Number</span>
+                          <span className="val fir-code copy-container">
+                            {selectedCase.fir_number}
+                            <button 
+                              type="button"
+                              className="copy-fir-btn" 
+                              onClick={() => copyToClipboard(selectedCase.fir_number, "FIR Number")}
+                              title="Copy FIR Number to Clipboard"
+                            >
+                              📋 Copy
+                            </button>
+                          </span>
+                        </div>
+                        <div className="detail-item">
+                          <span className="label">Category</span>
+                          <span className={`category-tag ${selectedCase.category.toLowerCase()}`}>{selectedCase.category}</span>
+                        </div>
+                        <div className="detail-item">
+                          <span className="label">District</span>
+                          <span className="val">{selectedCase.district}</span>
+                        </div>
+                        <div className="detail-item">
+                          <span className="label">Police Station</span>
+                          <span className="val">{selectedCase.police_station}</span>
+                        </div>
+                        <div className="detail-item">
+                          <span className="label">Incident Date</span>
+                          <span className="val">{selectedCase.incident_date}</span>
+                        </div>
+                        <div className="detail-item">
+                          <span className="label">Assigned Officer</span>
+                          <span className="val" style={{ fontWeight: '700', color: '#60A5FA' }}>{meta.officer}</span>
+                        </div>
+                        <div className="detail-item">
+                          <span className="label">Priority Level</span>
+                          <span className={`risk-badge risk-${meta.priority.toLowerCase()}`} style={{ display: 'inline-block', fontSize: '0.75rem', padding: '0.15rem 0.5rem', borderRadius: '4px', textAlign: 'center', width: 'fit-content' }}>
+                            {meta.priority}
+                          </span>
+                        </div>
+                        <div className="detail-item">
+                          <span className="label">Coordinates (Geospatial)</span>
+                          <span className="val coordinate-val">
+                            Lat: {selectedCase.latitude?.toFixed(4) || "0.0000"}, Lng: {selectedCase.longitude?.toFixed(4) || "0.0000"}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Case Workflow Timeline Stepper */}
+                      <div className="workflow-stepper-container" style={{ margin: '2rem 0', background: 'rgba(15, 23, 42, 0.4)', padding: '1.25rem 1rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>
+                        <span className="label" style={{ display: 'block', fontSize: '0.75rem', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#94A3B8', marginBottom: '1.25rem' }}>Investigation Workflow Timeline</span>
+                        <div className="stepper-track" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'relative', padding: '0 10px' }}>
+                          <div className="stepper-line-bg" style={{ position: 'absolute', height: '4px', left: '25px', right: '25px', backgroundColor: '#334155', zIndex: 0 }} />
+                          <div className="stepper-line-fill" style={{ position: 'absolute', height: '4px', left: '25px', width: `calc(${(activeStepIndex / (workflowSteps.length - 1)) * 100}% - ${activeStepIndex === 4 ? '10px' : '0px'})`, backgroundColor: '#3B82F6', transition: 'width 0.4s ease', zIndex: 0 }} />
+                          
+                          {workflowSteps.map((step, idx) => {
+                            const isCompleted = idx <= activeStepIndex;
+                            const isActive = idx === activeStepIndex;
+                            const dotBorder = isCompleted ? '2px solid #3B82F6' : '2px solid #475569';
+                            const textColor = isCompleted ? '#E2E8F0' : '#64748B';
+                            
+                            return (
+                              <div key={step.label} className="stepper-step" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', zIndex: 1, position: 'relative', width: '50px' }}>
+                                <div 
+                                  className="stepper-icon-circle" 
+                                  style={{ 
+                                    width: '32px', 
+                                    height: '32px', 
+                                    borderRadius: '50%', 
+                                    backgroundColor: isCompleted ? '#1E3A8A' : '#0F172A', 
+                                    border: dotBorder,
+                                    boxShadow: isActive ? '0 0 10px rgba(59, 130, 246, 0.6)' : 'none',
+                                    display: 'flex', 
+                                    alignItems: 'center', 
+                                    justifyContent: 'center', 
+                                    fontSize: '0.9rem',
+                                    transition: 'all 0.3s ease'
+                                  }}
+                                >
+                                  {step.icon}
+                                </div>
+                                <span 
+                                  style={{ 
+                                    fontSize: '0.6rem', 
+                                    fontWeight: isActive ? '800' : '500', 
+                                    color: textColor, 
+                                    marginTop: '0.5rem', 
+                                    textAlign: 'center',
+                                    whiteSpace: 'nowrap'
+                                  }}
+                                >
+                                  {step.label}
+                                </span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+
+                      <div className="detail-item summary-item">
+                        <span className="label">Case Summary Description</span>
+                        <p className="val summary-text" style={{ whiteSpace: 'pre-wrap' }}>{meta.cleanSummary}</p>
+                      </div>
+
+                      <div className="modal-actions">
+                        <button type="button" className="print-btn" onClick={handlePrintCase} title="Open print preview for this FIR summary">
+                          🖨️ Print FIR
                         </button>
-                      </span>
+                        <button className="edit-btn" onClick={handleEditClick}>
+                          ✏️ Edit Case
+                        </button>
+                        <button className="delete-btn-modal" onClick={() => setShowDeleteConfirm(true)}>
+                          🗑️ Delete Record
+                        </button>
+                      </div>
                     </div>
-                    <div className="detail-item">
-                      <span className="label">Category</span>
-                      <span className={`category-tag ${selectedCase.category.toLowerCase()}`}>{selectedCase.category}</span>
-                    </div>
-                    <div className="detail-item">
-                      <span className="label">District</span>
-                      <span className="val">{selectedCase.district}</span>
-                    </div>
-                    <div className="detail-item">
-                      <span className="label">Police Station</span>
-                      <span className="val">{selectedCase.police_station}</span>
-                    </div>
-                    <div className="detail-item">
-                      <span className="label">Incident Date</span>
-                      <span className="val">{selectedCase.incident_date}</span>
-                    </div>
-                    <div className="detail-item">
-                      <span className="label">Coordinates (Geospatial)</span>
-                      <span className="val coordinate-val">
-                        Lat: {selectedCase.latitude?.toFixed(4) || "0.0000"}, Lng: {selectedCase.longitude?.toFixed(4) || "0.0000"}
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="detail-item summary-item">
-                    <span className="label">Case Summary Description</span>
-                    <p className="val summary-text">{selectedCase.summary}</p>
-                  </div>
-
-                  <div className="modal-actions">
-                    <button type="button" className="print-btn" onClick={handlePrintCase} title="Open print preview for this FIR summary">
-                      🖨️ Print FIR
-                    </button>
-                    <button className="edit-btn" onClick={handleEditClick}>
-                      ✏️ Edit Case
-                    </button>
-                    <button className="delete-btn-modal" onClick={() => setShowDeleteConfirm(true)}>
-                      🗑️ Delete Record
-                    </button>
-                  </div>
-                </div>
-              )}
+                  );
+                })()}
             </div>
           </div>
         </div>
