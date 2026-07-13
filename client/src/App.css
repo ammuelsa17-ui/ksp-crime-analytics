@@ -1856,6 +1856,84 @@ html, body {
   width: 100%;
 }
 
+.intelligence-grid-three {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+}
+
+@media (max-width: 1200px) {
+  .intelligence-grid-three {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .intelligence-grid-three {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+/* AI Assistant Card Styling */
+.ai-assistant-card {
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.97) 0%, rgba(45, 27, 10, 0.97) 100%);
+}
+
+.cc-live-badge.predictive {
+  color: #F59E0B;
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.predictive-dot {
+  background-color: #F59E0B;
+}
+
+.ai-insight-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.ai-trend-val {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #34D399; /* Emerald 400 */
+}
+
+.trend-arrow-up {
+  color: #34D399;
+  font-weight: bold;
+}
+
+.ai-hotspot-val {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #FB7185; /* Rose 400 */
+}
+
+.ai-prediction-val {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #FBBF24; /* Amber 400 */
+  line-height: 1.3;
+}
+
+.ai-recommendation-val {
+  font-size: 0.85rem;
+  color: #E2E8F0;
+  line-height: 1.45;
+}
+
+.ai-insight-sub {
+  font-size: 0.7rem;
+  color: #94A3B8;
+}
+
+
 @media (max-width: 1024px) {
   .intelligence-grid {
     grid-template-columns: 1fr;
