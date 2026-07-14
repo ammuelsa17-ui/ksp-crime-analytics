@@ -55,6 +55,12 @@ function App() {
   const [toasts, setToasts] = useState([])
   const [activityLog, setActivityLog] = useState([])
   const [mapInstance, setMapInstance] = useState(null)
+  const [aiSummary, setAiSummary] = useState(null)
+  const [generatingSummary, setGeneratingSummary] = useState(false)
+  const [chatMessages, setChatMessages] = useState([
+    { sender: 'ai', text: 'Welcome to the KSP Crime Copilot. Ask me to find records, generate analytics insights, or run database search commands in plain English.' }
+  ])
+  const [chatInput, setChatInput] = useState('')
 
   const showToast = (message, type = 'info') => {
     const id = Math.random().toString(36).substr(2, 9)
@@ -136,6 +142,93 @@ function App() {
     const sta = status || 'FIR Registered';
     return `[Officer: ${off}][Priority: ${pri}][Status: ${sta}] ${cleanSummary}`;
   }
+
+  const generateAISummary = (caseItem) => {
+    setGeneratingSummary(true);
+    setAiSummary(null);
+    setTimeout(() => {
+      const meta = parseCaseMetadata(caseItem);
+      let victim = "Unknown State Resident";
+      let suspect = "Under Investigation";
+      let evidence = "CCTV, Call Data Records (CDR)";
+      let nextSteps = "1. Trace suspect IP addresses / locations.\n2. Coordinate with local Cyber Cell.";
+
+      if (caseItem.category === 'Cybercrime') {
+        victim = "Digital Banking User";
+        suspect = "Phishing group operating remotely";
+        evidence = "Server log records, transaction trail, suspect IP address details";
+        nextSteps = "1. Freeze recipient bank accounts via bank coordination.\n2. Request location trace of suspect IP addresses from service providers.";
+      } else if (caseItem.category === 'Theft') {
+        victim = "Local Resident / Property Owner";
+        suspect = "Unidentified local gang";
+        evidence = "CCTV footage from nearby traffic cams, physical fingerprints at scene";
+        nextSteps = "1. Increase night patrol sweeps in the neighborhood.\n2. Cross-reference fingerprints with existing state crime registry database.";
+      } else if (caseItem.category === 'Assault') {
+        victim = "Bystander / Individual";
+        suspect = "Identified suspect from neighborhood lockup lists";
+        evidence = "Medical reports, bystander eyewitness testimonies, physical markings";
+        nextSteps = "1. Dispatch patrol officers to verify suspect residence.\n2. Obtain statements from immediate witnesses.";
+      } else if (caseItem.category === 'Fraud') {
+        victim = "Commercial business operator";
+        suspect = "Financial accounts supervisor / contractor";
+        evidence = "Forged checks, email correspondence logs, audit mismatch statements";
+        nextSteps = "1. Issue summon to suspect for interrogation.\n2. Request full audit records from the commercial division.";
+      }
+
+      setAiSummary({
+        victim,
+        suspect,
+        evidence,
+        timeline: [
+          `📝 01. FIR registered under category: ${caseItem.category}`,
+          `👤 02. Assigned to investigator: ${meta.officer}`,
+          `🔍 03. Current status escalated to: ${meta.status}`
+        ],
+        nextSteps
+      });
+      setGeneratingSummary(false);
+    }, 800);
+  };
+
+  const handleChatSubmit = (e) => {
+    e.preventDefault();
+    if (!chatInput.trim()) return;
+
+    const query = chatInput.trim();
+    setChatMessages(prev => [...prev, { sender: 'user', text: query }]);
+    setChatInput('');
+
+    setTimeout(() => {
+      const q = query.toLowerCase();
+      let responseText = "";
+      
+      if (q.includes("cybercrime") && q.includes("bengaluru")) {
+        setFilterCategory("Cybercrime");
+        setFilterDistrict("Bengaluru Urban");
+        setSearchQuery("");
+        responseText = "Processed Command: Filtering database to show all Cybercrime FIRs registered in Bengaluru Urban district.";
+      } else if (q.includes("high priority") || q.includes("high-priority")) {
+        setFilterCategory("All");
+        setFilterDistrict("All");
+        setSearchQuery("[Priority: High]");
+        responseText = "Processed Command: Filtering database to show all High Priority investigations.";
+      } else if (q.includes("highest") || q.includes("density") || q.includes("hotspot")) {
+        responseText = `Copilot Insight: Bengaluru currently has the highest crime density, contributing ${aiBengaluruPct}% of all registered cases statewide. Recommend patrol details focus on Koramangala PS.`;
+      } else if (q.includes("reset") || q.includes("clear") || q.includes("all")) {
+        setFilterCategory("All");
+        setFilterDistrict("All");
+        setSearchQuery("");
+        responseText = "Processed Command: All filters and search queries have been reset. Displaying full database.";
+      } else {
+        setSearchQuery(query);
+        responseText = `Processed Command: Searching statewide FIR records for matching text "${query}".`;
+      }
+
+      setChatMessages(prev => [...prev, { sender: 'ai', text: responseText }]);
+      showToast("KSP AI Copilot processed command", "info");
+    }, 600);
+  };
+
 
 
 
@@ -378,6 +471,8 @@ function App() {
     setIsEditing(false)
     setShowDeleteConfirm(false)
     setUpdateError(null)
+    setAiSummary(null)
+    setGeneratingSummary(false)
   }
 
   const handleEditClick = () => {
@@ -1181,6 +1276,94 @@ link.click();
                     ))
                   )}
                 </div>
+              </div>
+
+              {/* KSP AI Copilot Chat Card */}
+              <div className="form-card copilot-card" style={{ marginTop: '1.5rem', display: 'flex', flexDirection: 'column', height: '370px' }}>
+                <h3>💬 KSP AI Copilot</h3>
+                <p className="form-subtitle">Search database or filter records using natural language</p>
+                
+                {/* Chat Message Window */}
+                <div 
+                  className="chat-window" 
+                  style={{ 
+                    flex: 1, 
+                    overflowY: 'auto', 
+                    margin: '0.75rem 0', 
+                    padding: '0.5rem', 
+                    background: 'rgba(0, 0, 0, 0.25)', 
+                    borderRadius: '8px', 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    gap: '0.75rem',
+                    maxHeight: '190px'
+                  }}
+                >
+                  {chatMessages.map((msg, idx) => {
+                    const isAi = msg.sender === 'ai';
+                    return (
+                      <div 
+                        key={idx} 
+                        style={{ 
+                          alignSelf: isAi ? 'flex-start' : 'flex-end',
+                          maxWidth: '85%',
+                          background: isAi ? 'rgba(59, 130, 246, 0.15)' : '#3B82F6',
+                          border: isAi ? '1px solid rgba(59, 130, 246, 0.3)' : 'none',
+                          color: isAi ? '#E2E8F0' : '#FFFFFF',
+                          padding: '0.5rem 0.75rem',
+                          borderRadius: '8px',
+                          fontSize: '0.75rem',
+                          lineHeight: '1.45',
+                          wordBreak: 'break-word'
+                        }}
+                      >
+                        {msg.text}
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* Quick commands suggestions */}
+                <div className="quick-suggestions" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginBottom: '0.5rem' }}>
+                  <button 
+                    type="button"
+                    onClick={() => { setChatInput("Show cybercrime cases in Bengaluru"); }}
+                    style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '0.2rem 0.5rem', fontSize: '0.65rem', color: '#94A3B8', cursor: 'pointer' }}
+                  >
+                    💻 Cybercrime Bengaluru
+                  </button>
+                  <button 
+                    type="button"
+                    onClick={() => { setChatInput("Show high priority cases"); }}
+                    style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '0.2rem 0.5rem', fontSize: '0.65rem', color: '#94A3B8', cursor: 'pointer' }}
+                  >
+                    ⚠️ High Priority
+                  </button>
+                  <button 
+                    type="button"
+                    onClick={() => { setChatInput("Highest crime density district?"); }}
+                    style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '0.2rem 0.5rem', fontSize: '0.65rem', color: '#94A3B8', cursor: 'pointer' }}
+                  >
+                    📍 Highest Density
+                  </button>
+                </div>
+
+                {/* Input form */}
+                <form onSubmit={handleChatSubmit} style={{ display: 'flex', gap: '0.5rem' }}>
+                  <input
+                    type="text"
+                    value={chatInput}
+                    onChange={(e) => setChatInput(e.target.value)}
+                    placeholder="Ask Copilot or click suggestions..."
+                    style={{ flex: 1, padding: '0.5rem 0.75rem', fontSize: '0.75rem', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.1)', backgroundColor: 'rgba(15, 23, 42, 0.6)', color: '#FFFFFF' }}
+                  />
+                  <button 
+                    type="submit" 
+                    style={{ padding: '0.5rem 0.9rem', fontSize: '0.75rem', borderRadius: '6px', border: 'none', background: '#3B82F6', color: '#FFFFFF', fontWeight: 'bold', cursor: 'pointer' }}
+                  >
+                    Send
+                  </button>
+                </form>
               </div>
             </section>
 
@@ -2156,6 +2339,69 @@ link.click();
                             );
                           })}
                         </div>
+                      </div>
+
+                      {/* AI Summary Module */}
+                      <div className="ai-summary-module" style={{ margin: '1.5rem 0', padding: '1.25rem', borderRadius: '8px', border: '1px solid rgba(245, 158, 11, 0.25)', background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(45, 27, 10, 0.2) 100%)' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
+                          <span style={{ fontSize: '0.8rem', fontWeight: '800', color: '#F59E0B', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                            🤖 KSP Case Intelligence Copilot
+                          </span>
+                          {aiSummary && (
+                            <button 
+                              type="button" 
+                              onClick={() => setAiSummary(null)} 
+                              style={{ background: 'none', border: 'none', color: '#94A3B8', fontSize: '0.75rem', cursor: 'pointer', textDecoration: 'underline' }}
+                            >
+                              Reset
+                            </button>
+                          )}
+                        </div>
+
+                        {!aiSummary && !generatingSummary && (
+                          <div style={{ textAlign: 'center', padding: '0.5rem 0' }}>
+                            <button 
+                              type="button" 
+                              className="tab-btn active" 
+                              onClick={() => generateAISummary(selectedCase)}
+                              style={{ width: '100%', padding: '0.6rem', borderRadius: '6px', cursor: 'pointer', background: 'rgba(245, 158, 11, 0.1)', border: '1px solid rgba(245, 158, 11, 0.4)', color: '#FBBF24', fontWeight: '700', fontSize: '0.8rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}
+                            >
+                              ⚡ Generate AI Case Summary &amp; Recommendations
+                            </button>
+                          </div>
+                        )}
+
+                        {generatingSummary && (
+                          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.6rem', padding: '1rem 0', color: '#94A3B8', fontSize: '0.8rem' }}>
+                            <span className="live-dot pulse-dot" style={{ backgroundColor: '#F59E0B' }} />
+                            <span>Analyzing case files and compiling intelligence report...</span>
+                          </div>
+                        )}
+
+                        {aiSummary && (
+                          <div className="ai-report-body" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', fontSize: '0.8rem', color: '#E2E8F0', marginTop: '1rem', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '1rem' }}>
+                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                              <div style={{ background: 'rgba(0,0,0,0.2)', padding: '0.75rem', borderRadius: '6px' }}>
+                                <div style={{ fontSize: '0.65rem', fontWeight: '800', color: '#94A3B8', textTransform: 'uppercase', marginBottom: '0.25rem' }}>Victim Profile</div>
+                                <div style={{ fontWeight: '600' }}>👤 {aiSummary.victim}</div>
+                              </div>
+                              <div style={{ background: 'rgba(0,0,0,0.2)', padding: '0.75rem', borderRadius: '6px' }}>
+                                <div style={{ fontSize: '0.65rem', fontWeight: '800', color: '#94A3B8', textTransform: 'uppercase', marginBottom: '0.25rem' }}>Suspect Details</div>
+                                <div style={{ fontWeight: '600' }}>🔍 {aiSummary.suspect}</div>
+                              </div>
+                            </div>
+
+                            <div style={{ background: 'rgba(0,0,0,0.2)', padding: '0.75rem', borderRadius: '6px' }}>
+                              <div style={{ fontSize: '0.65rem', fontWeight: '800', color: '#94A3B8', textTransform: 'uppercase', marginBottom: '0.25rem' }}>Key Evidence Logs</div>
+                              <div style={{ fontWeight: '500' }}>📁 {aiSummary.evidence}</div>
+                            </div>
+
+                            <div style={{ background: 'rgba(0,0,0,0.2)', padding: '0.75rem', borderRadius: '6px' }}>
+                              <div style={{ fontSize: '0.65rem', fontWeight: '800', color: '#3B82F6', textTransform: 'uppercase', marginBottom: '0.4rem' }}>Suggested Next Steps (Patrol &amp; Investigation)</div>
+                              <div style={{ whiteSpace: 'pre-wrap', lineHeight: '1.45', color: '#93C5FD' }}>{aiSummary.nextSteps}</div>
+                            </div>
+                          </div>
+                        )}
                       </div>
 
                       <div className="detail-item summary-item">
