@@ -110,11 +110,19 @@ function App() {
   ])
   const [chatInput, setChatInput] = useState('')
   const [lastSyncTime, setLastSyncTime] = useState('');
+  const [currentTime, setCurrentTime] = useState(new Date());
 
   useEffect(() => {
     const now = new Date();
     setLastSyncTime(now.toLocaleString([], { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }));
   }, [cases]);
+
+  useEffect(() => {
+    const clockTimer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+    return () => clearInterval(clockTimer);
+  }, []);
 
   const showToast = (message, type = 'info') => {
     const id = Math.random().toString(36).substr(2, 9)
@@ -1226,29 +1234,34 @@ link.click();
         </div>
       )}
 
-      <header className="dashboard-header" style={{ padding: '1rem 2rem', backgroundColor: '#0F4C81', borderBottom: '3px solid #F9A825' }}>
-        <div className="header-inner" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', maxWidth: '1600px', margin: '0 auto', width: '100%' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+      <header className="dashboard-header" style={{ padding: '0.75rem 2rem', backgroundColor: '#0F4C81', borderBottom: '3px solid #F9A825' }}>
+        <div className="header-inner" style={{ display: 'grid', gridTemplateColumns: '100px 1fr 280px', alignItems: 'center', maxWidth: '1600px', margin: '0 auto', width: '100%' }}>
+          {/* Left: Emblem */}
+          <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
             <KSPEmblem />
-            <div>
-              <h1 style={{ margin: 0, fontSize: '1.4rem', fontWeight: '800', color: '#FFFFFF', letterSpacing: '0.5px', textTransform: 'uppercase' }}>Karnataka State Police</h1>
-              <h2 style={{ margin: '2px 0 0 0', fontSize: '0.85rem', fontWeight: '600', color: '#F9A825', letterSpacing: '0.2px', textTransform: 'uppercase' }}>Crime Analytics &amp; Intelligence Platform</h2>
-              <div style={{ fontSize: '0.65rem', color: '#E2E8F0', marginTop: '1px', textTransform: 'uppercase', fontWeight: '500', opacity: 0.9 }}>Government of Karnataka • State Intelligence Department Division</div>
-            </div>
           </div>
           
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
-            <div className="ksp-live-status-panel" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.15rem' }}>
-              <div className="ksp-live-status-row" style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', color: '#4ADE80', fontSize: '0.78rem', fontWeight: 'bold' }}>
-                <span className="live-dot" style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#4ADE80', boxShadow: '0 0 8px #4ADE80' }} />
-                <span>SYSTEM ONLINE</span>
-              </div>
-              <div style={{ fontSize: '0.68rem', color: '#94A3B8' }}>
-                Last Sync: <strong style={{ color: '#E2E8F0' }}>{lastSyncTime || 'Synchronizing...'}</strong>
-              </div>
-              <div style={{ fontSize: '0.68rem', color: '#94A3B8' }}>
-                Storage: <strong style={{ color: '#F9A825' }}>Catalyst Data Store</strong>
-              </div>
+          {/* Center: Title Centered */}
+          <div style={{ textAlign: 'center' }}>
+            <h1 style={{ margin: 0, fontSize: '1.4rem', fontWeight: '800', color: '#FFFFFF', letterSpacing: '0.5px', textTransform: 'uppercase' }}>
+              Karnataka State Police Crime Analytics &amp; Intelligence Platform
+            </h1>
+            <h2 style={{ margin: '4px 0 0 0', fontSize: '0.85rem', fontWeight: '600', color: '#F9A825', letterSpacing: '0.2px', textTransform: 'uppercase' }}>
+              Government of Karnataka • State Intelligence Department
+            </h2>
+          </div>
+
+          {/* Right: Clock & Status */}
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.15rem' }}>
+            <div className="ksp-live-status-row" style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', color: '#4ADE80', fontSize: '0.78rem', fontWeight: 'bold' }}>
+              <span className="live-dot" style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#4ADE80', boxShadow: '0 0 8px #4ADE80' }} />
+              <span>SYSTEM ONLINE</span>
+            </div>
+            <div style={{ fontSize: '0.7rem', color: '#E2E8F0', fontWeight: '600' }}>
+              🕒 {currentTime.toLocaleString([], { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' })}
+            </div>
+            <div style={{ fontSize: '0.65rem', color: '#94A3B8' }}>
+              Data Store: <strong style={{ color: '#F9A825' }}>Catalyst Sync Active</strong>
             </div>
           </div>
         </div>
