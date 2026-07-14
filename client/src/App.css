@@ -2676,10 +2676,62 @@ html, body {
     width: 40%;
   }
 }
+/* ── Floating AI Assistant Styling ── */
 
+/* Drawer slide-in animation from bottom right */
+@keyframes drawerSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
 
+/* Floating AI Chat Trigger Pulse rings when idle */
+.chat-trigger-pulse {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 3px solid #1565C0;
+  animation: chatTriggerPulse 2.2s infinite ease-out;
+  pointer-events: none;
+  opacity: 0;
+}
 
+@keyframes chatTriggerPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
 
+/* Quick Action Stack Pill Hover transitions */
+.quick-action-pill {
+  transition: all 0.22s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.quick-action-pill:hover {
+  transform: translateX(-5px) scale(1.05);
+  border-color: var(--police-blue) !important;
+  color: var(--police-blue) !important;
+  background-color: #EEF6FF !important;
+  box-shadow: 0 6px 15px rgba(15, 76, 129, 0.12) !important;
+}
 
-
+.floating-chat-trigger {
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+.floating-chat-trigger:hover {
+  transform: scale(1.06);
+  box-shadow: 0 8px 25px rgba(15, 76, 129, 0.5) !important;
+}
 

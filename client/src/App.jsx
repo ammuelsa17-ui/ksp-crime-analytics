@@ -109,6 +109,7 @@ function App() {
     { sender: 'ai', text: 'Welcome to the KSP Crime Copilot. Ask me to find records, generate analytics insights, or run database search commands in plain English.' }
   ])
   const [chatInput, setChatInput] = useState('')
+  const [chatOpen, setChatOpen] = useState(false);
   const [lastSyncTime, setLastSyncTime] = useState('');
   const [currentTime, setCurrentTime] = useState(new Date());
 
@@ -252,13 +253,11 @@ function App() {
     }, 800);
   };
 
-  const handleChatSubmit = (e) => {
-    e.preventDefault();
-    if (!chatInput.trim()) return;
+  const submitChatQuery = (queryText) => {
+    if (!queryText.trim()) return;
 
-    const query = chatInput.trim();
+    const query = queryText.trim();
     setChatMessages(prev => [...prev, { sender: 'user', text: query }]);
-    setChatInput('');
 
     setTimeout(() => {
       const q = query.toLowerCase();
@@ -281,14 +280,25 @@ function App() {
         setFilterDistrict("All");
         setSearchQuery("");
         responseText = "Processed Command: All filters and search queries have been reset. Displaying full database.";
+      } else if (q.includes("alerts") || q.includes("anomalies") || q.includes("warnings")) {
+        responseText = `Copilot Insight: Rule-based anomaly engine identified ${anomalies.filter(x => x.level === 'CRITICAL' || x.level === 'WARNING' || x.level === 'NOTICE').length} active alerts. Recommended tactical action: coordinate high-patrol details with local precinct stations immediately.`;
+      } else if (q.includes("analytics") || q.includes("trends")) {
+        responseText = `Copilot Insight: Analytics digest shows '${mostCommonCategory}' is the dominant crime category statewide. Hubballi-Dharwad shows Fraud trend at ${aiHubFraudSign}${aiHubFraudTrend}% over past 7 days.`;
       } else {
         setSearchQuery(query);
         responseText = `Processed Command: Searching statewide FIR records for matching text "${query}".`;
       }
 
       setChatMessages(prev => [...prev, { sender: 'ai', text: responseText }]);
-      showToast("KSP AI Copilot processed command", "info");
+      showToast("KSP AI Assistant processed query", "info");
     }, 600);
+  };
+
+  const handleChatSubmit = (e) => {
+    e.preventDefault();
+    if (!chatInput.trim()) return;
+    submitChatQuery(chatInput);
+    setChatInput('');
   };
 
   const handleGenerateIntelligenceReport = () => {
@@ -1553,95 +1563,6 @@ link.click();
                   )}
                 </div>
               </div>
-
-              {/* KSP AI Copilot Chat Card */}
-              <div className="form-card copilot-card" style={{ marginTop: '1.5rem', display: 'flex', flexDirection: 'column', height: '370px' }}>
-                <h3>💬 KSP AI Copilot</h3>
-                <p className="form-subtitle">Search database or filter records using natural language</p>
-                
-                {/* Chat Message Window */}
-                <div 
-                  className="chat-window" 
-                  style={{ 
-                    flex: 1, 
-                    overflowY: 'auto', 
-                    margin: '0.75rem 0', 
-                    padding: '0.5rem', 
-                    background: '#F8FAFC', 
-                    border: '1px solid #E2E8F0',
-                    borderRadius: '8px', 
-                    display: 'flex', 
-                    flexDirection: 'column', 
-                    gap: '0.75rem',
-                    maxHeight: '190px'
-                  }}
-                >
-                  {chatMessages.map((msg, idx) => {
-                    const isAi = msg.sender === 'ai';
-                    return (
-                      <div 
-                        key={idx} 
-                        style={{ 
-                          alignSelf: isAi ? 'flex-start' : 'flex-end',
-                          maxWidth: '85%',
-                          background: isAi ? '#F1F5F9' : '#1565C0',
-                          border: isAi ? '1px solid #E2E8F0' : 'none',
-                          color: isAi ? '#1F2937' : '#FFFFFF',
-                          padding: '0.5rem 0.75rem',
-                          borderRadius: '8px',
-                          fontSize: '0.75rem',
-                          lineHeight: '1.45',
-                          wordBreak: 'break-word'
-                        }}
-                      >
-                        {msg.text}
-                      </div>
-                    );
-                  })}
-                </div>
-
-                {/* Quick commands suggestions */}
-                <div className="quick-suggestions" style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginBottom: '0.5rem' }}>
-                  <button 
-                    type="button"
-                    onClick={() => { setChatInput("Show cybercrime cases in Bengaluru"); }}
-                    style={{ background: '#FFFFFF', border: '1px solid #DCE3EA', borderRadius: '12px', padding: '0.2rem 0.5rem', fontSize: '0.65rem', color: '#475569', cursor: 'pointer' }}
-                  >
-                    💻 Cybercrime Bengaluru
-                  </button>
-                  <button 
-                    type="button"
-                    onClick={() => { setChatInput("Show high priority cases"); }}
-                    style={{ background: '#FFFFFF', border: '1px solid #DCE3EA', borderRadius: '12px', padding: '0.2rem 0.5rem', fontSize: '0.65rem', color: '#475569', cursor: 'pointer' }}
-                  >
-                    ⚠️ High Priority
-                  </button>
-                  <button 
-                    type="button"
-                    onClick={() => { setChatInput("Highest crime density district?"); }}
-                    style={{ background: '#FFFFFF', border: '1px solid #DCE3EA', borderRadius: '12px', padding: '0.2rem 0.5rem', fontSize: '0.65rem', color: '#475569', cursor: 'pointer' }}
-                  >
-                    📍 Highest Density
-                  </button>
-                </div>
-
-                {/* Input form */}
-                <form onSubmit={handleChatSubmit} style={{ display: 'flex', gap: '0.5rem' }}>
-                  <input
-                    type="text"
-                    value={chatInput}
-                    onChange={(e) => setChatInput(e.target.value)}
-                    placeholder="Ask Copilot or click suggestions..."
-                    style={{ flex: 1, padding: '0.5rem 0.75rem', fontSize: '0.75rem', borderRadius: '6px', border: '1px solid #DCE3EA', backgroundColor: '#FFFFFF', color: '#1F2937' }}
-                  />
-                  <button 
-                    type="submit" 
-                    style={{ padding: '0.5rem 0.9rem', fontSize: '0.75rem', borderRadius: '6px', border: 'none', background: '#1565C0', color: '#FFFFFF', fontWeight: 'bold', cursor: 'pointer' }}
-                  >
-                    Send
-                  </button>
-                </form>
-              </div>
             </section>
 
             {/* Right: Table / States */}
@@ -2782,6 +2703,214 @@ link.click();
           </div>
         </div>
       )}
+      {/* 🤖 Floating AI Assistant Portal */}
+      <div className="floating-ai-portal" style={{ position: 'fixed', bottom: '2rem', right: '2rem', zIndex: 9990, display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.75rem' }}>
+        
+        {/* Quick Actions Stack (visible only when chat is closed) */}
+        {!chatOpen && (
+          <div className="quick-actions-stack" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.45rem' }}>
+            <button 
+              onClick={() => { setChatOpen(true); submitChatQuery("Highest crime density district and hotspots?"); }}
+              className="quick-action-pill"
+              style={{ padding: '0.4rem 0.8rem', background: '#FFFFFF', border: '1px solid #DCE3EA', borderRadius: '20px', fontSize: '0.72rem', fontWeight: 'bold', color: 'var(--text-primary)', cursor: 'pointer', boxShadow: '0 4px 12px rgba(0,0,0,0.06)', display: 'flex', alignItems: 'center', gap: '0.25rem', whiteSpace: 'nowrap' }}
+            >
+              📍 Hotspots
+            </button>
+            <button 
+              onClick={() => { setChatOpen(true); submitChatQuery("List active warnings and alerts"); }}
+              className="quick-action-pill"
+              style={{ padding: '0.4rem 0.8rem', background: '#FFFFFF', border: '1px solid #DCE3EA', borderRadius: '20px', fontSize: '0.72rem', fontWeight: 'bold', color: 'var(--text-primary)', cursor: 'pointer', boxShadow: '0 4px 12px rgba(0,0,0,0.06)', display: 'flex', alignItems: 'center', gap: '0.25rem', whiteSpace: 'nowrap' }}
+            >
+              🚨 Alerts
+            </button>
+            <button 
+              onClick={() => { setChatOpen(true); submitChatQuery("Show category distribution and analytics trends"); }}
+              className="quick-action-pill"
+              style={{ padding: '0.4rem 0.8rem', background: '#FFFFFF', border: '1px solid #DCE3EA', borderRadius: '20px', fontSize: '0.72rem', fontWeight: 'bold', color: 'var(--text-primary)', cursor: 'pointer', boxShadow: '0 4px 12px rgba(0,0,0,0.06)', display: 'flex', alignItems: 'center', gap: '0.25rem', whiteSpace: 'nowrap' }}
+            >
+              📊 Analytics
+            </button>
+          </div>
+        )}
+
+        {/* Floating Chat Trigger Button */}
+        <button 
+          onClick={() => setChatOpen(!chatOpen)}
+          className="floating-chat-trigger"
+          title="KSP AI Assistant"
+          style={{ 
+            width: '60px', 
+            height: '60px', 
+            borderRadius: '50%', 
+            background: 'linear-gradient(135deg, #1565C0 0%, #0F4C81 100%)', 
+            border: 'none', 
+            boxShadow: '0 6px 20px rgba(15, 76, 129, 0.4)', 
+            cursor: 'pointer', 
+            display: 'flex', 
+            flexDirection: 'column', 
+            alignItems: 'center', 
+            justifyContent: 'center', 
+            color: '#FFFFFF', 
+            position: 'relative',
+            outline: 'none'
+          }}
+        >
+          <span style={{ fontSize: '1.4rem', lineHeight: 1 }}>🤖</span>
+          <span style={{ fontSize: '0.55rem', fontWeight: '800', letterSpacing: '0.5px', marginTop: '2px', color: '#F9A825' }}>KSP AI</span>
+          
+          {/* Subtle Pulse rings when idle */}
+          {!chatOpen && <span className="chat-trigger-pulse" />}
+        </button>
+
+        {/* Slide-In Drawer / Large Modal Chat Panel */}
+        {chatOpen && (
+          <div 
+            className="chat-drawer-panel"
+            style={{ 
+              position: 'fixed', 
+              bottom: '5.5rem', 
+              right: '2rem', 
+              width: '400px', 
+              height: '500px', 
+              background: '#FFFFFF', 
+              borderRadius: '16px', 
+              boxShadow: '0 12px 40px rgba(0, 0, 0, 0.12)', 
+              border: '1px solid #DCE3EA', 
+              display: 'flex', 
+              flexDirection: 'column', 
+              overflow: 'hidden', 
+              animation: 'drawerSlideIn 0.25s cubic-bezier(0.4, 0, 0.2, 1)' 
+            }}
+          >
+            {/* Drawer Header */}
+            <div style={{ background: '#0F4C81', padding: '0.9rem 1.25rem', color: '#FFFFFF', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '3px solid #F9A825' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <span style={{ fontSize: '1.25rem' }}>🤖</span>
+                <div>
+                  <h3 style={{ margin: 0, fontSize: '0.9rem', fontWeight: '800', color: '#FFFFFF' }}>KSP AI Assistant</h3>
+                  <div style={{ fontSize: '0.62rem', color: '#4ADE80', display: 'flex', alignItems: 'center', gap: '0.25rem', fontWeight: 'bold' }}>
+                    <span style={{ display: 'inline-block', width: '5px', height: '5px', borderRadius: '50%', backgroundColor: '#4ADE80' }} />
+                    Active Command Engine
+                  </div>
+                </div>
+              </div>
+              <button 
+                onClick={() => setChatOpen(false)}
+                style={{ background: 'transparent', border: 'none', color: '#FFFFFF', fontSize: '1.4rem', cursor: 'pointer', outline: 'none', lineHeight: 1, padding: 0 }}
+              >
+                &times;
+              </button>
+            </div>
+
+            {/* Chat Messages Log */}
+            <div 
+              style={{ 
+                flex: 1, 
+                overflowY: 'auto', 
+                padding: '1rem 1.25rem', 
+                background: '#F8FAFC', 
+                display: 'flex', 
+                flexDirection: 'column', 
+                gap: '0.75rem' 
+              }}
+            >
+              {chatMessages.map((msg, idx) => {
+                const isAi = msg.sender === 'ai';
+                return (
+                  <div 
+                    key={idx} 
+                    style={{ 
+                      alignSelf: isAi ? 'flex-start' : 'flex-end',
+                      maxWidth: '85%',
+                      background: isAi ? '#FFFFFF' : '#1565C0',
+                      border: '1px solid #DCE3EA',
+                      color: isAi ? '#1F2937' : '#FFFFFF',
+                      padding: '0.65rem 0.85rem',
+                      borderRadius: isAi ? '12px 12px 12px 2px' : '12px 12px 2px 12px',
+                      fontSize: '0.78rem',
+                      lineHeight: '1.45',
+                      boxShadow: '0 2px 5px rgba(0,0,0,0.02)',
+                      wordBreak: 'break-word'
+                    }}
+                  >
+                    {msg.text}
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Quick Command Suggestions Container */}
+            <div style={{ padding: '0.75rem 1.25rem', background: '#FFFFFF', borderTop: '1px solid #E2E8F0', display: 'flex', flexWrap: 'wrap', gap: '0.35rem' }}>
+              <button 
+                type="button"
+                onClick={() => submitChatQuery("Show cybercrime cases in Bengaluru")}
+                style={{ background: '#F1F5F9', border: '1px solid #E2E8F0', borderRadius: '12px', padding: '0.3rem 0.6rem', fontSize: '0.68rem', color: '#475569', cursor: 'pointer', fontWeight: 'bold' }}
+              >
+                💻 Cyber Bengaluru
+              </button>
+              <button 
+                type="button"
+                onClick={() => submitChatQuery("Show high priority cases")}
+                style={{ background: '#F1F5F9', border: '1px solid #E2E8F0', borderRadius: '12px', padding: '0.3rem 0.6rem', fontSize: '0.68rem', color: '#475569', cursor: 'pointer', fontWeight: 'bold' }}
+              >
+                ⚠️ High Priority
+              </button>
+              <button 
+                type="button"
+                onClick={() => submitChatQuery("Reset all search filters")}
+                style={{ background: '#F1F5F9', border: '1px solid #E2E8F0', borderRadius: '12px', padding: '0.3rem 0.6rem', fontSize: '0.68rem', color: '#475569', cursor: 'pointer', fontWeight: 'bold' }}
+              >
+                🔄 Reset Filters
+              </button>
+            </div>
+
+            {/* Chat Input Footer Form */}
+            <form 
+              onSubmit={handleChatSubmit} 
+              style={{ 
+                padding: '0.75rem 1.25rem', 
+                background: '#FFFFFF', 
+                borderTop: '1px solid #E2E8F0', 
+                display: 'flex', 
+                gap: '0.5rem',
+                alignItems: 'center' 
+              }}
+            >
+              <input
+                type="text"
+                value={chatInput}
+                onChange={(e) => setChatInput(e.target.value)}
+                placeholder="Ask assistant or click suggestions..."
+                style={{ 
+                  flex: 1, 
+                  padding: '0.5rem 0.75rem', 
+                  fontSize: '0.75rem', 
+                  borderRadius: '8px', 
+                  border: '1px solid #DCE3EA', 
+                  backgroundColor: '#FFFFFF', 
+                  color: '#1F2937',
+                  outline: 'none'
+                }}
+              />
+              <button 
+                type="submit" 
+                style={{ 
+                  padding: '0.5rem 0.9rem', 
+                  fontSize: '0.75rem', 
+                  borderRadius: '8px', 
+                  border: 'none', 
+                  background: '#1565C0', 
+                  color: '#FFFFFF', 
+                  fontWeight: 'bold', 
+                  cursor: 'pointer' 
+                }}
+              >
+                Send
+              </button>
+            </form>
+          </div>
+        )}
+      </div>
     </div>
   )
 }
