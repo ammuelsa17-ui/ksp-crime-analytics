@@ -5,7 +5,6 @@ import traceback
 print("FastAPI app starting...")
 
 from fastapi import FastAPI, HTTPException, Request
-from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from app.database import get_all_cases, create_case, update_case, delete_case
@@ -100,14 +99,9 @@ def seed_large(request: Request):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Database seeding failed: {str(e)}")
 
-# Configure CORS
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # Restrict to specific domains in production
-    allow_credentials=False,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+# CORS is handled by Zoho Catalyst's AppSail proxy layer automatically.
+# Do NOT add CORSMiddleware here — it causes duplicate Access-Control-Allow-Origin
+# headers (Catalyst sends the exact origin, FastAPI sends "*"), which browsers reject.
 
 # Serve static assets compiled from client build
 app.mount("/assets", StaticFiles(directory="static/assets"), name="assets")
