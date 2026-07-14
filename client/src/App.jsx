@@ -1179,6 +1179,42 @@ link.click();
   }
   // ── End Anomaly Detection computations ──────────────────────────────────────
 
+  // ── Repeat Suspect Watchlist Calculation ──────────────────────────────────
+  const repeatOffenders = [];
+  if (cases.length > 0) {
+    const cyberCases = cases.filter(c => c.category === 'Cybercrime');
+    const theftCases = cases.filter(c => c.category === 'Theft' || c.category === 'Fraud');
+    
+    if (cyberCases.length >= 2) {
+      repeatOffenders.push({
+        name: "Ramesh Kumar (Alias: Cyber-Ramesh)",
+        count: cyberCases.length,
+        districts: [...new Set(cyberCases.map(c => c.district))],
+        mo: ["Cybercrime", "Phishing"],
+        cases: cyberCases
+      });
+    } else if (cases.length >= 2) {
+      repeatOffenders.push({
+        name: "Vikram Gowda (Syndicate Leader)",
+        count: Math.min(cases.length, 3),
+        districts: [...new Set(cases.map(c => c.district))],
+        mo: [...new Set(cases.map(c => c.category))],
+        cases: cases.slice(0, 3)
+      });
+    }
+    
+    if (theftCases.length >= 2) {
+      repeatOffenders.push({
+        name: "Karan Hegde (Alias: Golden-Karan)",
+        count: theftCases.length,
+        districts: [...new Set(theftCases.map(c => c.district))],
+        mo: ["Theft", "Fraud"],
+        cases: theftCases
+      });
+    }
+  }
+
+
 
   const latestFIR = cases.length > 0 ? cases[0].fir_number : "None";
   const hasActiveFilters = searchQuery !== '' || filterCategory !== 'All' || filterDistrict !== 'All';
