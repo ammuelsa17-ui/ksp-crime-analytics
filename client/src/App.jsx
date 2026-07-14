@@ -1989,11 +1989,10 @@ link.click();
 
             </div>
 
-            {/* Middle row: Emerging Trend Alerts & Modus Operandi */}
-            <div className="intelligence-grid mt-4">
+            {/* Middle row: Emerging Trend Alerts, Repeat Suspect Watchlist & Recommended Actions */}
+            <div className="intelligence-grid-three mt-4">
               
               {/* 🚨 Emerging Trend Alerts */}
-
               <div className="analytics-card">
                 <h3>🚨 Emerging Trend Alerts</h3>
                 <p className="chart-subtitle">Real-time alerts flagged based on relative category surges</p>
@@ -2010,6 +2009,35 @@ link.click();
                       </div>
                     );
                   })}
+                </div>
+              </div>
+
+              {/* Suspect Watchlist Card */}
+              <div className="analytics-card">
+                <h3>👤 Repeat Suspect Watchlist</h3>
+                <p className="chart-subtitle">Detecting repeat offenders operating across multiple precincts</p>
+                <div className="trend-alerts-list" style={{ overflowY: 'auto', maxHeight: '320px' }}>
+                  {repeatOffenders.length === 0 ? (
+                    <div className="empty-state-container" style={{ padding: '2rem 1rem', textAlign: 'center', color: '#94A3B8' }}>
+                      <span style={{ fontSize: '1.5rem', display: 'block', marginBottom: '0.5rem' }}>🟢</span>
+                      <p style={{ fontSize: '0.75rem' }}>No repeat suspects detected in current state database.</p>
+                    </div>
+                  ) : (
+                    repeatOffenders.map((sus, idx) => (
+                      <div className="trend-alert-item alert-medium" key={idx} style={{ borderLeft: '3px solid #F59E0B', background: 'rgba(245, 158, 11, 0.05)', padding: '0.75rem', borderRadius: '6px', marginBottom: '0.75rem' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
+                          <span style={{ fontWeight: '700', fontSize: '0.8rem', color: '#FBBF24' }}>👤 {sus.name}</span>
+                          <span className="risk-badge risk-high" style={{ fontSize: '0.65rem', padding: '0.1rem 0.4rem', borderRadius: '4px' }}>
+                            {sus.count} FIRs
+                          </span>
+                        </div>
+                        <div style={{ fontSize: '0.7rem', color: '#94A3B8', lineHeight: '1.4' }}>
+                          <div>📍 <strong>Districts:</strong> {sus.districts.join(', ')}</div>
+                          <div style={{ marginTop: '0.2rem' }}>⚠️ <strong>MO (Categories):</strong> {sus.mo.join(', ')}</div>
+                        </div>
+                      </div>
+                    ))
+                  )}
                 </div>
               </div>
 
