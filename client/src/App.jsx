@@ -366,8 +366,8 @@ function App() {
       // Karnataka Center
       const map = L.map('crime-map').setView([14.9754, 76.1368], 7);
 
-      // CartoDB Dark Matter tile layer
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      // CartoDB Positron tile layer (light theme)
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
         subdomains: 'abcd',
         maxZoom: 20
@@ -1425,7 +1425,8 @@ link.click();
                     overflowY: 'auto', 
                     margin: '0.75rem 0', 
                     padding: '0.5rem', 
-                    background: 'rgba(0, 0, 0, 0.25)', 
+                    background: '#F8FAFC', 
+                    border: '1px solid #E2E8F0',
                     borderRadius: '8px', 
                     display: 'flex', 
                     flexDirection: 'column', 
@@ -1441,9 +1442,9 @@ link.click();
                         style={{ 
                           alignSelf: isAi ? 'flex-start' : 'flex-end',
                           maxWidth: '85%',
-                          background: isAi ? 'rgba(59, 130, 246, 0.15)' : '#3B82F6',
-                          border: isAi ? '1px solid rgba(59, 130, 246, 0.3)' : 'none',
-                          color: isAi ? '#E2E8F0' : '#FFFFFF',
+                          background: isAi ? '#F1F5F9' : '#1565C0',
+                          border: isAi ? '1px solid #E2E8F0' : 'none',
+                          color: isAi ? '#1F2937' : '#FFFFFF',
                           padding: '0.5rem 0.75rem',
                           borderRadius: '8px',
                           fontSize: '0.75rem',
@@ -1462,21 +1463,21 @@ link.click();
                   <button 
                     type="button"
                     onClick={() => { setChatInput("Show cybercrime cases in Bengaluru"); }}
-                    style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '0.2rem 0.5rem', fontSize: '0.65rem', color: '#94A3B8', cursor: 'pointer' }}
+                    style={{ background: '#FFFFFF', border: '1px solid #DCE3EA', borderRadius: '12px', padding: '0.2rem 0.5rem', fontSize: '0.65rem', color: '#475569', cursor: 'pointer' }}
                   >
                     💻 Cybercrime Bengaluru
                   </button>
                   <button 
                     type="button"
                     onClick={() => { setChatInput("Show high priority cases"); }}
-                    style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '0.2rem 0.5rem', fontSize: '0.65rem', color: '#94A3B8', cursor: 'pointer' }}
+                    style={{ background: '#FFFFFF', border: '1px solid #DCE3EA', borderRadius: '12px', padding: '0.2rem 0.5rem', fontSize: '0.65rem', color: '#475569', cursor: 'pointer' }}
                   >
                     ⚠️ High Priority
                   </button>
                   <button 
                     type="button"
                     onClick={() => { setChatInput("Highest crime density district?"); }}
-                    style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '0.2rem 0.5rem', fontSize: '0.65rem', color: '#94A3B8', cursor: 'pointer' }}
+                    style={{ background: '#FFFFFF', border: '1px solid #DCE3EA', borderRadius: '12px', padding: '0.2rem 0.5rem', fontSize: '0.65rem', color: '#475569', cursor: 'pointer' }}
                   >
                     📍 Highest Density
                   </button>
@@ -1489,11 +1490,11 @@ link.click();
                     value={chatInput}
                     onChange={(e) => setChatInput(e.target.value)}
                     placeholder="Ask Copilot or click suggestions..."
-                    style={{ flex: 1, padding: '0.5rem 0.75rem', fontSize: '0.75rem', borderRadius: '6px', border: '1px solid rgba(255,255,255,0.1)', backgroundColor: 'rgba(15, 23, 42, 0.6)', color: '#FFFFFF' }}
+                    style={{ flex: 1, padding: '0.5rem 0.75rem', fontSize: '0.75rem', borderRadius: '6px', border: '1px solid #DCE3EA', backgroundColor: '#FFFFFF', color: '#1F2937' }}
                   />
                   <button 
                     type="submit" 
-                    style={{ padding: '0.5rem 0.9rem', fontSize: '0.75rem', borderRadius: '6px', border: 'none', background: '#3B82F6', color: '#FFFFFF', fontWeight: 'bold', cursor: 'pointer' }}
+                    style={{ padding: '0.5rem 0.9rem', fontSize: '0.75rem', borderRadius: '6px', border: 'none', background: '#1565C0', color: '#FFFFFF', fontWeight: 'bold', cursor: 'pointer' }}
                   >
                     Send
                   </button>
@@ -1788,9 +1789,9 @@ link.click();
                       </defs>
                       
                       {/* Grid Lines */}
-                      <line x1={padding} y1={padding} x2={chartWidth - padding} y2={padding} stroke="#1a263f" strokeDasharray="3,3" />
-                      <line x1={padding} y1={chartHeight / 2} x2={chartWidth - padding} y2={chartHeight / 2} stroke="#1a263f" strokeDasharray="3,3" />
-                      <line x1={padding} y1={chartHeight - padding} x2={chartWidth - padding} y2={chartHeight - padding} stroke="#1a263f" />
+                      <line x1={padding} y1={padding} x2={chartWidth - padding} y2={padding} stroke="#E2E8F0" strokeDasharray="3,3" />
+                      <line x1={padding} y1={chartHeight / 2} x2={chartWidth - padding} y2={chartHeight / 2} stroke="#E2E8F0" strokeDasharray="3,3" />
+                      <line x1={padding} y1={chartHeight - padding} x2={chartWidth - padding} y2={chartHeight - padding} stroke="#E2E8F0" />
 
                       {/* Area Fill */}
                       {areaPath && <path d={areaPath} fill="url(#areaGrad)" />}
@@ -1808,7 +1809,7 @@ link.click();
 
                       {/* X Axis Labels */}
                       {points.map((p, idx) => (idx === 0 || idx === points.length - 1 || points.length <= 5) && (
-                        <text key={idx} x={p.x} y={chartHeight - 8} textAnchor="middle" className="timeline-axis-text" fill="#a0aec0">
+                        <text key={idx} x={p.x} y={chartHeight - 8} textAnchor="middle" className="timeline-axis-text" fill="#6B7280">
                           {p.date.slice(5)}
                         </text>
                       ))}
@@ -2117,15 +2118,15 @@ link.click();
               <div className="network-graph-container">
                 <svg viewBox="0 0 800 240" className="network-svg">
                   {/* Connectors */}
-                  <path d="M 120 120 Q 260 60 400 60" fill="none" stroke="#334155" strokeWidth="2" strokeDasharray="4,4" />
-                  <path d="M 120 120 Q 260 180 400 180" fill="none" stroke="#334155" strokeWidth="2" strokeDasharray="4,4" />
-                  <path d="M 400 60 L 680 120" fill="none" stroke="#334155" strokeWidth="2" />
-                  <path d="M 400 180 L 680 120" fill="none" stroke="#334155" strokeWidth="2" />
+                  <path d="M 120 120 Q 260 60 400 60" fill="none" stroke="#DCE3EA" strokeWidth="2" strokeDasharray="4,4" />
+                  <path d="M 120 120 Q 260 180 400 180" fill="none" stroke="#DCE3EA" strokeWidth="2" strokeDasharray="4,4" />
+                  <path d="M 400 60 L 680 120" fill="none" stroke="#DCE3EA" strokeWidth="2" />
+                  <path d="M 400 180 L 680 120" fill="none" stroke="#DCE3EA" strokeWidth="2" />
                   <path d="M 680 120 L 740 120" fill="none" stroke="var(--police-gold)" strokeWidth="3" />
 
                   {/* Node 1: District Core */}
                   <g className="node-group">
-                    <circle cx="120" cy="120" r="45" fill="rgba(11, 60, 93, 0.85)" stroke="var(--police-light)" strokeWidth="2" />
+                    <circle cx="120" cy="120" r="45" fill="var(--police-blue)" stroke="#FFFFFF" strokeWidth="2" />
                     <text x="120" y="115" textAnchor="middle" fill="#ffffff" fontSize="12" fontWeight="700">DISTRICT</text>
                     <text x="120" y="132" textAnchor="middle" fill="var(--police-gold)" fontSize="11" fontWeight="800">
                       {highestDistrict.length > 12 ? highestDistrict.substring(0, 10) + '...' : highestDistrict}
@@ -2134,32 +2135,32 @@ link.click();
 
                   {/* Node 2a: Top Station */}
                   <g className="node-group">
-                    <circle cx="400" cy="60" r="35" fill="rgba(30, 41, 59, 0.9)" stroke="var(--border-color)" strokeWidth="2" />
-                    <text x="400" y="55" textAnchor="middle" fill="#ffffff" fontSize="10" fontWeight="700">HOTSPOT PS</text>
-                    <text x="400" y="70" textAnchor="middle" fill="#a0aec0" fontSize="9">
+                    <circle cx="400" cy="60" r="35" fill="#FFFFFF" stroke="var(--police-blue)" strokeWidth="2" />
+                    <text x="400" y="55" textAnchor="middle" fill="var(--text-primary)" fontSize="10" fontWeight="700">HOTSPOT PS</text>
+                    <text x="400" y="70" textAnchor="middle" fill="var(--text-secondary)" fontSize="9">
                       {highestStation && highestStation.length > 12 ? highestStation.substring(0, 10) + '...' : highestStation || 'N/A'}
                     </text>
                   </g>
 
                   {/* Node 2b: Top Category */}
                   <g className="node-group">
-                    <circle cx="400" cy="180" r="35" fill="rgba(30, 41, 59, 0.9)" stroke="var(--border-color)" strokeWidth="2" />
-                    <text x="400" y="175" textAnchor="middle" fill="#ffffff" fontSize="10" fontWeight="700">PRIMARY CRIME</text>
-                    <text x="400" y="190" textAnchor="middle" fill="#a0aec0" fontSize="9">{mostCommonCategory}</text>
+                    <circle cx="400" cy="180" r="35" fill="#FFFFFF" stroke="var(--police-blue)" strokeWidth="2" />
+                    <text x="400" y="175" textAnchor="middle" fill="var(--text-primary)" fontSize="10" fontWeight="700">PRIMARY CRIME</text>
+                    <text x="400" y="190" textAnchor="middle" fill="var(--text-secondary)" fontSize="9">{mostCommonCategory}</text>
                   </g>
 
                   {/* Node 3: Link Association */}
                   <g className="node-group">
-                    <circle cx="680" cy="120" r="38" fill="rgba(15, 23, 42, 0.95)" stroke="var(--accent-red)" strokeWidth="2" />
-                    <text x="680" y="115" textAnchor="middle" fill="#ffffff" fontSize="10" fontWeight="700">ASSOCIATED</text>
+                    <circle cx="680" cy="120" r="38" fill="#FFFFFF" stroke="var(--accent-red)" strokeWidth="2" />
+                    <text x="680" y="115" textAnchor="middle" fill="var(--text-primary)" fontSize="10" fontWeight="700">ASSOCIATED</text>
                     <text x="680" y="130" textAnchor="middle" fill="var(--accent-red)" fontSize="9" fontWeight="800">PATTERN</text>
                   </g>
 
                   {/* Node 4: Action Node */}
                   <g className="node-group">
                     <rect x="735" y="98" width="55" height="44" rx="6" fill="var(--police-gold)" />
-                    <text x="762" y="118" textAnchor="middle" fill="#0F172A" fontSize="9" fontWeight="800">ALERT</text>
-                    <text x="762" y="130" textAnchor="middle" fill="#0F172A" fontSize="8" fontWeight="800">DISPATCH</text>
+                    <text x="762" y="118" textAnchor="middle" fill="#0F4C81" fontSize="9" fontWeight="800">ALERT</text>
+                    <text x="762" y="130" textAnchor="middle" fill="#0F4C81" fontSize="8" fontWeight="800">DISPATCH</text>
                   </g>
                 </svg>
               </div>
@@ -2189,7 +2190,7 @@ link.click();
                   height: '580px', 
                   width: '100%', 
                   borderRadius: '12px', 
-                  border: '1px solid rgba(59, 130, 246, 0.25)', 
+                  border: '1px solid var(--border-color)', 
                   position: 'relative', 
                   zIndex: 1 
                 }} 
@@ -2447,17 +2448,17 @@ link.click();
                       </div>
 
                       {/* Case Workflow Timeline Stepper */}
-                      <div className="workflow-stepper-container" style={{ margin: '2rem 0', background: 'rgba(15, 23, 42, 0.4)', padding: '1.25rem 1rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.05)' }}>
-                        <span className="label" style={{ display: 'block', fontSize: '0.75rem', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#94A3B8', marginBottom: '1.25rem' }}>Investigation Workflow Timeline</span>
+                      <div className="workflow-stepper-container" style={{ margin: '2rem 0', background: '#F8FAFC', padding: '1.25rem 1rem', borderRadius: '8px', border: '1px solid #E2E8F0' }}>
+                        <span className="label" style={{ display: 'block', fontSize: '0.75rem', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#475569', marginBottom: '1.25rem' }}>Investigation Workflow Timeline</span>
                         <div className="stepper-track" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'relative', padding: '0 10px' }}>
-                          <div className="stepper-line-bg" style={{ position: 'absolute', height: '4px', left: '25px', right: '25px', backgroundColor: '#334155', zIndex: 0 }} />
-                          <div className="stepper-line-fill" style={{ position: 'absolute', height: '4px', left: '25px', width: `calc(${(activeStepIndex / (workflowSteps.length - 1)) * 100}% - ${activeStepIndex === 4 ? '10px' : '0px'})`, backgroundColor: '#3B82F6', transition: 'width 0.4s ease', zIndex: 0 }} />
+                          <div className="stepper-line-bg" style={{ position: 'absolute', height: '4px', left: '25px', right: '25px', backgroundColor: '#E2E8F0', zIndex: 0 }} />
+                          <div className="stepper-line-fill" style={{ position: 'absolute', height: '4px', left: '25px', width: `calc(${(activeStepIndex / (workflowSteps.length - 1)) * 100}% - ${activeStepIndex === 4 ? '10px' : '0px'})`, backgroundColor: '#1565C0', transition: 'width 0.4s ease', zIndex: 0 }} />
                           
                           {workflowSteps.map((step, idx) => {
                             const isCompleted = idx <= activeStepIndex;
                             const isActive = idx === activeStepIndex;
-                            const dotBorder = isCompleted ? '2px solid #3B82F6' : '2px solid #475569';
-                            const textColor = isCompleted ? '#E2E8F0' : '#64748B';
+                            const dotBorder = isCompleted ? '2px solid #1565C0' : '2px solid #D1D5DB';
+                            const textColor = isCompleted ? '#1F2937' : '#9CA3AF';
                             
                             return (
                               <div key={step.label} className="stepper-step" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', zIndex: 1, position: 'relative', width: '50px' }}>
@@ -2467,9 +2468,9 @@ link.click();
                                     width: '32px', 
                                     height: '32px', 
                                     borderRadius: '50%', 
-                                    backgroundColor: isCompleted ? '#1E3A8A' : '#0F172A', 
+                                    backgroundColor: isCompleted ? '#E0F2FE' : '#FFFFFF', 
                                     border: dotBorder,
-                                    boxShadow: isActive ? '0 0 10px rgba(59, 130, 246, 0.6)' : 'none',
+                                    boxShadow: isActive ? '0 0 10px rgba(21, 101, 192, 0.4)' : 'none',
                                     display: 'flex', 
                                     alignItems: 'center', 
                                     justifyContent: 'center', 
@@ -2498,16 +2499,16 @@ link.click();
                       </div>
 
                       {/* AI Summary Module */}
-                      <div className="ai-summary-module" style={{ margin: '1.5rem 0', padding: '1.25rem', borderRadius: '8px', border: '1px solid rgba(245, 158, 11, 0.25)', background: 'linear-gradient(135deg, rgba(15, 23, 42, 0.6) 0%, rgba(45, 27, 10, 0.2) 100%)' }}>
+                      <div className="ai-summary-module" style={{ margin: '1.5rem 0', padding: '1.25rem', borderRadius: '8px', border: '1px solid rgba(245, 158, 11, 0.35)', background: 'linear-gradient(135deg, #FFFDF5 0%, #FFF9E6 100%)' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
-                          <span style={{ fontSize: '0.8rem', fontWeight: '800', color: '#F59E0B', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                          <span style={{ fontSize: '0.8rem', fontWeight: '800', color: '#D97706', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                             🤖 KSP Case Intelligence Copilot
                           </span>
                           {aiSummary && (
                             <button 
                               type="button" 
                               onClick={() => setAiSummary(null)} 
-                              style={{ background: 'none', border: 'none', color: '#94A3B8', fontSize: '0.75rem', cursor: 'pointer', textDecoration: 'underline' }}
+                              style={{ background: 'none', border: 'none', color: '#78350F', fontSize: '0.75rem', cursor: 'pointer', textDecoration: 'underline' }}
                             >
                               Reset
                             </button>
@@ -2520,7 +2521,7 @@ link.click();
                               type="button" 
                               className="tab-btn active" 
                               onClick={() => generateAISummary(selectedCase)}
-                              style={{ width: '100%', padding: '0.6rem', borderRadius: '6px', cursor: 'pointer', background: 'rgba(245, 158, 11, 0.1)', border: '1px solid rgba(245, 158, 11, 0.4)', color: '#FBBF24', fontWeight: '700', fontSize: '0.8rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}
+                              style={{ width: '100%', padding: '0.6rem', borderRadius: '6px', cursor: 'pointer', background: '#F59E0B', border: 'none', color: '#FFFFFF', fontWeight: '700', fontSize: '0.8rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}
                             >
                               ⚡ Generate AI Case Summary &amp; Recommendations
                             </button>
@@ -2528,33 +2529,33 @@ link.click();
                         )}
 
                         {generatingSummary && (
-                          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.6rem', padding: '1rem 0', color: '#94A3B8', fontSize: '0.8rem' }}>
+                          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.6rem', padding: '1rem 0', color: '#78350F', fontSize: '0.8rem' }}>
                             <span className="live-dot pulse-dot" style={{ backgroundColor: '#F59E0B' }} />
                             <span>Analyzing case files and compiling intelligence report...</span>
                           </div>
                         )}
 
                         {aiSummary && (
-                          <div className="ai-report-body" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', fontSize: '0.8rem', color: '#E2E8F0', marginTop: '1rem', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '1rem' }}>
+                          <div className="ai-report-body" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', fontSize: '0.8rem', color: '#374151', marginTop: '1rem', borderTop: '1px solid rgba(245, 158, 11, 0.2)', paddingTop: '1rem' }}>
                             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                              <div style={{ background: 'rgba(0,0,0,0.2)', padding: '0.75rem', borderRadius: '6px' }}>
-                                <div style={{ fontSize: '0.65rem', fontWeight: '800', color: '#94A3B8', textTransform: 'uppercase', marginBottom: '0.25rem' }}>Victim Profile</div>
+                              <div style={{ background: '#FFFFFF', border: '1px solid rgba(245, 158, 11, 0.2)', padding: '0.75rem', borderRadius: '6px' }}>
+                                <div style={{ fontSize: '0.65rem', fontWeight: '800', color: '#78350F', textTransform: 'uppercase', marginBottom: '0.25rem' }}>Victim Profile</div>
                                 <div style={{ fontWeight: '600' }}>👤 {aiSummary.victim}</div>
                               </div>
-                              <div style={{ background: 'rgba(0,0,0,0.2)', padding: '0.75rem', borderRadius: '6px' }}>
-                                <div style={{ fontSize: '0.65rem', fontWeight: '800', color: '#94A3B8', textTransform: 'uppercase', marginBottom: '0.25rem' }}>Suspect Details</div>
+                              <div style={{ background: '#FFFFFF', border: '1px solid rgba(245, 158, 11, 0.2)', padding: '0.75rem', borderRadius: '6px' }}>
+                                <div style={{ fontSize: '0.65rem', fontWeight: '800', color: '#78350F', textTransform: 'uppercase', marginBottom: '0.25rem' }}>Suspect Details</div>
                                 <div style={{ fontWeight: '600' }}>🔍 {aiSummary.suspect}</div>
                               </div>
                             </div>
 
-                            <div style={{ background: 'rgba(0,0,0,0.2)', padding: '0.75rem', borderRadius: '6px' }}>
-                              <div style={{ fontSize: '0.65rem', fontWeight: '800', color: '#94A3B8', textTransform: 'uppercase', marginBottom: '0.25rem' }}>Key Evidence Logs</div>
+                            <div style={{ background: '#FFFFFF', border: '1px solid rgba(245, 158, 11, 0.2)', padding: '0.75rem', borderRadius: '6px' }}>
+                              <div style={{ fontSize: '0.65rem', fontWeight: '800', color: '#78350F', textTransform: 'uppercase', marginBottom: '0.25rem' }}>Key Evidence Logs</div>
                               <div style={{ fontWeight: '500' }}>📁 {aiSummary.evidence}</div>
                             </div>
 
-                            <div style={{ background: 'rgba(0,0,0,0.2)', padding: '0.75rem', borderRadius: '6px' }}>
-                              <div style={{ fontSize: '0.65rem', fontWeight: '800', color: '#3B82F6', textTransform: 'uppercase', marginBottom: '0.4rem' }}>Suggested Next Steps (Patrol &amp; Investigation)</div>
-                              <div style={{ whiteSpace: 'pre-wrap', lineHeight: '1.45', color: '#93C5FD' }}>{aiSummary.nextSteps}</div>
+                            <div style={{ background: '#FFFFFF', border: '1px solid rgba(245, 158, 11, 0.2)', padding: '0.75rem', borderRadius: '6px' }}>
+                              <div style={{ fontSize: '0.65rem', fontWeight: '800', color: '#1E3A8A', textTransform: 'uppercase', marginBottom: '0.4rem' }}>Suggested Next Steps (Patrol &amp; Investigation)</div>
+                              <div style={{ whiteSpace: 'pre-wrap', lineHeight: '1.45', color: '#1E40AF' }}>{aiSummary.nextSteps}</div>
                             </div>
                           </div>
                         )}

@@ -1,16 +1,17 @@
 /* Police Dashboard Styling */
 :root {
-  --bg-primary: #0F172A;
-  --bg-secondary: #1E293B;
-  --text-primary: #F8FAFC;
-  --text-secondary: #94A3B8;
-  --police-blue: #0B3C5D;
-  --police-light: #328CC1;
-  --police-gold: #D9B310;
-  --accent-green: #10B981;
-  --accent-red: #EF4444;
-  --border-color: #334155;
+  --bg-primary: #F5F7FA;
+  --bg-secondary: #FFFFFF;
+  --text-primary: #1F2937;
+  --text-secondary: #6B7280;
+  --police-blue: #0F4C81;
+  --police-light: #1565C0;
+  --police-gold: #F9A825;
+  --accent-green: #2E7D32;
+  --accent-red: #D32F2F;
+  --border-color: #DCE3EA;
 }
+
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -35,8 +36,8 @@ html, body {
 
 /* Header styling */
 .dashboard-header {
-  background-color: var(--bg-secondary);
-  border-bottom: 2px solid var(--border-color);
+  background-color: var(--police-blue);
+  border-bottom: 2px solid rgba(0,0,0,0.15);
   padding: 1.25rem 2rem;
 }
 
@@ -58,7 +59,7 @@ html, body {
   font-size: clamp(1.3rem, 2.5vw, 1.8rem);
   font-weight: 800;
   letter-spacing: 0.5px;
-  color: var(--text-primary);
+  color: #FFFFFF;
 }
 
 .header-text h2 {
@@ -190,13 +191,12 @@ html, body {
   overflow-x: auto;
   max-height: 580px;
   overflow-y: auto;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 .data-view-wrapper {
-  min-width: 0; /* Prevents grid column from expanding beyond viewport */
+  min-width: 0; 
 }
-
 
 .crime-table {
   width: 100%;
@@ -206,11 +206,11 @@ html, body {
 }
 
 .crime-table th {
-  background-color: #1e293b; /* Solid background for sticky overlay transparency prevention */
-  border-bottom: 2px solid var(--border-color);
+  background-color: var(--police-blue); 
+  border-bottom: 2px solid rgba(0, 0, 0, 0.15);
   padding: 1rem 1.25rem;
   font-weight: 700;
-  color: var(--text-secondary);
+  color: #FFFFFF;
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -227,11 +227,11 @@ html, body {
 }
 
 .crime-table tbody tr:nth-child(even) {
-  background-color: rgba(255, 255, 255, 0.015);
+  background-color: #F9FAFB;
 }
 
 .crime-table tbody tr:nth-child(odd) {
-  background-color: transparent;
+  background-color: #FFFFFF;
 }
 
 .crime-table tbody tr {
@@ -240,7 +240,7 @@ html, body {
 }
 
 .crime-table tbody tr:hover {
-  background-color: rgba(51, 65, 85, 0.25) !important;
+  background-color: #EEF6FF !important;
 }
 
 /* Specific column width overrides to prevent overlapping */
@@ -351,19 +351,17 @@ html, body {
 }
 
 .form-card, .analytics-card, .activity-card {
-  background: rgba(30, 41, 59, 0.65);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   padding: 1.75rem;
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
   transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .form-card:hover, .analytics-card:hover, .activity-card:hover {
-  border-color: rgba(255, 255, 255, 0.15) !important;
-  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(255, 255, 255, 0.05) inset;
+  border-color: rgba(15, 76, 129, 0.25) !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
 }
 
 .form-card {
@@ -417,7 +415,7 @@ html, body {
 .form-group input,
 .form-group select,
 .form-group textarea {
-  background-color: rgba(15, 23, 42, 0.85);
+  background-color: #FFFFFF;
   border: 1px solid var(--border-color);
   border-radius: 6px;
   padding: 0.7rem;
@@ -432,13 +430,13 @@ html, body {
 .form-group textarea:focus {
   outline: none;
   border-color: var(--police-light);
-  box-shadow: 0 0 0 3px rgba(50, 140, 193, 0.25);
-  background-color: rgba(15, 23, 42, 0.95);
+  box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.15);
+  background-color: #FFFFFF;
 }
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-  color: #475569;
+  color: #9CA3AF;
 }
 
 /* Submit Button */
@@ -545,20 +543,20 @@ html, body {
 }
 
 .modal-content {
-  background: rgba(30, 41, 59, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   width: 580px;
   max-width: 90%;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   overflow: hidden;
   animation: slideUp 0.2s ease-out;
 }
 
 .modal-header {
-  background-color: rgba(15, 23, 42, 0.4);
+  background-color: var(--police-blue);
   padding: 1.25rem 1.5rem;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -567,22 +565,23 @@ html, body {
 .modal-header h3 {
   margin: 0;
   font-size: 1.2rem;
-  color: var(--text-primary);
+  color: #FFFFFF;
 }
 
 .close-modal-btn {
   background: none;
   border: none;
-  color: var(--text-secondary);
+  color: #FFFFFF;
+  opacity: 0.8;
   font-size: 1.8rem;
   cursor: pointer;
-  transition: color 0.15s ease;
+  transition: opacity 0.15s ease;
   line-height: 1;
   padding: 0;
 }
 
 .close-modal-btn:hover {
-  color: var(--text-primary);
+  opacity: 1;
 }
 
 .modal-body {
@@ -638,7 +637,7 @@ html, body {
 
 .summary-text {
   line-height: 1.5;
-  color: #E2E8F0 !important;
+  color: var(--text-primary) !important;
   margin: 0.25rem 0 0 0;
 }
 
@@ -854,10 +853,11 @@ html, body {
   align-items: center;
   gap: 1.25rem;
   margin-bottom: 1.5rem;
-  background-color: rgba(15, 23, 42, 0.35);
+  background-color: var(--bg-secondary);
   border: 1px solid var(--border-color);
   padding: 1rem 1.25rem;
   border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 .search-box {
@@ -871,7 +871,7 @@ html, body {
 .search-box input {
   width: 100%;
   padding: 0.6rem 1rem 0.6rem 2.5rem;
-  background-color: rgba(30, 41, 59, 0.7);
+  background-color: #FFFFFF;
   border: 1px solid var(--border-color);
   border-radius: 6px;
   color: var(--text-primary);
@@ -936,7 +936,7 @@ html, body {
 
 .filter-select-item select {
   padding: 0.5rem 2rem 0.5rem 0.75rem;
-  background-color: rgba(30, 41, 59, 0.7);
+  background-color: #FFFFFF;
   border: 1px solid var(--border-color);
   border-radius: 6px;
   color: var(--text-primary);
@@ -957,7 +957,7 @@ html, body {
 
 .sort-toggle-btn {
   padding: 0.5rem 1rem;
-  background-color: rgba(30, 41, 59, 0.7);
+  background-color: #FFFFFF;
   border: 1px solid var(--border-color);
   border-radius: 6px;
   color: var(--text-primary);
@@ -1052,13 +1052,13 @@ html, body {
 }
 
 .tab-btn:hover {
-  color: var(--text-primary);
-  border-bottom-color: rgba(255, 255, 255, 0.2);
+  color: var(--police-blue);
+  border-bottom-color: rgba(15, 76, 129, 0.2);
 }
 
 .tab-btn.active {
-  color: var(--police-gold);
-  border-bottom-color: var(--police-gold);
+  color: var(--police-blue);
+  border-bottom-color: var(--police-blue);
 }
 
 /* Toast Container & Cards */
@@ -1448,9 +1448,9 @@ html, body {
 }
 
 .export-csv-btn {
-  background-color: rgba(16, 185, 129, 0.15);
-  color: #10B981;
-  border: 1px solid rgba(16, 185, 129, 0.3);
+  background-color: rgba(46, 125, 50, 0.1);
+  color: var(--accent-green);
+  border: 1px solid rgba(46, 125, 50, 0.25);
   padding: 0.75rem 1.25rem;
   font-size: 0.95rem;
   font-weight: 600;
@@ -1463,7 +1463,7 @@ html, body {
 }
 
 .export-csv-btn:hover {
-  background-color: #10B981;
+  background-color: var(--accent-green);
   color: #ffffff;
   transform: translateY(-1px);
 }
@@ -1488,9 +1488,9 @@ html, body {
 }
 
 .clear-filters-btn {
-  background-color: rgba(239, 68, 68, 0.1);
-  color: #EF4444;
-  border: 1px solid rgba(239, 68, 68, 0.2);
+  background-color: rgba(211, 47, 47, 0.1);
+  color: var(--accent-red);
+  border: 1px solid rgba(211, 47, 47, 0.2);
   padding: 0.35rem 0.75rem;
   font-size: 0.78rem;
   font-weight: 700;
@@ -1500,7 +1500,7 @@ html, body {
 }
 
 .clear-filters-btn:hover {
-  background-color: #EF4444;
+  background-color: var(--accent-red);
   color: #ffffff;
 }
 
