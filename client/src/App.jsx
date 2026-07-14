@@ -1069,6 +1069,55 @@ link.click();
   });
   // ── End Police Action computations ─────────────────────────────────────────
 
+  // ── Real-Time Anomaly & Patterns Detection ───────────────────────────────
+  const anomalies = [];
+  categories.forEach(cat => {
+    const count = categoryCounts[cat] || 0;
+    const share = cases.length > 0 ? (count / cases.length) * 100 : 0;
+    if (share > 30) {
+      anomalies.push({
+        level: 'CRITICAL',
+        badge: '🚨 SURGE ALERT',
+        message: `Surge in ${cat} cases: Accounts for ${share.toFixed(1)}% of all registered FIRs statewide, exceeding critical baseline limit (30%).`
+      });
+    }
+  });
+  districts.forEach(dist => {
+    const count = districtCounts[dist] || 0;
+    const share = cases.length > 0 ? (count / cases.length) * 100 : 0;
+    if (share > 35) {
+      anomalies.push({
+        level: 'WARNING',
+        badge: '⚠️ HOTSPOT CONCENTRATION',
+        message: `High density warning in ${dist}: Contributing ${share.toFixed(1)}% of statewide incidents. Recommend immediate review of station allocations.`
+      });
+    }
+  });
+  const stationCounts = {};
+  cases.forEach(c => {
+    if (c.police_station) {
+      stationCounts[c.police_station] = (stationCounts[c.police_station] || 0) + 1;
+    }
+  });
+  Object.keys(stationCounts).forEach(station => {
+    if (stationCounts[station] >= 3) {
+      anomalies.push({
+        level: 'NOTICE',
+        badge: '👥 REPEAT LOCATION',
+        message: `Pattern detected at ${station} PS: ${stationCounts[station]} independent cases registered. Flagged as active local hot zone.`
+      });
+    }
+  });
+  if (anomalies.length === 0) {
+    anomalies.push({
+      level: 'STABLE',
+      badge: '🟢 NORMAL',
+      message: 'Statewide crime indicators are within normal parameters. No active category surges or local location patterns detected.'
+    });
+  }
+  // ── End Anomaly Detection computations ──────────────────────────────────────
+
+
   const latestFIR = cases.length > 0 ? cases[0].fir_number : "None";
   const hasActiveFilters = searchQuery !== '' || filterCategory !== 'All' || filterDistrict !== 'All';
 
@@ -1949,24 +1998,18 @@ link.click();
                 <h3>🚨 Emerging Trend Alerts</h3>
                 <p className="chart-subtitle">Real-time alerts flagged based on relative category surges</p>
                 <div className="trend-alerts-list">
-                  <div className="trend-alert-item alert-high">
-                    <div className="alert-badge red">CRITICAL</div>
-                    <div className="alert-content">
-                      <strong>Cybercrime surge in {highestDistrict}</strong>: Increase in digital phishing and remote access scams detected.
-                    </div>
-                  </div>
-                  <div className="trend-alert-item alert-medium">
-                    <div className="alert-badge orange">WARNING</div>
-                    <div className="alert-content">
-                      <strong>Theft pattern around {highestStation || 'Koramangala PS'}</strong>: Surge in night-time burglaries flagged.
-                    </div>
-                  </div>
-                  <div className="trend-alert-item alert-low">
-                    <div className="alert-badge green">STABLE</div>
-                    <div className="alert-content">
-                      <strong>Assault cases in Mysuru</strong>: Physical altercations stabilized under local night patrols.
-                    </div>
-                  </div>
+                  {anomalies.map((anom, index) => {
+                    const alertClass = anom.level === 'CRITICAL' ? 'alert-high' : anom.level === 'WARNING' ? 'alert-medium' : anom.level === 'NOTICE' ? 'alert-low' : 'alert-stable';
+                    const badgeColor = anom.level === 'CRITICAL' ? 'red' : anom.level === 'WARNING' ? 'orange' : anom.level === 'NOTICE' ? 'blue' : 'green';
+                    return (
+                      <div className={`trend-alert-item ${alertClass}`} key={index}>
+                        <div className={`alert-badge ${badgeColor}`}>{anom.badge}</div>
+                        <div className="alert-content">
+                          {anom.message}
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
 
