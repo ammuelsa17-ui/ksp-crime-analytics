@@ -218,23 +218,19 @@ def get_all_cases(request=None) -> list:
         cases_results = zcql.execute_query("SELECT ROWID, fir_number, category, incident_date, summary, location_id FROM crime_cases")
         locations_results = zcql.execute_query("SELECT ROWID, district, police_station, latitude, longitude FROM location")
         
-        # Build locations dictionary for fast lookup
+        # Build locations dictionary for fast lookup (stringify keys)
         locations = {}
         for row in locations_results:
             loc_data = row.get("location", {})
             row_id = loc_data.get("ROWID")
             if row_id:
-                locations[row_id] = loc_data
+                locations[str(row_id)] = loc_data
                 
         cases = []
         for row in cases_results:
             case_data = row.get("crime_cases", {})
             loc_id = case_data.get("location_id")
-            try:
-                loc_id = int(loc_id) if loc_id is not None else None
-            except:
-                pass
-            loc = locations.get(loc_id, {})
+            loc = locations.get(str(loc_id), {}) if loc_id is not None else {}
             cases.append({
                 "id": case_data.get("ROWID"),
                 "fir_number": case_data.get("fir_number"),
