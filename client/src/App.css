@@ -2605,13 +2605,13 @@ html, body {
 }
 
 .network-graph-container {
-
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   padding: 1rem 0;
-  background-color: rgba(15, 23, 42, 0.2);
+  background-color: #F8FAFC;
+  border: 1px solid #E2E8F0;
   border-radius: 8px;
 }
 
@@ -2627,9 +2627,56 @@ html, body {
 
 .node-group:hover circle {
   r: 40;
-  fill: rgba(30, 41, 59, 1);
+  fill: #E0F2FE;
   cursor: pointer;
 }
+
+/* ── 6 High-Impact Visual Polish Additions ── */
+
+/* Smooth transitions for interactive components */
+.form-card, .analytics-card, .activity-card, .stat-card,
+.tab-btn, button, input, select, textarea, .crime-table tbody tr {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Card hover animation elevation */
+.form-card:hover, .analytics-card:hover, .activity-card:hover, .stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* Stat Card Sub-labels */
+.stat-kpi-sub {
+  font-size: 0.72rem;
+  font-weight: 700;
+  margin-top: 2px;
+  display: block;
+}
+.stat-kpi-sub.green { color: var(--accent-green); }
+.stat-kpi-sub.red { color: var(--accent-red); }
+.stat-kpi-sub.blue { color: var(--police-light); }
+.stat-kpi-sub.gold { color: var(--police-gold); }
+
+/* Loading Bar Fill indefinite sliding animation */
+.loading-bar-fill {
+  animation: loadingProgress 1.6s infinite ease-in-out;
+}
+
+@keyframes loadingProgress {
+  0% {
+    left: -40%;
+    width: 40%;
+  }
+  50% {
+    left: 30%;
+    width: 50%;
+  }
+  100% {
+    left: 100%;
+    width: 40%;
+  }
+}
+
 
 
 

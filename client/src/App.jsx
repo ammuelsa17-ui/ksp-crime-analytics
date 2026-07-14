@@ -1,6 +1,54 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 
+const KSPEmblem = () => (
+  <svg width="55" height="55" viewBox="0 0 100 100" style={{ filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.15))', marginRight: '0.5rem' }}>
+    <path d="M 50,5 Q 90,20 85,60 Q 80,90 50,95 Q 20,90 15,60 Q 10,20 50,5 Z" fill="#0C3258" stroke="#F9A825" strokeWidth="4" />
+    <path d="M 50,9 Q 86,22 81,58 Q 77,86 50,91 Q 23,86 19,58 Q 14,22 50,9 Z" fill="#1565C0" />
+    <path d="M 30,25 L 70,25" stroke="#FF9933" strokeWidth="3" />
+    <path d="M 30,28 L 70,28" stroke="#FFFFFF" strokeWidth="3" />
+    <path d="M 30,31 L 70,31" stroke="#128807" strokeWidth="3" />
+    <path d="M 50,38 L 42,48 L 47,58 L 53,58 L 58,48 Z" fill="#F9A825" />
+    <path d="M 42,48 L 28,45 L 35,55 L 47,58 Z" fill="#F9A825" opacity="0.9" />
+    <path d="M 58,48 L 72,45 L 65,55 L 53,58 Z" fill="#F9A825" opacity="0.9" />
+    <circle cx="50" cy="48" r="5" fill="none" stroke="#000080" strokeWidth="1" />
+    <rect x="25" y="70" width="50" height="12" rx="3" fill="#F9A825" />
+    <text x="50" y="79" fill="#0C3258" fontSize="8" fontWeight="bold" textAnchor="middle" fontFamily="sans-serif">K.S.P.</text>
+  </svg>
+);
+
+const AnimatedNumber = ({ value }) => {
+  const [displayValue, setDisplayValue] = useState(0);
+
+  useEffect(() => {
+    let start = displayValue;
+    const end = parseInt(value, 10) || 0;
+    if (start === end) return;
+
+    const duration = 500; 
+    const startTime = performance.now();
+
+    const animate = (currentTime) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      
+      const easeProgress = progress * (2 - progress);
+      const currentVal = Math.round(start + (end - start) * easeProgress);
+      
+      setDisplayValue(currentVal);
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [value]);
+
+  return <span>{displayValue}</span>;
+};
+
+
 // Dynamic API Base URL:
 // - DEV (vite dev):   http://localhost:9000  (local FastAPI server)
 // - PROD (vite build): https://server-50043662505.development.catalystappsail.in (deployed AppSail API)
@@ -61,6 +109,12 @@ function App() {
     { sender: 'ai', text: 'Welcome to the KSP Crime Copilot. Ask me to find records, generate analytics insights, or run database search commands in plain English.' }
   ])
   const [chatInput, setChatInput] = useState('')
+  const [lastSyncTime, setLastSyncTime] = useState('');
+
+  useEffect(() => {
+    const now = new Date();
+    setLastSyncTime(now.toLocaleString([], { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }));
+  }, [cases]);
 
   const showToast = (message, type = 'info') => {
     const id = Math.random().toString(36).substr(2, 9)
@@ -1147,27 +1201,54 @@ link.click();
 
       {/* Loading Overlay */}
       {(loading || submitting || updateLoading) && (
-        <div className="loading-overlay">
-          <div className="spinner-container">
-            <span className="spinner">🚨</span>
-            <p>Processing Request...</p>
+        <div className="loading-overlay" style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(245, 247, 250, 0.95)', zIndex: 9999, backdropFilter: 'blur(4px)' }}>
+          <div style={{ textAlign: 'center', width: '360px', padding: '2.5rem 2rem', background: '#FFFFFF', borderRadius: '16px', boxShadow: '0 20px 40px rgba(0,0,0,0.06)', border: '1px solid #DCE3EA', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.25rem' }}>
+            <KSPEmblem />
+            <div>
+              <h3 style={{ margin: '0 0 0.25rem 0', fontSize: '1.1rem', fontWeight: '800', color: '#0F4C81', letterSpacing: '0.5px' }}>KARNATAKA STATE POLICE</h3>
+              <h4 style={{ margin: 0, fontSize: '0.82rem', fontWeight: '600', color: '#6B7280' }}>Crime Analytics &amp; Intelligence</h4>
+            </div>
+            
+            <div style={{ width: '100%', marginTop: '0.5rem' }}>
+              <p style={{ margin: '0 0 0.5rem 0', fontSize: '0.72rem', fontWeight: '800', color: '#F9A825', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                {submitting ? 'Submitting FIR Record...' : updateLoading ? 'Updating Case Log...' : 'Synchronizing Data Store...'}
+              </p>
+              {/* Progressive loading progress bar mock */}
+              <div className="loading-bar-container" style={{ width: '100%', height: '8px', backgroundColor: '#E2E8F0', borderRadius: '4px', overflow: 'hidden', position: 'relative' }}>
+                <div className="loading-bar-fill" style={{ position: 'absolute', height: '100%', width: '40%', backgroundColor: '#1565C0', borderRadius: '4px' }} />
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.65rem', color: '#9CA3AF', marginTop: '0.35rem' }}>
+                <span>Securing connection...</span>
+                <span>Active</span>
+              </div>
+            </div>
           </div>
         </div>
       )}
 
-      <header className="dashboard-header">
-        <div className="header-inner">
-          <div className="header-logo">🛡️</div>
-          <div className="header-text">
-            <h1>Karnataka State Police</h1>
-            <h2>Crime Analytics Platform — Prototype</h2>
-          </div>
-          <div className="header-badges">
-            <div className="storage-mode-badge">
-              Storage: <span>🟢 Catalyst Data Store</span>
+      <header className="dashboard-header" style={{ padding: '1rem 2rem', backgroundColor: '#0F4C81', borderBottom: '3px solid #F9A825' }}>
+        <div className="header-inner" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', maxWidth: '1600px', margin: '0 auto', width: '100%' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <KSPEmblem />
+            <div>
+              <h1 style={{ margin: 0, fontSize: '1.4rem', fontWeight: '800', color: '#FFFFFF', letterSpacing: '0.5px', textTransform: 'uppercase' }}>Karnataka State Police</h1>
+              <h2 style={{ margin: '2px 0 0 0', fontSize: '0.85rem', fontWeight: '600', color: '#F9A825', letterSpacing: '0.2px', textTransform: 'uppercase' }}>Crime Analytics &amp; Intelligence Platform</h2>
+              <div style={{ fontSize: '0.65rem', color: '#E2E8F0', marginTop: '1px', textTransform: 'uppercase', fontWeight: '500', opacity: 0.9 }}>Government of Karnataka • State Intelligence Department Division</div>
             </div>
-            <div className={`status-badge ${apiStatus.toLowerCase()}`}>
-              API Status: {apiStatus}
+          </div>
+          
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
+            <div className="ksp-live-status-panel" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.15rem' }}>
+              <div className="ksp-live-status-row" style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', color: '#4ADE80', fontSize: '0.78rem', fontWeight: 'bold' }}>
+                <span className="live-dot" style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#4ADE80', boxShadow: '0 0 8px #4ADE80' }} />
+                <span>SYSTEM ONLINE</span>
+              </div>
+              <div style={{ fontSize: '0.68rem', color: '#94A3B8' }}>
+                Last Sync: <strong style={{ color: '#E2E8F0' }}>{lastSyncTime || 'Synchronizing...'}</strong>
+              </div>
+              <div style={{ fontSize: '0.68rem', color: '#94A3B8' }}>
+                Storage: <strong style={{ color: '#F9A825' }}>Catalyst Data Store</strong>
+              </div>
             </div>
           </div>
         </div>
@@ -1177,18 +1258,24 @@ link.click();
       <section className="stats-panel-container">
         <div className="stats-grid">
           <div className="stat-card">
-            <div className="stat-icon total">📂</div>
+            <div className="stat-icon total">📄</div>
             <div className="stat-info">
-              <span className="stat-label">Total Cases</span>
-              <span className="stat-value">{totalCases}</span>
+              <span className="stat-label">Total FIRs</span>
+              <span className="stat-value">
+                <AnimatedNumber value={totalCases} /> Cases
+              </span>
+              <span className="stat-kpi-sub green">↑ +{casesToday} Today</span>
             </div>
           </div>
           
           <div className="stat-card">
             <div className="stat-icon today">🚨</div>
             <div className="stat-info">
-              <span className="stat-label">Cases Today</span>
-              <span className="stat-value">{casesToday}</span>
+              <span className="stat-label">Urgent Alerts</span>
+              <span className="stat-value">
+                <AnimatedNumber value={casesToday} /> Active
+              </span>
+              <span className="stat-kpi-sub red">Requires Response</span>
             </div>
           </div>
 
@@ -1196,15 +1283,21 @@ link.click();
             <div className="stat-icon categories">🏷️</div>
             <div className="stat-info">
               <span className="stat-label">Crime Categories</span>
-              <span className="stat-value">{uniqueCategories}</span>
+              <span className="stat-value">
+                <AnimatedNumber value={uniqueCategories} /> Sectors
+              </span>
+              <span className="stat-kpi-sub blue">Active Divisions</span>
             </div>
           </div>
 
           <div className="stat-card">
             <div className="stat-icon stations">🏢</div>
             <div className="stat-info">
-              <span className="stat-label">Stations Covered</span>
-              <span className="stat-value">{uniqueStations}</span>
+              <span className="stat-label">Precincts Logged</span>
+              <span className="stat-value">
+                <AnimatedNumber value={uniqueStations} /> Stations
+              </span>
+              <span className="stat-kpi-sub gold">Statewide Precincts</span>
             </div>
           </div>
         </div>
@@ -1625,13 +1718,13 @@ link.click();
                       {filteredCases.length === 0 ? (
                         <tr>
                           <td colSpan="8" className="no-cases-cell">
-                            <div className="empty-state-container">
-                              <span className="empty-state-icon">🔍</span>
-                              <h4>No Records Found</h4>
-                              <p>
+                            <div className="empty-state-container" style={{ padding: '3rem 1.5rem', textAlign: 'center' }}>
+                              <span className="empty-state-icon" style={{ fontSize: '2.2rem', display: 'block', marginBottom: '0.75rem' }}>📂</span>
+                              <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--text-primary)', fontSize: '1.05rem', fontWeight: '700' }}>No matching FIR records</h4>
+                              <p style={{ margin: 0, color: 'var(--text-secondary)', fontSize: '0.85rem', lineHeight: '1.45' }}>
                                 {cases.length === 0 
-                                  ? "No crime cases found. Register a case on the left!" 
-                                  : "No matching crime cases found. Adjust your search or filters!"}
+                                  ? "Register a new FIR on the left panel to populate the analytics dashboard database." 
+                                  : "Try changing your search keywords, clearing your active filters, or registering a new FIR."}
                               </p>
                             </div>
                           </td>
@@ -1677,6 +1770,62 @@ link.click();
         ) : activeTab === 'analytics' ? (
           /* Analytics tab view with custom charts */
           <section className="analytics-dashboard-view">
+            {/* Executive Intelligence Briefing */}
+            <div className="analytics-card" style={{ background: 'linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 100%)', borderLeft: '5px solid var(--police-blue)', marginBottom: '1.5rem', boxShadow: '0 8px 20px rgba(15, 76, 129, 0.05)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
+                <h3 style={{ margin: 0, color: 'var(--police-blue)', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.1rem', fontWeight: '800' }}>
+                  📄 Today's State Intelligence Summary
+                </h3>
+                <span style={{ fontSize: '0.65rem', fontWeight: '800', color: 'var(--police-blue)', background: '#FFFFFF', padding: '0.2rem 0.6rem', borderRadius: '12px', border: '1px solid #DCE3EA', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                  Live Bulletin
+                </span>
+              </div>
+              <p className="chart-subtitle" style={{ color: 'var(--text-secondary)', marginBottom: '1.25rem', fontSize: '0.8rem' }}>
+                Statewide intelligence briefing dynamically generated from active Catalyst records.
+              </p>
+              
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem', fontSize: '0.82rem', lineHeight: '1.55', color: 'var(--text-primary)' }}>
+                <div style={{ background: '#FFFFFF', padding: '1rem', borderRadius: '8px', border: '1px solid #DCE3EA', boxShadow: '0 2px 4px rgba(0,0,0,0.01)' }}>
+                  <div style={{ fontSize: '0.7rem', fontWeight: '800', color: 'var(--police-blue)', textTransform: 'uppercase', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.35rem', letterSpacing: '0.03em' }}>
+                    <span>📍 Regional Density Highlights</span>
+                  </div>
+                  <ul style={{ margin: 0, paddingLeft: '1.2rem', color: 'var(--text-primary)' }}>
+                    <li>
+                      <strong>{highestDistrict || 'N/A'}</strong> remains the highest-risk hotspot sector, logging the largest volume of case dispatches statewide.
+                    </li>
+                    {highestStation && (
+                      <li style={{ marginTop: '0.25rem' }}>
+                        Highest precinct-level alert concentration identified around <strong>{highestStation}</strong> zone.
+                      </li>
+                    )}
+                  </ul>
+                </div>
+
+                <div style={{ background: '#FFFFFF', padding: '1rem', borderRadius: '8px', border: '1px solid #DCE3EA', boxShadow: '0 2px 4px rgba(0,0,0,0.01)' }}>
+                  <div style={{ fontSize: '0.7rem', fontWeight: '800', color: 'var(--accent-red)', textTransform: 'uppercase', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.35rem', letterSpacing: '0.03em' }}>
+                    <span>⚡ Category &amp; MO Trends</span>
+                  </div>
+                  <ul style={{ margin: 0, paddingLeft: '1.2rem', color: 'var(--text-primary)' }}>
+                    <li>
+                      Primary crime classification distribution is dominated by <strong>{mostCommonCategory || 'N/A'}</strong> cases.
+                    </li>
+                    <li style={{ marginTop: '0.25rem' }}>
+                      Anomalies engine reports <strong>{anomalies.filter(x => x.level === 'CRITICAL' || x.level === 'WARNING' || x.level === 'NOTICE').length} active indicators</strong> requiring precinct response.
+                    </li>
+                  </ul>
+                </div>
+
+                <div style={{ background: '#FFFFFF', padding: '1rem', borderRadius: '8px', border: '1px solid #DCE3EA', boxShadow: '0 2px 4px rgba(0,0,0,0.01)' }}>
+                  <div style={{ fontSize: '0.7rem', fontWeight: '800', color: 'var(--police-gold)', textTransform: 'uppercase', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.35rem', letterSpacing: '0.03em' }}>
+                    <span>🚔 Recommended Tactical Actions</span>
+                  </div>
+                  <ul style={{ margin: 0, paddingLeft: '1.2rem', color: 'var(--text-primary)' }}>
+                    <li>Deploy patrol reinforcements to <strong>{highestStation || 'identified hotspot zones'}</strong> immediately.</li>
+                    <li style={{ marginTop: '0.25rem' }}>Coordinate checkpost inspections with neighboring local precincts.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
             {/* Quick Crime Insights Panel */}
             <div className="analytics-card quick-insights-card">
               <h3>📌 Quick Crime Insights</h3>
