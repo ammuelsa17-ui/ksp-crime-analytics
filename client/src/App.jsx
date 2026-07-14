@@ -229,8 +229,93 @@ function App() {
     }, 600);
   };
 
+  const handleGenerateIntelligenceReport = () => {
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+      <html>
+        <head>
+          <title>KSP State Intelligence Report</title>
+          <style>
+            body { font-family: 'Segoe UI', system-ui, sans-serif; padding: 40px; color: #1e293b; line-height: 1.5; }
+            .header { border-bottom: 3px double #0f172a; padding-bottom: 20px; margin-bottom: 30px; text-align: center; }
+            .title { font-size: 26px; font-weight: bold; text-transform: uppercase; color: #0b3c5d; letter-spacing: 0.5px; }
+            .subtitle { font-size: 14px; color: #64748b; margin-top: 5px; font-weight: 600; }
+            .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 35px; }
+            .stat-box { border: 1px solid #cbd5e1; padding: 15px; border-radius: 8px; background-color: #f8fafc; text-align: center; }
+            .stat-num { font-size: 24px; font-weight: bold; color: #0b3c5d; }
+            .stat-label { font-size: 10px; font-weight: bold; text-transform: uppercase; color: #64748b; margin-top: 5px; }
+            .section-title { font-size: 16px; font-weight: bold; text-transform: uppercase; margin: 25px 0 10px 0; color: #0f172a; border-bottom: 2px solid #cbd5e1; padding-bottom: 5px; }
+            table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
+            th, td { border-bottom: 1px solid #cbd5e1; padding: 8px; text-align: left; }
+            th { background-color: #f1f5f9; font-weight: bold; color: #0b3c5d; }
+            .recs-list { padding-left: 20px; font-size: 13px; color: #334155; }
+            .recs-list li { margin-bottom: 8px; }
+            .footer { margin-top: 60px; text-align: right; font-size: 11px; color: #64748b; border-top: 1px solid #e2e8f0; padding-top: 10px; }
+          </style>
+        </head>
+        <body>
+          <div class="header">
+            <div class="title">Karnataka State Police</div>
+            <div class="subtitle">Statewide Crime Intelligence Executive Briefing</div>
+          </div>
+          
+          <div class="grid">
+            <div class="stat-box">
+              <div class="stat-num">${totalCases}</div>
+              <div class="stat-label">Total Cases Logged</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num">${highestDistrict}</div>
+              <div class="stat-label">Primary Hotspot</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-num">${mostCommonCategory}</div>
+              <div class="stat-label">Primary Crime Category</div>
+            </div>
+          </div>
 
+          <div class="section-title">Statewide District Risk Index</div>
+          <table>
+            <thead>
+              <tr>
+                <th>District</th>
+                <th>Case Count</th>
+                <th>Percentage Share</th>
+                <th>Current Status Alert</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${districtRiskScoresWithOverrides.slice(0, 8).map(d => `
+                <tr>
+                  <td><strong>${d.district}</strong></td>
+                  <td>${d.count}</td>
+                  <td>${d.score}%</td>
+                  <td style="color: ${d.level === 'HIGH' ? '#ef4444' : d.level === 'MEDIUM' ? '#f59e0b' : '#10b981'}; font-weight: bold;">
+                    ${d.level === 'HIGH' ? '🚨 HIGH ALERT' : d.level === 'MEDIUM' ? '⚠️ MONITOR' : '🟢 STABLE'}
+                  </td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
 
+          <div class="section-title">Copilot Tactical Recommendations</div>
+          <ul class="recs-list">
+            <li>Deploy targeted patrol units in the <strong>${highestDistrict}</strong> district within active sectors.</li>
+            <li>Direct special attention and resource deployment toward <strong>${highestStation || 'Local Precinct Stations'}</strong> based on high frequency alerts.</li>
+            <li>Escalate awareness campaigns and preventive measures concerning the surging category: <strong>${mostCommonCategory}</strong>.</li>
+            <li>Establish tactical task groups inside high-alert districts to address digital phishing or local thefts.</li>
+          </ul>
+
+          <div class="footer">
+            Report compiled by KSP AI Copilot Engine on: ${new Date().toLocaleString()}<br>
+            Official Document · Security Clearance: Restricted
+          </div>
+          <script>window.print(); window.close();</script>
+        </body>
+      </html>
+    `);
+    printWindow.document.close();
+  };
 
   const fetchCases = async () => {
     setLoading(true)
