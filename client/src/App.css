@@ -3029,6 +3029,14 @@ button:disabled {
   box-shadow: 0 8px 25px rgba(15, 76, 129, 0.5) !important;
 }
 
+.overview-card {
+  transition: border-color 0.15s ease, background-color 0.15s ease !important;
+}
+.overview-card:hover {
+  border-color: var(--police-blue) !important;
+  background-color: #F1F5F9 !important;
+}
+
 /* ──────────────────────────────────────────────────────────────────────────
    📰 PRINT STYLESHEET OVERRIDES
    Optimizes case file exports and summaries for physical A4 printing.

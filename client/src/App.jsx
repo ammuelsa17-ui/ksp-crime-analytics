@@ -99,7 +99,25 @@ function App() {
   const [apiStatus, setApiStatus] = useState("Checking...")
 
   // Tab State & Toasts
-  const [activeTab, setActiveTab] = useState('records')
+  const [activeTab, setActiveTab] = useState('overview')
+  const [expandedIntelPanels, setExpandedIntelPanels] = useState({
+    insights: false,
+    assistant: false,
+    hotspots: false,
+    trends: false,
+    watchlist: false,
+    actions: false,
+    districts: false,
+    network: false
+  });
+
+  const toggleIntelPanel = (panelKey) => {
+    setExpandedIntelPanels(prev => ({
+      ...prev,
+      [panelKey]: !prev[panelKey]
+    }));
+  };
+
   const [toasts, setToasts] = useState([])
   const [activityLog, setActivityLog] = useState([])
   const [mapInstance, setMapInstance] = useState(null)
@@ -1326,7 +1344,7 @@ link.click();
       {/* Top Statistics Cards Panel */}
       <section className="stats-panel-container">
         <div className="stats-grid">
-          <div className="stat-card">
+          <div className="stat-card" onClick={() => setActiveTab('records')} style={{ cursor: 'pointer' }} title="Click to view all FIR records">
             <div className="stat-icon total">📄</div>
             <div className="stat-info">
               <span className="stat-label">Total FIRs</span>
@@ -1337,7 +1355,7 @@ link.click();
             </div>
           </div>
           
-          <div className="stat-card">
+          <div className="stat-card" onClick={() => { setActiveTab('records'); setSearchQuery(''); setFilterCategory('All'); setFilterDistrict('All'); }} style={{ cursor: 'pointer' }} title="Click to view latest urgent cases">
             <div className="stat-icon today">🚨</div>
             <div className="stat-info">
               <span className="stat-label">Urgent Alerts</span>
@@ -1348,7 +1366,7 @@ link.click();
             </div>
           </div>
 
-          <div className="stat-card">
+          <div className="stat-card" onClick={() => setActiveTab('analytics')} style={{ cursor: 'pointer' }} title="Click to view analytics charts">
             <div className="stat-icon categories">🏷️</div>
             <div className="stat-info">
               <span className="stat-label">Crime Categories</span>
@@ -1359,7 +1377,7 @@ link.click();
             </div>
           </div>
 
-          <div className="stat-card">
+          <div className="stat-card" onClick={() => setActiveTab('map')} style={{ cursor: 'pointer' }} title="Click to view crime map hotspots">
             <div className="stat-icon stations">🏢</div>
             <div className="stat-info">
               <span className="stat-label">Precincts Logged</span>
@@ -1370,7 +1388,7 @@ link.click();
             </div>
           </div>
 
-          <div className="stat-card">
+          <div className="stat-card" onClick={() => setActiveTab('records')} style={{ cursor: 'pointer' }} title="Click to register a new FIR case">
             <div className="stat-icon fir-new">📝</div>
             <div className="stat-info">
               <span className="stat-label">New FIR Registered</span>
@@ -1381,7 +1399,7 @@ link.click();
             </div>
           </div>
 
-          <div className="stat-card">
+          <div className="stat-card" onClick={() => setActiveTab('records')} style={{ cursor: 'pointer' }} title="Click to view court-filed charge sheets">
             <div className="stat-icon case-filed">⚖️</div>
             <div className="stat-info">
               <span className="stat-label">Case Filed</span>
@@ -1396,6 +1414,12 @@ link.click();
 
       {/* Navigation Tabs */}
       <div className="tabs-navigation">
+        <button 
+          className={`tab-btn ${activeTab === 'overview' ? 'active' : ''}`}
+          onClick={() => setActiveTab('overview')}
+        >
+          🏠 System Overview
+        </button>
         <button 
           className={`tab-btn ${activeTab === 'records' ? 'active' : ''}`}
           onClick={() => setActiveTab('records')}
@@ -1424,7 +1448,111 @@ link.click();
 
       {/* Main Dashboard Grid */}
       <main className="dashboard-grid">
-        {activeTab === 'records' ? (
+        {activeTab === 'overview' ? (
+          <section className="overview-console" style={{ gridColumn: '1 / -1', display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%' }}>
+            <div className="section-block-header" style={{ marginBottom: '0.5rem' }}>
+              <span className="section-block-icon">🏢</span>
+              <div>
+                <h2 className="section-block-title">KSP Command Console Overview</h2>
+                <p className="section-block-sub">Statewide analytics, registry services, and predictive tactical intelligence modules</p>
+              </div>
+            </div>
+
+            {/* Quick Summary Banner */}
+            <div style={{ background: '#F1F5F9', border: '1px solid #D1D5DB', borderRadius: '4px', padding: '1.25rem 1.5rem', fontSize: '0.85rem', color: '#334155', lineHeight: '1.6' }}>
+              Welcome, Officer. This platform synchronizes live First Information Reports (FIRs) from the Catalyst Data Store to build statewide predictive trend analyses, dispatch suggestions, and spatial hotspots mapping. Select a console module below to access.
+            </div>
+
+            {/* Feature Modules Grid */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.25rem', marginTop: '0.5rem' }}>
+              
+              {/* Card 1: Registry */}
+              <div 
+                className="overview-card" 
+                onClick={() => setActiveTab('records')}
+                style={{ background: '#F8FAFC', border: '1px solid #D1D5DB', borderRadius: '4px', padding: '1.5rem', cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '180px', transition: 'border-color 0.15s ease' }}
+              >
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
+                    <span style={{ fontSize: '1.5rem' }}>📂</span>
+                    <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: '700', color: 'var(--police-blue)' }}>FIR Case Records</h3>
+                  </div>
+                  <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: '1.45' }}>
+                    Access, query, and insert official First Information Reports. Filter by categories, police stations, and incident dates.
+                  </p>
+                </div>
+                <div style={{ borderTop: '1px solid #E5E7EB', paddingTop: '0.75rem', marginTop: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.72rem', fontWeight: '600' }}>
+                  <span style={{ color: 'var(--accent-green)' }}>● {totalCases} Active Cases</span>
+                  <span style={{ color: 'var(--police-light)' }}>Enter Module →</span>
+                </div>
+              </div>
+
+              {/* Card 2: Analytics */}
+              <div 
+                className="overview-card" 
+                onClick={() => setActiveTab('analytics')}
+                style={{ background: '#F8FAFC', border: '1px solid #D1D5DB', borderRadius: '4px', padding: '1.5rem', cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '180px', transition: 'border-color 0.15s ease' }}
+              >
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
+                    <span style={{ fontSize: '1.5rem' }}>📊</span>
+                    <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: '700', color: 'var(--police-blue)' }}>Analytics Dashboard</h3>
+                  </div>
+                  <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: '1.45' }}>
+                    Visualize statewide crime trends. Examine density distributions, frequency timelines, and comparative district data.
+                  </p>
+                </div>
+                <div style={{ borderTop: '1px solid #E5E7EB', paddingTop: '0.75rem', marginTop: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.72rem', fontWeight: '600' }}>
+                  <span style={{ color: 'var(--police-light)' }}>● {uniqueCategories} Categories Monitored</span>
+                  <span style={{ color: 'var(--police-light)' }}>Enter Module →</span>
+                </div>
+              </div>
+
+              {/* Card 3: Intelligence */}
+              <div 
+                className="overview-card" 
+                onClick={() => setActiveTab('intelligence')}
+                style={{ background: '#F8FAFC', border: '1px solid #D1D5DB', borderRadius: '4px', padding: '1.5rem', cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '180px', transition: 'border-color 0.15s ease' }}
+              >
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
+                    <span style={{ fontSize: '1.5rem' }}>🧠</span>
+                    <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: '700', color: 'var(--police-blue)' }}>Crime Intelligence Desk</h3>
+                  </div>
+                  <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: '1.45' }}>
+                    Access rule-based predictive modeling tools, repeat offender watchlists, and active hotspot analysis dispatch logs.
+                  </p>
+                </div>
+                <div style={{ borderTop: '1px solid #E5E7EB', paddingTop: '0.75rem', marginTop: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.72rem', fontWeight: '600' }}>
+                  <span style={{ color: '#B45309' }}>● 92% Confidence Level</span>
+                  <span style={{ color: 'var(--police-light)' }}>Enter Module →</span>
+                </div>
+              </div>
+
+              {/* Card 4: Crime Map */}
+              <div 
+                className="overview-card" 
+                onClick={() => setActiveTab('map')}
+                style={{ background: '#F8FAFC', border: '1px solid #D1D5DB', borderRadius: '4px', padding: '1.5rem', cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '180px', transition: 'border-color 0.15s ease' }}
+              >
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
+                    <span style={{ fontSize: '1.5rem' }}>🗺️</span>
+                    <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: '700', color: 'var(--police-blue)' }}>Geospatial Crime Map</h3>
+                  </div>
+                  <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: '1.45' }}>
+                    Plot registered incidents geographically. Discover spatial hotspot clusters and dispatch patrol routes.
+                  </p>
+                </div>
+                <div style={{ borderTop: '1px solid #E5E7EB', paddingTop: '0.75rem', marginTop: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.72rem', fontWeight: '600' }}>
+                  <span style={{ color: 'var(--police-light)' }}>● {uniqueStations} Precincts Logged</span>
+                  <span style={{ color: 'var(--police-light)' }}>Enter Module →</span>
+                </div>
+              </div>
+
+            </div>
+          </section>
+        ) : activeTab === 'records' ? (
           <>
             {/* ── BLOCK 1: REGISTER NEW CASE (always on top) ─────────────────── */}
             <section className="form-card-wrapper" style={{ gridColumn: '1 / -1' }}>
@@ -1989,349 +2117,314 @@ link.click();
             </div>
           </section>
         ) : activeTab === 'intelligence' ? (
-          /* Crime Intelligence Center tab view with advanced AI insights, hotspot risk scores, trend alerts, and network link graphs */
-          <section className="intelligence-dashboard-view">
+          /* Crime Intelligence Center tab view with collapsible accordion panels to avoid clumsy layout clutter */
+          <section className="intelligence-dashboard-view" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '1200px', margin: '0 auto', padding: '1.5rem' }}>
             
-            {/* Top row: AI Crime Intelligence & Risk Scoring */}
-            <div className="intelligence-grid-three">
+            <div className="section-block-header" style={{ marginBottom: '1.5rem' }}>
+              <span className="section-block-icon">🧠</span>
+              <div>
+                <h2 className="section-block-title">Crime Intelligence Desk</h2>
+                <p className="section-block-sub">Select a module below to expand live analytics, AI predictions, or link networks</p>
+              </div>
+            </div>
+
+            {/* ── MODULE 1: Live Command Insights ── */}
+            <div className="analytics-card" style={{ padding: '0.85rem 1.25rem', border: '1px solid #D1D5DB' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer' }} onClick={() => toggleIntelPanel('insights')}>
+                <h3 style={{ margin: 0, fontSize: '0.95rem', fontWeight: '700', color: 'var(--police-blue)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span>🧠</span> 1. Live Command Insights Summary
+                </h3>
+                <button type="button" className="refresh-btn" style={{ padding: '0.3rem 0.6rem', fontSize: '0.72rem' }}>
+                  {expandedIntelPanels.insights ? '▲ Hide Details' : '▼ View Details'}
+                </button>
+              </div>
               
-              {/* 🧠 Crime Intelligence Insights — Command Center */}
-              <div className="analytics-card command-center-card">
-                <div className="cc-header">
-                  <div>
-                    <h3>🧠 Crime Intelligence Insights</h3>
-                    <p className="chart-subtitle">Live rule-based crime intelligence generated from Catalyst Data Store. Architecture prepared for future ML integration.</p>
+              {expandedIntelPanels.insights && (
+                <div style={{ marginTop: '1rem', borderTop: '1px solid #E5E7EB', paddingTop: '1rem' }}>
+                  <div className="cc-status-row" style={{ marginBottom: '1rem' }}>
+                    <div className="cc-status-tile cc-high">
+                      <div className="cc-tile-label">HIGH RISK</div>
+                      <div className="cc-tile-value">Bengaluru</div>
+                      <div className="cc-tile-sub">{aiBengaluruPct}% of FIRs</div>
+                    </div>
+                    <div className="cc-status-tile cc-watch">
+                      <div className="cc-tile-label">WATCHLIST</div>
+                      <div className="cc-tile-value">Hubballi Fraud</div>
+                      <div className="cc-tile-sub">{aiHubFraudSign}{aiHubFraudTrend}% 7d</div>
+                    </div>
+                    <div className="cc-status-tile cc-stable">
+                      <div className="cc-tile-label">STABLE</div>
+                      <div className="cc-tile-value">{aiLowestDistrict}</div>
+                      <div className="cc-tile-sub">Low Activity</div>
+                    </div>
                   </div>
-                  <div className="cc-live-badge">
-                    <span className="live-dot" />
-                    LIVE
-                  </div>
-                </div>
-
-                <div className="cc-divider" />
-
-                {/* Status Tiles */}
-                <div className="cc-status-row">
-                  <div className="cc-status-tile cc-high">
-                    <div className="cc-tile-dot cc-dot-high pulse-dot" />
-                    <div className="cc-tile-label">HIGH RISK</div>
-                    <div className="cc-tile-value">Bengaluru</div>
-                    <div className="cc-tile-sub">{aiBengaluruPct}% of FIRs</div>
-                  </div>
-                  <div className="cc-status-tile cc-watch">
-                    <div className="cc-tile-dot cc-dot-watch" />
-                    <div className="cc-tile-label">WATCHLIST</div>
-                    <div className="cc-tile-value">Hubballi Fraud</div>
-                    <div className="cc-tile-sub">{aiHubFraudSign}{aiHubFraudTrend}% 7-day</div>
-                  </div>
-                  <div className="cc-status-tile cc-stable">
-                    <div className="cc-tile-dot cc-dot-stable" />
-                    <div className="cc-tile-label">STABLE</div>
-                    <div className="cc-tile-value">{aiLowestDistrict}</div>
-                    <div className="cc-tile-sub">Low Activity</div>
-                  </div>
-                </div>
-
-                <div className="cc-divider" />
-
-                {/* Top Intelligence Bullets */}
-                <div className="cc-intel-section">
-                  <div className="cc-intel-heading">Top Intelligence</div>
-                  <ul className="cc-intel-bullets">
+                  <ul style={{ margin: '1rem 0', paddingLeft: '1.2rem', fontSize: '0.82rem', color: 'var(--text-primary)', lineHeight: '1.6' }}>
                     <li>Cybercrime accounts for <strong>{aiCyberPct}%</strong> more FIRs than any other single category</li>
                     <li>Theft incidents occur during night hours <strong>{aiTheftNightPct}%</strong> of the time</li>
                     <li>Fraud trend in Hubballi: <strong>{aiHubFraudSign}{aiHubFraudTrend}%</strong> change over last 7 days</li>
                     <li>Bengaluru contributes <strong>{aiBengaluruPct}%</strong> of all registered FIRs statewide</li>
                     <li>Lowest crime density district: <strong>{aiLowestDistrict}</strong></li>
                   </ul>
-                </div>
-
-                <div className="cc-divider" />
-
-                {/* Confidence + Last Updated row */}
-                <div className="cc-footer-row">
-                  <div className="cc-confidence">
-                    <div className="cc-conf-label">Confidence</div>
-                    <div className="cc-conf-value">High</div>
-                    <div className="cc-conf-bar-track">
-                      <div className="cc-conf-bar-fill" style={{ width: '92%' }} />
-                    </div>
-                    <div className="cc-conf-pct">92%</div>
-                  </div>
-                  <div className="cc-last-updated">
-                    <div className="cc-lu-label">Last Updated</div>
-                    <div className="cc-lu-date">{new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' })}</div>
-                    <div className="cc-lu-time">{new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' })}</div>
-                    <div className="cc-lu-source">🟢 Catalyst Data Store</div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.68rem', color: 'var(--text-secondary)', borderTop: '1px solid #E5E7EB', paddingTop: '0.75rem' }}>
+                    <span>Confidence level: <strong>92% (High)</strong></span>
+                    <span>Last updated: {new Date().toLocaleDateString('en-IN', { day: '2-digit', month: 'short' })} {new Date().toLocaleTimeString('en-IN', { hour: '2-digit', minute: '2-digit' })}</span>
                   </div>
                 </div>
-              </div>
-
-              {/* 🤖 AI Assistant & Prediction Panel */}
-              <div className="analytics-card ai-assistant-card">
-                <div className="cc-header">
-                  <div>
-                    <h3>🤖 AI Assistant</h3>
-                    <p className="chart-subtitle">Real-time predictive insights powered by KSP Crime Engine</p>
-                  </div>
-                  <div className="cc-live-badge predictive">
-                    <span className="live-dot predictive-dot" />
-                    PREDICTIVE
-                  </div>
-                </div>
-
-                <div className="cc-divider" />
-
-                <div className="ai-insight-list">
-                  <div className="ai-insight-item">
-                    <div className="cc-tile-label">📈 CRIME TREND</div>
-                    <div className="ai-trend-val">
-                      <span className="trend-arrow-up">⬆</span> {aiHighestCategory} Surge
-                    </div>
-                    <div className="ai-insight-sub">
-                      Statewide surge showing an active +{aiCyberPct}% change
-                    </div>
-                  </div>
-
-                  <div className="cc-divider" />
-
-                  <div className="ai-insight-item">
-                    <div className="cc-tile-label">📍 ACTIVE HOTSPOT</div>
-                    <div className="ai-hotspot-val">
-                      📍 {aiHighestDistrict} ({aiHighestStation})
-                    </div>
-                    <div className="ai-insight-sub">
-                      Highest case concentration logged in this sector
-                    </div>
-                  </div>
-
-                  <div className="cc-divider" />
-
-                  <div className="ai-insight-item">
-                    <div className="cc-tile-label">🔮 PREDICTION</div>
-                    <div className="ai-prediction-val">
-                      ⚠️ High {aiHighestCategory.toLowerCase()} probability expected for this weekend
-                    </div>
-                  </div>
-
-                  <div className="cc-divider" />
-
-                  <div className="ai-insight-item">
-                    <div className="cc-tile-label">🛡️ RECOMMENDATION</div>
-                    <div className="ai-recommendation-val">
-                      Escalate tactical patrols and digital-safety awareness campaigns between 8 PM–11 PM in {aiHighestDistrict}.
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* 📈 Predictive Risk Score & Hotspots */}
-              <div className="analytics-card">
-                <h3>🔥 Predictive Risk Score &amp; Hotspots</h3>
-                <p className="chart-subtitle">Rule-based predictive crime scoring &amp; hotspot density index</p>
-                <div className="risk-score-list">
-                  {districtRiskScoresWithOverrides.slice(0, 6).map((item, idx) => (
-                    <div className="risk-score-item" key={item.district}>
-                      <div className="risk-score-header">
-                        <span className="risk-district-name">{idx + 1}. {item.district}</span>
-                        <span className={`risk-badge ${item.levelClass}`}>{item.level} RISK ({item.score}%)</span>
-                      </div>
-                      <div className="risk-bar-track">
-                        <div 
-                          className={`risk-bar-fill ${item.levelClass}`}
-                          style={{ width: `${Math.max(item.score, 5)}%` }}
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </div>
-                <div className="risk-legend">
-                  <span className="risk-badge risk-high">🔴 High</span>
-                  <span className="risk-badge risk-medium">🟡 Medium</span>
-                  <span className="risk-badge risk-low">🟢 Low</span>
-                </div>
-              </div>
-
+              )}
             </div>
 
-            {/* Middle row: Emerging Trend Alerts, Repeat Suspect Watchlist & Recommended Actions */}
-            <div className="intelligence-grid-three mt-4">
-              
-              {/* 🚨 Emerging Trend Alerts */}
-              <div className="analytics-card">
-                <h3>🚨 Emerging Trend Alerts</h3>
-                <p className="chart-subtitle">Real-time alerts flagged based on relative category surges</p>
-                <div className="trend-alerts-list">
-                  {anomalies.map((anom, index) => {
-                    const alertClass = anom.level === 'CRITICAL' ? 'alert-high' : anom.level === 'WARNING' ? 'alert-medium' : anom.level === 'NOTICE' ? 'alert-low' : 'alert-stable';
-                    const badgeColor = anom.level === 'CRITICAL' ? 'red' : anom.level === 'WARNING' ? 'orange' : anom.level === 'NOTICE' ? 'blue' : 'green';
-                    return (
-                      <div className={`trend-alert-item ${alertClass}`} key={index}>
-                        <div className={`alert-badge ${badgeColor}`}>{anom.badge}</div>
-                        <div className="alert-content">
-                          {anom.message}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
+            {/* ── MODULE 2: AI Predictive Assistant ── */}
+            <div className="analytics-card" style={{ padding: '0.85rem 1.25rem', border: '1px solid #D1D5DB' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer' }} onClick={() => toggleIntelPanel('assistant')}>
+                <h3 style={{ margin: 0, fontSize: '0.95rem', fontWeight: '700', color: 'var(--police-blue)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span>🤖</span> 2. AI Predictive Assistant Desk
+                </h3>
+                <button type="button" className="refresh-btn" style={{ padding: '0.3rem 0.6rem', fontSize: '0.72rem' }}>
+                  {expandedIntelPanels.assistant ? '▲ Hide Details' : '▼ View Details'}
+                </button>
               </div>
 
-              {/* Suspect Watchlist Card */}
-              <div className="analytics-card">
-                <h3>👤 Repeat Suspect Watchlist</h3>
-                <p className="chart-subtitle">Detecting repeat offenders operating across multiple precincts</p>
-                <div className="trend-alerts-list" style={{ overflowY: 'auto', maxHeight: '320px' }}>
+              {expandedIntelPanels.assistant && (
+                <div style={{ marginTop: '1rem', borderTop: '1px solid #E5E7EB', paddingTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.85rem', fontSize: '0.82rem' }}>
+                  <div>
+                    <strong style={{ color: 'var(--text-secondary)', display: 'block', fontSize: '0.68rem' }}>TREND</strong>
+                    <div style={{ fontSize: '0.9rem', fontWeight: 'bold' }}>{aiHighestCategory} Surge (+{aiCyberPct}%)</div>
+                  </div>
+                  <div>
+                    <strong style={{ color: 'var(--text-secondary)', display: 'block', fontSize: '0.68rem' }}>ACTIVE HOTSPOT</strong>
+                    <div>📍 {aiHighestDistrict} Sector ({aiHighestStation})</div>
+                  </div>
+                  <div>
+                    <strong style={{ color: 'var(--text-secondary)', display: 'block', fontSize: '0.68rem' }}>AI WEEKEND PREDICTION</strong>
+                    <div style={{ color: '#B45309', fontWeight: '600' }}>⚠️ High probability of {aiHighestCategory.toLowerCase()} crimes forecasted.</div>
+                  </div>
+                  <div>
+                    <strong style={{ color: 'var(--text-secondary)', display: 'block', fontSize: '0.68rem' }}>TACTICAL RECOMMENDATION</strong>
+                    <div>Deploy patrols and digital-safety awareness campaigns between 8 PM–11 PM in {aiHighestDistrict}.</div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* ── MODULE 3: Hotspot & District Risk Monitor ── */}
+            <div className="analytics-card" style={{ padding: '0.85rem 1.25rem', border: '1px solid #D1D5DB' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer' }} onClick={() => toggleIntelPanel('hotspots')}>
+                <h3 style={{ margin: 0, fontSize: '0.95rem', fontWeight: '700', color: 'var(--police-blue)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span>🔥</span> 3. Predictive Risk Score &amp; Hotspots
+                </h3>
+                <button type="button" className="refresh-btn" style={{ padding: '0.3rem 0.6rem', fontSize: '0.72rem' }}>
+                  {expandedIntelPanels.hotspots ? '▲ Hide Details' : '▼ View Details'}
+                </button>
+              </div>
+
+              {expandedIntelPanels.hotspots && (
+                <div style={{ marginTop: '1rem', borderTop: '1px solid #E5E7EB', paddingTop: '1rem' }}>
+                  <div className="risk-score-list" style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
+                    {districtRiskScoresWithOverrides.slice(0, 6).map((item, idx) => (
+                      <div className="risk-score-item" key={item.district}>
+                        <div className="risk-score-header" style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', marginBottom: '0.25rem' }}>
+                          <span style={{ fontWeight: '600' }}>{idx + 1}. {item.district}</span>
+                          <span className={`risk-badge ${item.levelClass}`}>{item.level} ({item.score}%)</span>
+                        </div>
+                        <div className="risk-bar-track">
+                          <div className={`risk-bar-fill ${item.levelClass}`} style={{ width: `${Math.max(item.score, 5)}%` }} />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                  <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem', flexWrap: 'wrap' }}>
+                    <span className="risk-badge risk-high">🔴 High</span>
+                    <span className="risk-badge risk-medium">🟡 Medium</span>
+                    <span className="risk-badge risk-low">🟢 Low</span>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* ── MODULE 4: Emerging Trend Alerts ── */}
+            <div className="analytics-card" style={{ padding: '0.85rem 1.25rem', border: '1px solid #D1D5DB' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer' }} onClick={() => toggleIntelPanel('trends')}>
+                <h3 style={{ margin: 0, fontSize: '0.95rem', fontWeight: '700', color: 'var(--police-blue)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span>🚨</span> 4. Emerging Trend Alerts
+                </h3>
+                <button type="button" className="refresh-btn" style={{ padding: '0.3rem 0.6rem', fontSize: '0.72rem' }}>
+                  {expandedIntelPanels.trends ? '▲ Hide Details' : '▼ View Details'}
+                </button>
+              </div>
+
+              {expandedIntelPanels.trends && (
+                <div style={{ marginTop: '1rem', borderTop: '1px solid #E5E7EB', paddingTop: '1rem' }}>
+                  <div className="trend-alerts-list" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                    {anomalies.map((anom, index) => {
+                      const alertClass = anom.level === 'CRITICAL' ? 'alert-high' : anom.level === 'WARNING' ? 'alert-medium' : 'alert-low';
+                      const badgeColor = anom.level === 'CRITICAL' ? 'red' : anom.level === 'WARNING' ? 'orange' : 'blue';
+                      return (
+                        <div className={`trend-alert-item ${alertClass}`} key={index} style={{ display: 'flex', gap: '0.75rem', padding: '0.5rem', borderRadius: '4px', borderLeft: '3px solid', background: '#F8FAFC' }}>
+                          <div className={`alert-badge ${badgeColor}`} style={{ fontSize: '0.65rem', padding: '0.1rem 0.4rem', borderRadius: '3px' }}>{anom.badge}</div>
+                          <div style={{ fontSize: '0.78rem' }}>{anom.message}</div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* ── MODULE 5: Repeat Suspect Watchlist ── */}
+            <div className="analytics-card" style={{ padding: '0.85rem 1.25rem', border: '1px solid #D1D5DB' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer' }} onClick={() => toggleIntelPanel('watchlist')}>
+                <h3 style={{ margin: 0, fontSize: '0.95rem', fontWeight: '700', color: 'var(--police-blue)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span>👤</span> 5. Repeat Suspect Watchlist
+                </h3>
+                <button type="button" className="refresh-btn" style={{ padding: '0.3rem 0.6rem', fontSize: '0.72rem' }}>
+                  {expandedIntelPanels.watchlist ? '▲ Hide Details' : '▼ View Details'}
+                </button>
+              </div>
+
+              {expandedIntelPanels.watchlist && (
+                <div style={{ marginTop: '1rem', borderTop: '1px solid #E5E7EB', paddingTop: '1rem' }}>
                   {repeatOffenders.length === 0 ? (
-                    <div className="empty-state-container" style={{ padding: '2rem 1rem', textAlign: 'center', color: '#94A3B8' }}>
-                      <span style={{ fontSize: '1.5rem', display: 'block', marginBottom: '0.5rem' }}>🟢</span>
-                      <p style={{ fontSize: '0.75rem' }}>No repeat suspects detected in current state database.</p>
+                    <div style={{ padding: '1rem', textAlign: 'center', color: 'var(--text-secondary)', fontSize: '0.78rem' }}>
+                      No repeat suspects detected in current state database.
                     </div>
                   ) : (
-                    repeatOffenders.map((sus, idx) => (
-                      <div className="trend-alert-item alert-medium" key={idx} style={{ borderLeft: '3px solid #F59E0B', background: 'rgba(245, 158, 11, 0.05)', padding: '0.75rem', borderRadius: '6px', marginBottom: '0.75rem' }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem' }}>
-                          <span style={{ fontWeight: '700', fontSize: '0.8rem', color: '#FBBF24' }}>👤 {sus.name}</span>
-                          <span className="risk-badge risk-high" style={{ fontSize: '0.65rem', padding: '0.1rem 0.4rem', borderRadius: '4px' }}>
-                            {sus.count} FIRs
-                          </span>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                      {repeatOffenders.map((sus, idx) => (
+                        <div key={idx} style={{ border: '1px solid #D1D5DB', padding: '0.75rem', borderRadius: '4px', background: '#F8FAFC' }}>
+                          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.3rem' }}>
+                            <span style={{ fontWeight: '700', fontSize: '0.8rem', color: 'var(--police-blue)' }}>👤 {sus.name}</span>
+                            <span className="risk-badge risk-high">{sus.count} FIRs</span>
+                          </div>
+                          <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)' }}>
+                            <div>📍 Districts: {sus.districts.join(', ')}</div>
+                            <div>⚠️ Modus Operandi: {sus.mo.join(', ')}</div>
+                          </div>
                         </div>
-                        <div style={{ fontSize: '0.7rem', color: '#94A3B8', lineHeight: '1.4' }}>
-                          <div>📍 <strong>Districts:</strong> {sus.districts.join(', ')}</div>
-                          <div style={{ marginTop: '0.2rem' }}>⚠️ <strong>MO (Categories):</strong> {sus.mo.join(', ')}</div>
-                        </div>
-                      </div>
-                    ))
+                      ))}
+                    </div>
                   )}
                 </div>
+              )}
+            </div>
+
+            {/* ── MODULE 6: Recommended Police Actions ── */}
+            <div className="analytics-card" style={{ padding: '0.85rem 1.25rem', border: '1px solid #D1D5DB' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer' }} onClick={() => toggleIntelPanel('actions')}>
+                <h3 style={{ margin: 0, fontSize: '0.95rem', fontWeight: '700', color: 'var(--police-blue)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span>🚔</span> 6. Tactical Recommendation Engine
+                </h3>
+                <button type="button" className="refresh-btn" style={{ padding: '0.3rem 0.6rem', fontSize: '0.72rem' }}>
+                  {expandedIntelPanels.actions ? '▲ Hide Details' : '▼ View Details'}
+                </button>
               </div>
 
-              {/* 🚔 Recommended Police Actions (rule-based engine) */}
-              <div className="analytics-card">
-                <h3>🚔 Recommended Police Actions</h3>
-                <p className="chart-subtitle">Proactive action recommendations · derived from case volume, risk level &amp; 7-day trend</p>
-                <div className="police-actions-list">
-                  {policeActionRecs.map(rec => (
-                    <div className={`police-action-item ${rec.severityClass}-bg`} key={rec.category}>
-                      <div className="police-action-header">
-                        <span className="police-action-cat">{rec.icon} {rec.category}</span>
-                        <div className="police-action-meta">
+              {expandedIntelPanels.actions && (
+                <div style={{ marginTop: '1rem', borderTop: '1px solid #E5E7EB', paddingTop: '1rem' }}>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                    {policeActionRecs.map(rec => (
+                      <div key={rec.category} style={{ border: '1px solid #D1D5DB', padding: '0.75rem', borderRadius: '4px', background: '#F8FAFC' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.78rem', marginBottom: '0.3rem' }}>
+                          <span style={{ fontWeight: 'bold' }}>{rec.icon} {rec.category}</span>
                           <span className={`risk-badge ${rec.severityClass}`}>{rec.severity}</span>
-                          <span className="police-action-trend">{rec.trendSign}{rec.trend}% 7d</span>
-                          <span className="police-action-count">{rec.count} cases ({rec.pct}%)</span>
                         </div>
+                        <div style={{ fontSize: '0.75rem', color: 'var(--text-primary)', marginBottom: '0.2rem' }}>→ {rec.action}</div>
+                        <div style={{ fontSize: '0.65rem', color: 'var(--text-secondary)' }}>Trend: {rec.trendSign}{rec.trend}% (total {rec.count} cases)</div>
                       </div>
-                      <div className="police-action-arrow">→ {rec.action}</div>
-                    </div>
-                  ))}
-                  {policeActionRecs.length === 0 && (
-                    <div className="empty-state-container">
-                      <p>Register cases to generate action recommendations.</p>
-                    </div>
-                  )}
+                    ))}
+                  </div>
                 </div>
-                <p className="action-engine-note">⚙️ Intelligence engine: rule-based · scalable to ML model integration</p>
-              </div>
-
+              )}
             </div>
 
-            {/* 🚨 Priority District Monitor */}
-            <div className="analytics-card mt-4 priority-monitor-card">
-              <div className="cc-header">
-                <div>
-                  <h3>🚨 Priority District Monitor</h3>
-                  <p className="chart-subtitle">Real-time status of all monitored districts · sorted by risk level</p>
-                </div>
-                <div className="cc-live-badge">
-                  <span className="live-dot pulse-dot" />
-                  LIVE
-                </div>
+            {/* ── MODULE 7: Statewide District Monitor ── */}
+            <div className="analytics-card" style={{ padding: '0.85rem 1.25rem', border: '1px solid #D1D5DB' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer' }} onClick={() => toggleIntelPanel('districts')}>
+                <h3 style={{ margin: 0, fontSize: '0.95rem', fontWeight: '700', color: 'var(--police-blue)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span>🚨</span> 7. Priority District Monitor
+                </h3>
+                <button type="button" className="refresh-btn" style={{ padding: '0.3rem 0.6rem', fontSize: '0.72rem' }}>
+                  {expandedIntelPanels.districts ? '▲ Hide Details' : '▼ View Details'}
+                </button>
               </div>
-              <div className="priority-district-grid">
-                {districtRiskScoresWithOverrides.map((item, idx) => {
-                  const isHigh = item.level === 'HIGH';
-                  const isMed = item.level === 'MEDIUM';
-                  const statusLabel = isHigh ? 'HIGH ALERT' : isMed ? 'WATCH' : 'STABLE';
-                  const barColor = isHigh ? 'var(--accent-red)' : isMed ? '#F59E0B' : 'var(--accent-green)';
-                  return (
-                    <div className={`pd-row ${item.levelClass}-row`} key={item.district}>
-                      <div className="pd-left">
-                        {isHigh && <span className="pd-pulse-dot pulse-dot" />}
-                        {!isHigh && <span className={`pd-dot ${item.levelClass}-dot`} />}
-                        <span className="pd-district">{item.district}</span>
-                      </div>
-                      <div className="pd-center">
-                        <span className={`pd-status-tag ${item.levelClass}`}>{statusLabel}</span>
-                      </div>
-                      <div className="pd-right">
-                        <div className="pd-bar-track">
-                          <div className="pd-bar-fill" style={{ width: `${Math.max(item.score, 4)}%`, backgroundColor: barColor }} />
+
+              {expandedIntelPanels.districts && (
+                <div style={{ marginTop: '1rem', borderTop: '1px solid #E5E7EB', paddingTop: '1rem' }}>
+                  <div className="priority-district-grid" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                    {districtRiskScoresWithOverrides.map((item, idx) => {
+                      const isHigh = item.level === 'HIGH';
+                      const isMed = item.level === 'MEDIUM';
+                      const statusLabel = isHigh ? 'HIGH ALERT' : isMed ? 'WATCH' : 'STABLE';
+                      const barColor = isHigh ? 'var(--accent-red)' : isMed ? '#F59E0B' : 'var(--accent-green)';
+                      return (
+                        <div className={`pd-row ${item.levelClass}-row`} key={item.district} style={{ padding: '0.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #E5E7EB' }}>
+                          <span style={{ fontWeight: '600', fontSize: '0.78rem' }}>{item.district}</span>
+                          <span className={`pd-status-tag ${item.levelClass}`} style={{ fontSize: '0.7rem' }}>{statusLabel}</span>
+                          <span style={{ fontSize: '0.75rem', fontWeight: 'bold' }}>{item.score}%</span>
                         </div>
-                        <span className="pd-score">{item.score}%</span>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              )}
             </div>
 
-            {/* Bottom row: Crime Link & Network Analysis (SVG Node Graph) */}
-            <div className="analytics-card mt-4 timeline-card">
-              <h3>🔗 Crime Link & Network Analysis</h3>
-              <p className="chart-subtitle">Visualizing associations between Districts, Stations, Categories, and Patterns</p>
-              <div className="network-graph-container">
-                <svg viewBox="0 0 800 240" className="network-svg">
-                  {/* Connectors */}
-                  <path d="M 120 120 Q 260 60 400 60" fill="none" stroke="#DCE3EA" strokeWidth="2" strokeDasharray="4,4" />
-                  <path d="M 120 120 Q 260 180 400 180" fill="none" stroke="#DCE3EA" strokeWidth="2" strokeDasharray="4,4" />
-                  <path d="M 400 60 L 680 120" fill="none" stroke="#DCE3EA" strokeWidth="2" />
-                  <path d="M 400 180 L 680 120" fill="none" stroke="#DCE3EA" strokeWidth="2" />
-                  <path d="M 680 120 L 740 120" fill="none" stroke="var(--police-gold)" strokeWidth="3" />
-
-                  {/* Node 1: District Core */}
-                  <g className="node-group">
-                    <circle cx="120" cy="120" r="45" fill="var(--police-blue)" stroke="#FFFFFF" strokeWidth="2" />
-                    <text x="120" y="115" textAnchor="middle" fill="#ffffff" fontSize="12" fontWeight="700">DISTRICT</text>
-                    <text x="120" y="132" textAnchor="middle" fill="var(--police-gold)" fontSize="11" fontWeight="800">
-                      {highestDistrict.length > 12 ? highestDistrict.substring(0, 10) + '...' : highestDistrict}
-                    </text>
-                  </g>
-
-                  {/* Node 2a: Top Station */}
-                  <g className="node-group">
-                    <circle cx="400" cy="60" r="35" fill="#F8FAFC" stroke="var(--police-blue)" strokeWidth="2" />
-                    <text x="400" y="55" textAnchor="middle" fill="var(--text-primary)" fontSize="10" fontWeight="700">HOTSPOT PS</text>
-                    <text x="400" y="70" textAnchor="middle" fill="var(--text-secondary)" fontSize="9">
-                      {highestStation && highestStation.length > 12 ? highestStation.substring(0, 10) + '...' : highestStation || 'N/A'}
-                    </text>
-                  </g>
-
-                  {/* Node 2b: Top Category */}
-                  <g className="node-group">
-                    <circle cx="400" cy="180" r="35" fill="#F8FAFC" stroke="var(--police-blue)" strokeWidth="2" />
-                    <text x="400" y="175" textAnchor="middle" fill="var(--text-primary)" fontSize="10" fontWeight="700">PRIMARY CRIME</text>
-                    <text x="400" y="190" textAnchor="middle" fill="var(--text-secondary)" fontSize="9">{mostCommonCategory}</text>
-                  </g>
-
-                  {/* Node 3: Link Association */}
-                  <g className="node-group">
-                    <circle cx="680" cy="120" r="38" fill="#F8FAFC" stroke="var(--accent-red)" strokeWidth="2" />
-                    <text x="680" y="115" textAnchor="middle" fill="var(--text-primary)" fontSize="10" fontWeight="700">ASSOCIATED</text>
-                    <text x="680" y="130" textAnchor="middle" fill="var(--accent-red)" fontSize="9" fontWeight="800">PATTERN</text>
-                  </g>
-
-                  {/* Node 4: Action Node */}
-                  <g className="node-group">
-                    <rect x="735" y="98" width="55" height="44" rx="6" fill="var(--police-gold)" />
-                    <text x="762" y="118" textAnchor="middle" fill="#0F4C81" fontSize="9" fontWeight="800">ALERT</text>
-                    <text x="762" y="130" textAnchor="middle" fill="#0F4C81" fontSize="8" fontWeight="800">DISPATCH</text>
-                  </g>
-                </svg>
+            {/* ── MODULE 8: Crime Link Network graph ── */}
+            <div className="analytics-card" style={{ padding: '0.85rem 1.25rem', border: '1px solid #D1D5DB' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer' }} onClick={() => toggleIntelPanel('network')}>
+                <h3 style={{ margin: 0, fontSize: '0.95rem', fontWeight: '700', color: 'var(--police-blue)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span>🔗</span> 8. Association &amp; Crime Link Analysis
+                </h3>
+                <button type="button" className="refresh-btn" style={{ padding: '0.3rem 0.6rem', fontSize: '0.72rem' }}>
+                  {expandedIntelPanels.network ? '▲ Hide Details' : '▼ View Details'}
+                </button>
               </div>
+
+              {expandedIntelPanels.network && (
+                <div style={{ marginTop: '1rem', borderTop: '1px solid #E5E7EB', paddingTop: '1rem' }}>
+                  <div className="network-graph-container" style={{ background: '#F8FAFC', padding: '0.5rem', border: '1px solid #D1D5DB' }}>
+                    <svg viewBox="0 0 800 240" className="network-svg">
+                      <path d="M 120 120 Q 260 60 400 60" fill="none" stroke="#CBD5E1" strokeWidth="2" strokeDasharray="4,4" />
+                      <path d="M 120 120 Q 260 180 400 180" fill="none" stroke="#CBD5E1" strokeWidth="2" strokeDasharray="4,4" />
+                      <path d="M 400 60 L 680 120" fill="none" stroke="#CBD5E1" strokeWidth="2" />
+                      <path d="M 400 180 L 680 120" fill="none" stroke="#CBD5E1" strokeWidth="2" />
+                      <path d="M 680 120 L 740 120" fill="none" stroke="var(--police-gold)" strokeWidth="3" />
+
+                      <g className="node-group">
+                        <circle cx="120" cy="120" r="45" fill="var(--police-blue)" stroke="#FFFFFF" strokeWidth="2" />
+                        <text x="120" y="115" textAnchor="middle" fill="#ffffff" fontSize="12" fontWeight="700">DISTRICT</text>
+                        <text x="120" y="132" textAnchor="middle" fill="var(--police-gold)" fontSize="11" fontWeight="800">{highestDistrict}</text>
+                      </g>
+
+                      <g className="node-group">
+                        <circle cx="400" cy="60" r="35" fill="#F8FAFC" stroke="var(--police-blue)" strokeWidth="2" />
+                        <text x="400" y="55" textAnchor="middle" fill="var(--text-primary)" fontSize="10" fontWeight="700">HOTSPOT PS</text>
+                        <text x="400" y="70" textAnchor="middle" fill="var(--text-secondary)" fontSize="9">{highestStation || 'N/A'}</text>
+                      </g>
+
+                      <g className="node-group">
+                        <circle cx="400" cy="180" r="35" fill="#F8FAFC" stroke="var(--police-blue)" strokeWidth="2" />
+                        <text x="400" y="175" textAnchor="middle" fill="var(--text-primary)" fontSize="10" fontWeight="700">PRIMARY CRIME</text>
+                        <text x="400" y="190" textAnchor="middle" fill="var(--text-secondary)" fontSize="9">{mostCommonCategory}</text>
+                      </g>
+
+                      <g className="node-group">
+                        <circle cx="680" cy="120" r="38" fill="#F8FAFC" stroke="var(--accent-red)" strokeWidth="2" />
+                        <text x="680" y="115" textAnchor="middle" fill="var(--text-primary)" fontSize="10" fontWeight="700">ASSOCIATED</text>
+                        <text x="680" y="130" textAnchor="middle" fill="var(--accent-red)" fontSize="9" fontWeight="800">PATTERN</text>
+                      </g>
+
+                      <g className="node-group">
+                        <rect x="735" y="98" width="55" height="44" rx="6" fill="var(--police-gold)" />
+                        <text x="762" y="118" textAnchor="middle" fill="#0F4C81" fontSize="9" fontWeight="800">ALERT</text>
+                        <text x="762" y="130" textAnchor="middle" fill="#0F4C81" fontSize="8" fontWeight="800">DISPATCH</text>
+                      </g>
+                    </svg>
+                  </div>
+                </div>
+              )}
             </div>
 
-          </section>
-        ) : activeTab === 'map' ? (
+          </section>) : activeTab === 'map' ? (
           /* Map View tab */
           <section className="intelligence-dashboard-view">
             <div className="analytics-card map-panel-card" style={{ padding: '1.5rem' }}>
