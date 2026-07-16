@@ -766,6 +766,40 @@ html, body {
   width: 100%;
 }
 
+/* ── Named Block Headers ─────────────────────────────────────────── */
+.section-block-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, rgba(15, 76, 129, 0.08) 0%, rgba(249, 168, 37, 0.04) 100%);
+  border-left: 4px solid var(--police-blue, #0F4C81);
+  border-radius: 8px 8px 0 0;
+  margin-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-color, rgba(255,255,255,0.08));
+}
+
+.section-block-icon {
+  font-size: 1.75rem;
+  flex-shrink: 0;
+}
+
+.section-block-title {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--text-primary, #F1F5F9);
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.section-block-sub {
+  margin: 2px 0 0 0;
+  font-size: 0.78rem;
+  color: var(--text-secondary, #94A3B8);
+  font-weight: 500;
+}
+
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);

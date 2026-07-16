@@ -1284,21 +1284,27 @@ link.click();
         </div>
       )}
 
-      <header className="dashboard-header" style={{ padding: '0.75rem 2rem', backgroundColor: '#0F4C81', borderBottom: '3px solid #F9A825' }}>
+      <header className="dashboard-header" style={{ padding: '0.85rem 2rem', backgroundColor: '#0F4C81', borderBottom: '3px solid #F9A825' }}>
         <div className="header-inner header-inner-responsive" style={{ display: 'grid', gridTemplateColumns: '100px 1fr 280px', alignItems: 'center', maxWidth: '1600px', margin: '0 auto', width: '100%' }}>
           {/* Left: Emblem */}
           <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
             <KSPEmblem />
           </div>
-          
-          {/* Center: Title – left-aligned on mobile via CSS class */}
-          <div className="header-title-block">
-            <h1 style={{ margin: 0, fontSize: '1.4rem', fontWeight: '800', color: '#FFFFFF', letterSpacing: '0.5px', textTransform: 'uppercase' }}>
-              Karnataka State Police Crime Analytics &amp; Intelligence Platform
+
+          {/* Center: Properly stacked title */}
+          <div className="header-title-block" style={{ textAlign: 'center' }}>
+            <p style={{ margin: 0, fontSize: '0.72rem', fontWeight: '700', color: '#F9A825', letterSpacing: '1.5px', textTransform: 'uppercase' }}>
+              Government of Karnataka
+            </p>
+            <h1 style={{ margin: '2px 0', fontSize: '1.25rem', fontWeight: '900', color: '#FFFFFF', letterSpacing: '0.8px', textTransform: 'uppercase', lineHeight: '1.25' }}>
+              Karnataka State Police
             </h1>
-            <h2 style={{ margin: '4px 0 0 0', fontSize: '0.85rem', fontWeight: '600', color: '#F9A825', letterSpacing: '0.2px', textTransform: 'uppercase' }}>
-              Government of Karnataka • State Intelligence Department
+            <h2 style={{ margin: '1px 0', fontSize: '0.95rem', fontWeight: '700', color: '#FFFFFF', letterSpacing: '0.5px', textTransform: 'uppercase', lineHeight: '1.2' }}>
+              Crime Analytics &amp; Intelligence Platform
             </h2>
+            <p style={{ margin: '3px 0 0 0', fontSize: '0.7rem', fontWeight: '600', color: '#94A3B8', letterSpacing: '0.8px', textTransform: 'uppercase' }}>
+              Karnataka State Intelligence Department
+            </p>
           </div>
 
           {/* Right: Clock & Status */}
@@ -1420,184 +1426,197 @@ link.click();
       <main className="dashboard-grid">
         {activeTab === 'records' ? (
           <>
-            {/* Left: Register Case Form Card & Recent Activity */}
-            <section className="form-card-wrapper">
-              <div className="form-card">
-                <h3>📝 Register New Case</h3>
-                <p className="form-subtitle">Submit details of the FIR to insert into Catalyst Data Store.</p>
-                
-                {submitError && (
-                  <div className="alert error">
-                    ❌ Error: {submitError}
-                  </div>
-                )}
+            {/* ── BLOCK 1: REGISTER NEW CASE (always on top) ─────────────────── */}
+            <section className="form-card-wrapper" style={{ gridColumn: '1 / -1' }}>
+              <div className="section-block-header">
+                <span className="section-block-icon">📝</span>
+                <div>
+                  <h2 className="section-block-title">Register New Case</h2>
+                  <p className="section-block-sub">Submit a new FIR entry into the Karnataka State Police Catalyst Data Store</p>
+                </div>
+              </div>
 
-                <form onSubmit={handleSubmit} className="crime-form">
-                  <div className="form-group">
-                    <label htmlFor="fir_number">FIR Number <span className="required-asterisk">*</span></label>
-                    <input
-                      type="text"
-                      id="fir_number"
-                      name="fir_number"
-                      value={formData.fir_number}
-                      onChange={handleInputChange}
-                      placeholder="e.g. FIR/BLR/2026/0010"
-                      required
-                    />
-                  </div>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 340px', gap: '1.5rem', alignItems: 'flex-start' }}>
+                {/* FIR Form */}
+                <div className="form-card">
+                  <h3>📋 FIR Registration Form</h3>
+                  <p className="form-subtitle">Fill all required fields marked with <span style={{color:'#EF4444'}}>*</span> to register a new FIR record.</p>
 
-                  <div className="form-row">
+                  {submitError && (
+                    <div className="alert error">
+                      ❌ Error: {submitError}
+                    </div>
+                  )}
+
+                  <form onSubmit={handleSubmit} className="crime-form">
                     <div className="form-group">
-                      <label htmlFor="category">Category <span className="required-asterisk">*</span></label>
-                      <select
-                        id="category"
-                        name="category"
-                        value={formData.category}
+                      <label htmlFor="fir_number">FIR Number <span className="required-asterisk">*</span></label>
+                      <input
+                        type="text"
+                        id="fir_number"
+                        name="fir_number"
+                        value={formData.fir_number}
                         onChange={handleInputChange}
+                        placeholder="e.g. FIR/BLR/2026/0010"
                         required
-                      >
-                        <option value="Theft">Theft</option>
-                        <option value="Cybercrime">Cybercrime</option>
-                        <option value="Assault">Assault</option>
-                        <option value="Fraud">Fraud</option>
-                      </select>
+                      />
+                    </div>
+
+                    <div className="form-row">
+                      <div className="form-group">
+                        <label htmlFor="category">Category <span className="required-asterisk">*</span></label>
+                        <select
+                          id="category"
+                          name="category"
+                          value={formData.category}
+                          onChange={handleInputChange}
+                          required
+                        >
+                          <option value="Theft">Theft</option>
+                          <option value="Cybercrime">Cybercrime</option>
+                          <option value="Assault">Assault</option>
+                          <option value="Fraud">Fraud</option>
+                        </select>
+                      </div>
+
+                      <div className="form-group">
+                        <label htmlFor="district">District <span className="required-asterisk">*</span></label>
+                        <select
+                          id="district"
+                          name="district"
+                          value={formData.district}
+                          onChange={handleInputChange}
+                          required
+                        >
+                          {ALL_DISTRICTS.map(dist => (
+                            <option key={dist} value={dist}>{dist}</option>
+                          ))}
+                        </select>
+                      </div>
                     </div>
 
                     <div className="form-group">
-                      <label htmlFor="district">District <span className="required-asterisk">*</span></label>
+                      <label htmlFor="police_station">Police Station <span className="required-asterisk">*</span></label>
                       <select
-                        id="district"
-                        name="district"
-                        value={formData.district}
+                        id="police_station"
+                        name="police_station"
+                        value={formData.police_station}
                         onChange={handleInputChange}
                         required
                       >
-                        {ALL_DISTRICTS.map(dist => (
-                          <option key={dist} value={dist}>{dist}</option>
+                        {(DISTRICT_STATIONS[formData.district] || []).map(ps => (
+                          <option key={ps} value={ps}>{ps}</option>
                         ))}
                       </select>
                     </div>
-                  </div>
 
-                  <div className="form-group">
-                    <label htmlFor="police_station">Police Station <span className="required-asterisk">*</span></label>
-                    <select
-                      id="police_station"
-                      name="police_station"
-                      value={formData.police_station}
-                      onChange={handleInputChange}
-                      required
-                    >
-                      {(DISTRICT_STATIONS[formData.district] || []).map(ps => (
-                        <option key={ps} value={ps}>{ps}</option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="incident_date">Incident Date & Time <span className="required-asterisk">*</span></label>
-                    <input
-                      type="datetime-local"
-                      id="incident_date"
-                      name="incident_date"
-                      value={formData.incident_date}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="officer">Assigned Officer</label>
-                    <input
-                      type="text"
-                      id="officer"
-                      name="officer"
-                      value={formData.officer}
-                      onChange={handleInputChange}
-                      placeholder="e.g. Rajesh Kumar"
-                    />
-                  </div>
-
-                  <div className="form-row">
                     <div className="form-group">
-                      <label htmlFor="priority">Case Priority</label>
-                      <select
-                        id="priority"
-                        name="priority"
-                        value={formData.priority}
+                      <label htmlFor="incident_date">Incident Date &amp; Time <span className="required-asterisk">*</span></label>
+                      <input
+                        type="datetime-local"
+                        id="incident_date"
+                        name="incident_date"
+                        value={formData.incident_date}
                         onChange={handleInputChange}
-                      >
-                        <option value="Low">Low Priority</option>
-                        <option value="Medium">Medium Priority</option>
-                        <option value="High">High Priority</option>
-                      </select>
+                        required
+                      />
                     </div>
 
                     <div className="form-group">
-                      <label htmlFor="status">Case Status</label>
-                      <select
-                        id="status"
-                        name="status"
-                        value={formData.status}
+                      <label htmlFor="officer">Assigned Officer</label>
+                      <input
+                        type="text"
+                        id="officer"
+                        name="officer"
+                        value={formData.officer}
                         onChange={handleInputChange}
-                      >
-                        <option value="FIR Registered">FIR Registered</option>
-                        <option value="Officer Assigned">Officer Assigned</option>
-                        <option value="Evidence Collection">Evidence Collection</option>
-                        <option value="Charge Sheet">Charge Sheet Filed</option>
-                        <option value="Closed">Case Closed</option>
-                      </select>
+                        placeholder="e.g. Rajesh Kumar"
+                      />
                     </div>
-                  </div>
 
-                  <div className="form-group">
-                    <label htmlFor="summary">Case Summary Description <span className="required-asterisk">*</span></label>
-                    <textarea
-                      id="summary"
-                      name="summary"
-                      value={formData.summary}
-                      onChange={handleInputChange}
-                      placeholder="Enter detailed crime description..."
-                      rows={4}
-                      required
-                    />
-                  </div>
-
-                  <button type="submit" className="submit-btn" disabled={submitting}>
-                    {submitting ? 'Registering in Datastore...' : 'Register FIR Record'}
-                  </button>
-                </form>
-              </div>
-
-              {/* Recent Activity Card */}
-              <div className="form-card activity-card">
-                <h3>🔔 Recent Activity Feed</h3>
-                <p className="form-subtitle">Live action log of operations in this session</p>
-                <div className="activity-feed-list">
-                  {activityLog.length === 0 ? (
-                    <div className="empty-activity">No actions recorded in this session.</div>
-                  ) : (
-                    activityLog.map((log, idx) => (
-                      <div className="activity-feed-item" key={idx}>
-                        <span className="activity-time">{log.time}</span>
-                        <div className="activity-details">
-                          <span className="activity-action">{log.action}</span>
-                          <span className="activity-desc">{log.detail}</span>
-                        </div>
+                    <div className="form-row">
+                      <div className="form-group">
+                        <label htmlFor="priority">Case Priority</label>
+                        <select
+                          id="priority"
+                          name="priority"
+                          value={formData.priority}
+                          onChange={handleInputChange}
+                        >
+                          <option value="Low">Low Priority</option>
+                          <option value="Medium">Medium Priority</option>
+                          <option value="High">High Priority</option>
+                        </select>
                       </div>
-                    ))
-                  )}
+
+                      <div className="form-group">
+                        <label htmlFor="status">Case Status</label>
+                        <select
+                          id="status"
+                          name="status"
+                          value={formData.status}
+                          onChange={handleInputChange}
+                        >
+                          <option value="FIR Registered">FIR Registered</option>
+                          <option value="Officer Assigned">Officer Assigned</option>
+                          <option value="Evidence Collection">Evidence Collection</option>
+                          <option value="Charge Sheet">Charge Sheet Filed</option>
+                          <option value="Closed">Case Closed</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="form-group">
+                      <label htmlFor="summary">Case Summary Description <span className="required-asterisk">*</span></label>
+                      <textarea
+                        id="summary"
+                        name="summary"
+                        value={formData.summary}
+                        onChange={handleInputChange}
+                        placeholder="Enter detailed crime description..."
+                        rows={4}
+                        required
+                      />
+                    </div>
+
+                    <button type="submit" className="submit-btn" disabled={submitting}>
+                      {submitting ? 'Registering in Datastore...' : '📤 Register FIR Record'}
+                    </button>
+                  </form>
+                </div>
+
+                {/* Recent Activity */}
+                <div className="form-card activity-card">
+                  <h3>🔔 Recent Activity Feed</h3>
+                  <p className="form-subtitle">Live action log of operations in this session</p>
+                  <div className="activity-feed-list">
+                    {activityLog.length === 0 ? (
+                      <div className="empty-activity">No actions recorded in this session.</div>
+                    ) : (
+                      activityLog.map((log, idx) => (
+                        <div className="activity-feed-item" key={idx}>
+                          <span className="activity-time">{log.time}</span>
+                          <div className="activity-details">
+                            <span className="activity-action">{log.action}</span>
+                            <span className="activity-desc">{log.detail}</span>
+                          </div>
+                        </div>
+                      ))
+                    )}
+                  </div>
                 </div>
               </div>
             </section>
 
-            {/* Right: Table / States */}
-            <section className="data-view-wrapper">
-              <div className="action-bar">
-                <p className="subtitle">
-                  Verify end-to-end data flow. Cases are persisted to Catalyst or local JSON backup. Click a row to view details, edit, or delete.
-                </p>
-                <div className="action-buttons-group">
+            {/* ── BLOCK 2: FIR CASE RECORDS TABLE ────────────────────────────── */}
+            <section className="data-view-wrapper" style={{ gridColumn: '1 / -1' }}>
+              <div className="section-block-header">
+                <span className="section-block-icon">📂</span>
+                <div>
+                  <h2 className="section-block-title">FIR Case Records</h2>
+                  <p className="section-block-sub">All registered cases from the Catalyst Data Store — click any row to view details, edit, or delete</p>
+                </div>
+                <div className="action-buttons-group" style={{ marginLeft: 'auto' }}>
                   <button className="export-csv-btn" onClick={exportToCSV} title="Export current results to CSV file">
                     📥 Export CSV
                   </button>
@@ -1672,7 +1691,7 @@ link.click();
                           className="sort-toggle-btn"
                           onClick={() => setSortOrder(prev => prev === 'latest' ? 'oldest' : 'latest')}
                         >
-                          {sortOrder === 'latest' ? '📅 Newest' : '📅 Oldest'}
+                          {sortOrder === 'latest' ? '📅 Newest First' : '📅 Oldest First'}
                         </button>
                       </div>
                     </div>
@@ -1718,8 +1737,8 @@ link.click();
                               <span className="empty-state-icon" style={{ fontSize: '2.2rem', display: 'block', marginBottom: '0.75rem' }}>📂</span>
                               <h4 style={{ margin: '0 0 0.5rem 0', color: 'var(--text-primary)', fontSize: '1.05rem', fontWeight: '700' }}>No matching FIR records</h4>
                               <p style={{ margin: 0, color: 'var(--text-secondary)', fontSize: '0.85rem', lineHeight: '1.45' }}>
-                                {cases.length === 0 
-                                  ? "Register a new FIR on the left panel to populate the analytics dashboard database." 
+                                {cases.length === 0
+                                  ? "Register a new FIR above to populate the analytics dashboard database."
                                   : "Try changing your search keywords, clearing your active filters, or registering a new FIR."}
                               </p>
                             </div>
