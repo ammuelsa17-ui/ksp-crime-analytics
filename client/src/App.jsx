@@ -1260,7 +1260,7 @@ link.click();
       {/* Loading Overlay (Institutional Flat Design) */}
       {(loading || submitting || updateLoading) && (
         <div className="loading-overlay" style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(245, 247, 250, 0.9)', zIndex: 9999 }}>
-          <div style={{ textAlign: 'center', width: '360px', padding: '2rem', background: '#FFFFFF', borderRadius: '4px', border: '1px solid #D1D5DB', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.25rem' }}>
+          <div style={{ textAlign: 'center', width: '360px', padding: '2rem', background: '#F8FAFC', borderRadius: '4px', border: '1px solid #D1D5DB', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.25rem' }}>
             <KSPEmblem />
             <div>
               <h3 style={{ margin: '0 0 0.25rem 0', fontSize: '1.1rem', fontWeight: '700', color: '#0F4C81', letterSpacing: '0.5px', fontFamily: 'Georgia, serif' }}>Karnataka State Police</h3>
@@ -1791,7 +1791,7 @@ link.click();
                 <h3 style={{ margin: 0, color: 'var(--police-blue)', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.1rem', fontWeight: '800' }}>
                   📄 Today's State Intelligence Summary
                 </h3>
-                <span style={{ fontSize: '0.65rem', fontWeight: '800', color: 'var(--police-blue)', background: '#FFFFFF', padding: '0.2rem 0.6rem', borderRadius: '12px', border: '1px solid #DCE3EA', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                <span style={{ fontSize: '0.65rem', fontWeight: '800', color: 'var(--police-blue)', background: '#F8FAFC', padding: '0.2rem 0.6rem', borderRadius: '12px', border: '1px solid #DCE3EA', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                   Live Bulletin
                 </span>
               </div>
@@ -1800,7 +1800,7 @@ link.click();
               </p>
               
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem', fontSize: '0.82rem', lineHeight: '1.55', color: 'var(--text-primary)' }}>
-                <div style={{ background: '#FFFFFF', padding: '1rem', borderRadius: '8px', border: '1px solid #DCE3EA', boxShadow: '0 2px 4px rgba(0,0,0,0.01)' }}>
+                <div style={{ background: '#F8FAFC', padding: '1rem', borderRadius: '8px', border: '1px solid #DCE3EA', boxShadow: '0 2px 4px rgba(0,0,0,0.01)' }}>
                   <div style={{ fontSize: '0.7rem', fontWeight: '800', color: 'var(--police-blue)', textTransform: 'uppercase', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.35rem', letterSpacing: '0.03em' }}>
                     <span>📍 Regional Density Highlights</span>
                   </div>
@@ -1816,7 +1816,7 @@ link.click();
                   </ul>
                 </div>
 
-                <div style={{ background: '#FFFFFF', padding: '1rem', borderRadius: '8px', border: '1px solid #DCE3EA', boxShadow: '0 2px 4px rgba(0,0,0,0.01)' }}>
+                <div style={{ background: '#F8FAFC', padding: '1rem', borderRadius: '8px', border: '1px solid #DCE3EA', boxShadow: '0 2px 4px rgba(0,0,0,0.01)' }}>
                   <div style={{ fontSize: '0.7rem', fontWeight: '800', color: 'var(--accent-red)', textTransform: 'uppercase', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.35rem', letterSpacing: '0.03em' }}>
                     <span>⚡ Category &amp; MO Trends</span>
                   </div>
@@ -1830,7 +1830,7 @@ link.click();
                   </ul>
                 </div>
 
-                <div style={{ background: '#FFFFFF', padding: '1rem', borderRadius: '8px', border: '1px solid #DCE3EA', boxShadow: '0 2px 4px rgba(0,0,0,0.01)' }}>
+                <div style={{ background: '#F8FAFC', padding: '1rem', borderRadius: '8px', border: '1px solid #DCE3EA', boxShadow: '0 2px 4px rgba(0,0,0,0.01)' }}>
                   <div style={{ fontSize: '0.7rem', fontWeight: '800', color: 'var(--police-gold)', textTransform: 'uppercase', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.35rem', letterSpacing: '0.03em' }}>
                     <span>🚔 Recommended Tactical Actions</span>
                   </div>
@@ -2299,7 +2299,7 @@ link.click();
 
                   {/* Node 2a: Top Station */}
                   <g className="node-group">
-                    <circle cx="400" cy="60" r="35" fill="#FFFFFF" stroke="var(--police-blue)" strokeWidth="2" />
+                    <circle cx="400" cy="60" r="35" fill="#F8FAFC" stroke="var(--police-blue)" strokeWidth="2" />
                     <text x="400" y="55" textAnchor="middle" fill="var(--text-primary)" fontSize="10" fontWeight="700">HOTSPOT PS</text>
                     <text x="400" y="70" textAnchor="middle" fill="var(--text-secondary)" fontSize="9">
                       {highestStation && highestStation.length > 12 ? highestStation.substring(0, 10) + '...' : highestStation || 'N/A'}
@@ -2308,14 +2308,14 @@ link.click();
 
                   {/* Node 2b: Top Category */}
                   <g className="node-group">
-                    <circle cx="400" cy="180" r="35" fill="#FFFFFF" stroke="var(--police-blue)" strokeWidth="2" />
+                    <circle cx="400" cy="180" r="35" fill="#F8FAFC" stroke="var(--police-blue)" strokeWidth="2" />
                     <text x="400" y="175" textAnchor="middle" fill="var(--text-primary)" fontSize="10" fontWeight="700">PRIMARY CRIME</text>
                     <text x="400" y="190" textAnchor="middle" fill="var(--text-secondary)" fontSize="9">{mostCommonCategory}</text>
                   </g>
 
                   {/* Node 3: Link Association */}
                   <g className="node-group">
-                    <circle cx="680" cy="120" r="38" fill="#FFFFFF" stroke="var(--accent-red)" strokeWidth="2" />
+                    <circle cx="680" cy="120" r="38" fill="#F8FAFC" stroke="var(--accent-red)" strokeWidth="2" />
                     <text x="680" y="115" textAnchor="middle" fill="var(--text-primary)" fontSize="10" fontWeight="700">ASSOCIATED</text>
                     <text x="680" y="130" textAnchor="middle" fill="var(--accent-red)" fontSize="9" fontWeight="800">PATTERN</text>
                   </g>
@@ -2702,22 +2702,22 @@ link.click();
                         {aiSummary && (
                           <div className="ai-report-body" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', fontSize: '0.8rem', color: '#374151', marginTop: '1rem', borderTop: '1px solid rgba(245, 158, 11, 0.2)', paddingTop: '1rem' }}>
                             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                              <div style={{ background: '#FFFFFF', border: '1px solid rgba(245, 158, 11, 0.2)', padding: '0.75rem', borderRadius: '6px' }}>
+                              <div style={{ background: '#F8FAFC', border: '1px solid rgba(245, 158, 11, 0.2)', padding: '0.75rem', borderRadius: '6px' }}>
                                 <div style={{ fontSize: '0.65rem', fontWeight: '800', color: '#78350F', textTransform: 'uppercase', marginBottom: '0.25rem' }}>Victim Profile</div>
                                 <div style={{ fontWeight: '600' }}>👤 {aiSummary.victim}</div>
                               </div>
-                              <div style={{ background: '#FFFFFF', border: '1px solid rgba(245, 158, 11, 0.2)', padding: '0.75rem', borderRadius: '6px' }}>
+                              <div style={{ background: '#F8FAFC', border: '1px solid rgba(245, 158, 11, 0.2)', padding: '0.75rem', borderRadius: '6px' }}>
                                 <div style={{ fontSize: '0.65rem', fontWeight: '800', color: '#78350F', textTransform: 'uppercase', marginBottom: '0.25rem' }}>Suspect Details</div>
                                 <div style={{ fontWeight: '600' }}>🔍 {aiSummary.suspect}</div>
                               </div>
                             </div>
 
-                            <div style={{ background: '#FFFFFF', border: '1px solid rgba(245, 158, 11, 0.2)', padding: '0.75rem', borderRadius: '6px' }}>
+                            <div style={{ background: '#F8FAFC', border: '1px solid rgba(245, 158, 11, 0.2)', padding: '0.75rem', borderRadius: '6px' }}>
                               <div style={{ fontSize: '0.65rem', fontWeight: '800', color: '#78350F', textTransform: 'uppercase', marginBottom: '0.25rem' }}>Key Evidence Logs</div>
                               <div style={{ fontWeight: '500' }}>📁 {aiSummary.evidence}</div>
                             </div>
 
-                            <div style={{ background: '#FFFFFF', border: '1px solid rgba(245, 158, 11, 0.2)', padding: '0.75rem', borderRadius: '6px' }}>
+                            <div style={{ background: '#F8FAFC', border: '1px solid rgba(245, 158, 11, 0.2)', padding: '0.75rem', borderRadius: '6px' }}>
                               <div style={{ fontSize: '0.65rem', fontWeight: '800', color: '#1E3A8A', textTransform: 'uppercase', marginBottom: '0.4rem' }}>Suggested Next Steps (Patrol &amp; Investigation)</div>
                               <div style={{ whiteSpace: 'pre-wrap', lineHeight: '1.45', color: '#1E40AF' }}>{aiSummary.nextSteps}</div>
                             </div>
@@ -2817,10 +2817,9 @@ link.click();
               right: '2rem', 
               width: '400px', 
               height: '500px', 
-              background: '#FFFFFF', 
-              borderRadius: '16px', 
-              boxShadow: '0 12px 40px rgba(0, 0, 0, 0.12)', 
-              border: '1px solid #DCE3EA', 
+              background: '#F8FAFC', 
+              borderRadius: '4px', 
+              border: '1px solid #D1D5DB', 
               display: 'flex', 
               flexDirection: 'column', 
               overflow: 'hidden', 
@@ -2885,25 +2884,25 @@ link.click();
             </div>
 
             {/* Quick Command Suggestions Container */}
-            <div style={{ padding: '0.75rem 1.25rem', background: '#FFFFFF', borderTop: '1px solid #E2E8F0', display: 'flex', flexWrap: 'wrap', gap: '0.35rem' }}>
+            <div style={{ padding: '0.75rem 1.25rem', background: '#F8FAFC', borderTop: '1px solid #D1D5DB', display: 'flex', flexWrap: 'wrap', gap: '0.35rem' }}>
               <button 
                 type="button"
                 onClick={() => submitChatQuery("Show cybercrime cases in Bengaluru")}
-                style={{ background: '#F1F5F9', border: '1px solid #E2E8F0', borderRadius: '12px', padding: '0.3rem 0.6rem', fontSize: '0.68rem', color: '#475569', cursor: 'pointer', fontWeight: 'bold' }}
+                style={{ background: '#F1F5F9', border: '1px solid #D1D5DB', borderRadius: '12px', padding: '0.3rem 0.6rem', fontSize: '0.68rem', color: '#475569', cursor: 'pointer', fontWeight: 'bold' }}
               >
                 💻 Cyber Bengaluru
               </button>
               <button 
                 type="button"
                 onClick={() => submitChatQuery("Show high priority cases")}
-                style={{ background: '#F1F5F9', border: '1px solid #E2E8F0', borderRadius: '12px', padding: '0.3rem 0.6rem', fontSize: '0.68rem', color: '#475569', cursor: 'pointer', fontWeight: 'bold' }}
+                style={{ background: '#F1F5F9', border: '1px solid #D1D5DB', borderRadius: '12px', padding: '0.3rem 0.6rem', fontSize: '0.68rem', color: '#475569', cursor: 'pointer', fontWeight: 'bold' }}
               >
                 ⚠️ High Priority
               </button>
               <button 
                 type="button"
                 onClick={() => submitChatQuery("Reset all search filters")}
-                style={{ background: '#F1F5F9', border: '1px solid #E2E8F0', borderRadius: '12px', padding: '0.3rem 0.6rem', fontSize: '0.68rem', color: '#475569', cursor: 'pointer', fontWeight: 'bold' }}
+                style={{ background: '#F1F5F9', border: '1px solid #D1D5DB', borderRadius: '12px', padding: '0.3rem 0.6rem', fontSize: '0.68rem', color: '#475569', cursor: 'pointer', fontWeight: 'bold' }}
               >
                 🔄 Reset Filters
               </button>
@@ -2914,8 +2913,8 @@ link.click();
               onSubmit={handleChatSubmit} 
               style={{ 
                 padding: '0.75rem 1.25rem', 
-                background: '#FFFFFF', 
-                borderTop: '1px solid #E2E8F0', 
+                background: '#F8FAFC', 
+                borderTop: '1px solid #D1D5DB', 
                 display: 'flex', 
                 gap: '0.5rem',
                 alignItems: 'center' 
