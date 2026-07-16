@@ -883,6 +883,10 @@ link.click();
   const uniqueCategories = new Set(cases.map(item => item.category)).size;
   const uniqueStations = new Set(cases.map(item => item.police_station.toLowerCase().trim())).size;
 
+  // New stat counters
+  const firRegisteredCount = cases.filter(item => (item.status || '').toLowerCase().includes('fir registered')).length;
+  const caseFiledCount = cases.filter(item => (item.status || '').toLowerCase().includes('case filed')).length;
+
   // Filter and Sort cases
   const filteredCases = cases
     .filter(item => {
@@ -1281,14 +1285,14 @@ link.click();
       )}
 
       <header className="dashboard-header" style={{ padding: '0.75rem 2rem', backgroundColor: '#0F4C81', borderBottom: '3px solid #F9A825' }}>
-        <div className="header-inner" style={{ display: 'grid', gridTemplateColumns: '100px 1fr 280px', alignItems: 'center', maxWidth: '1600px', margin: '0 auto', width: '100%' }}>
+        <div className="header-inner header-inner-responsive" style={{ display: 'grid', gridTemplateColumns: '100px 1fr 280px', alignItems: 'center', maxWidth: '1600px', margin: '0 auto', width: '100%' }}>
           {/* Left: Emblem */}
           <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
             <KSPEmblem />
           </div>
           
-          {/* Center: Title Centered */}
-          <div style={{ textAlign: 'center' }}>
+          {/* Center: Title – left-aligned on mobile via CSS class */}
+          <div className="header-title-block">
             <h1 style={{ margin: 0, fontSize: '1.4rem', fontWeight: '800', color: '#FFFFFF', letterSpacing: '0.5px', textTransform: 'uppercase' }}>
               Karnataka State Police Crime Analytics &amp; Intelligence Platform
             </h1>
@@ -1298,7 +1302,7 @@ link.click();
           </div>
 
           {/* Right: Clock & Status */}
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.15rem' }}>
+          <div className="header-status-block" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.15rem' }}>
             <div className="ksp-live-status-row" style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', color: '#4ADE80', fontSize: '0.78rem', fontWeight: 'bold' }}>
               <span className="live-dot" style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#4ADE80', boxShadow: '0 0 8px #4ADE80' }} />
               <span>SYSTEM ONLINE</span>
@@ -1357,6 +1361,28 @@ link.click();
                 <AnimatedNumber value={uniqueStations} /> Stations
               </span>
               <span className="stat-kpi-sub gold">Statewide Precincts</span>
+            </div>
+          </div>
+
+          <div className="stat-card">
+            <div className="stat-icon fir-new">📝</div>
+            <div className="stat-info">
+              <span className="stat-label">New FIR Registered</span>
+              <span className="stat-value">
+                <AnimatedNumber value={firRegisteredCount} /> FIRs
+              </span>
+              <span className="stat-kpi-sub green">Status: FIR Registered</span>
+            </div>
+          </div>
+
+          <div className="stat-card">
+            <div className="stat-icon case-filed">⚖️</div>
+            <div className="stat-info">
+              <span className="stat-label">Case Filed</span>
+              <span className="stat-value">
+                <AnimatedNumber value={caseFiledCount} /> Cases
+              </span>
+              <span className="stat-kpi-sub blue">Forwarded to Court</span>
             </div>
           </div>
         </div>
