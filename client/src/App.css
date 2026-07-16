@@ -208,10 +208,10 @@ html, body {
 .crime-table th {
   background-color: var(--police-blue); 
   border-bottom: 2px solid rgba(0, 0, 0, 0.15);
-  padding: 1rem 1.25rem;
+  padding: 0.5rem 0.75rem;
   font-weight: 700;
   color: #FFFFFF;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   position: sticky;
@@ -220,9 +220,9 @@ html, body {
 }
 
 .crime-table td {
-  padding: 1rem 1.25rem;
-  border-bottom: 1px solid var(--border-color);
-  font-size: 0.9rem;
+  padding: 0.45rem 0.75rem;
+  border-bottom: 1px solid #E5E7EB;
+  font-size: 0.85rem;
   vertical-align: middle;
 }
 
@@ -274,7 +274,7 @@ html, body {
   line-height: 1.5;
 }
 
-/* Category Tags */
+/* Category Tags (High-Contrast Solid Tints) */
 .category-tag {
   display: inline-block;
   padding: 0.25rem 0.6rem;
@@ -285,23 +285,27 @@ html, body {
 }
 
 .category-tag.theft {
-  background-color: rgba(217, 179, 16, 0.15);
-  color: var(--police-gold);
+  background-color: #FEF3C7;
+  color: #B45309;
+  border: 1px solid #FCD34D;
 }
 
 .category-tag.cybercrime {
-  background-color: rgba(50, 140, 193, 0.15);
-  color: #60A5FA;
+  background-color: #DBEAFE;
+  color: #1D4ED8;
+  border: 1px solid #BFDBFE;
 }
 
 .category-tag.assault {
-  background-color: rgba(239, 68, 68, 0.15);
-  color: #F87171;
+  background-color: #FEE2E2;
+  color: #B91C1C;
+  border: 1px solid #FCA5A5;
 }
 
 .category-tag.fraud {
-  background-color: rgba(168, 85, 247, 0.15);
-  color: #C084FC;
+  background-color: #F3E8FF;
+  color: #6B21A8;
+  border: 1px solid #E9D5FF;
 }
 
 @keyframes pulse {
@@ -344,7 +348,7 @@ html, body {
   }
 }
 
-/* Glassmorphism Form Card */
+/* Institutional Flat Panel Cards (No Glassmorphism, No Hover-Lifts) */
 .form-card-wrapper {
   position: sticky;
   top: 2rem;
@@ -352,20 +356,13 @@ html, body {
 
 .form-card, .analytics-card, .activity-card {
   background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 1.75rem;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  border: 1px solid #D1D5DB;
+  border-radius: 6px;
+  padding: 1.5rem;
 }
 
 .form-card:hover, .analytics-card:hover, .activity-card:hover {
-  border-color: rgba(15, 76, 129, 0.25) !important;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
-}
-
-.form-card {
-  /* Inherits background, border-radius, shadows, transitions */
+  border-color: var(--police-blue);
 }
 
 .form-card h3 {
@@ -771,33 +768,33 @@ html, body {
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 1rem 1.5rem;
-  background: linear-gradient(135deg, rgba(15, 76, 129, 0.08) 0%, rgba(249, 168, 37, 0.04) 100%);
+  padding: 0.75rem 1.25rem;
+  background: #F8FAFC;
   border-left: 4px solid var(--police-blue, #0F4C81);
-  border-radius: 8px 8px 0 0;
+  border-radius: 4px;
   margin-bottom: 1.25rem;
-  border-bottom: 1px solid var(--border-color, rgba(255,255,255,0.08));
+  border: 1px solid #D1D5DB;
+  border-left-width: 4px;
 }
 
 .section-block-icon {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   flex-shrink: 0;
 }
 
 .section-block-title {
   margin: 0;
-  font-size: 1.1rem;
-  font-weight: 800;
-  color: var(--text-primary, #F1F5F9);
-  letter-spacing: 0.3px;
-  text-transform: uppercase;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--police-blue);
+  letter-spacing: 0.2px;
 }
 
 .section-block-sub {
   margin: 2px 0 0 0;
   font-size: 0.78rem;
-  color: var(--text-secondary, #94A3B8);
-  font-weight: 500;
+  color: var(--text-secondary, #6B7280);
+  font-weight: 400;
 }
 
 .stats-grid {
@@ -807,21 +804,17 @@ html, body {
 }
 
 .stat-card {
-  background: rgba(30, 41, 59, 0.45);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 1.25rem 1.5rem;
+  background: #FFFFFF;
+  border: 1px solid #D1D5DB;
+  border-radius: 4px;
+  padding: 1rem 1.25rem;
   display: flex;
   align-items: center;
   gap: 1.25rem;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .stat-card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(255, 255, 255, 0.15);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  border-color: var(--police-blue);
 }
 
 .stat-icon {
@@ -2905,23 +2898,17 @@ html, body {
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Card hover animation elevation */
-.form-card:hover, .analytics-card:hover, .activity-card:hover, .stat-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-}
-
 /* Stat Card Sub-labels */
 .stat-kpi-sub {
   font-size: 0.72rem;
-  font-weight: 700;
+  font-weight: 600;
   margin-top: 2px;
   display: block;
 }
 .stat-kpi-sub.green { color: var(--accent-green); }
 .stat-kpi-sub.red { color: var(--accent-red); }
 .stat-kpi-sub.blue { color: var(--police-light); }
-.stat-kpi-sub.gold { color: var(--police-gold); }
+.stat-kpi-sub.gold { color: #B45309; }
 
 /* Loading Bar Fill indefinite sliding animation */
 .loading-bar-fill {
@@ -3000,4 +2987,102 @@ html, body {
   transform: scale(1.06);
   box-shadow: 0 8px 25px rgba(15, 76, 129, 0.5) !important;
 }
+
+/* ──────────────────────────────────────────────────────────────────────────
+   📰 PRINT STYLESHEET OVERRIDES
+   Optimizes case file exports and summaries for physical A4 printing.
+   ────────────────────────────────────────────────────────────────────────── */
+@media print {
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    font-size: 11pt !important;
+  }
+
+  /* Hide interactive UI elements */
+  .tabs-navigation,
+  .filter-controls-bar,
+  .form-card-wrapper,
+  .floating-chat-trigger,
+  .ai-fab,
+  .ai-drawer,
+  .action-buttons-group,
+  .export-csv-btn,
+  .refresh-btn,
+  .clear-filters-btn,
+  .ksp-live-status-row {
+    display: none !important;
+  }
+
+  /* Make containers print-friendly */
+  .dashboard-container,
+  .dashboard-grid,
+  .data-view-wrapper,
+  .table-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+    overflow: visible !important;
+    max-height: none !important;
+  }
+
+  /* Adjust header for formal paper print */
+  .dashboard-header {
+    background: #FFFFFF !important;
+    border-bottom: 2px solid #000000 !important;
+    color: #000000 !important;
+    padding: 1rem 0 !important;
+  }
+
+  .header-title-block h1 {
+    color: #000000 !important;
+    font-family: Georgia, serif !important;
+    font-size: 1.6rem !important;
+  }
+
+  .header-title-block h2 {
+    color: #333333 !important;
+    font-size: 1rem !important;
+  }
+
+  /* Clean print-table styling */
+  .crime-table {
+    table-layout: auto !important;
+    width: 100% !important;
+    border: 1px solid #000000 !important;
+    page-break-inside: auto;
+  }
+
+  .crime-table tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+
+  .crime-table th {
+    background-color: #E2E8F0 !important;
+    color: #000000 !important;
+    border-bottom: 2px solid #000000 !important;
+    font-size: 9pt !important;
+    padding: 0.5rem !important;
+  }
+
+  .crime-table td {
+    border-bottom: 1px solid #CCCCCC !important;
+    color: #000000 !important;
+    font-size: 9.5pt !important;
+    padding: 0.4rem 0.5rem !important;
+  }
+
+  /* Make sure background tints print as borders/grays */
+  .category-tag {
+    background: none !important;
+    border: 1px solid #000000 !important;
+    color: #000000 !important;
+    padding: 0.1rem 0.3rem !important;
+  }
+}
+
 

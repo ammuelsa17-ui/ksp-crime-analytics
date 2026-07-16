@@ -1291,29 +1291,29 @@ link.click();
             <KSPEmblem />
           </div>
 
-          {/* Center: Properly stacked title */}
+          {/* Center: Properly stacked title with institutional serif typography */}
           <div className="header-title-block" style={{ textAlign: 'center' }}>
-            <p style={{ margin: 0, fontSize: '0.72rem', fontWeight: '700', color: '#F9A825', letterSpacing: '1.5px', textTransform: 'uppercase' }}>
+            <p style={{ margin: 0, fontSize: '0.75rem', fontWeight: '600', color: '#F9A825', letterSpacing: '1px', textTransform: 'uppercase' }}>
               Government of Karnataka
             </p>
-            <h1 style={{ margin: '2px 0', fontSize: '1.25rem', fontWeight: '900', color: '#FFFFFF', letterSpacing: '0.8px', textTransform: 'uppercase', lineHeight: '1.25' }}>
+            <h1 style={{ margin: '3px 0', fontSize: '1.45rem', fontWeight: '700', color: '#FFFFFF', fontFamily: 'Georgia, "Times New Roman", serif', letterSpacing: '0.5px', lineHeight: '1.2' }}>
               Karnataka State Police
             </h1>
-            <h2 style={{ margin: '1px 0', fontSize: '0.95rem', fontWeight: '700', color: '#FFFFFF', letterSpacing: '0.5px', textTransform: 'uppercase', lineHeight: '1.2' }}>
+            <h2 style={{ margin: '1px 0', fontSize: '0.95rem', fontWeight: '500', color: '#E2E8F0', letterSpacing: '0.2px', lineHeight: '1.2' }}>
               Crime Analytics &amp; Intelligence Platform
             </h2>
-            <p style={{ margin: '3px 0 0 0', fontSize: '0.7rem', fontWeight: '600', color: '#94A3B8', letterSpacing: '0.8px', textTransform: 'uppercase' }}>
+            <p style={{ margin: '3px 0 0 0', fontSize: '0.7rem', fontWeight: '500', color: '#94A3B8', letterSpacing: '0.5px' }}>
               Karnataka State Intelligence Department
             </p>
           </div>
 
-          {/* Right: Clock & Status */}
+          {/* Right: Clock & Status (Clean, no glow animations) */}
           <div className="header-status-block" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.15rem' }}>
             <div className="ksp-live-status-row" style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', color: '#4ADE80', fontSize: '0.78rem', fontWeight: 'bold' }}>
-              <span className="live-dot" style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#4ADE80', boxShadow: '0 0 8px #4ADE80' }} />
-              <span>SYSTEM ONLINE</span>
+              <span className="live-dot" style={{ display: 'inline-block', width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#10B981' }} />
+              <span>System operational</span>
             </div>
-            <div style={{ fontSize: '0.7rem', color: '#E2E8F0', fontWeight: '600' }}>
+            <div style={{ fontSize: '0.7rem', color: '#E2E8F0', fontWeight: '500' }}>
               🕒 {currentTime.toLocaleString([], { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' })}
             </div>
             <div style={{ fontSize: '0.65rem', color: '#94A3B8' }}>
