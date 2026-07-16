@@ -422,13 +422,52 @@ html, body {
   transition: all 0.2s ease;
 }
 
+.form-group input:focus-visible,
+.form-group select:focus-visible,
+.form-group textarea:focus-visible {
+  outline: 2px solid #1565C0;
+  outline-offset: 1px;
+  border-color: #1565C0;
+  box-shadow: none;
+}
+
+/* Accessible Focus Ring Fallback */
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-  outline: none;
-  border-color: var(--police-light);
-  box-shadow: 0 0 0 3px rgba(21, 101, 192, 0.15);
-  background-color: #FFFFFF;
+  outline: 2px solid #1565C0;
+  outline-offset: 1px;
+  border-color: #1565C0;
+  box-shadow: none;
+}
+
+/* Validation Invalid States */
+.form-group input.invalid,
+.form-group select.invalid,
+.form-group textarea.invalid,
+.form-group input.aria-invalid {
+  border-color: #DC2626 !important;
+  background-color: #FDF2F2 !important;
+}
+
+.form-group input.invalid:focus,
+.form-group select.invalid:focus,
+.form-group textarea.invalid:focus {
+  outline: 2px solid #DC2626 !important;
+  outline-offset: 1px;
+  border-color: #DC2626 !important;
+}
+
+/* Disabled States */
+.form-group input:disabled,
+.form-group select:disabled,
+.form-group textarea:disabled,
+button:disabled {
+  background-color: #F3F4F6 !important;
+  border-color: #D1D5DB !important;
+  color: #9CA3AF !important;
+  cursor: not-allowed !important;
+  opacity: 0.7;
 }
 
 .form-group input::placeholder,
@@ -541,13 +580,11 @@ html, body {
 
 .modal-content {
   background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
+  border: 1px solid #D1D5DB;
+  border-radius: 4px;
   width: 580px;
   max-width: 90%;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   overflow: hidden;
-  animation: slideUp 0.2s ease-out;
 }
 
 .modal-header {
@@ -2252,25 +2289,29 @@ html, body {
 
 .risk-badge {
   font-size: 0.72rem;
-  font-weight: 800;
+  font-weight: 700;
   padding: 0.15rem 0.5rem;
   border-radius: 4px;
   text-transform: uppercase;
+  display: inline-block;
 }
 
 .risk-badge.risk-high {
-  background-color: rgba(239, 68, 68, 0.15);
-  color: #f87171 !important;
+  background-color: #FEE2E2 !important;
+  color: #991B1B !important;
+  border: 1px solid #FCA5A5;
 }
 
 .risk-badge.risk-medium {
-  background-color: rgba(217, 179, 16, 0.15);
-  color: var(--police-gold) !important;
+  background-color: #FEF3C7 !important;
+  color: #92400E !important;
+  border: 1px solid #FCD34D;
 }
 
 .risk-badge.risk-low {
-  background-color: rgba(16, 185, 129, 0.15);
-  color: var(--accent-green) !important;
+  background-color: #D1FAE5 !important;
+  color: #065F46 !important;
+  border: 1px solid #6EE7B7;
 }
 
 .risk-bar-track {

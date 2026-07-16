@@ -1257,25 +1257,25 @@ link.click();
         ))}
       </div>
 
-      {/* Loading Overlay */}
+      {/* Loading Overlay (Institutional Flat Design) */}
       {(loading || submitting || updateLoading) && (
-        <div className="loading-overlay" style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(245, 247, 250, 0.95)', zIndex: 9999, backdropFilter: 'blur(4px)' }}>
-          <div style={{ textAlign: 'center', width: '360px', padding: '2.5rem 2rem', background: '#FFFFFF', borderRadius: '16px', boxShadow: '0 20px 40px rgba(0,0,0,0.06)', border: '1px solid #DCE3EA', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.25rem' }}>
+        <div className="loading-overlay" style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(245, 247, 250, 0.9)', zIndex: 9999 }}>
+          <div style={{ textAlign: 'center', width: '360px', padding: '2rem', background: '#FFFFFF', borderRadius: '4px', border: '1px solid #D1D5DB', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.25rem' }}>
             <KSPEmblem />
             <div>
-              <h3 style={{ margin: '0 0 0.25rem 0', fontSize: '1.1rem', fontWeight: '800', color: '#0F4C81', letterSpacing: '0.5px' }}>KARNATAKA STATE POLICE</h3>
-              <h4 style={{ margin: 0, fontSize: '0.82rem', fontWeight: '600', color: '#6B7280' }}>Crime Analytics &amp; Intelligence</h4>
+              <h3 style={{ margin: '0 0 0.25rem 0', fontSize: '1.1rem', fontWeight: '700', color: '#0F4C81', letterSpacing: '0.5px', fontFamily: 'Georgia, serif' }}>Karnataka State Police</h3>
+              <h4 style={{ margin: 0, fontSize: '0.82rem', fontWeight: '500', color: '#4B5563' }}>Crime Analytics &amp; Intelligence</h4>
             </div>
             
             <div style={{ width: '100%', marginTop: '0.5rem' }}>
-              <p style={{ margin: '0 0 0.5rem 0', fontSize: '0.72rem', fontWeight: '800', color: '#F9A825', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+              <p style={{ margin: '0 0 0.5rem 0', fontSize: '0.72rem', fontWeight: '600', color: '#B45309', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                 {submitting ? 'Submitting FIR Record...' : updateLoading ? 'Updating Case Log...' : 'Synchronizing Data Store...'}
               </p>
-              {/* Progressive loading progress bar mock */}
-              <div className="loading-bar-container" style={{ width: '100%', height: '8px', backgroundColor: '#E2E8F0', borderRadius: '4px', overflow: 'hidden', position: 'relative' }}>
-                <div className="loading-bar-fill" style={{ position: 'absolute', height: '100%', width: '40%', backgroundColor: '#1565C0', borderRadius: '4px' }} />
+              {/* Progressive loading progress bar */}
+              <div className="loading-bar-container" style={{ width: '100%', height: '6px', backgroundColor: '#E2E8F0', borderRadius: '3px', overflow: 'hidden', position: 'relative' }}>
+                <div className="loading-bar-fill" style={{ position: 'absolute', height: '100%', width: '40%', backgroundColor: '#1565C0', borderRadius: '3px' }} />
               </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.65rem', color: '#9CA3AF', marginTop: '0.35rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.65rem', color: '#6B7280', marginTop: '0.35rem' }}>
                 <span>Securing connection...</span>
                 <span>Active</span>
               </div>
