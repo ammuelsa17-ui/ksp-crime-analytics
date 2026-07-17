@@ -187,11 +187,11 @@ html, body {
 .table-wrapper {
   background-color: var(--bg-secondary);
   border: 1px solid var(--border-color);
-  border-radius: 12px;
+  border-radius: 4px;
   overflow-x: auto;
-  max-height: 580px;
+  max-height: 520px;
   overflow-y: auto;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  -webkit-overflow-scrolling: touch;
 }
 
 .data-view-wrapper {
@@ -202,13 +202,13 @@ html, body {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
-  table-layout: fixed;
+  table-layout: auto;
 }
 
 .crime-table th {
   background-color: var(--police-blue); 
   border-bottom: 2px solid rgba(0, 0, 0, 0.15);
-  padding: 0.5rem 0.75rem;
+  padding: 0.65rem 0.85rem;
   font-weight: 700;
   color: #FFFFFF;
   font-size: 0.78rem;
@@ -220,14 +220,14 @@ html, body {
 }
 
 .crime-table td {
-  padding: 0.45rem 0.75rem;
+  padding: 0.6rem 0.85rem;
   border-bottom: 1px solid #E5E7EB;
   font-size: 0.85rem;
   vertical-align: middle;
 }
 
 .crime-table tbody tr:nth-child(even) {
-  background-color: #F9FAFB;
+  background-color: #F8FAFC;
 }
 
 .crime-table tbody tr:nth-child(odd) {
@@ -235,7 +235,7 @@ html, body {
 }
 
 .crime-table tbody tr {
-  transition: background-color 0.15s ease;
+  transition: background-color 0.1s ease;
   cursor: pointer;
 }
 
@@ -243,18 +243,17 @@ html, body {
   background-color: #EEF6FF !important;
 }
 
-/* Specific column width overrides to prevent overlapping */
-.crime-table th:nth-child(1), .crime-table td:nth-child(1) { width: 170px; min-width: 170px; max-width: 170px; word-break: break-all; } /* FIR */
-.crime-table th:nth-child(2), .crime-table td:nth-child(2) { width: 120px; min-width: 120px; max-width: 120px; } /* Category */
-.crime-table th:nth-child(3), .crime-table td:nth-child(3) { width: 160px; min-width: 160px; max-width: 160px; } /* District */
-.crime-table th:nth-child(4), .crime-table td:nth-child(4) { width: 180px; min-width: 180px; max-width: 180px; } /* Police Station */
-.crime-table th:nth-child(5), .crime-table td:nth-child(5) { width: 170px; min-width: 170px; max-width: 170px; white-space: nowrap; } /* Incident Date */
-.crime-table th:nth-child(6), .crime-table td:nth-child(6) { 
+/* Specific column width mappings (Aligned with JSX layout) */
+.crime-table th:nth-child(1), .crime-table td:nth-child(1) { width: 160px; min-width: 160px; word-break: break-all; } /* FIR Number */
+.crime-table th:nth-child(2), .crime-table td:nth-child(2) { width: 110px; min-width: 110px; } /* Category tag */
+.crime-table th:nth-child(3), .crime-table td:nth-child(3) { width: 180px; min-width: 180px; } /* District / Station */
+.crime-table th:nth-child(4), .crime-table td:nth-child(4) { width: 130px; min-width: 130px; } /* Incident Date */
+.crime-table th:nth-child(5), .crime-table td:nth-child(5) { width: 110px; min-width: 110px; } /* Priority Badge */
+.crime-table th:nth-child(6), .crime-table td:nth-child(6) { width: 120px; min-width: 120px; } /* Case Status */
+.crime-table th:nth-child(7), .crime-table td:nth-child(7) { 
   width: auto; 
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-} /* Summary */
+  min-width: 250px; 
+} /* Summary Description */
 
 .fir-col {
   font-family: monospace;
@@ -268,10 +267,9 @@ html, body {
 }
 
 .summary-col {
-  color: #CBD5E1;
-  min-width: 280px;
-  max-width: 450px;
-  line-height: 1.5;
+  color: var(--text-primary);
+  line-height: 1.45;
+  word-break: break-word;
 }
 
 /* Category Tags (High-Contrast Solid Tints) */
