@@ -1,12 +1,12 @@
-/* --- Microsoft Defender XDR / Palantir Gotham / Azure Portal Enterprise Design System --- */
-
 /* ☀️ Light Theme Tokens */
 :root, [data-theme="light"], .light-theme {
   --bg-page: #F5F7FA;
   --bg-primary: #F5F7FA;
   --bg-secondary: #F8FAFC;
   --bg-card: #FFFFFF;
-  --bg-hover: #E2E8F0;
+  --bg-hover: #E8F1FF;
+  --bg-selected: #D7E7FF;
+  --bg-active: #2F6FED;
   --bg-sidebar: #EEF2F7;
   --bg-header: #FFFFFF;
   --bg-table: #FFFFFF;
@@ -38,7 +38,9 @@
   --bg-primary: #08111F;
   --bg-secondary: #0E1625;
   --bg-card: #172235;
-  --bg-hover: #22344A;
+  --bg-hover: #1E2C42;
+  --bg-selected: #233754;
+  --bg-active: #2F6FED;
   --bg-sidebar: #0E1625;
   --bg-header: #0E1625;
   --bg-table: #172235;
@@ -98,8 +100,15 @@ tbody tr:nth-child(even) {
   background-color: var(--bg-table-alt) !important;
 }
 
-tbody tr:hover {
+/* 🔒 ABSOLUTE ELIMINATION OF HARDCODED WHITE HOVER/FOCUS STATES */
+tr:hover, td:hover, li:hover, .table-row:hover, .nav-item:hover, .sidebar-nav-btn:hover {
   background-color: var(--bg-hover) !important;
+  color: var(--text-primary) !important;
+}
+
+tr.selected, tr.active, li.selected, li.active, .selected, .active-nav-item {
+  background-color: var(--bg-selected) !important;
+  color: var(--text-primary) !important;
 }
 
 /* Inputs, Selects, Textareas */
