@@ -54,7 +54,7 @@ export default function Sidebar({
     <aside 
       className={`enterprise-sidebar ${sidebarCollapsed ? 'collapsed' : ''}`}
       style={{
-        width: sidebarCollapsed ? '64px' : '260px',
+        width: sidebarCollapsed ? '60px' : '220px',
         backgroundColor: 'var(--bg-sidebar)',
         color: 'var(--text-sidebar)',
         display: 'flex',
