@@ -42,6 +42,7 @@ export default function UnifiedIntelligencePanel({ firNumber = 'FIR/BLR/2026/001
       {/* 2. Unified Sub-Navigation Tabs */}
       <div style={{ display: 'flex', gap: '0.4rem', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.5rem', marginBottom: '1rem', flexWrap: 'wrap' }}>
         {[
+          { id: 'executive_brief', label: "Executive Briefing" },
           { id: 'recommendations', label: 'Tactical Recommendations' },
           { id: 'xai', label: 'XAI Risk Breakdown (92/100)' },
           { id: 'bns', label: 'Applicable BNS Sections' },
@@ -67,6 +68,22 @@ export default function UnifiedIntelligencePanel({ firNumber = 'FIR/BLR/2026/001
       </div>
 
       {/* 3. Sub-Tab Content Viewports */}
+      {activeSubTab === 'executive_brief' && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', background: 'var(--bg-primary)', padding: '1rem', borderRadius: '6px', border: '1px solid var(--border-color)' }}>
+          <div style={{ fontSize: '0.88rem', fontWeight: '800', color: 'var(--police-light)', letterSpacing: '0.5px', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.4rem' }}>
+            📋 TODAY'S STATEWIDE POLICE INTELLIGENCE BRIEFING
+          </div>
+          <div style={{ fontSize: '0.8rem', color: 'var(--text-primary)', lineHeight: '1.5' }}>
+            <ul style={{ margin: 0, paddingLeft: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+              <li><strong>Cyber Fraud Outlier:</strong> Bengaluru Urban registered a <strong>+304.7% abnormal spike</strong> (34 FIRs) detected by Isolation Forest outlier algorithms.</li>
+              <li><strong>Spatial Density Hotspot:</strong> DBSCAN clustering identified <strong>Koramangala 5th Block Tech Hub</strong> as a High-Density Sector (42 active FIRs).</li>
+              <li><strong>Criminal Network Linkage:</strong> NetworkX graph linker matched 2 new FIRs to the <strong>Ramesh Kumar Cyber Syndicate VPA</strong> (<code>ramesh@icici</code>).</li>
+              <li><strong>Recommended Tactical Action:</strong> Issue dynamic NPCI beneficiary account freeze notice &amp; dispatch 4 night patrol units (01:00 AM - 04:00 AM window).</li>
+            </ul>
+          </div>
+        </div>
+      )}
+
       {activeSubTab === 'recommendations' && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
           {recommendations.map(item => (
