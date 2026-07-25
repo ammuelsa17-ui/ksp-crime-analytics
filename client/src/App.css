@@ -1,13 +1,18 @@
 /* --- Microsoft Defender XDR / Palantir Gotham / Azure Portal Enterprise Design System --- */
 
-/* ☀️ Light Theme (Government Analytics Portal - Authoritative Law Enforcement Palette) */
+/* ☀️ Light Theme Tokens */
 :root, [data-theme="light"], .light-theme {
+  --bg-page: #F5F7FA;
   --bg-primary: #F5F7FA;
   --bg-secondary: #F8FAFC;
   --bg-card: #FFFFFF;
   --bg-hover: #E2E8F0;
   --bg-sidebar: #EEF2F7;
   --bg-header: #FFFFFF;
+  --bg-table: #FFFFFF;
+  --bg-table-header: #EEF2F7;
+  --bg-table-row: #FFFFFF;
+  --bg-table-alt: #F8FAFC;
   --text-primary: #1F2937;
   --text-secondary: #475569;
   --text-muted: #64748B;
@@ -27,14 +32,19 @@
   --text-desc: var(--text-secondary);
 }
 
-/* 🌙 Dark Theme (Exact 10-Color Enterprise Palette Specification) */
+/* 🌙 Dark Theme Tokens */
 [data-theme="dark"], .dark-theme {
+  --bg-page: #08111F;
   --bg-primary: #08111F;
   --bg-secondary: #0E1625;
   --bg-card: #172235;
   --bg-hover: #22344A;
   --bg-sidebar: #0E1625;
   --bg-header: #0E1625;
+  --bg-table: #172235;
+  --bg-table-header: #0E1625;
+  --bg-table-row: #172235;
+  --bg-table-alt: #1B2A3E;
   --text-primary: #DDE7F3;
   --text-secondary: #94A8BC;
   --text-muted: #64748B;
@@ -44,6 +54,8 @@
   --police-gold: #C9892A;
   --accent-green: #2FA36B;
   --accent-red: #C64646;
+  --accent-purple: #7C3AED;
+  --accent-orange: #EA580C;
 
   --bg-canvas: var(--bg-primary);
   --bg-card-element: var(--bg-secondary);
@@ -52,61 +64,56 @@
   --text-desc: var(--text-secondary);
 }
 
-/* 🔒 UNIFIED TABLE COMPONENT SPECIFICATION */
-.dark-theme table,
-[data-theme="dark"] table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.82rem;
-  color: var(--text-primary);
+/* 🔒 UNIVERSAL THEME-DRIVEN COMPONENT OVERRIDES */
+table {
+  background-color: var(--bg-table) !important;
+  color: var(--text-primary) !important;
 }
 
-.dark-theme th,
-[data-theme="dark"] th {
-  background-color: #0E1625 !important;
+th {
+  background-color: var(--bg-table-header) !important;
   color: var(--text-secondary) !important;
+  border-bottom: 1px solid var(--border-color) !important;
   font-size: 0.72rem !important;
   font-weight: 700 !important;
   text-transform: uppercase !important;
   letter-spacing: 0.5px !important;
   height: 40px !important;
   padding: 0 1rem !important;
-  border-bottom: 1px solid #22344A !important;
   text-align: left;
 }
 
-.dark-theme td,
-[data-theme="dark"] td {
+td {
   height: 44px !important;
   padding: 0 1rem !important;
-  border-bottom: 1px solid #22344A !important;
+  border-bottom: 1px solid var(--border-color) !important;
   color: var(--text-primary) !important;
 }
 
-.dark-theme tbody tr,
-[data-theme="dark"] tbody tr {
-  background-color: #172235 !important;
+tbody tr {
+  background-color: var(--bg-table-row) !important;
 }
 
-.dark-theme tbody tr:nth-child(even),
-[data-theme="dark"] tbody tr:nth-child(even) {
-  background-color: #1B2A3E !important;
+tbody tr:nth-child(even) {
+  background-color: var(--bg-table-alt) !important;
 }
 
-.dark-theme tbody tr:hover,
-[data-theme="dark"] tbody tr:hover {
-  background-color: #22344A !important;
+tbody tr:hover {
+  background-color: var(--bg-hover) !important;
 }
 
-/* 🔒 LEAFLET DARK MAP POPUP OVERRIDES */
-.dark-theme .leaflet-popup-content-wrapper,
-.dark-theme .leaflet-popup-tip,
-[data-theme="dark"] .leaflet-popup-content-wrapper,
-[data-theme="dark"] .leaflet-popup-tip {
-  background-color: #172235 !important;
-  color: #DDE7F3 !important;
-  border: 1px solid #22344A !important;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5) !important;
+/* Inputs, Selects, Textareas */
+input, select, textarea {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+/* Modals, Drawers, Leaflet Controls & Popups */
+.modal-content, .drawer-content, .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+  background-color: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-color) !important;
 }
 
 /* 🔒 SINGLE CARD COMPONENT SPECIFICATION (NO GRADIENTS, NO SHADOWS, NO SCALING) */
