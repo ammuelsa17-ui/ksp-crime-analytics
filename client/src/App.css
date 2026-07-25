@@ -66,10 +66,12 @@
   --text-desc: var(--text-secondary);
 }
 
-/* 🔒 UNIVERSAL THEME-DRIVEN COMPONENT OVERRIDES */
+/* 🔒 POLICE COMMAND DENSITY & UNIFIED ROW HOVER OVERRIDES */
 table {
   background-color: var(--bg-table) !important;
   color: var(--text-primary) !important;
+  width: 100% !important;
+  border-collapse: collapse !important;
 }
 
 th {
@@ -80,14 +82,14 @@ th {
   font-weight: 700 !important;
   text-transform: uppercase !important;
   letter-spacing: 0.5px !important;
-  height: 40px !important;
-  padding: 0 1rem !important;
+  height: 38px !important;
+  padding: 0.4rem 0.85rem !important;
   text-align: left;
 }
 
 td {
-  height: 44px !important;
-  padding: 0 1rem !important;
+  height: 48px !important;
+  padding: 0.4rem 0.85rem !important;
   border-bottom: 1px solid var(--border-color) !important;
   color: var(--text-primary) !important;
 }
@@ -100,26 +102,26 @@ tbody tr:nth-child(even) {
   background-color: var(--bg-table-alt) !important;
 }
 
-/* 🔒 UNIFIED ROW-BY-ROW TABLE HOVER OVERRIDE (DARK MODE & LIGHT MODE) */
-[data-theme="dark"] tbody tr:hover,
-[data-theme="dark"] tbody tr:hover td,
+/* 🔒 DISABLE CELL-BY-CELL HOVER & FORCE FULL ROW HIGHLIGHT */
+td:hover, th:hover {
+  background-color: transparent !important;
+}
+
+tbody tr:hover,
+tbody tr:hover > td,
+tbody tr:hover > th,
 .dark-theme tbody tr:hover,
-.dark-theme tbody tr:hover td {
+.dark-theme tbody tr:hover > td,
+[data-theme="dark"] tbody tr:hover,
+[data-theme="dark"] tbody tr:hover > td {
   background-color: #22344A !important;
   color: #DDE7F3 !important;
 }
 
-[data-theme="dark"] td:hover,
-.dark-theme td:hover,
-[data-theme="dark"] th:hover,
-.dark-theme th:hover {
-  background-color: transparent !important;
-}
-
-[data-theme="light"] tbody tr:hover,
-[data-theme="light"] tbody tr:hover td,
 .light-theme tbody tr:hover,
-.light-theme tbody tr:hover td {
+.light-theme tbody tr:hover > td,
+[data-theme="light"] tbody tr:hover,
+[data-theme="light"] tbody tr:hover > td {
   background-color: #E8F1FF !important;
   color: #1F2937 !important;
 }
