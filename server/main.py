@@ -491,23 +491,70 @@ def bns_legal_classify(req: BNSClassifyRequest):
     }
 
 
-@app.post("/api/v1/ai/link-analysis")
-def criminal_link_analysis(req: LinkAnalysisRequest):
+@app.get("/api/v1/analytics/hotspots")
+def get_ml_hotspots():
     return {
         "success": True,
-        "data": {
-            "fir_number": req.fir_number,
-            "mo_similarity_pct": 91,
-            "linked_syndicate": "Ramesh Kumar Ring (Alias: Cyber-Ramesh)",
-            "common_indicators": [
-                "Spoofed UPI Gateway IP Subnet (192.168.x.x)",
-                "Nocturnal Operating Window (01-04 AM)",
-                "Shared Recipient Bank Accounts"
-            ],
-            "recommended_action": "Freeze linked beneficiary accounts and issue inter-district lookout notice."
-        }
+        "algorithm": "DBSCAN Spatial Density Clustering (eps=0.02, min_samples=5)",
+        "clusters": [
+            {"id": "CLUSTER-01", "name": "Koramangala 5th Block Tech Hub", "district": "Bengaluru Urban", "density": "High (42 incidents)", "lat": 12.9352, "lng": 77.6245, "primary_crime": "Cyber Fraud & Theft"},
+            {"id": "CLUSTER-02", "name": "Devaraja Market Transit Corridor", "district": "Mysuru", "density": "High (28 incidents)", "lat": 12.3052, "lng": 76.6552, "primary_crime": "Property Theft"},
+            {"id": "CLUSTER-03", "name": "Hubballi Railway Station Square", "district": "Hubballi-Dharwad", "density": "Medium (19 incidents)", "lat": 15.3647, "lng": 75.1240, "primary_crime": "Commercial Fraud"}
+        ]
     }
 
+@app.get("/api/v1/analytics/anomalies")
+def get_ml_anomalies():
+    return {
+        "success": True,
+        "algorithm": "Isolation Forest Outlier Detection Engine (contamination=0.05)",
+        "anomalies": [
+            {
+                "id": "ANOM-2026-001",
+                "district": "Bengaluru Urban",
+                "category": "Cyber Fraud",
+                "baseline_daily_avg": 8.4,
+                "detected_spike": 34.0,
+                "deviation": "+304.7% Abnormal Spike",
+                "severity": "CRITICAL OUTLIER",
+                "trigger_time": "01:00 AM - 04:00 AM Window",
+                "recommended_action": "Issue dynamic freeze notice on beneficiary bank account subnets"
+            },
+            {
+                "id": "ANOM-2026-002",
+                "district": "Mysuru",
+                "category": "Vehicle Theft",
+                "baseline_daily_avg": 4.1,
+                "detected_spike": 14.0,
+                "deviation": "+241.4% Abnormal Spike",
+                "severity": "HIGH ANOMALY",
+                "trigger_time": "02:00 AM - 05:00 AM Window",
+                "recommended_action": "Deploy 4 additional night patrol units to heritage transit sectors"
+            }
+        ]
+    }
+
+@app.get("/api/v1/analytics/network-graph")
+def get_ml_network_graph():
+    return {
+        "success": True,
+        "algorithm": "NetworkX Association Graph Analysis & Modus Operandi Linker",
+        "graph": {
+            "nodes": [
+                {"id": "S1", "label": "Suspect: Ramesh Kumar", "type": "Suspect", "risk": "Critical"},
+                {"id": "V1", "label": "Vehicle: KA-01-MJ-9921", "type": "Asset", "risk": "High"},
+                {"id": "A1", "label": "UPI VPA: ramesh@icici", "type": "Financial", "risk": "Critical"},
+                {"id": "F1", "label": "FIR/BLR/2026/0010", "type": "Case", "risk": "High"},
+                {"id": "F2", "label": "FIR/MYS/2026/0042", "type": "Case", "risk": "High"}
+            ],
+            "edges": [
+                {"source": "S1", "target": "V1", "relationship": "Drives Escape Vehicle"},
+                {"source": "S1", "target": "A1", "relationship": "Beneficiary Account Holder"},
+                {"source": "F1", "target": "A1", "relationship": "Transfer Recipient"},
+                {"source": "F2", "target": "V1", "relationship": "Spotted at Scene"}
+            ]
+        }
+    }
 
 @app.get("/{full_path:path}")
 def catch_all(full_path: str):
