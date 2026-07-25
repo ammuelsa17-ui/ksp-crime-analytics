@@ -169,14 +169,28 @@ input, select, textarea {
   color: #DDE7F3 !important;
 }
 
-/* 🔒 REMOVE NESTED CARD BORDERS & NOISE */
-.dark-theme .analytics-card .analytics-card,
-.dark-theme .analytics-card .subcard,
-[data-theme="dark"] .analytics-card .analytics-card,
-[data-theme="dark"] .analytics-card .subcard {
-  border: none !important;
-  background-color: transparent !important;
-  padding: 0.5rem 0 !important;
+/* 🔒 FULL-WIDTH RESPONSIVE WORKSPACE & TABLE OVERFLOW CONTAINMENT */
+.table-responsive-container,
+.table-wrapper,
+.table-container {
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-card);
+  box-sizing: border-box;
+}
+
+.intelligence-dashboard-view,
+.analytics-dashboard-view,
+.overview-dashboard-view,
+.records-dashboard-view,
+.admin-dashboard-view {
+  max-width: 100% !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
 }
 
 /* 🔒 Enterprise Command Interface — Disable Scaling & Floating Animations */
