@@ -157,6 +157,28 @@ export default function Topbar({
       {/* RIGHT: Compact Icons & Officer Profile */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexShrink: 0 }}>
         
+        {/* Presentation Mode Toggle Pill */}
+        <button
+          onClick={() => setDemoMode && setDemoMode(!demoMode)}
+          style={{
+            background: demoMode ? 'rgba(59, 130, 246, 0.2)' : 'var(--bg-primary)',
+            border: demoMode ? '1px solid var(--police-blue)' : '1px solid var(--border-color)',
+            borderRadius: '6px',
+            padding: '0.35rem 0.65rem',
+            cursor: 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.35rem',
+            color: demoMode ? 'var(--police-light)' : 'var(--text-secondary)',
+            fontSize: '0.72rem',
+            fontWeight: '700'
+          }}
+          title="Toggle Judge Presentation Mode (Hides debug logs & amplifies presentation views)"
+        >
+          <span>📊</span>
+          <span>{demoMode ? 'PRESENTATION MODE ON' : 'PRESENTATION MODE'}</span>
+        </button>
+
         {/* Theme Switcher */}
         <button
           onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
