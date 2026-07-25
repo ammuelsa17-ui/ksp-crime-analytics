@@ -83,9 +83,30 @@
   color: var(--text-primary) !important;
 }
 
+.dark-theme tbody tr,
+[data-theme="dark"] tbody tr {
+  background-color: #172235 !important;
+}
+
+.dark-theme tbody tr:nth-child(even),
+[data-theme="dark"] tbody tr:nth-child(even) {
+  background-color: #1B2A3E !important;
+}
+
 .dark-theme tbody tr:hover,
 [data-theme="dark"] tbody tr:hover {
-  background-color: #0E1625 !important;
+  background-color: #22344A !important;
+}
+
+/* 🔒 LEAFLET DARK MAP POPUP OVERRIDES */
+.dark-theme .leaflet-popup-content-wrapper,
+.dark-theme .leaflet-popup-tip,
+[data-theme="dark"] .leaflet-popup-content-wrapper,
+[data-theme="dark"] .leaflet-popup-tip {
+  background-color: #172235 !important;
+  color: #DDE7F3 !important;
+  border: 1px solid #22344A !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5) !important;
 }
 
 /* 🔒 SINGLE CARD COMPONENT SPECIFICATION (NO GRADIENTS, NO SHADOWS, NO SCALING) */
