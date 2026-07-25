@@ -16,7 +16,9 @@ export default function Topbar({
   demoMode,
   setDemoMode,
   authSession,
-  onLogout
+  onLogout,
+  onGoBack,
+  canGoBack
 }) {
   const [time, setTime] = useState(new Date());
   const [notifCategory, setNotifCategory] = useState('All');
@@ -72,8 +74,34 @@ export default function Topbar({
         flexWrap: 'nowrap'
       }}
     >
-      {/* LEFT: Breadcrumb & Time */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', fontSize: '0.82rem', flexShrink: 0 }}>
+      {/* LEFT: Breadcrumb, Back Navigation & Time */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', fontSize: '0.82rem', flexShrink: 0 }}>
+        {canGoBack && (
+          <button
+            onClick={onGoBack}
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.35rem',
+              padding: '0.3rem 0.65rem',
+              borderRadius: '6px',
+              border: '1px solid var(--border-color)',
+              background: 'var(--bg-card)',
+              color: 'var(--text-primary)',
+              fontSize: '0.78rem',
+              fontWeight: '700',
+              cursor: 'pointer',
+              boxShadow: '0 1px 3px rgba(0,0,0,0.05)'
+            }}
+            title="Return to previous screen context"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="19" y1="12" x2="5" y2="12" />
+              <polyline points="12 19 5 12 12 5" />
+            </svg>
+            Back
+          </button>
+        )}
         <span style={{ color: 'var(--text-secondary)', fontWeight: '600' }}>KSP HQ</span>
         <span style={{ color: 'var(--border-color)' }}>/</span>
         <span style={{ color: 'var(--police-light)', fontWeight: '700' }}>{getBreadcrumb()}</span>

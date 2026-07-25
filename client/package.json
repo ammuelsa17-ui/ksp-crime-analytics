@@ -6,11 +6,11 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && python3 -c \"import re; p=open('dist/index.html').read(); p=re.sub(r'\\s+crossorigin(?:=\\\"\\\")?', '', p); open('dist/index.html','w').write(p)\"",
-
     "lint": "oxlint",
     "preview": "vite preview"
   },
   "dependencies": {
+    "lucide-react": "^1.21.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7"
   },

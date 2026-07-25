@@ -2,9 +2,31 @@ import React, { useState, useEffect, useMemo, useRef } from 'react';
 import Sidebar from './components/layout/Sidebar';
 import Topbar from './components/layout/Topbar';
 import LoginModal from './components/common/LoginModal';
+import FullPageLogin from './components/common/FullPageLogin';
 import AuditTrailDrawer from './components/features/AuditTrailDrawer';
+import OfficerAvailabilityBoard from './components/features/OfficerAvailabilityBoard';
+import CaseTimelineAndChainOfCustody from './components/features/CaseTimelineAndChainOfCustody';
+import AIRecommendationsPanel from './components/features/AIRecommendationsPanel';
+import PredictiveCrimeForecast from './components/features/PredictiveCrimeForecast';
+import LiveDispatchBoard from './components/features/LiveDispatchBoard';
+import AIExplainabilityBox from './components/features/AIExplainabilityBox';
+import CommandMonitorRibbon from './components/features/CommandMonitorRibbon';
+import UnifiedIntelligencePanel from './components/features/UnifiedIntelligencePanel';
 import { catalystAuthLogin, catalystLogAuditEvent, catalystSignOut } from './services/catalystService';
 import { maskPhone, maskAadhaar, maskAddress } from './utils/piiMasker';
+import { 
+  ShieldIcon, 
+  BadgeCheckIcon, 
+  FileTextIcon, 
+  MapPinnedIcon, 
+  ChartColumnIcon, 
+  BrainCircuitIcon, 
+  BellIcon, 
+  SearchIcon, 
+  UserCogIcon, 
+  SettingsIcon, 
+  ActivityIcon 
+} from './components/common/PoliceIcons';
 import './App.css';
 
 const KSPEmblem = () => (
@@ -124,6 +146,9 @@ function App() {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [auditDrawerOpen, setAuditDrawerOpen] = useState(false);
+  const [apiStatus, setApiStatus] = useState('Online (Live Catalyst)');
+  const [dbMode, setDbMode] = useState('live');
+  const [userRole, setUserRole] = useState(() => authSession?.user?.role || 'DGP');
 
   // Repeat Offender Watchlist Dataset
   const [repeatOffenders] = useState([
@@ -175,10 +200,27 @@ function App() {
   const [cases, setCases] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-  const [apiStatus, setApiStatus] = useState("Checking...")
 
-  // Tab State & Toasts
-  const [activeTab, setActiveTab] = useState('overview')
+  // Tab State & Navigation History
+  const [activeTab, setActiveTab] = useState('overview');
+  const [navHistory, setNavHistory] = useState([]);
+
+  const navigateToTab = (tab) => {
+    if (tab !== activeTab) {
+      setNavHistory((prev) => [...prev, activeTab]);
+      setActiveTab(tab);
+    }
+  };
+
+  const handleGoBack = () => {
+    if (navHistory.length > 0) {
+      const lastTab = navHistory[navHistory.length - 1];
+      setNavHistory((prev) => prev.slice(0, -1));
+      setActiveTab(lastTab);
+    } else {
+      setActiveTab('overview');
+    }
+  };
 
   const [notificationsOpen, setNotificationsOpen] = useState(false)
   const [profileMenuOpen, setProfileMenuOpen] = useState(false)
@@ -561,9 +603,15 @@ function App() {
   }, [])
 
   useEffect(() => {
+    let createdMap = null;
+
     if (activeTab !== 'map') {
       if (mapInstance) {
-        mapInstance.remove();
+        try {
+          mapInstance.remove();
+        } catch (e) {
+          console.log("Map removal error:", e);
+        }
         setMapInstance(null);
       }
       return;
@@ -574,15 +622,55 @@ function App() {
       const mapContainer = document.getElementById('crime-map');
       if (!mapContainer || typeof L === 'undefined') return;
 
+      // Ensure fresh container mount by resetting Leaflet internal ID
+      if (mapContainer._leaflet_id) {
+        mapContainer._leaflet_id = null;
+        mapContainer.innerHTML = '';
+      }
+
       // Karnataka Center
       const map = L.map('crime-map').setView([14.9754, 76.1368], 7);
+      createdMap = map;
 
-      // CartoDB Positron tile layer (light theme)
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      // 🗺️ 4-Theme Base Map Layers (Command Dark, Government Light, Satellite Terrain, OpenStreetMap)
+      const darkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
         subdomains: 'abcd',
         maxZoom: 20
-      }).addTo(map);
+      });
+
+      const lightLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 20
+      });
+
+      const satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
+        maxZoom: 19
+      });
+
+      const streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 19
+      });
+
+      // Default active base layer
+      if (theme === 'dark') {
+        darkLayer.addTo(map);
+      } else {
+        lightLayer.addTo(map);
+      }
+
+      // Add Interactive Layer Switcher Control
+      const baseMaps = {
+        "🌑 Command Dark": darkLayer,
+        "☀️ Government Light": lightLayer,
+        "🛰️ Satellite Terrain": satelliteLayer,
+        "🗺️ OpenStreetMap": streetLayer
+      };
+
+      L.control.layers(baseMaps, null, { position: 'topright' }).addTo(map);
 
       // District Coordinates Mapping
       const DISTRICT_MAP_COORDS = {
@@ -641,24 +729,35 @@ function App() {
         if (!c.latitude || !c.longitude) return;
 
         // Create marker
-        const marker = L.marker([c.latitude, c.longitude]).addTo(map);
-        const meta = parseCaseMetadata(c);
+        // Bind global handler for popup button click
+        window.kspViewFir = (firNum) => {
+          setActiveTab('records');
+          setSearchQuery(firNum);
+        };
 
         const popupContent = `
-          <div style="font-family: system-ui; min-width: 180px; padding: 5px; color: #1e293b;">
-            <h5 style="margin: 0 0 3px 0; color: #0f172a; font-size: 0.85rem;">📝 FIR: ${c.fir_number}</h5>
-            <div style="font-size: 0.75rem; margin-bottom: 5px;">
-              <strong>Category:</strong> <span style="font-weight: 600;">${c.category}</span>
+          <div style="font-family: system-ui, -apple-system, sans-serif; min-width: 210px; padding: 4px; color: #0F172A;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #00C6FF; padding-bottom: 5px; margin-bottom: 6px;">
+              <strong style="font-size: 0.88rem; color: #0C3258;">📝 ${c.fir_number}</strong>
+              <span style="background: ${c.category?.toLowerCase().includes('cyber') ? '#0284C7' : '#EF4444'}; color: #FFFFFF; padding: 2px 6px; border-radius: 4px; font-size: 0.65rem; font-weight: 700;">
+                ${c.category}
+              </span>
             </div>
-            <div style="font-size: 0.7rem; color: #475569; margin: 3px 0;">
-              <strong>Officer:</strong> ${meta.officer} | <strong>Status:</strong> ${meta.status}
+            <div style="font-size: 0.78rem; margin-bottom: 4px; color: #334155;">
+              <strong>District:</strong> ${c.district} <br>
+              <strong>Police Station:</strong> ${c.police_station}
             </div>
-            <p style="margin: 5px 0; font-size: 0.8rem; color: #334155; line-height: 1.3;">
-              ${meta.cleanSummary ? (meta.cleanSummary.length > 60 ? meta.cleanSummary.slice(0, 60) + '...' : meta.cleanSummary) : 'No summary.'}
-            </p>
-            <div style="font-size: 0.7rem; color: #64748b; border-top: 1px solid #f1f5f9; padding-top: 3px; margin-top: 5px;">
-              Station: ${c.police_station}
+            <div style="font-size: 0.75rem; color: #475569; margin-bottom: 8px;">
+              <strong>Investigator:</strong> ${meta.officer} <br>
+              <strong>Status:</strong> <span style="color: #0284C7; font-weight: 700;">${meta.status}</span>
             </div>
+            <button 
+              type="button" 
+              onclick="window.kspViewFir('${c.fir_number}')" 
+              style="width: 100%; padding: 6px; background: #1565C0; color: #FFFFFF; border: none; border-radius: 6px; font-size: 0.75rem; font-weight: 700; cursor: pointer; transition: background 0.15s ease;"
+            >
+              📂 Inspect Full FIR Record
+            </button>
           </div>
         `;
         marker.bindPopup(popupContent);
@@ -667,8 +766,17 @@ function App() {
       setMapInstance(map);
     }, 100);
 
-    return () => clearTimeout(timer);
-  }, [activeTab, cases]);
+    return () => {
+      clearTimeout(timer);
+      if (createdMap) {
+        try {
+          createdMap.remove();
+        } catch (e) {
+          console.log("Map cleanup error:", e);
+        }
+      }
+    };
+  }, [activeTab, cases, theme]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -1379,12 +1487,35 @@ link.click();
     showToast("All filters cleared", "info");
   };
 
+  const handleFullPageLogin = (role, officerId) => {
+    const sessionData = {
+      isAuthenticated: true,
+      token: 'jwt-catalyst-' + Date.now(),
+      user: {
+        id: officerId || 'DGP-BLR-001',
+        name: role === 'DGP' ? 'DGP K. S. Rao' : role === 'SP' ? 'SP V. Kumar' : 'Inspector P. Sharma',
+        role: role,
+        badgeId: officerId || 'DGP-BLR-001',
+        district: 'Karnataka State HQ',
+        lastLogin: new Date().toLocaleString()
+      }
+    };
+    sessionStorage.setItem('ksp_auth_session', JSON.stringify(sessionData));
+    setAuthSession(sessionData);
+    setUserRole(role);
+    showToast(`Officer authenticated: ${role} (${sessionData.user.id})`, 'success');
+  };
+
+  if (!authSession || !authSession.isAuthenticated) {
+    return <FullPageLogin onLogin={handleFullPageLogin} />;
+  }
+
   return (
     <div className={`app-layout ${theme === 'dark' ? 'dark-theme' : 'light-theme'}`} style={{ display: 'flex', width: '100vw', minHeight: '100vh', backgroundColor: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
       {/* Enterprise Sidebar */}
       <Sidebar
         activeTab={activeTab}
-        setActiveTab={setActiveTab}
+        setActiveTab={navigateToTab}
         sidebarCollapsed={sidebarCollapsed}
         setSidebarCollapsed={setSidebarCollapsed}
         apiStatus={apiStatus}
@@ -1397,6 +1528,8 @@ link.click();
         {/* Enterprise Topbar */}
         <Topbar
           activeTab={activeTab}
+          onGoBack={handleGoBack}
+          canGoBack={navHistory.length > 0 || activeTab !== 'overview'}
           notificationsOpen={notificationsOpen}
           setNotificationsOpen={setNotificationsOpen}
           profileMenuOpen={profileMenuOpen}
@@ -1414,25 +1547,36 @@ link.click();
           onOpenAuditDrawer={() => setAuditDrawerOpen(true)}
           onOpenCommandPalette={() => setCommandPaletteOpen(true)}
           onSelectNotificationCase={(fir) => {
-            setActiveTab('records');
+            navigateToTab('records');
             setSearchQuery(fir);
           }}
         />
+
+        {/* Command Center Monitor Ribbon & Emergency Mode Bar */}
+        <div style={{ padding: '1rem 1.5rem 0 1.5rem' }}>
+          <CommandMonitorRibbon />
+        </div>
 
         {/* Workspace Content */}
         <main className="dashboard-grid" style={{ padding: '1.5rem', flexGrow: 1 }}>
         {activeTab === 'overview' ? (
           <section className="overview-console" style={{ gridColumn: '1 / -1', display: 'flex', flexDirection: 'column', gap: '1.5rem', width: '100%' }}>
             <div className="section-block-header" style={{ marginBottom: '0.5rem' }}>
-              <span className="section-block-icon">🏢</span>
+              <ShieldIcon size={24} color="var(--police-blue)" />
               <div>
                 <h2 className="section-block-title">KSP Command Console Overview</h2>
                 <p className="section-block-sub">Statewide analytics, registry services, and predictive tactical intelligence modules</p>
               </div>
             </div>
 
+            {/* Live Control Room Dispatch Board */}
+            <LiveDispatchBoard />
+
+            {/* 7-Day Predictive Crime Trend Forecast */}
+            <PredictiveCrimeForecast />
+
             {/* Quick Summary Banner */}
-            <div style={{ background: '#F1F5F9', border: '1px solid #D1D5DB', borderRadius: '4px', padding: '1.25rem 1.5rem', fontSize: '0.85rem', color: '#334155', lineHeight: '1.6' }}>
+            <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: '4px', padding: '1.25rem 1.5rem', fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: '1.6' }}>
               Welcome, Officer. This platform synchronizes live First Information Reports (FIRs) from the Catalyst Data Store to build statewide predictive trend analyses, dispatch suggestions, and spatial hotspots mapping. Select a console module below to access.
             </div>
 
@@ -1442,8 +1586,8 @@ link.click();
               {/* Card 1: Registry */}
               <div 
                 className="overview-card" 
-                onClick={() => setActiveTab('records')}
-                style={{ background: '#F8FAFC', border: '1px solid #D1D5DB', borderRadius: '4px', padding: '1.5rem', cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '180px', transition: 'border-color 0.15s ease' }}
+                onClick={() => navigateToTab('records')}
+                style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: '4px', padding: '1.5rem', cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '180px', transition: 'border-color 0.15s ease' }}
               >
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
@@ -1454,7 +1598,7 @@ link.click();
                     Access, query, and insert official First Information Reports. Filter by categories, police stations, and incident dates.
                   </p>
                 </div>
-                <div style={{ borderTop: '1px solid #E5E7EB', paddingTop: '0.75rem', marginTop: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.72rem', fontWeight: '600' }}>
+                <div style={{ borderTop: '1px solid var(--border-color)', paddingTop: '0.75rem', marginTop: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.72rem', fontWeight: '600' }}>
                   <span style={{ color: 'var(--accent-green)' }}>● {totalCases} Active Cases</span>
                   <span style={{ color: 'var(--police-light)' }}>Enter Module →</span>
                 </div>
@@ -1463,8 +1607,8 @@ link.click();
               {/* Card 2: Analytics */}
               <div 
                 className="overview-card" 
-                onClick={() => setActiveTab('analytics')}
-                style={{ background: '#F8FAFC', border: '1px solid #D1D5DB', borderRadius: '4px', padding: '1.5rem', cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '180px', transition: 'border-color 0.15s ease' }}
+                onClick={() => navigateToTab('analytics')}
+                style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: '4px', padding: '1.5rem', cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '180px', transition: 'border-color 0.15s ease' }}
               >
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
@@ -1475,7 +1619,7 @@ link.click();
                     Visualize statewide crime trends. Examine density distributions, frequency timelines, and comparative district data.
                   </p>
                 </div>
-                <div style={{ borderTop: '1px solid #E5E7EB', paddingTop: '0.75rem', marginTop: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.72rem', fontWeight: '600' }}>
+                <div style={{ borderTop: '1px solid var(--border-color)', paddingTop: '0.75rem', marginTop: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.72rem', fontWeight: '600' }}>
                   <span style={{ color: 'var(--police-light)' }}>● {uniqueCategories} Categories Monitored</span>
                   <span style={{ color: 'var(--police-light)' }}>Enter Module →</span>
                 </div>
@@ -1484,8 +1628,8 @@ link.click();
               {/* Card 3: Intelligence */}
               <div 
                 className="overview-card" 
-                onClick={() => setActiveTab('intelligence')}
-                style={{ background: '#F8FAFC', border: '1px solid #D1D5DB', borderRadius: '4px', padding: '1.5rem', cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '180px', transition: 'border-color 0.15s ease' }}
+                onClick={() => navigateToTab('intelligence')}
+                style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: '4px', padding: '1.5rem', cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '180px', transition: 'border-color 0.15s ease' }}
               >
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
@@ -1496,7 +1640,7 @@ link.click();
                     Access rule-based predictive modeling tools, repeat offender watchlists, and active hotspot analysis dispatch logs.
                   </p>
                 </div>
-                <div style={{ borderTop: '1px solid #E5E7EB', paddingTop: '0.75rem', marginTop: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.72rem', fontWeight: '600' }}>
+                <div style={{ borderTop: '1px solid var(--border-color)', paddingTop: '0.75rem', marginTop: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.72rem', fontWeight: '600' }}>
                   <span style={{ color: '#B45309' }}>● 92% Confidence Level</span>
                   <span style={{ color: 'var(--police-light)' }}>Enter Module →</span>
                 </div>
@@ -1505,24 +1649,29 @@ link.click();
               {/* Card 4: Crime Map */}
               <div 
                 className="overview-card" 
-                onClick={() => setActiveTab('map')}
-                style={{ background: '#F8FAFC', border: '1px solid #D1D5DB', borderRadius: '4px', padding: '1.5rem', cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '180px', transition: 'border-color 0.15s ease' }}
+                onClick={() => navigateToTab('map')}
+                style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: '4px', padding: '1.5rem', cursor: 'pointer', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', minHeight: '180px', transition: 'border-color 0.15s ease' }}
               >
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
-                    <span style={{ fontSize: '1.5rem' }}>🗺️</span>
+                    <MapPinnedIcon size={24} color="var(--police-blue)" />
                     <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: '700', color: 'var(--police-blue)' }}>Geospatial Crime Map</h3>
                   </div>
                   <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--text-secondary)', lineHeight: '1.45' }}>
                     Plot registered incidents geographically. Discover spatial hotspot clusters and dispatch patrol routes.
                   </p>
                 </div>
-                <div style={{ borderTop: '1px solid #E5E7EB', paddingTop: '0.75rem', marginTop: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.72rem', fontWeight: '600' }}>
+                <div style={{ borderTop: '1px solid var(--border-color)', paddingTop: '0.75rem', marginTop: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.72rem', fontWeight: '600' }}>
                   <span style={{ color: 'var(--police-light)' }}>● {uniqueStations} Precincts Logged</span>
                   <span style={{ color: 'var(--police-light)' }}>Enter Module →</span>
                 </div>
               </div>
 
+            </div>
+
+            {/* Officer Availability & Patrol Roster Board */}
+            <div style={{ marginTop: '1.5rem' }}>
+              <OfficerAvailabilityBoard />
             </div>
           </section>
         ) : activeTab === 'records' ? (
@@ -1887,12 +2036,12 @@ link.click();
           /* Analytics tab view with custom charts */
           <section className="analytics-dashboard-view">
             {/* Executive Intelligence Briefing */}
-            <div className="analytics-card" style={{ background: 'linear-gradient(135deg, #F8FAFC 0%, #EFF6FF 100%)', borderLeft: '5px solid var(--police-blue)', marginBottom: '1.5rem', boxShadow: '0 8px 20px rgba(15, 76, 129, 0.05)' }}>
+            <div className="analytics-card" style={{ background: 'var(--bg-card)', borderLeft: '5px solid var(--police-blue)', border: '1px solid var(--border-color)', marginBottom: '1.5rem', boxShadow: '0 8px 20px rgba(0,0,0,0.05)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.75rem' }}>
                 <h3 style={{ margin: 0, color: 'var(--police-blue)', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.1rem', fontWeight: '800' }}>
                   📄 Today's State Intelligence Summary
                 </h3>
-                <span style={{ fontSize: '0.65rem', fontWeight: '800', color: 'var(--police-blue)', background: '#F8FAFC', padding: '0.2rem 0.6rem', borderRadius: '12px', border: '1px solid #DCE3EA', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                <span style={{ fontSize: '0.65rem', fontWeight: '800', color: 'var(--police-blue)', background: 'var(--bg-card)', padding: '0.2rem 0.6rem', borderRadius: '12px', border: '1px solid var(--border-color)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                   Live Bulletin
                 </span>
               </div>
@@ -1901,7 +2050,7 @@ link.click();
               </p>
               
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem', fontSize: '0.82rem', lineHeight: '1.55', color: 'var(--text-primary)' }}>
-                <div style={{ background: '#F8FAFC', padding: '1rem', borderRadius: '8px', border: '1px solid #DCE3EA', boxShadow: '0 2px 4px rgba(0,0,0,0.01)' }}>
+                <div style={{ background: 'var(--bg-card)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border-color)', boxShadow: '0 2px 4px rgba(0,0,0,0.01)' }}>
                   <div style={{ fontSize: '0.7rem', fontWeight: '800', color: 'var(--police-blue)', textTransform: 'uppercase', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.35rem', letterSpacing: '0.03em' }}>
                     <span>📍 Regional Density Highlights</span>
                   </div>
@@ -1917,7 +2066,7 @@ link.click();
                   </ul>
                 </div>
 
-                <div style={{ background: '#F8FAFC', padding: '1rem', borderRadius: '8px', border: '1px solid #DCE3EA', boxShadow: '0 2px 4px rgba(0,0,0,0.01)' }}>
+                <div style={{ background: 'var(--bg-card)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border-color)', boxShadow: '0 2px 4px rgba(0,0,0,0.01)' }}>
                   <div style={{ fontSize: '0.7rem', fontWeight: '800', color: 'var(--accent-red)', textTransform: 'uppercase', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.35rem', letterSpacing: '0.03em' }}>
                     <span>⚡ Category &amp; MO Trends</span>
                   </div>
@@ -1931,7 +2080,7 @@ link.click();
                   </ul>
                 </div>
 
-                <div style={{ background: '#F8FAFC', padding: '1rem', borderRadius: '8px', border: '1px solid #DCE3EA', boxShadow: '0 2px 4px rgba(0,0,0,0.01)' }}>
+                <div style={{ background: 'var(--bg-card)', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border-color)', boxShadow: '0 2px 4px rgba(0,0,0,0.01)' }}>
                   <div style={{ fontSize: '0.7rem', fontWeight: '800', color: 'var(--police-gold)', textTransform: 'uppercase', marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.35rem', letterSpacing: '0.03em' }}>
                     <span>🚔 Recommended Tactical Actions</span>
                   </div>
@@ -2101,11 +2250,17 @@ link.click();
               </div>
             </div>
 
+            {/* ── Single Unified Catalyst AI Intelligence Panel ── */}
+            <UnifiedIntelligencePanel firNumber={latestFIR} confidence={94} />
+
+            {/* ── Case Timeline & Evidence Chain of Custody ── */}
+            <CaseTimelineAndChainOfCustody firNumber={latestFIR} caseStatus="Investigation Started" />
+
             {/* ── MODULE 1: Live Command Insights ── */}
             <div className="analytics-card" style={{ padding: '0.85rem 1.25rem', border: '1px solid #D1D5DB' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer' }} onClick={() => toggleIntelPanel('insights')}>
                 <h3 style={{ margin: 0, fontSize: '0.95rem', fontWeight: '700', color: 'var(--police-blue)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <span>🧠</span> 1. Live Command Insights Summary
+                  <BrainCircuitIcon size={18} color="var(--police-blue)" /> 1. Live Command Insights Summary
                 </h3>
                 <button type="button" className="refresh-btn" style={{ padding: '0.3rem 0.6rem', fontSize: '0.72rem' }}>
                   {expandedIntelPanels.insights ? '▲ Hide Details' : '▼ View Details'}
@@ -2398,35 +2553,145 @@ link.click();
             </div>
 
           </section>) : activeTab === 'map' ? (
-          /* Map View tab */
-          <section className="intelligence-dashboard-view">
-            <div className="analytics-card map-panel-card" style={{ padding: '1.5rem' }}>
-              <div className="cc-header">
-                <div>
-                  <h3>🗺️ Geospatial Intelligence Map</h3>
-                  <p className="chart-subtitle">Real-time geospatial visualization of crime hotspots and active patrol sectors across Karnataka</p>
+          /* GIS Command Center tab */
+          <section className="intelligence-dashboard-view" style={{ width: '100%' }}>
+            <div className="analytics-card map-panel-card" style={{ padding: '1.25rem', borderRadius: '8px', border: '1px solid var(--border-color)', background: 'var(--bg-card)' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.75rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <MapPinnedIcon size={22} color="var(--police-blue)" />
+                  <div>
+                    <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: '800', color: 'var(--text-primary)' }}>
+                      GIS Police Command Center
+                    </h3>
+                    <span style={{ fontSize: '0.75rem', color: 'var(--text-secondary)' }}>Real-time geospatial hotspot radar &amp; field patrol telemetry</span>
+                  </div>
                 </div>
-                <div className="cc-live-badge">
-                  <span className="live-dot pulse-dot" />
-                  LIVE MAP
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.72rem', fontWeight: '800', color: 'var(--accent-green)', background: 'rgba(22, 163, 74, 0.15)', padding: '0.3rem 0.75rem', borderRadius: '4px' }}>
+                  ● LIVE SPATIAL RADAR
                 </div>
               </div>
-              <div className="cc-divider" style={{ margin: '1rem 0 1.5rem 0' }} />
+
+              {/* 🎛️ Clean Modular GIS Control Cards Toolbar */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0.75rem', marginBottom: '1rem' }}>
+                {/* Control 1: District */}
+                <div style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-color)', borderRadius: '6px', padding: '0.5rem 0.75rem' }}>
+                  <label style={{ display: 'block', fontSize: '0.68rem', fontWeight: '700', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '0.25rem' }}>
+                    District Precinct
+                  </label>
+                  <select 
+                    value={filterDistrict} 
+                    onChange={(e) => setFilterDistrict(e.target.value)}
+                    style={{ width: '100%', background: 'transparent', color: 'var(--text-primary)', border: 'none', fontSize: '0.8rem', fontWeight: '700', outline: 'none', cursor: 'pointer' }}
+                  >
+                    <option value="All">Statewide (All Districts)</option>
+                    {ALL_DISTRICTS_LIST.map(d => <option key={d} value={d}>{d}</option>)}
+                  </select>
+                </div>
+
+                {/* Control 2: Category */}
+                <div style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-color)', borderRadius: '6px', padding: '0.5rem 0.75rem' }}>
+                  <label style={{ display: 'block', fontSize: '0.68rem', fontWeight: '700', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '0.25rem' }}>
+                    Crime Category
+                  </label>
+                  <select 
+                    value={filterCategory} 
+                    onChange={(e) => setFilterCategory(e.target.value)}
+                    style={{ width: '100%', background: 'transparent', color: 'var(--text-primary)', border: 'none', fontSize: '0.8rem', fontWeight: '700', outline: 'none', cursor: 'pointer' }}
+                  >
+                    <option value="All">All Crime Types</option>
+                    {CRIME_CATEGORIES_LIST.slice(0, 10).map(c => <option key={c} value={c}>{c}</option>)}
+                  </select>
+                </div>
+
+                {/* Control 3: Timeframe */}
+                <div style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-color)', borderRadius: '6px', padding: '0.5rem 0.75rem' }}>
+                  <label style={{ display: 'block', fontSize: '0.68rem', fontWeight: '700', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '0.25rem' }}>
+                    Telemetry Window
+                  </label>
+                  <select style={{ width: '100%', background: 'transparent', color: 'var(--text-primary)', border: 'none', fontSize: '0.8rem', fontWeight: '700', outline: 'none', cursor: 'pointer' }}>
+                    <option value="24h">Last 24 Hours</option>
+                    <option value="7d">Last 7 Days</option>
+                    <option value="30d">Last 30 Days</option>
+                    <option value="all">All Time</option>
+                  </select>
+                </div>
+
+                {/* Control 4: Reset Button */}
+                <div style={{ display: 'flex', alignItems: 'flex-end' }}>
+                  <button 
+                    type="button" 
+                    onClick={handleClearFilters}
+                    style={{ width: '100%', background: 'rgba(220, 38, 38, 0.12)', color: 'var(--accent-red)', border: '1px solid rgba(220, 38, 38, 0.3)', borderRadius: '6px', padding: '0.55rem', fontSize: '0.78rem', fontWeight: '700', cursor: 'pointer' }}
+                  >
+                    Reset Map Filters
+                  </button>
+                </div>
+              </div>
+
+              {/* 🗺️ Split Viewport Layout (75% Map + 25% Control Telemetry Sidebar) */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem', width: '100%' }}>
+                {/* Map Viewport (75%) */}
+                <div 
+                  id="crime-map" 
+                  style={{ 
+                    height: '580px', 
+                    width: '100%', 
+                    borderRadius: '8px', 
+                    border: '1px solid var(--border-color)', 
+                    position: 'relative', 
+                    zIndex: 1 
+                  }} 
+                />
+
+                {/* Telemetry Control Panel (25%) */}
+                <div style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border-color)', borderRadius: '8px', padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                  <div style={{ fontSize: '0.75rem', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.5px', color: 'var(--police-blue)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                    <ActivityIcon size={16} />
+                    <span>Control Room Telemetry</span>
+                  </div>
+
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
+                    <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: '6px', padding: '0.75rem', textAlign: 'center' }}>
+                      <div style={{ fontSize: '1.25rem', fontWeight: '800', color: 'var(--police-blue)' }}>{filteredCases.length}</div>
+                      <div style={{ fontSize: '0.68rem', color: 'var(--text-secondary)', fontWeight: '600' }}>Active FIRs Plotted</div>
+                    </div>
+                    <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: '6px', padding: '0.75rem', textAlign: 'center' }}>
+                      <div style={{ fontSize: '1.25rem', fontWeight: '800', color: 'var(--accent-red)' }}>5</div>
+                      <div style={{ fontSize: '0.68rem', color: 'var(--text-secondary)', fontWeight: '600' }}>Hotspot Clusters</div>
+                    </div>
+                    <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: '6px', padding: '0.75rem', textAlign: 'center' }}>
+                      <div style={{ fontSize: '1.25rem', fontWeight: '800', color: 'var(--accent-green)' }}>18</div>
+                      <div style={{ fontSize: '0.68rem', color: 'var(--text-secondary)', fontWeight: '600' }}>Patrol Units Active</div>
+                    </div>
+                    <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: '6px', padding: '0.75rem', textAlign: 'center' }}>
+                      <div style={{ fontSize: '1.25rem', fontWeight: '800', color: 'var(--police-gold)' }}>7</div>
+                      <div style={{ fontSize: '0.68rem', color: 'var(--text-secondary)', fontWeight: '600' }}>High Priority Alerts</div>
+                    </div>
+                  </div>
+
+                  {/* Hotspot Sectors List */}
+                  <div style={{ marginTop: '0.5rem' }}>
+                    <div style={{ fontSize: '0.72rem', fontWeight: '800', color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
+                      Primary Hotspot Sectors
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', fontSize: '0.75rem' }}>
+                      {[
+                        { sector: '1. Koramangala 5th Block', count: '14 FIRs', risk: 'Critical' },
+                        { sector: '2. Devaraja Market Precinct', count: '9 FIRs', risk: 'High' },
+                        { sector: '3. Hebbal Flyover Sector', count: '7 FIRs', risk: 'High' },
+                        { sector: '4. Hubballi Station Rd', count: '5 FIRs', risk: 'Medium' }
+                      ].map(h => (
+                        <div key={h.sector} style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: '4px', padding: '0.45rem 0.65rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span style={{ fontWeight: '600', color: 'var(--text-primary)' }}>{h.sector}</span>
+                          <span style={{ fontSize: '0.65rem', fontWeight: '800', color: h.risk === 'Critical' ? 'var(--accent-red)' : 'var(--police-gold)' }}>{h.count}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
               
-              {/* Map Mount Point */}
-              <div 
-                id="crime-map" 
-                style={{ 
-                  height: '580px', 
-                  width: '100%', 
-                  borderRadius: '12px', 
-                  border: '1px solid var(--border-color)', 
-                  position: 'relative', 
-                  zIndex: 1 
-                }} 
-              />
-              
-              <div className="map-footer-notes" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1rem', fontSize: '0.75rem', color: 'var(--text-muted, #64748b)' }}>
+              <div className="map-footer-notes" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1rem', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
                 <span>💡 Tip: Click on district hotspot circles or case pin markers to view detailed stats and dispatches.</span>
                 <span>🟢 Connected to Catalyst Data Store API</span>
               </div>
@@ -2897,26 +3162,26 @@ link.click();
                         )}
 
                         {aiSummary && (
-                          <div className="ai-report-body" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', fontSize: '0.8rem', color: '#374151', marginTop: '1rem', borderTop: '1px solid rgba(245, 158, 11, 0.2)', paddingTop: '1rem' }}>
+                          <div className="ai-report-body" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', fontSize: '0.8rem', color: 'var(--text-primary)', marginTop: '1rem', borderTop: '1px solid var(--border-color)', paddingTop: '1rem' }}>
                             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                              <div style={{ background: '#F8FAFC', border: '1px solid rgba(245, 158, 11, 0.2)', padding: '0.75rem', borderRadius: '6px' }}>
-                                <div style={{ fontSize: '0.65rem', fontWeight: '800', color: '#78350F', textTransform: 'uppercase', marginBottom: '0.25rem' }}>Victim Profile</div>
-                                <div style={{ fontWeight: '600' }}>👤 {aiSummary.victim}</div>
+                              <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', padding: '0.75rem', borderRadius: '6px' }}>
+                                <div style={{ fontSize: '0.65rem', fontWeight: '800', color: 'var(--police-gold)', textTransform: 'uppercase', marginBottom: '0.25rem' }}>Victim Profile</div>
+                                <div style={{ fontWeight: '600', color: 'var(--text-primary)' }}>👤 {aiSummary.victim}</div>
                               </div>
-                              <div style={{ background: '#F8FAFC', border: '1px solid rgba(245, 158, 11, 0.2)', padding: '0.75rem', borderRadius: '6px' }}>
-                                <div style={{ fontSize: '0.65rem', fontWeight: '800', color: '#78350F', textTransform: 'uppercase', marginBottom: '0.25rem' }}>Suspect Details</div>
-                                <div style={{ fontWeight: '600' }}>🔍 {aiSummary.suspect}</div>
+                              <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', padding: '0.75rem', borderRadius: '6px' }}>
+                                <div style={{ fontSize: '0.65rem', fontWeight: '800', color: 'var(--police-gold)', textTransform: 'uppercase', marginBottom: '0.25rem' }}>Suspect Details</div>
+                                <div style={{ fontWeight: '600', color: 'var(--text-primary)' }}>🔍 {aiSummary.suspect}</div>
                               </div>
                             </div>
 
-                            <div style={{ background: '#F8FAFC', border: '1px solid rgba(245, 158, 11, 0.2)', padding: '0.75rem', borderRadius: '6px' }}>
-                              <div style={{ fontSize: '0.65rem', fontWeight: '800', color: '#78350F', textTransform: 'uppercase', marginBottom: '0.25rem' }}>Key Evidence Logs</div>
-                              <div style={{ fontWeight: '500' }}>📁 {aiSummary.evidence}</div>
+                            <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', padding: '0.75rem', borderRadius: '6px' }}>
+                              <div style={{ fontSize: '0.65rem', fontWeight: '800', color: 'var(--police-gold)', textTransform: 'uppercase', marginBottom: '0.25rem' }}>Key Evidence Logs</div>
+                              <div style={{ fontWeight: '500', color: 'var(--text-primary)' }}>📁 {aiSummary.evidence}</div>
                             </div>
 
-                            <div style={{ background: '#F8FAFC', border: '1px solid rgba(245, 158, 11, 0.2)', padding: '0.75rem', borderRadius: '6px' }}>
-                              <div style={{ fontSize: '0.65rem', fontWeight: '800', color: '#1E3A8A', textTransform: 'uppercase', marginBottom: '0.4rem' }}>Suggested Next Steps (Patrol &amp; Investigation)</div>
-                              <div style={{ whiteSpace: 'pre-wrap', lineHeight: '1.45', color: '#1E40AF' }}>{aiSummary.nextSteps}</div>
+                            <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', padding: '0.75rem', borderRadius: '6px' }}>
+                              <div style={{ fontSize: '0.65rem', fontWeight: '800', color: 'var(--police-blue)', textTransform: 'uppercase', marginBottom: '0.4rem' }}>Suggested Next Steps (Patrol &amp; Investigation)</div>
+                              <div style={{ whiteSpace: 'pre-wrap', lineHeight: '1.45', color: 'var(--text-primary)' }}>{aiSummary.nextSteps}</div>
                             </div>
                           </div>
                         )}
@@ -2954,21 +3219,21 @@ link.click();
             <button 
               onClick={() => { setChatOpen(true); submitChatQuery("Highest crime density district and hotspots?"); }}
               className="quick-action-pill"
-              style={{ padding: '0.4rem 0.8rem', background: '#FFFFFF', border: '1px solid #DCE3EA', borderRadius: '20px', fontSize: '0.72rem', fontWeight: 'bold', color: 'var(--text-primary)', cursor: 'pointer', boxShadow: '0 4px 12px rgba(0,0,0,0.06)', display: 'flex', alignItems: 'center', gap: '0.25rem', whiteSpace: 'nowrap' }}
+              style={{ padding: '0.4rem 0.8rem', background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: '20px', fontSize: '0.72rem', fontWeight: 'bold', color: 'var(--text-primary)', cursor: 'pointer', boxShadow: '0 4px 12px rgba(0,0,0,0.2)', display: 'flex', alignItems: 'center', gap: '0.25rem', whiteSpace: 'nowrap' }}
             >
               📍 Hotspots
             </button>
             <button 
               onClick={() => { setChatOpen(true); submitChatQuery("List active warnings and alerts"); }}
               className="quick-action-pill"
-              style={{ padding: '0.4rem 0.8rem', background: '#FFFFFF', border: '1px solid #DCE3EA', borderRadius: '20px', fontSize: '0.72rem', fontWeight: 'bold', color: 'var(--text-primary)', cursor: 'pointer', boxShadow: '0 4px 12px rgba(0,0,0,0.06)', display: 'flex', alignItems: 'center', gap: '0.25rem', whiteSpace: 'nowrap' }}
+              style={{ padding: '0.4rem 0.8rem', background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: '20px', fontSize: '0.72rem', fontWeight: 'bold', color: 'var(--text-primary)', cursor: 'pointer', boxShadow: '0 4px 12px rgba(0,0,0,0.2)', display: 'flex', alignItems: 'center', gap: '0.25rem', whiteSpace: 'nowrap' }}
             >
               🚨 Alerts
             </button>
             <button 
               onClick={() => { setChatOpen(true); submitChatQuery("Show category distribution and analytics trends"); }}
               className="quick-action-pill"
-              style={{ padding: '0.4rem 0.8rem', background: '#FFFFFF', border: '1px solid #DCE3EA', borderRadius: '20px', fontSize: '0.72rem', fontWeight: 'bold', color: 'var(--text-primary)', cursor: 'pointer', boxShadow: '0 4px 12px rgba(0,0,0,0.06)', display: 'flex', alignItems: 'center', gap: '0.25rem', whiteSpace: 'nowrap' }}
+              style={{ padding: '0.4rem 0.8rem', background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: '20px', fontSize: '0.72rem', fontWeight: 'bold', color: 'var(--text-primary)', cursor: 'pointer', boxShadow: '0 4px 12px rgba(0,0,0,0.2)', display: 'flex', alignItems: 'center', gap: '0.25rem', whiteSpace: 'nowrap' }}
             >
               📊 Analytics
             </button>
@@ -3152,7 +3417,31 @@ link.click();
           </div>
         )}
       </div>
-      </div>
+
+      {/* Official Enterprise Footer */}
+      <footer 
+        style={{ 
+          padding: '1rem 1.5rem', 
+          borderTop: '1px solid var(--border-color)', 
+          backgroundColor: 'var(--bg-secondary)', 
+          color: 'var(--text-muted)', 
+          fontSize: '0.75rem', 
+          display: 'flex', 
+          justifyContent: 'space-between', 
+          alignItems: 'center', 
+          flexWrap: 'wrap', 
+          gap: '0.5rem',
+          marginTop: 'auto'
+        }}
+      >
+        <div>
+          <strong style={{ color: 'var(--text-primary)' }}>Karnataka State Police</strong> — IntelliCase Enterprise Platform
+        </div>
+        <div>
+          Powered by <strong>Zoho Catalyst</strong> AI Assisted Investigation Platform | Version 1.0
+        </div>
+      </footer>
+    </div>
 
       {/* 🔐 SAML / JWT Enterprise Authentication Dialog */}
       <LoginModal

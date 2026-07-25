@@ -1,21 +1,21 @@
 /* --- Microsoft Defender XDR / Palantir Gotham / Azure Portal Enterprise Design System --- */
 
-/* ☀️ Light Theme (Government Analytics Portal - Power BI / Zoho Analytics Aesthetic) */
+/* ☀️ Light Theme (Government Analytics Portal - Authoritative Law Enforcement Palette) */
 :root, [data-theme="light"], .light-theme {
-  --bg-primary: #F3F6FA;
-  --bg-secondary: #FFFFFF;
+  --bg-primary: #F5F7FA;
+  --bg-secondary: #F8FAFC;
   --bg-card: #FFFFFF;
-  --bg-hover: #F1F5F9;
-  --bg-sidebar: #EAF0F7;
+  --bg-hover: #E2E8F0;
+  --bg-sidebar: #EEF2F7;
   --bg-header: #FFFFFF;
-  --text-primary: #1E293B;
-  --text-secondary: #64748B;
-  --text-muted: #94A3B8;
-  --border-color: #D7E0EA;
-  --police-blue: #1D4ED8;
+  --text-primary: #1F2937;
+  --text-secondary: #475569;
+  --text-muted: #64748B;
+  --border-color: #D6DEE8;
+  --police-blue: #2563EB;
   --police-light: #0284C7;
   --police-gold: #D97706;
-  --accent-green: #10B981;
+  --accent-green: #16A34A;
   --accent-red: #DC2626;
   --accent-purple: #7C3AED;
   --accent-orange: #EA580C;
@@ -25,34 +25,93 @@
   --border-primary: var(--border-color);
   --text-main: var(--text-primary);
   --text-desc: var(--text-secondary);
-  --transition-speed: 200ms;
 }
 
-/* 🌙 Dark Theme (Command & Control Center - Microsoft Defender XDR / Palantir Gotham Aesthetic) */
+/* 🌙 Dark Theme (Exact 10-Color Enterprise Palette Specification) */
 [data-theme="dark"], .dark-theme {
-  --bg-primary: #0B1220;
-  --bg-secondary: #172033;
-  --bg-card: #172033;
-  --bg-hover: #1E293B;
-  --bg-sidebar: #111827;
-  --bg-header: #1B2436;
-  --text-primary: #F8FAFC;
-  --text-secondary: #94A3B8;
+  --bg-primary: #08111F;
+  --bg-secondary: #0E1625;
+  --bg-card: #172235;
+  --bg-hover: #22344A;
+  --bg-sidebar: #0E1625;
+  --bg-header: #0E1625;
+  --text-primary: #DDE7F3;
+  --text-secondary: #94A8BC;
   --text-muted: #64748B;
-  --border-color: #26334D;
-  --police-blue: #2563EB;
-  --police-light: #38BDF8;
-  --police-gold: #F59E0B;
-  --accent-green: #22C55E;
-  --accent-red: #EF4444;
-  --accent-purple: #8B5CF6;
-  --accent-orange: #F97316;
+  --border-color: #22344A;
+  --police-blue: #2F6FED;
+  --police-light: #60A5FA;
+  --police-gold: #C9892A;
+  --accent-green: #2FA36B;
+  --accent-red: #C64646;
 
   --bg-canvas: var(--bg-primary);
   --bg-card-element: var(--bg-secondary);
   --border-primary: var(--border-color);
   --text-main: var(--text-primary);
   --text-desc: var(--text-secondary);
+}
+
+/* 🔒 UNIFIED TABLE COMPONENT SPECIFICATION */
+.dark-theme table,
+[data-theme="dark"] table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  color: var(--text-primary);
+}
+
+.dark-theme th,
+[data-theme="dark"] th {
+  background-color: #0E1625 !important;
+  color: var(--text-secondary) !important;
+  font-size: 0.72rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  height: 40px !important;
+  padding: 0 1rem !important;
+  border-bottom: 1px solid #22344A !important;
+  text-align: left;
+}
+
+.dark-theme td,
+[data-theme="dark"] td {
+  height: 44px !important;
+  padding: 0 1rem !important;
+  border-bottom: 1px solid #22344A !important;
+  color: var(--text-primary) !important;
+}
+
+.dark-theme tbody tr:hover,
+[data-theme="dark"] tbody tr:hover {
+  background-color: #0E1625 !important;
+}
+
+/* 🔒 SINGLE CARD COMPONENT SPECIFICATION (NO GRADIENTS, NO SHADOWS, NO SCALING) */
+.dark-theme .analytics-card,
+.dark-theme .overview-card,
+.dark-theme .form-card,
+.dark-theme .section-card,
+.dark-theme .subcard,
+[data-theme="dark"] .analytics-card,
+[data-theme="dark"] .overview-card,
+[data-theme="dark"] .form-card,
+[data-theme="dark"] .section-card,
+[data-theme="dark"] .subcard {
+  background-color: #172235 !important;
+  background-image: none !important;
+  border: 1px solid #22344A !important;
+  border-radius: 10px !important;
+  box-shadow: none !important;
+  color: #E6EDF7 !important;
+}
+
+/* 🔒 Enterprise Command Interface — Disable Scaling & Floating Animations */
+*, *::before, *::after {
+  transform: none !important;
+  animation: none !important;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease !important;
 }
 
 /* Module Workspace Top Accent Colors */
@@ -63,14 +122,337 @@
 .workspace-accent-map { border-top: 3px solid #F97316 !important; }
 .workspace-accent-admin { border-top: 3px solid #EF4444 !important; }
 
-/* Micro-animations & Card Hover Elevation */
-.overview-card, .analytics-card, .activity-card {
-  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s ease !important;
+/* 📐 High-Contrast Sidebar Styling */
+.sidebar-nav-btn {
+  background-color: transparent;
+  color: var(--text-secondary);
 }
 
-.overview-card:hover, .analytics-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25) !important;
+.sidebar-nav-btn:hover {
+  background-color: var(--bg-hover) !important;
+  color: var(--text-primary) !important;
+}
+
+.active-nav-item {
+  background-color: var(--police-blue) !important;
+  color: #E2E8F0 !important;
+}
+
+.dark-theme .enterprise-sidebar {
+  border-right: 1px solid #26334D !important;
+}
+
+.light-theme .enterprise-sidebar {
+  border-right: 1px solid #D8E1EA !important;
+  background-color: #EEF2F7 !important;
+}
+
+.light-theme .sidebar-branding {
+  color: #0F172A !important;
+  border-bottom: 1px solid #D8E1EA !important;
+}
+
+.light-theme .sidebar-nav-btn {
+  color: #334155 !important;
+}
+
+.light-theme .sidebar-nav-btn:hover {
+  background-color: #DCE3EA !important;
+  color: #0F172A !important;
+}
+
+.light-theme .active-nav-item {
+  background-color: #1D4ED8 !important;
+  color: #FFFFFF !important;
+}
+
+/* ☀️ Light Mode Icon, Badge, Text & Overlay Contrast Rules */
+.light-theme .enterprise-topbar {
+  background-color: #FFFFFF !important;
+  border-bottom: 1px solid #D8E1EA !important;
+  color: #0F172A !important;
+}
+
+.light-theme .enterprise-topbar span,
+.light-theme .enterprise-topbar div,
+.light-theme .enterprise-topbar button {
+  color: #0F172A !important;
+}
+
+.light-theme .status-badge,
+.light-theme .badge,
+.light-theme .tag,
+.light-theme .insight-label,
+.light-theme .insight-value {
+  opacity: 1 !important;
+}
+
+.light-theme svg {
+  stroke-opacity: 1 !important;
+}
+
+.light-theme .section-block-title {
+  color: #0F172A !important;
+  opacity: 1 !important;
+}
+
+.light-theme .section-block-sub {
+  color: #475569 !important;
+  opacity: 1 !important;
+}
+
+/* 🎨 UI/UX Senior Developer Theme Card & Typography Contrast Rules */
+.dark-theme .analytics-card,
+.dark-theme .overview-card,
+.dark-theme .card-container,
+.dark-theme .map-panel-card {
+  background-color: #172033 !important;
+  border: 1px solid #26334D !important;
+  color: #E2E8F0 !important;
+}
+
+.dark-theme .analytics-card h3,
+.dark-theme .overview-card h3,
+.dark-theme .card-container h3,
+.dark-theme .analytics-card h4,
+.dark-theme .overview-card h4 {
+  color: #E2E8F0 !important;
+}
+
+.dark-theme .analytics-card p,
+.dark-theme .overview-card p,
+.dark-theme .card-container p,
+.dark-theme .chart-subtitle,
+.dark-theme .section-block-sub {
+  color: #94A3B8 !important;
+}
+
+.light-theme .analytics-card,
+.light-theme .overview-card,
+.light-theme .card-container,
+.light-theme .map-panel-card {
+  background-color: #FFFFFF !important;
+  border: 1px solid #D8E1EA !important;
+  color: #1E293B !important;
+}
+
+.light-theme .analytics-card h3,
+.light-theme .overview-card h3,
+.light-theme .card-container h3,
+.light-theme .analytics-card h4,
+.light-theme .overview-card h4 {
+  color: #0F172A !important;
+}
+
+.light-theme .analytics-card p,
+.light-theme .overview-card p,
+.light-theme .card-container p,
+.light-theme .chart-subtitle,
+.light-theme .section-block-sub {
+  color: #475569 !important;
+}
+
+/* ✏️ High-Contrast Input Placeholder Contrast Rules */
+input::placeholder,
+textarea::placeholder,
+select::placeholder {
+  opacity: 1 !important;
+}
+
+.light-theme input::placeholder,
+.light-theme textarea::placeholder,
+.light-theme select::placeholder {
+  color: #64748B !important;
+  opacity: 1 !important;
+}
+
+.dark-theme input::placeholder,
+.dark-theme textarea::placeholder,
+.dark-theme select::placeholder {
+  color: #94A3B8 !important;
+  opacity: 1 !important;
+}
+
+/* 🎯 Clean Outline / Border-Only Hover & Focus States (No Background Shifts) */
+.overview-card:hover,
+.overview-card:focus,
+.overview-card:active,
+.analytics-card:hover,
+.analytics-card:focus,
+.analytics-card:active,
+.activity-card:hover,
+.activity-card:focus,
+.activity-card:active,
+.form-card:hover,
+.form-card:focus,
+.form-card:active,
+.card-container:hover,
+.card-container:focus,
+.card-container:active,
+.map-panel-card:hover,
+.map-panel-card:focus,
+.map-panel-card:active {
+  border-color: var(--police-blue) !important;
+  transform: none !important;
+  box-shadow: 0 0 0 1px var(--police-blue) !important;
+}
+
+/* 🔒 Enforce 100% Solid Opacity & High-Contrast Colors Across All Card States (Default, Hover, Focus, Active, Selected) */
+.overview-card,
+.analytics-card,
+.activity-card,
+.form-card,
+.card-container,
+.map-panel-card,
+.overview-card *,
+.analytics-card *,
+.activity-card *,
+.form-card *,
+.card-container *,
+.map-panel-card * {
+  opacity: 1 !important;
+  filter: none !important;
+}
+
+/* Light Theme Solid High-Contrast Colors */
+.light-theme .overview-card h3,
+.light-theme .overview-card h4,
+.light-theme .analytics-card h3,
+.light-theme .analytics-card h4,
+.light-theme .card-container h3,
+.light-theme .card-container h4,
+.light-theme .map-panel-card h3,
+.light-theme .map-panel-card h4,
+.light-theme .overview-card:hover h3,
+.light-theme .overview-card:focus h3,
+.light-theme .overview-card:active h3,
+.light-theme .overview-card.active h3,
+.light-theme .analytics-card:hover h3,
+.light-theme .analytics-card:focus h3,
+.light-theme .analytics-card:active h3,
+.light-theme .analytics-card.active h3,
+.light-theme .card-container:hover h3,
+.light-theme .card-container:focus h3,
+.light-theme .card-container:active h3,
+.light-theme .card-container.active h3,
+.light-theme .map-panel-card:hover h3,
+.light-theme .map-panel-card:focus h3,
+.light-theme .map-panel-card:active h3,
+.light-theme .map-panel-card.active h3 {
+  color: #0F172A !important;
+  opacity: 1 !important;
+}
+
+.light-theme .overview-card p,
+.light-theme .overview-card span,
+.light-theme .overview-card div,
+.light-theme .analytics-card p,
+.light-theme .analytics-card span,
+.light-theme .analytics-card div,
+.light-theme .card-container p,
+.light-theme .card-container span,
+.light-theme .card-container div,
+.light-theme .map-panel-card p,
+.light-theme .map-panel-card span,
+.light-theme .map-panel-card div,
+.light-theme .overview-card:hover p,
+.light-theme .overview-card:focus p,
+.light-theme .overview-card:active p,
+.light-theme .overview-card.active p,
+.light-theme .analytics-card:hover p,
+.light-theme .analytics-card:focus p,
+.light-theme .analytics-card:active p,
+.light-theme .analytics-card.active p,
+.light-theme .card-container:hover p,
+.light-theme .card-container:focus p,
+.light-theme .card-container:active p,
+.light-theme .card-container.active p,
+.light-theme .map-panel-card:hover p,
+.light-theme .map-panel-card:focus p,
+.light-theme .map-panel-card:active p,
+.light-theme .map-panel-card.active p {
+  color: #334155 !important;
+  opacity: 1 !important;
+}
+
+/* Dark Theme Solid High-Contrast Colors */
+.dark-theme .overview-card h3,
+.dark-theme .overview-card h4,
+.dark-theme .analytics-card h3,
+.dark-theme .analytics-card h4,
+.dark-theme .card-container h3,
+.dark-theme .card-container h4,
+.dark-theme .map-panel-card h3,
+.dark-theme .map-panel-card h4,
+.dark-theme .overview-card:hover h3,
+.dark-theme .overview-card:focus h3,
+.dark-theme .overview-card:active h3,
+.dark-theme .overview-card.active h3,
+.dark-theme .analytics-card:hover h3,
+.dark-theme .analytics-card:focus h3,
+.dark-theme .analytics-card:active h3,
+.dark-theme .analytics-card.active h3,
+.dark-theme .card-container:hover h3,
+.dark-theme .card-container:focus h3,
+.dark-theme .card-container:active h3,
+.dark-theme .card-container.active h3,
+.dark-theme .map-panel-card:hover h3,
+.dark-theme .map-panel-card:focus h3,
+.dark-theme .map-panel-card:active h3,
+.dark-theme .map-panel-card.active h3 {
+  color: #E2E8F0 !important;
+  opacity: 1 !important;
+}
+
+.dark-theme .overview-card p,
+.dark-theme .overview-card span,
+.dark-theme .overview-card div,
+.dark-theme .analytics-card p,
+.dark-theme .analytics-card span,
+.dark-theme .analytics-card div,
+.dark-theme .card-container p,
+.dark-theme .card-container span,
+.dark-theme .card-container div,
+.dark-theme .map-panel-card p,
+.dark-theme .map-panel-card span,
+.dark-theme .map-panel-card div,
+.dark-theme .overview-card:hover p,
+.dark-theme .overview-card:focus p,
+.dark-theme .overview-card:active p,
+.dark-theme .overview-card.active p,
+.dark-theme .analytics-card:hover p,
+.dark-theme .analytics-card:focus p,
+.dark-theme .analytics-card:active p,
+.dark-theme .analytics-card.active p,
+.dark-theme .card-container:hover p,
+.dark-theme .card-container:focus p,
+.dark-theme .card-container:active p,
+.dark-theme .card-container.active p,
+.dark-theme .map-panel-card:hover p,
+.dark-theme .map-panel-card:focus p,
+.dark-theme .map-panel-card:active p,
+.dark-theme .map-panel-card.active p {
+  color: #CBD5E1 !important;
+  opacity: 1 !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  border-color: var(--police-blue) !important;
+  outline: 2px solid var(--police-blue) !important;
+  outline-offset: 1px !important;
+  box-shadow: none !important;
+}
+
+input:hover,
+textarea:hover,
+select:hover,
+button:hover {
+  border-color: var(--police-blue) !important;
 }
 
 
@@ -244,19 +626,55 @@ html, body {
   color: var(--text-secondary);
 }
 
-/* Table styling */
+/* 🔒 Layout Isolation, Strict Containment & Z-Index Layer Stacking Rules */
+.main-content-wrapper {
+  position: relative;
+  z-index: 1;
+  overflow-x: hidden !important;
+}
+
+.enterprise-topbar {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 50 !important;
+  background-color: var(--bg-secondary) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+}
+
 .table-wrapper {
+  position: relative;
+  z-index: 2;
   background-color: var(--bg-secondary);
   border: 1px solid var(--border-color);
   border-radius: 4px;
   overflow-x: auto;
-  max-height: 520px;
+  max-height: 580px;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
 
-.data-view-wrapper {
-  min-width: 0; 
+.data-view-wrapper,
+.form-card-wrapper,
+.analytics-dashboard-view,
+.intel-desk-view {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  isolation: isolate;
+}
+
+.floating-ai-portal {
+  position: fixed !important;
+  bottom: 2rem !important;
+  right: 2rem !important;
+  z-index: 500 !important;
+  pointer-events: none !important;
+}
+
+.floating-ai-portal > * {
+  pointer-events: auto !important;
 }
 
 .crime-table {
@@ -267,17 +685,17 @@ html, body {
 }
 
 .crime-table th {
-  background-color: var(--police-blue); 
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 10 !important;
+  background-color: var(--police-blue) !important;
   border-bottom: 2px solid rgba(0, 0, 0, 0.15);
   padding: 0.65rem 0.85rem;
   font-weight: 700;
-  color: #FFFFFF;
+  color: #FFFFFF !important;
   font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  position: sticky;
-  top: 0;
-  z-index: 10;
 }
 
 .crime-table td {
@@ -409,8 +827,7 @@ html, body {
 
 /* Institutional Flat Panel Cards (No Glassmorphism, No Hover-Lifts) */
 .form-card-wrapper {
-  position: sticky;
-  top: 2rem;
+  position: relative;
 }
 
 .form-card, .analytics-card, .activity-card {
@@ -3089,11 +3506,13 @@ button:disabled {
 }
 
 .overview-card {
-  transition: border-color 0.15s ease, background-color 0.15s ease !important;
+  transition: border-color 0.15s ease !important;
 }
-.overview-card:hover {
+.overview-card:hover,
+.overview-card:focus,
+.overview-card:active {
   border-color: var(--police-blue) !important;
-  background-color: #F1F5F9 !important;
+  box-shadow: 0 0 0 1px var(--police-blue) !important;
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
@@ -3190,6 +3609,50 @@ button:disabled {
     border: 1px solid #000000 !important;
     color: #000000 !important;
     padding: 0.1rem 0.3rem !important;
+  }
+}
+
+/* 🌐 Global Website-Wide Responsive & Layout Containment Rules */
+@media (max-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr !important;
+    padding: 1rem !important;
+    gap: 1.25rem !important;
+  }
+
+  .form-card-wrapper {
+    position: relative !important;
+    top: 0 !important;
+    width: 100% !important;
+  }
+
+  .enterprise-topbar {
+    padding: 0 1rem !important;
+    height: auto !important;
+    min-height: 64px !important;
+    flex-wrap: wrap !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content-wrapper {
+    width: 100% !important;
+    min-width: 0 !important;
+    overflow-x: hidden !important;
+  }
+
+  .table-wrapper {
+    max-height: 480px !important;
+  }
+
+  .overview-card,
+  .analytics-card,
+  .activity-card,
+  .form-card,
+  .card-container,
+  .map-panel-card {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
   }
 }
 

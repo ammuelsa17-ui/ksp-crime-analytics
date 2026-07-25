@@ -1,33 +1,31 @@
 import React from 'react';
+import { 
+  ShieldIcon, 
+  BadgeCheckIcon, 
+  FileTextIcon, 
+  ChartColumnIcon, 
+  BrainCircuitIcon, 
+  MapPinnedIcon, 
+  SettingsIcon, 
+  ActivityIcon
+} from '../common/PoliceIcons';
 
 const getIcon = (id) => {
   switch (id) {
     case 'overview':
-      return (
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-      );
+      return <ShieldIcon size={18} />;
     case 'records':
-      return (
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 22h14a2 2 0 0 0 2-2V7.5L14.5 2H6a2 2 0 0 0-2 2v4"/><path d="M14 2v6h6"/><path d="M3 15h10"/><path d="M3 18h10"/></svg>
-      );
+      return <FileTextIcon size={18} />;
     case 'analytics':
-      return (
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-      );
+      return <ChartColumnIcon size={18} />;
     case 'intelligence':
-      return (
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
-      );
+      return <BrainCircuitIcon size={18} />;
     case 'map':
-      return (
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg>
-      );
+      return <MapPinnedIcon size={18} />;
     case 'admin':
-      return (
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-      );
+      return <SettingsIcon size={18} />;
     default:
-      return null;
+      return <ActivityIcon size={18} />;
   }
 };
 
@@ -42,12 +40,12 @@ export default function Sidebar({
   userRole
 }) {
   const allNavItems = [
-    { id: 'overview', label: 'Dashboard Overview', roles: ['DGP', 'SP', 'Inspector', 'Constable', 'Operator'] },
+    { id: 'overview', label: 'Dashboard', roles: ['DGP', 'SP', 'Inspector', 'Constable', 'Operator'] },
     { id: 'records', label: 'Case Registry', roles: ['DGP', 'SP', 'Inspector', 'Constable', 'Operator'] },
-    { id: 'analytics', label: 'Operational Analytics', roles: ['DGP', 'SP', 'Inspector', 'Constable', 'Operator'] },
     { id: 'intelligence', label: 'Intelligence Desk', roles: ['DGP', 'SP', 'Inspector', 'Constable', 'Operator'] },
-    { id: 'map', label: 'GIS Crime Map', roles: ['DGP', 'SP', 'Inspector', 'Constable', 'Operator'] },
-    { id: 'admin', label: 'System Admin Console', roles: ['DGP', 'SP', 'Inspector', 'Constable', 'Operator'] }
+    { id: 'map', label: 'GIS Command Radar', roles: ['DGP', 'SP', 'Inspector', 'Constable', 'Operator'] },
+    { id: 'analytics', label: 'Operational Analytics', roles: ['DGP', 'SP', 'Inspector', 'Constable', 'Operator'] },
+    { id: 'admin', label: 'Administration', roles: ['DGP', 'SP', 'Inspector', 'Constable', 'Operator'] }
   ];
 
   const navItems = allNavItems.filter(item => !userRole || item.roles.includes(userRole));
