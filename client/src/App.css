@@ -104,7 +104,17 @@
   border: 1px solid #22344A !important;
   border-radius: 10px !important;
   box-shadow: none !important;
-  color: #E6EDF7 !important;
+  color: #DDE7F3 !important;
+}
+
+/* 🔒 REMOVE NESTED CARD BORDERS & NOISE */
+.dark-theme .analytics-card .analytics-card,
+.dark-theme .analytics-card .subcard,
+[data-theme="dark"] .analytics-card .analytics-card,
+[data-theme="dark"] .analytics-card .subcard {
+  border: none !important;
+  background-color: transparent !important;
+  padding: 0.5rem 0 !important;
 }
 
 /* 🔒 Enterprise Command Interface — Disable Scaling & Floating Animations */
