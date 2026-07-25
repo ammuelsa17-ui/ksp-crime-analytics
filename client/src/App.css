@@ -100,12 +100,31 @@ tbody tr:nth-child(even) {
   background-color: var(--bg-table-alt) !important;
 }
 
-/* 🔒 ABSOLUTE ELIMINATION OF HARDCODED WHITE HOVER/FOCUS STATES */
-tr:hover, td:hover, li:hover, .table-row:hover, .nav-item:hover, .sidebar-nav-btn:hover {
-  background-color: var(--bg-hover) !important;
-  color: var(--text-primary) !important;
+/* 🔒 UNIFIED ROW-BY-ROW TABLE HOVER OVERRIDE (DARK MODE & LIGHT MODE) */
+[data-theme="dark"] tbody tr:hover,
+[data-theme="dark"] tbody tr:hover td,
+.dark-theme tbody tr:hover,
+.dark-theme tbody tr:hover td {
+  background-color: #22344A !important;
+  color: #DDE7F3 !important;
 }
 
+[data-theme="dark"] td:hover,
+.dark-theme td:hover,
+[data-theme="dark"] th:hover,
+.dark-theme th:hover {
+  background-color: transparent !important;
+}
+
+[data-theme="light"] tbody tr:hover,
+[data-theme="light"] tbody tr:hover td,
+.light-theme tbody tr:hover,
+.light-theme tbody tr:hover td {
+  background-color: #E8F1FF !important;
+  color: #1F2937 !important;
+}
+
+/* 🔒 ABSOLUTE ELIMINATION OF HARDCODED WHITE HOVER/FOCUS STATES */
 tr.selected, tr.active, li.selected, li.active, .selected, .active-nav-item {
   background-color: var(--bg-selected) !important;
   color: var(--text-primary) !important;
