@@ -1,0 +1,2543 @@
+[?25l[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[0J[?25h(node:2191) [DEP0044] DeprecationWarning: The `util.isArray` API is deprecated. Please use `Array.isArray()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[?25l[96m∙∙●[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 32ms
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 21.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 21.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [········                           ] 
+Est. time left: 21.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [········                           ] 
+Est. time left: 21.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 21.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 21.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 21.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [········                           ] 
+Est. time left: 21.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [········                           ] 
+Est. time left: 21.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 21.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 21.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 21.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [········                           ] 
+Est. time left: 21.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [········                           ] 
+Est. time left: 26.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 26.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 26.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [········                           ] 
+Est. time left: 26.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·········                          ] 
+Est. time left: 26.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·········                          ] 
+Est. time left: 27.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·········                          ] 
+Est. time left: 26.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·········                          ] 
+Est. time left: 26.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·········                          ] 
+Est. time left: 26.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·········                          ] 
+Est. time left: 26.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·········                          ] 
+Est. time left: 26.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [··········                         ] 
+Est. time left: 26.8s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [··········                         ] 
+Est. time left: 26.8s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [··········                         ] 
+Est. time left: 26.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [··········                         ] 
+Est. time left: 26.4s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [··········                         ] 
+Est. time left: 26.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [··········                         ] 
+Est. time left: 26.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [··········                         ] 
+Est. time left: 26.4s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [···········                        ] 
+Est. time left: 26.2s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [···········                        ] 
+Est. time left: 26.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [···········                        ] 
+Est. time left: 26s
+
+[3A[58C[0K[58D[19C[1B[0K[19D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···········                        ] 
+Est. time left: 25.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···········                        ] 
+Est. time left: 25.2s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [···········                        ] 
+Est. time left: 25.2s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [············                       ] 
+Est. time left: 24.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [············                       ] 
+Est. time left: 24.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [············                       ] 
+Est. time left: 24.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [············                       ] 
+Est. time left: 24.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [············                       ] 
+Est. time left: 24.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [············                       ] 
+Est. time left: 24.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [············                       ] 
+Est. time left: 24.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [············                       ] 
+Est. time left: 24.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [············                       ] 
+Est. time left: 26s
+
+[3A[58C[0K[58D[19C[1B[0K[19D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [············                       ] 
+Est. time left: 26s
+
+[3A[58C[0K[58D[19C[1B[0K[19D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [············                       ] 
+Est. time left: 26.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 25.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 25.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 25.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 25.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 25.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 25.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 26.4s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 26.4s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 26.4s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 26.4s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 26.4s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 26.4s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.2s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 26.8s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 26.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 26.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 26.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 26.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 26.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 26.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 27.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [··············                     ] 
+Est. time left: 55.4s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [··············                     ] 
+Est. time left: 55.4s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [··············                     ] 
+Est. time left: 55s
+
+[3A[58C[0K[58D[19C[1B[0K[19D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [··············                     ] 
+Est. time left: 55s
+
+[3A[58C[0K[58D[19C[1B[0K[19D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [··············                     ] 
+Est. time left: 54.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [··············                     ] 
+Est. time left: 54.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [··············                     ] 
+Est. time left: 54.2s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [··············                     ] 
+Est. time left: 53.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [··············                     ] 
+Est. time left: 53.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [··············                     ] 
+Est. time left: 53.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [··············                     ] 
+Est. time left: 53.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···············                    ] 
+Est. time left: 53s
+
+[3A[58C[0K[58D[19C[1B[0K[19D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···············                    ] 
+Est. time left: 52.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [···············                    ] 
+Est. time left: 52.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [···············                    ] 
+Est. time left: 52.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [···············                    ] 
+Est. time left: 52.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···············                    ] 
+Est. time left: 52.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···············                    ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [···············                    ] 
+Est. time left: 55.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [···············                    ] 
+Est. time left: 55.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [················                   ] 
+Est. time left: 55.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [················                   ] 
+Est. time left: 55.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [················                   ] 
+Est. time left: 54.8s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [················                   ] 
+Est. time left: 54.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [················                   ] 
+Est. time left: 53.8s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [················                   ] 
+Est. time left: 53.8s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [················                   ] 
+Est. time left: 52.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [················                   ] 
+Est. time left: 52.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [················                   ] 
+Est. time left: 52.2s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [················                   ] 
+Est. time left: 52.2s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [················                   ] 
+Est. time left: 52.2s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [················                   ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [················                   ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [················                   ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [················                   ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [················                   ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [················                   ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [················                   ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [················                   ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [················                   ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [················                   ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [················                   ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [················                   ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [················                   ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [················                   ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [················                   ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [················                   ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [················                   ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [················                   ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [················                   ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [················                   ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [················                   ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [················                   ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [················                   ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [················                   ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [················                   ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [················                   ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [················                   ] 
+Est. time left: 51.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·················                  ] 
+Est. time left: 52.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·················                  ] 
+Est. time left: 51.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·················                  ] 
+Est. time left: 51s
+
+[3A[58C[0K[58D[19C[1B[0K[19D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·················                  ] 
+Est. time left: 50.4s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [··················                 ] 
+Est. time left: 49.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [··················                 ] 
+Est. time left: 49.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [··················                 ] 
+Est. time left: 48.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [··················                 ] 
+Est. time left: 48.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [··················                 ] 
+Est. time left: 48s
+
+[3A[58C[0K[58D[19C[1B[0K[19D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [··················                 ] 
+Est. time left: 47.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [··················                 ] 
+Est. time left: 47s
+
+[3A[58C[0K[58D[19C[1B[0K[19D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [··················                 ] 
+Est. time left: 46.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [··················                 ] 
+Est. time left: 46.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [··················                 ] 
+Est. time left: 46.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [···················                ] 
+Est. time left: 45.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [···················                ] 
+Est. time left: 47.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···················                ] 
+Est. time left: 47.2s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···················                ] 
+Est. time left: 46.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [···················                ] 
+Est. time left: 46.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [···················                ] 
+Est. time left: 46.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [···················                ] 
+Est. time left: 46.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···················                ] 
+Est. time left: 46.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···················                ] 
+Est. time left: 46.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [···················                ] 
+Est. time left: 46.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [····················               ] 
+Est. time left: 45.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [····················               ] 
+Est. time left: 45.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [····················               ] 
+Est. time left: 45.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [····················               ] 
+Est. time left: 44.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [····················               ] 
+Est. time left: 44.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [····················               ] 
+Est. time left: 44.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [····················               ] 
+Est. time left: 43.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [····················               ] 
+Est. time left: 43.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [····················               ] 
+Est. time left: 43.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [····················               ] 
+Est. time left: 42.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·····················              ] 
+Est. time left: 41.8s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·····················              ] 
+Est. time left: 41.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·····················              ] 
+Est. time left: 40.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·····················              ] 
+Est. time left: 40.4s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·····················              ] 
+Est. time left: 39.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·····················              ] 
+Est. time left: 39.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·····················              ] 
+Est. time left: 39s
+
+[3A[58C[0K[58D[19C[1B[0K[19D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·····················              ] 
+Est. time left: 38.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·····················              ] 
+Est. time left: 38s
+
+[3A[58C[0K[58D[19C[1B[0K[19D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [······················             ] 
+Est. time left: 37.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [······················             ] 
+Est. time left: 36.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [······················             ] 
+Est. time left: 35.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [······················             ] 
+Est. time left: 35.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [······················             ] 
+Est. time left: 34.8s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [······················             ] 
+Est. time left: 34.4s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·······················            ] 
+Est. time left: 34s
+
+[3A[58C[0K[58D[19C[1B[0K[19D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·······················            ] 
+Est. time left: 33.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·······················            ] 
+Est. time left: 33.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·······················            ] 
+Est. time left: 32.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·······················            ] 
+Est. time left: 32.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·······················            ] 
+Est. time left: 31.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·······················            ] 
+Est. time left: 31s
+
+[3A[58C[0K[58D[19C[1B[0K[19D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [························           ] 
+Est. time left: 30.2s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [························           ] 
+Est. time left: 29.8s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [························           ] 
+Est. time left: 29.4s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [························           ] 
+Est. time left: 29s
+
+[3A[58C[0K[58D[19C[1B[0K[19D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [························           ] 
+Est. time left: 28.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [························           ] 
+Est. time left: 28.2s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·························          ] 
+Est. time left: 27.4s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·························          ] 
+Est. time left: 27.4s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·························          ] 
+Est. time left: 27.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·························          ] 
+Est. time left: 27.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·························          ] 
+Est. time left: 26.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·························          ] 
+Est. time left: 26.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·························          ] 
+Est. time left: 26.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·························          ] 
+Est. time left: 26s
+
+[3A[58C[0K[58D[19C[1B[0K[19D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·························          ] 
+Est. time left: 25.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·························          ] 
+Est. time left: 25.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·························          ] 
+Est. time left: 25.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·························          ] 
+Est. time left: 25.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·························          ] 
+Est. time left: 25.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·························          ] 
+Est. time left: 25.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·························          ] 
+Est. time left: 25.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·························          ] 
+Est. time left: 25.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·························          ] 
+Est. time left: 25.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·························          ] 
+Est. time left: 25.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·························          ] 
+Est. time left: 25.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·························          ] 
+Est. time left: 25.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·························          ] 
+Est. time left: 25.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [··························         ] 
+Est. time left: 25s
+
+[3A[58C[0K[58D[19C[1B[0K[19D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [··························         ] 
+Est. time left: 25s
+
+[3A[58C[0K[58D[19C[1B[0K[19D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [··························         ] 
+Est. time left: 25s
+
+[3A[58C[0K[58D[19C[1B[0K[19D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [··························         ] 
+Est. time left: 24.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [··························         ] 
+Est. time left: 24.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [··························         ] 
+Est. time left: 24.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [··························         ] 
+Est. time left: 24.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [··························         ] 
+Est. time left: 24.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [··························         ] 
+Est. time left: 24.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [··························         ] 
+Est. time left: 24.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [··························         ] 
+Est. time left: 24.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [··························         ] 
+Est. time left: 24.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [··························         ] 
+Est. time left: 24.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [··························         ] 
+Est. time left: 24.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [··························         ] 
+Est. time left: 24.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [··························         ] 
+Est. time left: 24.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [··························         ] 
+Est. time left: 24.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [··························         ] 
+Est. time left: 24.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [··························         ] 
+Est. time left: 24.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [··························         ] 
+Est. time left: 24.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [··························         ] 
+Est. time left: 24.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [··························         ] 
+Est. time left: 24.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [··························         ] 
+Est. time left: 24.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [··························         ] 
+Est. time left: 24.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [··························         ] 
+Est. time left: 24.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [··························         ] 
+Est. time left: 24.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [··························         ] 
+Est. time left: 24.4s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [··························         ] 
+Est. time left: 24.4s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [··························         ] 
+Est. time left: 24.4s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [··························         ] 
+Est. time left: 24.4s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [··························         ] 
+Est. time left: 24.4s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [··························         ] 
+Est. time left: 24.2s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [··························         ] 
+Est. time left: 24.2s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [··························         ] 
+Est. time left: 24.2s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [··························         ] 
+Est. time left: 24.2s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [··························         ] 
+Est. time left: 24.2s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [··························         ] 
+Est. time left: 24.2s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [··························         ] 
+Est. time left: 24.2s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [··························         ] 
+Est. time left: 24.2s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [··························         ] 
+Est. time left: 24.2s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [··························         ] 
+Est. time left: 24.2s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [··························         ] 
+Est. time left: 24.2s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [··························         ] 
+Est. time left: 23.8s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [··························         ] 
+Est. time left: 23.4s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···························        ] 
+Est. time left: 23s
+
+[3A[58C[0K[58D[19C[1B[0K[19D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [···························        ] 
+Est. time left: 22.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [···························        ] 
+Est. time left: 22.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [···························        ] 
+Est. time left: 22.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···························        ] 
+Est. time left: 22.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···························        ] 
+Est. time left: 22.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [···························        ] 
+Est. time left: 22.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [···························        ] 
+Est. time left: 22.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [···························        ] 
+Est. time left: 22.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···························        ] 
+Est. time left: 22.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···························        ] 
+Est. time left: 22.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [···························        ] 
+Est. time left: 22.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [···························        ] 
+Est. time left: 22.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [···························        ] 
+Est. time left: 22.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···························        ] 
+Est. time left: 22.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···························        ] 
+Est. time left: 22.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [···························        ] 
+Est. time left: 22.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [···························        ] 
+Est. time left: 22.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [···························        ] 
+Est. time left: 22.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···························        ] 
+Est. time left: 22.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···························        ] 
+Est. time left: 22.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [···························        ] 
+Est. time left: 22.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [···························        ] 
+Est. time left: 22.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [···························        ] 
+Est. time left: 23s
+
+[3A[58C[0K[58D[19C[1B[0K[19D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···························        ] 
+Est. time left: 23s
+
+[3A[58C[0K[58D[19C[1B[0K[19D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···························        ] 
+Est. time left: 22.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [···························        ] 
+Est. time left: 22.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [···························        ] 
+Est. time left: 22.2s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [···························        ] 
+Est. time left: 21.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···························        ] 
+Est. time left: 21.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···························        ] 
+Est. time left: 21.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [···························        ] 
+Est. time left: 21.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [···························        ] 
+Est. time left: 21.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [···························        ] 
+Est. time left: 21.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···························        ] 
+Est. time left: 21.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···························        ] 
+Est. time left: 21.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [···························        ] 
+Est. time left: 21.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [···························        ] 
+Est. time left: 21.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [···························        ] 
+Est. time left: 21.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···························        ] 
+Est. time left: 21.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···························        ] 
+Est. time left: 21.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [···························        ] 
+Est. time left: 21.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [···························        ] 
+Est. time left: 21.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [···························        ] 
+Est. time left: 21.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···························        ] 
+Est. time left: 21.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···························        ] 
+Est. time left: 21.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [···························        ] 
+Est. time left: 21.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [···························        ] 
+Est. time left: 21.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [···························        ] 
+Est. time left: 21.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [····························       ] 
+Est. time left: 21.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [····························       ] 
+Est. time left: 20.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [····························       ] 
+Est. time left: 20.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [····························       ] 
+Est. time left: 20.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [····························       ] 
+Est. time left: 20.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [····························       ] 
+Est. time left: 20.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [····························       ] 
+Est. time left: 20.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [····························       ] 
+Est. time left: 20.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [····························       ] 
+Est. time left: 20.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [····························       ] 
+Est. time left: 20.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [····························       ] 
+Est. time left: 20.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [····························       ] 
+Est. time left: 20.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [····························       ] 
+Est. time left: 20.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [····························       ] 
+Est. time left: 20.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [····························       ] 
+Est. time left: 20.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [····························       ] 
+Est. time left: 20.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [····························       ] 
+Est. time left: 20.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [····························       ] 
+Est. time left: 20.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [····························       ] 
+Est. time left: 20.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [····························       ] 
+Est. time left: 20.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [····························       ] 
+Est. time left: 20.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [····························       ] 
+Est. time left: 19.8s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [····························       ] 
+Est. time left: 19.4s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [····························       ] 
+Est. time left: 19s
+
+[3A[58C[0K[58D[19C[1B[0K[19D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·····························      ] 
+Est. time left: 18.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·····························      ] 
+Est. time left: 18.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·····························      ] 
+Est. time left: 18.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·····························      ] 
+Est. time left: 18.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·····························      ] 
+Est. time left: 18.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·····························      ] 
+Est. time left: 18.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·····························      ] 
+Est. time left: 18.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·····························      ] 
+Est. time left: 18.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·····························      ] 
+Est. time left: 18.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·····························      ] 
+Est. time left: 18.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·····························      ] 
+Est. time left: 18.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·····························      ] 
+Est. time left: 18.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·····························      ] 
+Est. time left: 18.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·····························      ] 
+Est. time left: 18.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·····························      ] 
+Est. time left: 18.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·····························      ] 
+Est. time left: 18.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·····························      ] 
+Est. time left: 18.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·····························      ] 
+Est. time left: 18.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·····························      ] 
+Est. time left: 18.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·····························      ] 
+Est. time left: 18.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·····························      ] 
+Est. time left: 18.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·····························      ] 
+Est. time left: 17.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·····························      ] 
+Est. time left: 17.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·····························      ] 
+Est. time left: 17.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·····························      ] 
+Est. time left: 17.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·····························      ] 
+Est. time left: 17.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·····························      ] 
+Est. time left: 17.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·····························      ] 
+Est. time left: 17.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·····························      ] 
+Est. time left: 17.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·····························      ] 
+Est. time left: 17.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·····························      ] 
+Est. time left: 17.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·····························      ] 
+Est. time left: 17.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·····························      ] 
+Est. time left: 17.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·····························      ] 
+Est. time left: 17.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·····························      ] 
+Est. time left: 17.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·····························      ] 
+Est. time left: 17.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·····························      ] 
+Est. time left: 17.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·····························      ] 
+Est. time left: 17.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·····························      ] 
+Est. time left: 17.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·····························      ] 
+Est. time left: 17.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·····························      ] 
+Est. time left: 17.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·····························      ] 
+Est. time left: 17.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·····························      ] 
+Est. time left: 17.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·····························      ] 
+Est. time left: 17.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·····························      ] 
+Est. time left: 17.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·····························      ] 
+Est. time left: 17.2s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [······························     ] 
+Est. time left: 14.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [······························     ] 
+Est. time left: 14.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [······························     ] 
+Est. time left: 13.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [······························     ] 
+Est. time left: 13.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [······························     ] 
+Est. time left: 13.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [······························     ] 
+Est. time left: 13.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·······························    ] 
+Est. time left: 13.2s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·······························    ] 
+Est. time left: 13.2s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·······························    ] 
+Est. time left: 12.8s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·······························    ] 
+Est. time left: 12.4s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·······························    ] 
+Est. time left: 12.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·······························    ] 
+Est. time left: 11.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·······························    ] 
+Est. time left: 11.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·······························    ] 
+Est. time left: 11.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·······························    ] 
+Est. time left: 11.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·······························    ] 
+Est. time left: 11.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·······························    ] 
+Est. time left: 11.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·······························    ] 
+Est. time left: 11.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·······························    ] 
+Est. time left: 11.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·······························    ] 
+Est. time left: 11.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·······························    ] 
+Est. time left: 11.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·······························    ] 
+Est. time left: 11.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·······························    ] 
+Est. time left: 11.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·······························    ] 
+Est. time left: 11.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·······························    ] 
+Est. time left: 11.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·······························    ] 
+Est. time left: 11.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·······························    ] 
+Est. time left: 11.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·······························    ] 
+Est. time left: 11.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·······························    ] 
+Est. time left: 11.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·······························    ] 
+Est. time left: 11.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·······························    ] 
+Est. time left: 11.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·······························    ] 
+Est. time left: 11.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·······························    ] 
+Est. time left: 11.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·······························    ] 
+Est. time left: 11.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·······························    ] 
+Est. time left: 11.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·······························    ] 
+Est. time left: 11.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·······························    ] 
+Est. time left: 11.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·······························    ] 
+Est. time left: 10.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [································   ] 
+Est. time left: 10.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [································   ] 
+Est. time left: 9.7s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [································   ] 
+Est. time left: 9.3s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [································   ] 
+Est. time left: 8.9s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [································   ] 
+Est. time left: 8.5s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [································   ] 
+Est. time left: 8.1s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [································   ] 
+Est. time left: 7.8s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·································  ] 
+Est. time left: 7s
+
+[3A[58C[0K[58D[18C[1B[0K[18D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·································  ] 
+Est. time left: 6.6s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·································  ] 
+Est. time left: 6.3s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·································  ] 
+Est. time left: 5.5s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·································  ] 
+Est. time left: 5.2s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·································  ] 
+Est. time left: 4.8s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·································  ] 
+Est. time left: 4.8s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·································  ] 
+Est. time left: 4.8s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·································  ] 
+Est. time left: 4.8s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·································  ] 
+Est. time left: 4.8s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·································  ] 
+Est. time left: 4.8s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·································  ] 
+Est. time left: 4.8s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·································  ] 
+Est. time left: 4.8s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·································  ] 
+Est. time left: 4.8s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·································  ] 
+Est. time left: 4.8s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·································  ] 
+Est. time left: 4.8s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·································  ] 
+Est. time left: 4.8s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·································  ] 
+Est. time left: 4.8s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·································  ] 
+Est. time left: 4.8s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·································  ] 
+Est. time left: 4.8s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·································  ] 
+Est. time left: 4.8s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·································  ] 
+Est. time left: 4.8s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·································  ] 
+Est. time left: 4.8s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·································  ] 
+Est. time left: 4.8s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·································  ] 
+Est. time left: 4.8s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·································  ] 
+Est. time left: 4.8s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·································· ] 
+Est. time left: 3.8s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·································· ] 
+Est. time left: 2.3s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·································· ] 
+Est. time left: 2s
+
+[3A[58C[0K[58D[18C[1B[0K[18D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·································· ] 
+Est. time left: 1.6s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···································] 
+Est. time left: 1.3s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···································] 
+Est. time left: 945ms
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[0J[1m[32m✔[39m[22m AppSail[server] uploaded in 100 seconds
+[1A[1B[?25h[?25l[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[0J[?25h[0J[?25h[?25l[0J[1m[32m✔[39m[22m Web_Client uploaded in 0 seconds
+[1A[1B[?25h[?25l[96m∙∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m●∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙●∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙●[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m●∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙●∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙●[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m●∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙●∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙●[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m●∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙●∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙●[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m●∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙●∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙●[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m●∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙●∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙●[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m●∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙●∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙●[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m●∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙●∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙●[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m●∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙●∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙●[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m●∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙●∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙●[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m●∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙●∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙●[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m●∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙●∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙●[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[0J[?25h[0J[?25h[?25l[0J[?25h[?25l[0J[?25h[?25l[0J[1m[32m✔[39m[22m Slate[client] uploaded in 0 seconds
+[1A[1B[?25h[?25l[96m●∙∙[39m deploying slate
+[1A[19C[0K[19D[1B[0J[1A[96m∙●∙[39m deploying slate
+[1A[19C[0K[19D[1B[0J[1A[96m∙∙●[39m deploying slate
+[1A[19C[0K[19D[1B[0J[1A[96m∙∙∙[39m deploying slate
+[1A[19C[0K[19D[1B[0J[1A[96m∙∙∙[39m deploying slate
+[1A[19C[0K[19D[1B[0J[1A[96m●∙∙[39m deploying slate
+[1A[19C[0K[19D[1B[0J[1A[96m∙●∙[39m deploying slate
+[1A[19C[0K[19D[1B[0J[1A[0J[?25h[0J[?25h
+
+[1m >>>>>>>>>>>>>>> AppSail <<<<<<<<<<<<<[22m
+
+[32m[1m[32m✔[39m[32m[22m DEPLOYMENT SUCCESSFUL: [39mserver
+[36m[1m[36mℹ[39m[36m[22m APPSAIL URL          : [39m[4mhttps://server-50043662505.development.catalystappsail.in[24m
+
+
+[1m >>>>>>>>>>>>> Web Client <<<<<<<<<<<<[22m
+
+[32m[1m[32m✔[39m[32m[22m DEPLOYMENT SUCCESSFUL: [39mclient
+[36m[1m[36mℹ[39m[36m[22m ACCESS URL           : [39mhttps://project-rainfall-60076677593.development.catalystserverless.in/app/index.html
+
+[1m >>>>>>>>>>>>>>> Slate <<<<<<<<<<<<<<<[22m
+[32m[1m[32m✔[39m[32m[22m Slate(client): [39mDeploy is live!
+[36m[1m[36mℹ[39m[36m[22m [36mBuild Url(client)[39m[36m: [39mhttps://console.catalyst.zoho.in/baas/60076677593/project/54521000000013024/Development#/slate/app/4770000000006001/deployment/4770000000006003/overview
+
+
+[32m[1m[32m✔[39m[32m[22m [39mCatalyst deploy complete!
+
+
+   ╭──────────────────────────────────────────╮
+   │                                          │
+   │    Update available 1.26.2 → 1.27.0      │
+   │   Run npm i -g zcatalyst-cli to update   │
+   │                                          │
+   ╰──────────────────────────────────────────╯
+
+[?25h

@@ -18,5 +18,3 @@ EXPOSE 8000
 
 # Start server command
 CMD ["python", "main.py"]
-
-

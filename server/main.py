@@ -7,7 +7,7 @@ print("FastAPI app starting...")
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
-from app.database import get_all_cases, create_case, update_case, delete_case
+from app.database import get_all_cases, create_case, update_case, delete_case, is_fallback_active
 from pydantic import BaseModel
 
 app = FastAPI(
@@ -104,25 +104,43 @@ def seed_large(request: Request):
 # headers (Catalyst sends the exact origin, FastAPI sends "*"), which browsers reject.
 
 # Serve static assets compiled from client build
-app.mount("/assets", StaticFiles(directory="static/assets"), name="assets")
+base_dir = os.path.dirname(os.path.abspath(__file__))
+static_assets_dir = os.path.join(base_dir, "static", "assets")
+if not os.path.exists(static_assets_dir):
+    static_assets_dir = "static/assets"
+
+if os.path.exists(static_assets_dir):
+    app.mount("/assets", StaticFiles(directory=static_assets_dir), name="assets")
+    app.mount("/app/assets", StaticFiles(directory=static_assets_dir), name="app_assets")
 
 @app.get("/favicon.svg")
+@app.get("/app/favicon.svg")
 def get_favicon():
     return FileResponse("static/favicon.svg")
 
 @app.get("/icons.svg")
+@app.get("/app/icons.svg")
 def get_icons():
     return FileResponse("static/icons.svg")
 
 @app.get("/")
+@app.get("/app")
+@app.get("/app/index.html")
 def read_root():
     return FileResponse("static/index.html")
 
+
 @app.get("/api/v1/health")
 def health_check():
+    key = os.environ.get("GEMINI_API_KEY", "")
+    all_env_keys = [k for k in os.environ.keys() if "GEMINI" in k or "ZOHO" in k or "CATALYST" in k]
     return {
         "status": "Healthy",
-        "database_connected": True
+        "database_connected": True,
+        "gemini_key_found": bool(key),
+        "gemini_key_prefix": key[:6] if key else "NOT_SET",
+        "pythonunbuffered_set": os.environ.get("PYTHONUNBUFFERED", "NOT_FOUND"),
+        "relevant_env_keys": all_env_keys
     }
 
 @app.get("/api/v1/cases")
@@ -132,7 +150,8 @@ def read_cases(request: Request):
         return {
             "success": True,
             "count": len(cases),
-            "data": cases
+            "data": cases,
+            "db_mode": "fallback" if is_fallback_active() else "live"
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to fetch cases: {str(e)}")
@@ -179,6 +198,18 @@ def edit_case(case_id: int, case: CaseUpdate, request: Request):
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to update case: {str(e)}")
 
+@app.get("/api/v1/cases/{case_id}/details")
+def read_case_details(case_id: int, request: Request):
+    try:
+        from app.database import get_case_details
+        details = get_case_details(case_id, request)
+        return {
+            "success": True,
+            "data": details
+        }
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to fetch details: {str(e)}")
+
 @app.delete("/api/v1/cases/{case_id}")
 def remove_case(case_id: int, request: Request):
     try:
@@ -193,11 +224,192 @@ def remove_case(case_id: int, request: Request):
         raise he
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to delete case: {str(e)}")
+
+class AIAnalyzeRequest(BaseModel):
+    fir_number: Optional[str] = ""
+    category: Optional[str] = ""
+    district: Optional[str] = ""
+    police_station: Optional[str] = ""
+    incident_date: Optional[str] = ""
+    summary: Optional[str] = ""
+
+@app.post("/api/v1/ai/analyze-fir")
+def analyze_fir(req_data: AIAnalyzeRequest, request: Request):
+    import traceback, urllib.request as urlreq, json, re
+    api_key = os.environ.get("GEMINI_API_KEY", "").strip()
+    print("[AI] API KEY EXISTS:", bool(api_key))
+    print("[AI] API KEY PREFIX:", api_key[:8] if api_key else "EMPTY")
+    cat = (req_data.category or "Cybercrime").lower()
+    dist = req_data.district or "Bengaluru Urban"
+    ps   = req_data.police_station or "Precinct HQ"
+    summary_text = req_data.summary or ""
+
+    # ── Deterministic rule-based fallback values ──────────────────────
+    is_nocturnal = any(t in (req_data.incident_date or "")
+                       for t in ["01:", "02:", "03:", "04:", "23:", "00:"])
+    risk_score = ((25 if is_nocturnal else 10) +
+                  (20 if dist in ["Bengaluru Urban", "Mysuru"] else 12) + 25 + 15)
+
+    if "cyber" in cat:
+        bns_sections = "BNS Section 318 (Cheating by Personation) / IT Act Section 66D / 66C"
+        victim   = "Digital Banking User / Account Holder"
+        suspect  = "Phishing syndicate operating remotely via spoofed IPs"
+        next_steps = ("1. Freeze recipient bank accounts via NPCI coordination.\n"
+                      "2. Trace suspect IP geolocations with telecom providers.\n"
+                      f"3. Preserve digital evidence and coordinate with {ps} Cyber Cell.")
+    elif "theft" in cat:
+        bns_sections = "BNS Section 303 (Theft) / BNS Section 305 (House Trespass)"
+        victim   = "Local Resident / Property Owner"
+        suspect  = "Unidentified local gang"
+        next_steps = (f"1. Increase night patrol sweeps around {ps}.\n"
+                      "2. Cross-reference forensic fingerprints with state crime registry.\n"
+                      "3. Review CCTV footage from nearby traffic cameras.")
+    elif "assault" in cat or "violence" in cat:
+        bns_sections = "BNS Section 115 (Voluntarily Causing Hurt) / Section 351 (Criminal Intimidation)"
+        victim   = "Individual / Eyewitness Bystander"
+        suspect  = "Identified suspect from precinct lockup registry"
+        next_steps = ("1. Dispatch field patrol to verify suspect residence.\n"
+                      "2. Record formal statement under BNSS Section 183.\n"
+                      "3. Obtain Medico-Legal Certificate (MLC) from hospital.")
+    elif "fraud" in cat:
+        bns_sections = "BNS Section 336 (Forgery) / BNS Section 316 (Criminal Breach of Trust)"
+        victim   = "Commercial Entity / Financial Supervisor"
+        suspect  = "Contractor / Financial Accounts Administrator"
+        next_steps = ("1. Issue formal summons for financial interrogation.\n"
+                      "2. Request commercial division bank audit statements.\n"
+                      "3. Freeze suspect accounts pending investigation.")
+    else:
+        bns_sections = "BNS Section 115 (Voluntarily Causing Hurt) / Section 351"
+        victim   = "State Resident"
+        suspect  = "Under Investigation"
+        next_steps = (f"1. Register complaint and begin investigation at {ps}.\n"
+                      "2. Collect available evidence from the scene.\n"
+                      "3. Interview witnesses and prepare preliminary report.")
+
+    ai_mode    = "rule_based"
+    model_name = "Rule-Based Engine (Gemini Fallback)"
+
+    # ── Live Gemini call ───────────────────────────────────────────────
+    if api_key and summary_text:
+        try:
+            gemini_url = (
+                "https://generativelanguage.googleapis.com/v1beta/models/"
+                f"gemini-flash-latest:generateContent?key={api_key}"
+            )
+            prompt = f"""You are an AI assistant for the Karnataka State Police (KSP). Analyze the following First Information Report (FIR) and respond ONLY with a valid JSON object. Do NOT include markdown, code fences, or any text outside the JSON.
+
+FIR Details:
+- Category: {req_data.category}
+- District: {dist}
+- Police Station: {ps}
+- Incident Date: {req_data.incident_date or "Not specified"}
+- Summary: {summary_text}
+
+Return exactly this JSON structure:
+{{
+  "incident_summary": "2-3 sentence factual summary of the incident",
+  "victim": "victim profile description",
+  "suspect": "suspect profile or Under Investigation",
+  "crime_category": "specific crime sub-category",
+  "risk_level": "High or Medium or Low",
+  "bns_sections": ["BNS section with description", "..."],
+  "it_act_sections": ["IT Act section if applicable", "..."],
+  "required_evidence": ["evidence item 1", "evidence item 2", "..."],
+  "investigation_steps": ["step 1", "step 2", "step 3"],
+  "missing_information": ["gap 1", "gap 2"]
+}}"""
+
+            payload = json.dumps({
+                "contents": [{"parts": [{"text": prompt}]}],
+                "generationConfig": {"temperature": 0.2, "maxOutputTokens": 1024}
+            }).encode("utf-8")
+
+            http_req = urlreq.Request(
+                gemini_url, data=payload,
+                headers={"Content-Type": "application/json"}
+            )
+            with urlreq.urlopen(http_req, timeout=8) as resp:
+                res_json = json.loads(resp.read().decode("utf-8"))
+                raw_text = res_json["candidates"][0]["content"]["parts"][0]["text"]
+                print("[AI] Gemini raw response (first 200 chars):", raw_text[:200])
+
+                # Robust JSON extraction — handles markdown fences and surrounding text
+                match = re.search(r"\{.*\}", raw_text, re.DOTALL)
+                if not match:
+                    raise ValueError(f"No JSON object found in Gemini response: {raw_text[:300]}")
+                g = json.loads(match.group(0))
+
+                # Overwrite fallback fields with Gemini values
+                victim     = g.get("victim",  victim)
+                suspect    = g.get("suspect", suspect)
+
+                bns_list   = g.get("bns_sections",    [])
+                it_list    = g.get("it_act_sections", [])
+                all_laws   = bns_list + it_list
+                if all_laws:
+                    bns_sections = " / ".join(all_laws[:3])
+
+                steps = g.get("investigation_steps", [])
+                if steps:
+                    next_steps = "\n".join(
+                        f"{i+1}. {s}" for i, s in enumerate(steps[:4])
+                    )
+
+                rl = g.get("risk_level", "High")
+                if rl == "High":
+                    risk_score = min(risk_score + 10, 100)
+                elif rl == "Low":
+                    risk_score = max(risk_score - 10, 30)
+
+                ai_mode    = "live_gemini"
+                model_name = "Gemini Flash (Live — via Catalyst AppSail)"
+
+        except Exception as e:
+            traceback.print_exc()
+            print(f"[AI] Gemini call failed, falling back to rule engine. Error: {e}")
+
+    return {
+        "success": True,
+        "debug": {
+            "api_key_found": bool(api_key),
+            "ai_mode": ai_mode,
+            "model": model_name
+        },
+        "data": {
+            "summary":          (summary_text[:150] + "...") if len(summary_text) > 150 else summary_text,
+            "victim":           victim,
+            "suspect":          suspect,
+            "bns_sections":     bns_sections,
+            "cluster_name":     f"{dist} {req_data.category} Cluster",
+            "total_risk_score": risk_score,
+            "risk_factors": [
+                f"• Incident Time: {'Nocturnal Peak (01-04 AM)' if is_nocturnal else 'Daytime Window'} (+{25 if is_nocturnal else 10} pts)",
+                f"• Hotspot Sector: {dist} Proximity (+20 pts)",
+                "• Severity Priority: High Escalation (+25 pts)",
+                "• Suspect Status: Active Investigation (+15 pts)"
+            ],
+            "next_steps":  next_steps,
+            "model_used":  model_name,
+            "ai_mode":     ai_mode
+        }
+    }
+
+
 @app.get("/{full_path:path}")
 def catch_all(full_path: str):
     if full_path.startswith("api/"):
         raise HTTPException(status_code=404, detail="API route not found")
-    return FileResponse("static/index.html")
+    
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    static_file = os.path.join(base_dir, "static", "index.html")
+    if os.path.exists(static_file):
+        return FileResponse(static_file)
+    
+    fallback_file = os.path.abspath(os.path.join(base_dir, "..", "client", "dist", "index.html"))
+    if os.path.exists(fallback_file):
+        return FileResponse(fallback_file)
+        
+    return FileResponse(static_file)
 
 
 

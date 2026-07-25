@@ -1,0 +1,35 @@
+(node:5661) [DEP0044] DeprecationWarning: The `util.isArray` API is deprecated. Please use `Array.isArray()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[?25l[0J[1m[32m✔[39m[22m Web_Client uploaded in 0 seconds
+[1A[1B[?25h[?25l[96m∙∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m●∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙●∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙●[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[0J[?25h[0J[?25h[?25l[0J[?25h[?25l[0J[?25h[?25l[0J[1m[32m✔[39m[22m Slate[client] uploaded in 0 seconds
+[1A[1B[?25h[?25l[96m∙∙∙[39m deploying slate
+[1A[19C[0K[19D[1B[0J[1A[96m∙∙∙[39m deploying slate
+[1A[19C[0K[19D[1B[0J[1A[96m●∙∙[39m deploying slate
+[1A[19C[0K[19D[1B[0J[1A[96m∙●∙[39m deploying slate
+[1A[19C[0K[19D[1B[0J[1A[0J[?25h[0J[?25h
+
+[1m >>>>>>>>>>>>> Web Client <<<<<<<<<<<<[22m
+
+[32m[1m[32m✔[39m[32m[22m DEPLOYMENT SUCCESSFUL: [39mclient
+[36m[1m[36mℹ[39m[36m[22m ACCESS URL           : [39mhttps://project-rainfall-60076677593.development.catalystserverless.in/app/index.html
+
+[1m >>>>>>>>>>>>>>> Slate <<<<<<<<<<<<<<<[22m
+[32m[1m[32m✔[39m[32m[22m Slate(client): [39mDeploy is live!
+[36m[1m[36mℹ[39m[36m[22m [36mBuild Url(client)[39m[36m: [39mhttps://console.catalyst.zoho.in/baas/60076677593/project/54521000000013024/Development#/slate/app/4770000000006001/deployment/4770000000006003/overview
+
+
+[32m[1m[32m✔[39m[32m[22m [39mCatalyst deploy complete!
+
+
+   ╭──────────────────────────────────────────╮
+   │                                          │
+   │    Update available 1.26.2 → 1.27.0      │
+   │   Run npm i -g zcatalyst-cli to update   │
+   │                                          │
+   ╰──────────────────────────────────────────╯
+
+[?25h

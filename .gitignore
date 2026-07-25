@@ -23,10 +23,22 @@ npm-debug.log*
 .Spotlight-V100
 .Trashes
 
-# Sensitive files / environment variables
+# Sensitive files / environment variables / credentials
 .env
-.env.*.local
-.env.local
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+
+# Local deployment logs and backups
+*.txt
+deploy_*.txt
+appsail_*.txt
+client_backup/
+server_backup/
+static/
+scratch/
 
 # Project logs
 *.log

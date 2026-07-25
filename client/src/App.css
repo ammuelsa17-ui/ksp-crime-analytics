@@ -1,15 +1,76 @@
-/* Police Dashboard Styling */
-:root {
-  --bg-primary: #EBEFF5;
-  --bg-secondary: #F8FAFC;
-  --text-primary: #1F2937;
-  --text-secondary: #6B7280;
-  --police-blue: #0F4C81;
-  --police-light: #1565C0;
-  --police-gold: #F9A825;
-  --accent-green: #2E7D32;
-  --accent-red: #D32F2F;
-  --border-color: #DCE3EA;
+/* --- Microsoft Defender XDR / Palantir Gotham / Azure Portal Enterprise Design System --- */
+
+/* ☀️ Light Theme (Government Analytics Portal - Power BI / Zoho Analytics Aesthetic) */
+:root, [data-theme="light"], .light-theme {
+  --bg-primary: #F3F6FA;
+  --bg-secondary: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-hover: #F1F5F9;
+  --bg-sidebar: #EAF0F7;
+  --bg-header: #FFFFFF;
+  --text-primary: #1E293B;
+  --text-secondary: #64748B;
+  --text-muted: #94A3B8;
+  --border-color: #D7E0EA;
+  --police-blue: #1D4ED8;
+  --police-light: #0284C7;
+  --police-gold: #D97706;
+  --accent-green: #10B981;
+  --accent-red: #DC2626;
+  --accent-purple: #7C3AED;
+  --accent-orange: #EA580C;
+
+  --bg-canvas: var(--bg-primary);
+  --bg-card-element: var(--bg-secondary);
+  --border-primary: var(--border-color);
+  --text-main: var(--text-primary);
+  --text-desc: var(--text-secondary);
+  --transition-speed: 200ms;
+}
+
+/* 🌙 Dark Theme (Command & Control Center - Microsoft Defender XDR / Palantir Gotham Aesthetic) */
+[data-theme="dark"], .dark-theme {
+  --bg-primary: #0B1220;
+  --bg-secondary: #172033;
+  --bg-card: #172033;
+  --bg-hover: #1E293B;
+  --bg-sidebar: #111827;
+  --bg-header: #1B2436;
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --border-color: #26334D;
+  --police-blue: #2563EB;
+  --police-light: #38BDF8;
+  --police-gold: #F59E0B;
+  --accent-green: #22C55E;
+  --accent-red: #EF4444;
+  --accent-purple: #8B5CF6;
+  --accent-orange: #F97316;
+
+  --bg-canvas: var(--bg-primary);
+  --bg-card-element: var(--bg-secondary);
+  --border-primary: var(--border-color);
+  --text-main: var(--text-primary);
+  --text-desc: var(--text-secondary);
+}
+
+/* Module Workspace Top Accent Colors */
+.workspace-accent-overview { border-top: 3px solid #2563EB !important; }
+.workspace-accent-records { border-top: 3px solid #10B981 !important; }
+.workspace-accent-analytics { border-top: 3px solid #06B6D4 !important; }
+.workspace-accent-intelligence { border-top: 3px solid #8B5CF6 !important; }
+.workspace-accent-map { border-top: 3px solid #F97316 !important; }
+.workspace-accent-admin { border-top: 3px solid #EF4444 !important; }
+
+/* Micro-animations & Card Hover Elevation */
+.overview-card, .analytics-card, .activity-card {
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.2s ease !important;
+}
+
+.overview-card:hover, .analytics-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25) !important;
 }
 
 

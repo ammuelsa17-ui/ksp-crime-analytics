@@ -99,8 +99,12 @@ def get_catalyst_app(request=None):
         except Exception as e:
             print(f"Failed to initialize Catalyst SDK with request: {e}")
             use_fallback = True
-            return None
     return None
+
+def is_fallback_active() -> bool:
+    global use_fallback
+    return use_fallback
+
 
 DISTRICT_COORDINATES = {
     "bagalkot": (16.1813, 75.6999),
@@ -565,5 +569,118 @@ def delete_case(case_id: int, request=None) -> bool:
         print(f"Error deleting in Catalyst Data Store: {e}. Falling back to local database delete.")
         use_fallback = True
         return delete_case(case_id, request)
+
+
+def get_case_details(case_id: int, request=None) -> dict:
+    """Retrieves accused list, victim list, and investigation logs associated with a case ID."""
+    global use_fallback
+    
+    app_instance = get_catalyst_app(request)
+    
+    if use_fallback or app_instance is None:
+        data = get_local_fallback_data()
+        
+        # Filter accused
+        accused_list = [
+            {
+                "id": a.get("ROWID"),
+                "name": a.get("name"),
+                "age": a.get("age"),
+                "status": a.get("status")
+            }
+            for a in data.get("accused", [])
+            if a.get("case_id") == case_id
+        ]
+        
+        # Filter victims (note: key is 'victims' in mock JSON)
+        victim_list = [
+            {
+                "id": v.get("ROWID"),
+                "name": v.get("name"),
+                "age": v.get("age"),
+                "gender": v.get("gender")
+            }
+            for v in data.get("victims", [])
+            if v.get("case_id") == case_id
+        ]
+        
+        # Filter investigation records
+        investigation_list = [
+            {
+                "id": i.get("ROWID"),
+                "officer_name": i.get("officer_name"),
+                "diary_entry": i.get("diary_entry"),
+                "status": i.get("status"),
+                "last_updated": i.get("last_updated")
+            }
+            for i in data.get("investigation_records", [])
+            if i.get("case_id") == case_id
+        ]
+        
+        return {
+            "accused": accused_list,
+            "victims": victim_list,
+            "investigations": investigation_list
+        }
+        
+    try:
+        zcql = app_instance.zcql()
+        
+        # Query accused table
+        accused_list = []
+        try:
+            acc_results = zcql.execute_query(f"SELECT ROWID, name, age, status FROM accused WHERE case_id = {case_id}")
+            for row in acc_results:
+                acc_data = row.get("accused", {})
+                accused_list.append({
+                    "id": acc_data.get("ROWID"),
+                    "name": acc_data.get("name"),
+                    "age": int(acc_data.get("age", 0)) if acc_data.get("age") is not None else 0,
+                    "status": acc_data.get("status", "Under Investigation")
+                })
+        except Exception as ex:
+            print(f"Catalyst accused table query failed: {ex}")
+            
+        # Query victim table (note: Table is 'victim' in Catalyst)
+        victim_list = []
+        try:
+            vic_results = zcql.execute_query(f"SELECT ROWID, name, age, gender FROM victim WHERE case_id = {case_id}")
+            for row in vic_results:
+                vic_data = row.get("victim", {})
+                victim_list.append({
+                    "id": vic_data.get("ROWID"),
+                    "name": vic_data.get("name"),
+                    "age": int(vic_data.get("age", 0)) if vic_data.get("age") is not None else 0,
+                    "gender": vic_data.get("gender", "Unknown")
+                })
+        except Exception as ex:
+            print(f"Catalyst victim table query failed: {ex}")
+            
+        # Query investigation_records table
+        investigation_list = []
+        try:
+            inv_results = zcql.execute_query(f"SELECT ROWID, officer_name, diary_entry, status, last_updated FROM investigation_records WHERE case_id = {case_id}")
+            for row in inv_results:
+                inv_data = row.get("investigation_records", {})
+                investigation_list.append({
+                    "id": inv_data.get("ROWID"),
+                    "officer_name": inv_data.get("officer_name"),
+                    "diary_entry": inv_data.get("diary_entry"),
+                    "status": inv_data.get("status", "Active"),
+                    "last_updated": inv_data.get("last_updated")
+                })
+        except Exception as ex:
+            print(f"Catalyst investigation_records query failed: {ex}")
+            
+        return {
+            "accused": accused_list,
+            "victims": victim_list,
+            "investigations": investigation_list
+        }
+    except Exception as e:
+        print(f"Error querying case details in Catalyst: {e}. Falling back to local data.")
+        use_fallback = True
+        return get_case_details(case_id, request)
+
 
 

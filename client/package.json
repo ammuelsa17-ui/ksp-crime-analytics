@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && python3 -c \"import re; p=open('dist/index.html').read(); p=re.sub(r'\\s+crossorigin(?:=\\\"\\\")?', '', p); open('dist/index.html','w').write(p)\"",
+
     "lint": "oxlint",
     "preview": "vite preview"
   },

@@ -20,7 +20,7 @@
   "slate": [
     {
       "name": "client",
-      "source": "client"
+      "source": "client/dist"
     }
   ]
 }

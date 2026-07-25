@@ -1,0 +1,605 @@
+[?25l[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m Preparing AppSail[server]
+[1A[29C[0K[29D[1B[0J[1A[0J[?25h(node:8389) [DEP0044] DeprecationWarning: The `util.isArray` API is deprecated. Please use `Array.isArray()` instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[?25l[96m∙∙●[39m AppSail[server] [                                   ] 
+Est. time left: 16.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [                                   ] 
+Est. time left: 16.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [                                   ] 
+Est. time left: 16.7s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·                                  ] 
+Est. time left: 43.8s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·                                  ] 
+Est. time left: 43.8s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·                                  ] 
+Est. time left: 43.8s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·                                  ] 
+Est. time left: 1m 5.5s
+
+[3A[58C[0K[58D[23C[1B[0K[23D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·                                  ] 
+Est. time left: 1m 5.5s
+
+[3A[58C[0K[58D[23C[1B[0K[23D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·                                  ] 
+Est. time left: 1m 12.2s
+
+[3A[58C[0K[58D[24C[1B[0K[24D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·                                  ] 
+Est. time left: 1m 12.2s
+
+[3A[58C[0K[58D[24C[1B[0K[24D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·                                  ] 
+Est. time left: 1m 12.2s
+
+[3A[58C[0K[58D[24C[1B[0K[24D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·                                  ] 
+Est. time left: 1m 12.2s
+
+[3A[58C[0K[58D[24C[1B[0K[24D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·                                  ] 
+Est. time left: 1m 12.2s
+
+[3A[58C[0K[58D[24C[1B[0K[24D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·                                  ] 
+Est. time left: 1m 12.2s
+
+[3A[58C[0K[58D[24C[1B[0K[24D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·                                  ] 
+Est. time left: 1m 12.2s
+
+[3A[58C[0K[58D[24C[1B[0K[24D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·                                  ] 
+Est. time left: 1m 12.2s
+
+[3A[58C[0K[58D[24C[1B[0K[24D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·                                  ] 
+Est. time left: 1m 42s
+
+[3A[58C[0K[58D[22C[1B[0K[22D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·                                  ] 
+Est. time left: 1m 42s
+
+[3A[58C[0K[58D[22C[1B[0K[22D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·                                  ] 
+Est. time left: 1m 42s
+
+[3A[58C[0K[58D[22C[1B[0K[22D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·                                  ] 
+Est. time left: 1m 42s
+
+[3A[58C[0K[58D[22C[1B[0K[22D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·                                  ] 
+Est. time left: 1m 42s
+
+[3A[58C[0K[58D[22C[1B[0K[22D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·                                  ] 
+Est. time left: 1m 52.2s
+
+[3A[58C[0K[58D[24C[1B[0K[24D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·                                  ] 
+Est. time left: 1m 52.2s
+
+[3A[58C[0K[58D[24C[1B[0K[24D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·                                  ] 
+Est. time left: 1m 52.2s
+
+[3A[58C[0K[58D[24C[1B[0K[24D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·                                  ] 
+Est. time left: 1m 52.2s
+
+[3A[58C[0K[58D[24C[1B[0K[24D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·                                  ] 
+Est. time left: 1m 52.2s
+
+[3A[58C[0K[58D[24C[1B[0K[24D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·                                  ] 
+Est. time left: 1m 52.2s
+
+[3A[58C[0K[58D[24C[1B[0K[24D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·                                  ] 
+Est. time left: 2m 0.7s
+
+[3A[58C[0K[58D[23C[1B[0K[23D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·                                  ] 
+Est. time left: 2m 0.7s
+
+[3A[58C[0K[58D[23C[1B[0K[23D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·                                  ] 
+Est. time left: 2m 0.7s
+
+[3A[58C[0K[58D[23C[1B[0K[23D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·                                  ] 
+Est. time left: 1m 43.6s
+
+[3A[58C[0K[58D[24C[1B[0K[24D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [··                                 ] 
+Est. time left: 1m 18.5s
+
+[3A[58C[0K[58D[24C[1B[0K[24D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···                                ] 
+Est. time left: 1m 8.6s
+
+[3A[58C[0K[58D[23C[1B[0K[23D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [···                                ] 
+Est. time left: 58.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [···                                ] 
+Est. time left: 55.5s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [····                               ] 
+Est. time left: 52.8s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·····                              ] 
+Est. time left: 36.4s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [······                             ] 
+Est. time left: 34.3s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [············                       ] 
+Est. time left: 15.6s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·············                      ] 
+Est. time left: 14.2s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·············                      ] 
+Est. time left: 13.9s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [··············                     ] 
+Est. time left: 13.8s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [··············                     ] 
+Est. time left: 13.8s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [···············                    ] 
+Est. time left: 13.1s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [··················                 ] 
+Est. time left: 10.2s
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [··················                 ] 
+Est. time left: 10s
+
+[3A[58C[0K[58D[19C[1B[0K[19D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [··················                 ] 
+Est. time left: 10s
+
+[3A[58C[0K[58D[19C[1B[0K[19D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···················                ] 
+Est. time left: 9.4s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·····················              ] 
+Est. time left: 8.2s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·······················            ] 
+Est. time left: 7s
+
+[3A[58C[0K[58D[18C[1B[0K[18D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·······················            ] 
+Est. time left: 6.8s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·······················            ] 
+Est. time left: 6.8s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [························           ] 
+Est. time left: 6.4s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [························           ] 
+Est. time left: 6.2s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [························           ] 
+Est. time left: 6.2s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [························           ] 
+Est. time left: 6.2s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [························           ] 
+Est. time left: 6.2s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [························           ] 
+Est. time left: 6.2s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [························           ] 
+Est. time left: 6.2s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [························           ] 
+Est. time left: 6.2s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [························           ] 
+Est. time left: 6.2s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [························           ] 
+Est. time left: 6.2s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [························           ] 
+Est. time left: 6.2s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [························           ] 
+Est. time left: 6.2s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [························           ] 
+Est. time left: 6.2s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·························          ] 
+Est. time left: 6.4s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·························          ] 
+Est. time left: 6.5s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·························          ] 
+Est. time left: 6.4s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·························          ] 
+Est. time left: 6.2s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [··························         ] 
+Est. time left: 5.5s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [···························        ] 
+Est. time left: 4.6s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···························        ] 
+Est. time left: 4.6s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [····························       ] 
+Est. time left: 4.2s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·····························      ] 
+Est. time left: 3.6s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [······························     ] 
+Est. time left: 2.6s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·······························    ] 
+Est. time left: 2.2s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·······························    ] 
+Est. time left: 2.1s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·······························    ] 
+Est. time left: 2.1s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [································   ] 
+Est. time left: 1.9s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [································   ] 
+Est. time left: 1.7s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [································   ] 
+Est. time left: 1.7s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [································   ] 
+Est. time left: 1.7s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [································   ] 
+Est. time left: 1.7s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [································   ] 
+Est. time left: 1.7s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [································   ] 
+Est. time left: 1.7s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [································   ] 
+Est. time left: 1.7s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [································   ] 
+Est. time left: 1.7s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [································   ] 
+Est. time left: 1.7s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [································   ] 
+Est. time left: 1.7s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [································   ] 
+Est. time left: 1.7s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [································   ] 
+Est. time left: 1.7s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·································  ] 
+Est. time left: 1.3s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [·································  ] 
+Est. time left: 1.2s
+
+[3A[58C[0K[58D[20C[1B[0K[20D[1A[2B[0K[2A[3B[0J[3A[96m●∙∙[39m AppSail[server] [·································  ] 
+Est. time left: 1s
+
+[3A[58C[0K[58D[18C[1B[0K[18D[1A[2B[0K[2A[3B[0J[3A[96m∙●∙[39m AppSail[server] [·································· ] 
+Est. time left: 850ms
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙●[39m AppSail[server] [·································· ] 
+Est. time left: 418ms
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[96m∙∙∙[39m AppSail[server] [···································] 
+Est. time left: 181ms
+
+[3A[58C[0K[58D[21C[1B[0K[21D[1A[2B[0K[2A[3B[0J[3A[0J[1m[32m✔[39m[22m AppSail[server] uploaded in 21 seconds
+[1A[1B[?25h[?25l[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙●[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m●∙∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[96m∙●∙[39m deploying Appsail[server]
+[1A[29C[0K[29D[1B[0J[1A[0J[?25h[0J[?25h[?25l[0J[1m[32m✔[39m[22m Web_Client uploaded in 0 seconds
+[1A[1B[?25h[?25l[96m∙∙●[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[96m∙∙∙[39m deploying Web Client
+[1A[24C[0K[24D[1B[0J[1A[0J[?25h[0J[?25h[?25l[0J[?25h[?25l[0J[?25h[?25l[0J[1m[32m✔[39m[22m Slate[client] uploaded in 0 seconds
+[1A[1B[?25h[?25l[96m∙∙∙[39m deploying slate
+[1A[19C[0K[19D[1B[0J[1A[96m●∙∙[39m deploying slate
+[1A[19C[0K[19D[1B[0J[1A[96m∙●∙[39m deploying slate
+[1A[19C[0K[19D[1B[0J[1A[96m∙∙●[39m deploying slate
+[1A[19C[0K[19D[1B[0J[1A[96m∙∙∙[39m deploying slate
+[1A[19C[0K[19D[1B[0J[1A[0J[?25h[0J[?25h
+
+[1m >>>>>>>>>>>>>>> AppSail <<<<<<<<<<<<<[22m
+
+[32m[1m[32m✔[39m[32m[22m DEPLOYMENT SUCCESSFUL: [39mserver
+[36m[1m[36mℹ[39m[36m[22m APPSAIL URL          : [39m[4mhttps://server-50043662505.development.catalystappsail.in[24m
+
+
+[1m >>>>>>>>>>>>> Web Client <<<<<<<<<<<<[22m
+
+[32m[1m[32m✔[39m[32m[22m DEPLOYMENT SUCCESSFUL: [39mclient
+[36m[1m[36mℹ[39m[36m[22m ACCESS URL           : [39mhttps://project-rainfall-60076677593.development.catalystserverless.in/app/index.html
+
+[1m >>>>>>>>>>>>>>> Slate <<<<<<<<<<<<<<<[22m
+[32m[1m[32m✔[39m[32m[22m Slate(client): [39mDeploy is live!
+[36m[1m[36mℹ[39m[36m[22m [36mBuild Url(client)[39m[36m: [39mhttps://console.catalyst.zoho.in/baas/60076677593/project/54521000000013024/Development#/slate/app/4770000000006001/deployment/4770000000006003/overview
+
+
+[32m[1m[32m✔[39m[32m[22m [39mCatalyst deploy complete!
+
+[?25h
