@@ -92,6 +92,10 @@ td {
   padding: 0.4rem 0.85rem !important;
   border-bottom: 1px solid var(--border-color) !important;
   color: var(--text-primary) !important;
+  vertical-align: middle !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
 }
 
 tbody tr {
