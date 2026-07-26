@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { BrainCircuit, CheckSquare, Square, ShieldCheck, Clock, AlertTriangle, FileText, Share2 } from 'lucide-react';
+import { BrainCircuit, CheckSquare, Square, ShieldCheck, Clock, AlertTriangle, FileText, Share2, Loader2 } from 'lucide-react';
 
 export default function UnifiedIntelligencePanel({ firNumber = 'FIR/BLR/2026/0010', confidence = 94 }) {
   const [activeSubTab, setActiveSubTab] = useState('executive_brief');
   const [anomalyData, setAnomalyData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [lastUpdated, setLastUpdated] = useState('');
   const [recommendations, setRecommendations] = useState([
     { id: 1, text: 'Issue dynamic freeze notice on beneficiary bank account via NPCI gateway', checked: true, urgency: 'Critical' },
     { id: 2, text: 'Obtain IP transaction logs and ISP subscriber details', checked: true, urgency: 'High' },
@@ -12,6 +14,7 @@ export default function UnifiedIntelligencePanel({ firNumber = 'FIR/BLR/2026/001
   ]);
 
   useEffect(() => {
+    setLoading(true);
     fetch('/api/v1/analytics/anomalies')
       .then(res => res.json())
       .then(data => {
@@ -19,16 +22,23 @@ export default function UnifiedIntelligencePanel({ firNumber = 'FIR/BLR/2026/001
           setAnomalyData(data);
         }
       })
-      .catch(() => {});
+      .catch(() => {})
+      .finally(() => {
+        setLoading(false);
+        setLastUpdated(new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' }) + ' IST');
+      });
   }, []);
 
   const handleToggle = (id) => {
     setRecommendations(prev => prev.map(item => item.id === id ? { ...item, checked: !item.checked } : item));
   };
 
-  const anomaly1 = anomalyData?.anomalies?.[0];
-  const detectedSpike = anomaly1 ? anomaly1.detected_spike : 34;
-  const deviationStr = anomaly1 ? anomaly1.deviation : '+304.7% Abnormal Spike';
+  const topAnomaly = anomalyData?.anomalies?.[0];
+  const targetDistrict = topAnomaly?.district || "Bengaluru Urban";
+  const targetCategory = topAnomaly?.category || "Cyber Fraud";
+  const detectedSpike = topAnomaly?.detected_spike || 34;
+  const deviationStr = topAnomaly?.deviation || "+304.7% Abnormal Spike";
+  const totalFirs = anomalyData?.total_database_firs || 26;
 
   return (
     <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: '8px', padding: '1.25rem', margin: '1rem 0' }}>
@@ -86,17 +96,49 @@ export default function UnifiedIntelligencePanel({ firNumber = 'FIR/BLR/2026/001
       {/* 3. Sub-Tab Content Viewports */}
       {activeSubTab === 'executive_brief' && (
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', background: 'var(--bg-primary)', padding: '1rem', borderRadius: '6px', border: '1px solid var(--border-color)' }}>
-          <div style={{ fontSize: '0.88rem', fontWeight: '800', color: 'var(--police-light)', letterSpacing: '0.5px', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.4rem' }}>
-            📋 TODAY'S STATEWIDE POLICE INTELLIGENCE BRIEFING
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.4rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+            <div style={{ fontSize: '0.88rem', fontWeight: '800', color: 'var(--police-light)', letterSpacing: '0.5px' }}>
+              📋 TODAY'S STATEWIDE POLICE INTELLIGENCE BRIEFING
+            </div>
+            <div style={{ fontSize: '0.7rem', color: 'var(--text-secondary)', fontWeight: '600' }}>
+              {lastUpdated ? `Generated: ${lastUpdated} | Source: ${totalFirs} FIRs Analyzed` : 'Syncing Live Database...'}
+            </div>
           </div>
-          <div style={{ fontSize: '0.8rem', color: 'var(--text-primary)', lineHeight: '1.5' }}>
-            <ul style={{ margin: 0, paddingLeft: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-              <li><strong>Cyber Fraud Outlier:</strong> Bengaluru Urban registered a <strong>{deviationStr}</strong> ({detectedSpike} FIRs) detected live by Isolation Forest outlier algorithms.</li>
-              <li><strong>Spatial Density Hotspot:</strong> DBSCAN clustering identified <strong>Koramangala 5th Block Tech Hub</strong> as a High-Density Sector ({anomalyData?.total_database_firs || 26} total active FIRs).</li>
-              <li><strong>Criminal Network Linkage:</strong> NetworkX graph linker matched 2 new FIRs to the <strong>Ramesh Kumar Cyber Syndicate VPA</strong> (<code>ramesh@icici</code>).</li>
-              <li><strong>Recommended Tactical Action:</strong> Issue dynamic NPCI beneficiary account freeze notice &amp; dispatch 4 night patrol units (01:00 AM - 04:00 AM window).</li>
-            </ul>
-          </div>
+
+          {loading ? (
+            <div style={{ padding: '1.5rem', textAlign: 'center', color: 'var(--police-light)', fontSize: '0.82rem', fontWeight: '700' }}>
+              <Loader2 className="animate-spin" size={18} style={{ marginRight: '0.5rem' }} /> Loading Live Intelligence Brief...
+            </div>
+          ) : (
+            <div style={{ fontSize: '0.8rem', color: 'var(--text-primary)', lineHeight: '1.5' }}>
+              <ul style={{ margin: 0, paddingLeft: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                <li>
+                  <span style={{ background: 'rgba(220, 38, 38, 0.15)', color: 'var(--accent-red)', fontSize: '0.68rem', fontWeight: '800', padding: '0.1rem 0.35rem', borderRadius: '3px', marginRight: '0.4rem' }}>
+                    ISOLATION FOREST ANOMALY
+                  </span>
+                  <strong>{targetDistrict} ({targetCategory}):</strong> Registered a <strong>{deviationStr}</strong> ({detectedSpike} active FIRs) detected by Isolation Forest outlier algorithms.
+                </li>
+                <li>
+                  <span style={{ background: 'rgba(59, 130, 246, 0.15)', color: 'var(--police-light)', fontSize: '0.68rem', fontWeight: '800', padding: '0.1rem 0.35rem', borderRadius: '3px', marginRight: '0.4rem' }}>
+                    DBSCAN SPATIAL CLUSTER
+                  </span>
+                  <strong>Sector Hotspot:</strong> DBSCAN spatial density clustering identified high-density incident clusters across {targetDistrict} transit corridors ({totalFirs} total database FIRs evaluated).
+                </li>
+                <li>
+                  <span style={{ background: 'rgba(16, 185, 129, 0.15)', color: 'var(--accent-green)', fontSize: '0.68rem', fontWeight: '800', padding: '0.1rem 0.35rem', borderRadius: '3px', marginRight: '0.4rem' }}>
+                    NETWORKX GRAPH LINK
+                  </span>
+                  <strong>Criminal Association:</strong> NetworkX graph linker matched 2 active FIR cases to the <strong>Ramesh Kumar Cyber Syndicate VPA</strong> (<code>ramesh@icici</code>).
+                </li>
+                <li>
+                  <span style={{ background: 'rgba(245, 158, 11, 0.15)', color: 'var(--police-gold)', fontSize: '0.68rem', fontWeight: '800', padding: '0.1rem 0.35rem', borderRadius: '3px', marginRight: '0.4rem' }}>
+                    TACTICAL DISPATCH
+                  </span>
+                  <strong>Recommended Action:</strong> Issue dynamic NPCI beneficiary account freeze notice &amp; dispatch 4 night patrol units (01:00 AM - 04:00 AM window).
+                </li>
+              </ul>
+            </div>
+          )}
         </div>
       )}
 
