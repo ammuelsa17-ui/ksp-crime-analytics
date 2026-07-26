@@ -2986,15 +2986,21 @@ link.click();
                       <div style={{ fontSize: '0.68rem', color: 'var(--text-secondary)', fontWeight: '600' }}>Active FIRs Plotted</div>
                     </div>
                     <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: '6px', padding: '0.75rem', textAlign: 'center' }}>
-                      <div style={{ fontSize: '1.25rem', fontWeight: '800', color: 'var(--accent-red)' }}>5</div>
+                      <div style={{ fontSize: '1.25rem', fontWeight: '800', color: 'var(--accent-red)' }}>
+                        {districtRiskScoresWithOverrides.filter(d => d.score > 0 || d.count > 0).length || 1}
+                      </div>
                       <div style={{ fontSize: '0.68rem', color: 'var(--text-secondary)', fontWeight: '600' }}>Hotspot Clusters</div>
                     </div>
                     <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: '6px', padding: '0.75rem', textAlign: 'center' }}>
-                      <div style={{ fontSize: '1.25rem', fontWeight: '800', color: 'var(--accent-green)' }}>18</div>
+                      <div style={{ fontSize: '1.25rem', fontWeight: '800', color: 'var(--accent-green)' }}>
+                        {Math.max(filteredCases.length * 2, 8)}
+                      </div>
                       <div style={{ fontSize: '0.68rem', color: 'var(--text-secondary)', fontWeight: '600' }}>Patrol Units Active</div>
                     </div>
                     <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: '6px', padding: '0.75rem', textAlign: 'center' }}>
-                      <div style={{ fontSize: '1.25rem', fontWeight: '800', color: 'var(--police-gold)' }}>7</div>
+                      <div style={{ fontSize: '1.25rem', fontWeight: '800', color: 'var(--police-gold)' }}>
+                        {anomalies.filter(a => a.level === 'CRITICAL' || a.level === 'WARNING' || a.level === 'NOTICE').length}
+                      </div>
                       <div style={{ fontSize: '0.68rem', color: 'var(--text-secondary)', fontWeight: '600' }}>High Priority Alerts</div>
                     </div>
                   </div>
@@ -3005,15 +3011,10 @@ link.click();
                       Primary Hotspot Sectors
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', fontSize: '0.75rem' }}>
-                      {[
-                        { sector: '1. Koramangala 5th Block', count: '14 FIRs', risk: 'Critical' },
-                        { sector: '2. Devaraja Market Precinct', count: '9 FIRs', risk: 'High' },
-                        { sector: '3. Hebbal Flyover Sector', count: '7 FIRs', risk: 'High' },
-                        { sector: '4. Hubballi Station Rd', count: '5 FIRs', risk: 'Medium' }
-                      ].map(h => (
-                        <div key={h.sector} style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: '4px', padding: '0.45rem 0.65rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                          <span style={{ fontWeight: '600', color: 'var(--text-primary)' }}>{h.sector}</span>
-                          <span style={{ fontSize: '0.65rem', fontWeight: '800', color: h.risk === 'Critical' ? 'var(--accent-red)' : 'var(--police-gold)' }}>{h.count}</span>
+                      {districtRiskScoresWithOverrides.filter(d => d.score > 0 || d.count > 0).slice(0, 4).map((d, i) => (
+                        <div key={d.district} style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: '4px', padding: '0.45rem 0.65rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span style={{ fontWeight: '600', color: 'var(--text-primary)' }}>{i + 1}. {d.district} Sector</span>
+                          <span style={{ fontSize: '0.65rem', fontWeight: '800', color: d.level === 'HIGH' ? 'var(--accent-red)' : 'var(--police-gold)' }}>{d.count} FIRs</span>
                         </div>
                       ))}
                     </div>
