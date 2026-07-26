@@ -671,18 +671,27 @@ function App() {
         mapContainer.innerHTML = '';
       }
 
+      // Ensure container height before Leaflet mounts
+      if (mapContainer.clientHeight === 0) {
+        mapContainer.style.height = '580px';
+      }
+
       // Karnataka Center
-      const map = L.map('crime-map').setView([14.9754, 76.1368], 7);
+      const map = L.map('crime-map', {
+        center: [14.9754, 76.1368],
+        zoom: 7,
+        zoomControl: true
+      });
       createdMap = map;
 
       // 🗺️ 4-Theme Base Map Layers (Command Dark, Government Light, Satellite Terrain, OpenStreetMap)
-      const darkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      const darkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
         subdomains: 'abcd',
         maxZoom: 20
       });
 
-      const lightLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      const lightLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
         subdomains: 'abcd',
         maxZoom: 20
@@ -696,6 +705,21 @@ function App() {
       const streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         maxZoom: 19
+      });
+
+      // Tile error fallback handler
+      darkLayer.on('tileerror', () => {
+        if (!map.hasLayer(streetLayer)) {
+          console.warn("CARTO dark tile error detected. Falling back to OpenStreetMap.");
+          streetLayer.addTo(map);
+        }
+      });
+
+      lightLayer.on('tileerror', () => {
+        if (!map.hasLayer(streetLayer)) {
+          console.warn("CARTO light tile error detected. Falling back to OpenStreetMap.");
+          streetLayer.addTo(map);
+        }
       });
 
       // Default active base layer
