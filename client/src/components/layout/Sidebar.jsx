@@ -137,31 +137,33 @@ export default function Sidebar({
       </nav>
 
       {/* Connection Status Section */}
+      {/* Connection Status Section */}
       <div 
         className="sidebar-footer" 
         style={{
-          padding: '1rem',
+          padding: '0.85rem 0.75rem',
           borderTop: '1px solid rgba(255, 255, 255, 0.08)',
           display: 'flex',
           flexDirection: 'column',
-          gap: '0.5rem',
+          gap: '0.6rem',
           fontSize: '0.7rem',
           boxSizing: 'border-box'
         }}
       >
         {!sidebarCollapsed ? (
           <>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span style={{ color: 'rgba(255, 255, 255, 0.6)' }}>API Status:</span>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: apiStatus === 'Online' ? 'rgba(52, 211, 153, 0.1)' : 'rgba(248, 113, 113, 0.1)', padding: '0.4rem 0.65rem', borderRadius: '4px', border: apiStatus === 'Online' ? '1px solid rgba(52, 211, 153, 0.25)' : '1px solid rgba(248, 113, 113, 0.25)' }}>
+              <span style={{ color: 'var(--text-secondary)', fontWeight: '700', fontSize: '0.68rem' }}>API GATEWAY</span>
               <span style={{
                 color: apiStatus === 'Online' ? '#34D399' : '#F87171',
-                fontWeight: 'bold',
+                fontWeight: '800',
+                fontSize: '0.68rem',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.25rem'
               }}>
                 <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: apiStatus === 'Online' ? '#34D399' : '#F87171', display: 'inline-block' }}></span>
-                {apiStatus}
+                {apiStatus === 'Online' ? 'ONLINE' : 'OFFLINE'}
               </span>
             </div>
 
@@ -190,19 +192,18 @@ export default function Sidebar({
         <button
           onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
           style={{
-            marginTop: '0.5rem',
-            background: 'rgba(255, 255, 255, 0.08)',
-            border: 'none',
-            color: 'var(--text-sidebar)',
+            background: 'var(--bg-card)',
+            border: '1px solid var(--border-color)',
+            color: 'var(--text-secondary)',
             borderRadius: '4px',
-            padding: '0.4rem',
+            padding: '0.45rem',
             cursor: 'pointer',
-            fontSize: '0.75rem',
+            fontSize: '0.72rem',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             width: '100%',
-            fontWeight: '600'
+            fontWeight: '700'
           }}
         >
           {sidebarCollapsed ? (
@@ -210,7 +211,7 @@ export default function Sidebar({
           ) : (
             <>
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '0.4rem' }}><polyline points="15 18 9 12 15 6"/></svg>
-              Collapse
+              Collapse Sidebar
             </>
           )}
         </button>
