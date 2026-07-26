@@ -1259,29 +1259,37 @@ link.click();
     }
   })
 
-  // Timeline chart aggregation
+  // Timeline chart aggregation (Composed Bar + Gradient Area Chart)
   const dateGroups = {}
-  cases.forEach(c => {
+  const sourceCasesForTimeline = filteredCases.length > 0 ? filteredCases : cases;
+  sourceCasesForTimeline.forEach(c => {
+    if (!c.incident_date) return;
     const dateStr = c.incident_date.split(' ')[0]
     dateGroups[dateStr] = (dateGroups[dateStr] || 0) + 1
   })
   const sortedDates = Object.keys(dateGroups).sort()
-  const maxDateCount = Math.max(...Object.values(dateGroups), 1)
-  const chartWidth = 500
-  const chartHeight = 150
-  const padding = 25
+  const rawMaxCount = Math.max(...Object.values(dateGroups), 1)
+  const yMax = Math.max(rawMaxCount + 1, 4) // Prevents flat line at top when all counts are equal
+  const chartWidth = 700
+  const chartHeight = 200
+  const paddingX = 50
+  const paddingY = 30
+  
   const points = sortedDates.map((date, idx) => {
+    const count = dateGroups[date]
     const x = sortedDates.length > 1 
-      ? padding + (idx * (chartWidth - 2 * padding)) / (sortedDates.length - 1)
+      ? paddingX + (idx * (chartWidth - 2 * paddingX)) / (sortedDates.length - 1)
       : chartWidth / 2
-    const y = chartHeight - padding - (dateGroups[date] / maxDateCount) * (chartHeight - 2 * padding)
-    return { date, count: dateGroups[date], x, y }
+    // Accurate Y-position relative to yMax baseline
+    const y = (chartHeight - paddingY) - (count / yMax) * (chartHeight - 2 * paddingY)
+    return { date, count, x, y }
   })
+
   const linePath = points.length > 1
     ? points.map((p, idx) => `${idx === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ')
     : ''
   const areaPath = points.length > 1
-    ? `${linePath} L ${points[points.length - 1].x} ${chartHeight - padding} L ${points[0].x} ${chartHeight - padding} Z`
+    ? `${linePath} L ${points[points.length - 1].x} ${chartHeight - paddingY} L ${points[0].x} ${chartHeight - paddingY} Z`
     : ''
 
   // Quick Crime Insights Calculation
@@ -2321,7 +2329,7 @@ link.click();
                   </div>
                 </div>
 
-                {/* Advanced Interactive SVG Area Chart */}
+                {/* Composed Bar + Interactive SVG Area Chart */}
                 <div className="timeline-chart-container" style={{ background: 'var(--bg-primary)', border: '1px solid var(--border-color)', borderRadius: '6px', padding: '1rem', position: 'relative' }}>
                   {points.length > 0 ? (
                     <svg viewBox="0 0 700 200" style={{ width: '100%', height: 'auto', maxHeight: '240px', overflow: 'visible' }}>
@@ -2331,34 +2339,56 @@ link.click();
                           <stop offset="60%" stopColor="#2F6FED" stopOpacity="0.15"/>
                           <stop offset="100%" stopColor="#2F6FED" stopOpacity="0.0"/>
                         </linearGradient>
+                        <linearGradient id="composedBarGrad" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stopColor="#2F6FED" stopOpacity="0.35"/>
+                          <stop offset="100%" stopColor="#2F6FED" stopOpacity="0.08"/>
+                        </linearGradient>
                         <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
                           <feGaussianBlur stdDeviation="3" result="blur" />
                           <feComposite in="SourceGraphic" in2="blur" operator="over" />
                         </filter>
                       </defs>
 
-                      {/* Horizontal Reference Lines */}
-                      <line x1="40" y1="30" x2="660" y2="30" stroke="var(--border-color)" strokeDasharray="4,4" />
-                      <line x1="40" y1="85" x2="660" y2="85" stroke="var(--border-color)" strokeDasharray="4,4" />
-                      <line x1="40" y1="140" x2="660" y2="140" stroke="var(--border-color)" />
+                      {/* Horizontal Reference Grid Lines */}
+                      <line x1="45" y1="30" x2="665" y2="30" stroke="var(--border-color)" strokeDasharray="4,4" />
+                      <line x1="45" y1="100" x2="665" y2="100" stroke="var(--border-color)" strokeDasharray="4,4" />
+                      <line x1="45" y1="170" x2="665" y2="170" stroke="var(--border-color)" />
 
-                      {/* Y-Axis Value Labels */}
-                      <text x="32" y="34" textAnchor="end" fill="var(--text-muted)" fontSize="10" fontWeight="bold">Max</text>
-                      <text x="32" y="89" textAnchor="end" fill="var(--text-muted)" fontSize="10" fontWeight="bold">Mid</text>
-                      <text x="32" y="144" textAnchor="end" fill="var(--text-muted)" fontSize="10" fontWeight="bold">0</text>
+                      {/* Y-Axis Integer Value Labels */}
+                      <text x="36" y="34" textAnchor="end" fill="var(--text-muted)" fontSize="10" fontWeight="bold">{yMax}</text>
+                      <text x="36" y="104" textAnchor="end" fill="var(--text-muted)" fontSize="10" fontWeight="bold">{Math.round(yMax / 2)}</text>
+                      <text x="36" y="174" textAnchor="end" fill="var(--text-muted)" fontSize="10" fontWeight="bold">0</text>
+
+                      {/* Composed Vertical FIR Bars */}
+                      {points.map((p, idx) => {
+                        const barHeight = Math.max(170 - p.y, 4);
+                        return (
+                          <rect 
+                            key={`bar-${idx}`} 
+                            x={p.x - 14} 
+                            y={p.y} 
+                            width="28" 
+                            height={barHeight} 
+                            fill="url(#composedBarGrad)" 
+                            stroke="rgba(47, 111, 237, 0.4)" 
+                            strokeWidth="1" 
+                            rx="4" 
+                          />
+                        );
+                      })}
 
                       {/* Area Gradient Fill */}
                       {areaPath && <path d={areaPath} fill="url(#advancedTimelineGrad)" />}
 
-                      {/* Glowing Line Path */}
-                      {linePath && <path d={linePath} fill="none" stroke="#2F6FED" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" filter="url(#glow)" />}
+                      {/* Glowing Trend Line Path */}
+                      {linePath && <path d={linePath} fill="none" stroke="#2F6FED" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" filter="url(#glow)" />}
 
-                      {/* Interactive Data Node Points */}
+                      {/* Interactive Data Node Points & Values */}
                       {points.map((p, idx) => {
-                        const isMax = p.count === Math.max(...points.map(x => x.count));
+                        const isActualPeak = p.count === rawMaxCount && rawMaxCount > 1;
                         return (
                           <g key={idx} style={{ cursor: 'pointer' }}>
-                            {isMax && (
+                            {isActualPeak && (
                               <circle cx={p.x} cy={p.y} r="10" fill="none" stroke="#EF4444" strokeWidth="2" opacity="0.7">
                                 <animate attributeName="r" values="7;14;7" dur="2s" repeatCount="indefinite" />
                                 <animate attributeName="opacity" values="0.8;0.2;0.8" dur="2s" repeatCount="indefinite" />
@@ -2367,19 +2397,23 @@ link.click();
                             <circle 
                               cx={p.x} 
                               cy={p.y} 
-                              r={isMax ? "6" : "4.5"} 
-                              fill={isMax ? "#EF4444" : "#FFFFFF"} 
-                              stroke={isMax ? "#EF4444" : "#2F6FED"} 
+                              r={isActualPeak ? "6" : "4.5"} 
+                              fill={isActualPeak ? "#EF4444" : "#FFFFFF"} 
+                              stroke={isActualPeak ? "#EF4444" : "#2F6FED"} 
                               strokeWidth="2.5" 
                             />
-                            <title>{`${p.date}: ${p.count} Registered FIRs${isMax ? ' (Peak Surge Day)' : ''}`}</title>
+                            {/* Value Callout Badge */}
+                            <text x={p.x} y={p.y - 10} textAnchor="middle" fill="var(--text-primary)" fontSize="10" fontWeight="800">
+                              {p.count}
+                            </text>
+                            <title>{`${p.date}: ${p.count} Registered FIRs${isActualPeak ? ' (Peak Surge Day)' : ''}`}</title>
                           </g>
                         );
                       })}
 
                       {/* X-Axis Date Labels */}
                       {points.map((p, idx) => (
-                        <text key={idx} x={p.x} y="165" textAnchor="middle" fill="var(--text-secondary)" fontSize="11" fontWeight="700">
+                        <text key={idx} x={p.x} y="190" textAnchor="middle" fill="var(--text-secondary)" fontSize="11" fontWeight="700">
                           {p.date.slice(5)}
                         </text>
                       ))}
