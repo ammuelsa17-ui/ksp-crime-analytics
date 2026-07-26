@@ -1397,12 +1397,38 @@ button:disabled {
   align-items: center;
   gap: 1rem;
   padding: 0.75rem 1.25rem;
-  background: #F8FAFC;
-  border-left: 4px solid var(--police-blue, #0F4C81);
+  background-color: var(--bg-card) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border-color) !important;
+  border-left: 4px solid var(--police-blue) !important;
   border-radius: 4px;
   margin-bottom: 1.25rem;
-  border: 1px solid #D1D5DB;
-  border-left-width: 4px;
+}
+
+.section-block-title {
+  color: var(--police-light) !important;
+  margin: 0 !important;
+}
+
+.section-block-sub {
+  color: var(--text-secondary) !important;
+  margin: 0.2rem 0 0 0 !important;
+}
+
+/* 🔒 DOCKED FLOATING AI PORTAL (COMPACT RIGHT ALIGNMENT) */
+.floating-ai-portal {
+  position: fixed !important;
+  bottom: 1rem !important;
+  right: 1.25rem !important;
+  z-index: 9990 !important;
+}
+
+.quick-actions-stack {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 0.35rem !important;
+  margin-bottom: 0.25rem !important;
 }
 
 .section-block-icon {
