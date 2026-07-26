@@ -660,10 +660,18 @@ function App() {
       return;
     }
 
-    // Wait for the container to render in the DOM
-    const timer = setTimeout(() => {
+    // Wait for the container to render in the DOM and Leaflet to be available
+    const waitForLeaflet = (attempts = 0) => {
       const mapContainer = document.getElementById('crime-map');
-      if (!mapContainer || typeof L === 'undefined') return;
+      if (!mapContainer || typeof L === 'undefined') {
+        if (attempts < 20) setTimeout(() => waitForLeaflet(attempts + 1), 300);
+        return;
+      }
+      initMap(mapContainer);
+    };
+    const timer = setTimeout(() => waitForLeaflet(), 200);
+
+    const initMap = (mapContainer) => {
 
       // Ensure fresh container mount by resetting Leaflet internal ID
       if (mapContainer._leaflet_id) {
@@ -685,9 +693,14 @@ function App() {
       createdMap = map;
 
       // 🗺️ 4-Theme Base Map Layers (Command Dark, Government Light, Satellite Terrain, OpenStreetMap)
-      const darkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        subdomains: 'abcd',
+      // OSM is used as primary (100% reliable, no CORS issues). CARTO as alternate.
+      const streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 19
+      });
+
+      const darkLayer = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
         maxZoom: 20
       });
 
@@ -702,22 +715,11 @@ function App() {
         maxZoom: 19
       });
 
-      const streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        maxZoom: 19
-      });
-
-      // Tile error fallback handler
+      // On tile error for dark layer, fall back to streetLayer
       darkLayer.on('tileerror', () => {
         if (!map.hasLayer(streetLayer)) {
-          console.warn("CARTO dark tile error detected. Falling back to OpenStreetMap.");
-          streetLayer.addTo(map);
-        }
-      });
-
-      lightLayer.on('tileerror', () => {
-        if (!map.hasLayer(streetLayer)) {
-          console.warn("CARTO light tile error detected. Falling back to OpenStreetMap.");
+          console.warn('Dark tile error, falling back to OSM');
+          map.removeLayer(darkLayer);
           streetLayer.addTo(map);
         }
       });
@@ -854,7 +856,7 @@ function App() {
       setTimeout(() => clearInterval(resizeInterval), 2500);
 
       map._resizeObserver = resizeObserver;
-    }, 50);
+    }; // end initMap
 
     return () => {
       clearTimeout(timer);
