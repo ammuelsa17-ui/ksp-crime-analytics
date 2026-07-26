@@ -2947,7 +2947,7 @@ link.click();
               </div>
 
               {/* Telemetry Strip */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '0.75rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))', gap: '0.75rem', width: '100%', boxSizing: 'border-box' }}>
                 {[
                   { title: 'CPU Core Load', val: '18.4%', sub: '8 Cores Active', status: '🟢 Optimal', color: '#10B981' },
                   { title: 'API Gateway Latency', val: '12ms', sub: '99.98% Uptime', status: '🟢 Normal', color: '#10B981' },
@@ -2967,10 +2967,10 @@ link.click();
               </div>
 
               {/* Main Content Layout */}
-              <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '1.25rem' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1.25rem', width: '100%', boxSizing: 'border-box' }}>
                 
                 {/* Active Officers Table */}
-                <div className="card-container" style={{ padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <div className="card-container" style={{ flex: '1 1 65%', minWidth: '320px', maxWidth: '100%', width: '100%', padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '1rem', boxSizing: 'border-box', overflowX: 'hidden' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <h3 style={{ margin: 0, fontSize: '0.95rem', fontWeight: '800', color: 'var(--text-primary)' }}>
                       👤 Active Officers &amp; Role Access Matrix
@@ -2978,7 +2978,7 @@ link.click();
                     <span style={{ fontSize: '0.72rem', color: 'var(--police-light)', fontWeight: 'bold' }}>5 Active Roles Configured</span>
                   </div>
 
-                  <div style={{ overflowX: 'auto' }}>
+                  <div style={{ width: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
                     <table className="enterprise-table">
                       <thead>
                         <tr>
@@ -3015,7 +3015,7 @@ link.click();
                 </div>
 
                 {/* Right Panel: Security Monitors */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <div style={{ flex: '1 1 30%', minWidth: '280px', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                   <div className="card-container" style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
                     <h3 style={{ margin: 0, fontSize: '0.88rem', fontWeight: '800', color: 'var(--text-primary)' }}>
                       🛡️ Security &amp; Compliance Governance
