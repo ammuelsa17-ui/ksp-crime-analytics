@@ -764,6 +764,9 @@ function App() {
       });
 
       setMapInstance(map);
+      setTimeout(() => { map && map.invalidateSize(); }, 150);
+      setTimeout(() => { map && map.invalidateSize(); }, 500);
+      setTimeout(() => { map && map.invalidateSize(); }, 1000);
     }, 100);
 
     return () => {
