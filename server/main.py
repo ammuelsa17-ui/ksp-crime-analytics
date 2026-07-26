@@ -250,28 +250,56 @@ def analyze_fir(req_data: AIAnalyzeRequest, request: Request):
     risk_score = ((25 if is_nocturnal else 10) +
                   (20 if dist in ["Bengaluru Urban", "Mysuru"] else 12) + 25 + 15)
 
-    if "cyber" in cat:
+    if "cyber" in cat or "phishing" in cat or "sim" in cat:
         bns_sections = "BNS Section 318 (Cheating by Personation) / IT Act Section 66D / 66C"
         victim   = "Digital Banking User / Account Holder"
         suspect  = "Phishing syndicate operating remotely via spoofed IPs"
         next_steps = ("1. Freeze recipient bank accounts via NPCI coordination.\n"
                       "2. Trace suspect IP geolocations with telecom providers.\n"
                       f"3. Preserve digital evidence and coordinate with {ps} Cyber Cell.")
-    elif "theft" in cat:
-        bns_sections = "BNS Section 303 (Theft) / BNS Section 305 (House Trespass)"
+    elif "theft" in cat or "burglary" in cat or "robbery" in cat or "extortion" in cat:
+        bns_sections = "BNS Section 303 (Theft) / BNS Section 305 (House Trespass) / BNS Section 308 (Extortion)"
         victim   = "Local Resident / Property Owner"
         suspect  = "Unidentified local gang"
         next_steps = (f"1. Increase night patrol sweeps around {ps}.\n"
                       "2. Cross-reference forensic fingerprints with state crime registry.\n"
                       "3. Review CCTV footage from nearby traffic cameras.")
-    elif "assault" in cat or "violence" in cat:
+    elif "murder" in cat or "homicide" in cat:
+        bns_sections = "BNS Section 103 (Punishment for Murder) / BNSS Section 183"
+        victim   = "Deceased / Primary Informant Family"
+        suspect  = "Known Associate / Under Forensic Investigation"
+        next_steps = (f"1. Seal crime scene and dispatch FSL forensics team to {ps}.\n"
+                      "2. Submit inquest report to District Magistrate.\n"
+                      "3. Track mobile CDR location logs of suspect suspects.")
+    elif "narcotics" in cat or "drug" in cat or "smuggling" in cat:
+        bns_sections = "NDPS Act Section 20/22 / BNS Section 274 (Adulteration)"
+        victim   = "Public Health / State Safety"
+        suspect  = "Interstate Contraband Trafficker"
+        next_steps = (f"1. Seize contraband material and submit to FSL lab for chemical purity analysis.\n"
+                      "2. Execute warrant search under NDPS Section 42.\n"
+                      "3. Interrogate suspect for supply-chain financial links.")
+    elif "pocso" in cat or "minor" in cat or "domestic" in cat or "harassment" in cat:
+        bns_sections = "POCSO Act Section 4/6 / BNS Section 85 (Cruelty by Husband/Relatives) / BNS Section 74"
+        victim   = "Protected Minor / Female Informant"
+        suspect  = "Accused Named in FIR"
+        next_steps = ("1. Record victim statement in presence of Child Welfare Committee / Counselor.\n"
+                      "2. Conduct immediate medical examination within 24 hours.\n"
+                      "3. Submit charge-sheet under expedited 60-day trial protocol.")
+    elif "hit and run" in cat or "driving" in cat or "traffic" in cat:
+        bns_sections = "BNS Section 106 (Causing Death by Negligence) / BNS Section 281 (Rash Driving)"
+        victim   = "Pedestrian / Motorist"
+        suspect  = "Absconding Vehicle Driver"
+        next_steps = (f"1. Impound involved motor vehicle at {ps}.\n"
+                      "2. Query Automated Number Plate Recognition (ANPR) traffic camera logs.\n"
+                      "3. Obtain RTO vehicle ownership details.")
+    elif "assault" in cat or "violence" in cat or "riot" in cat:
         bns_sections = "BNS Section 115 (Voluntarily Causing Hurt) / Section 351 (Criminal Intimidation)"
         victim   = "Individual / Eyewitness Bystander"
         suspect  = "Identified suspect from precinct lockup registry"
         next_steps = ("1. Dispatch field patrol to verify suspect residence.\n"
                       "2. Record formal statement under BNSS Section 183.\n"
                       "3. Obtain Medico-Legal Certificate (MLC) from hospital.")
-    elif "fraud" in cat:
+    elif "fraud" in cat or "forgery" in cat or "cheating" in cat or "embezzlement" in cat:
         bns_sections = "BNS Section 336 (Forgery) / BNS Section 316 (Criminal Breach of Trust)"
         victim   = "Commercial Entity / Financial Supervisor"
         suspect  = "Contractor / Financial Accounts Administrator"
@@ -279,7 +307,7 @@ def analyze_fir(req_data: AIAnalyzeRequest, request: Request):
                       "2. Request commercial division bank audit statements.\n"
                       "3. Freeze suspect accounts pending investigation.")
     else:
-        bns_sections = "BNS Section 115 (Voluntarily Causing Hurt) / Section 351"
+        bns_sections = "BNS Section 115 (Voluntarily Causing Hurt) / BNS Section 303 (Theft)"
         victim   = "State Resident"
         suspect  = "Under Investigation"
         next_steps = (f"1. Register complaint and begin investigation at {ps}.\n"

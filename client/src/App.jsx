@@ -121,7 +121,38 @@ const DISTRICT_STATIONS = {
 const ALL_DISTRICTS = Object.keys(DISTRICT_STATIONS).sort();
 
 export const ALL_DISTRICTS_LIST = ALL_DISTRICTS;
-export const CRIME_CATEGORIES_LIST = ["Theft", "Cybercrime", "Fraud", "Assault", "Robbery", "Burglary", "Murder", "Narcotics", "Kidnapping", "Extortion", "Domestic Violence", "POCSO", "Traffic Offense", "Hit and Run", "Arson", "Smuggling", "Forgery", "Cheating", "Riot", "Vandalism"];
+export const CRIME_CATEGORIES_LIST = [
+  "Cybercrime",
+  "Online Financial Fraud",
+  "Phishing & Identity Theft",
+  "SIM Swap Fraud",
+  "Theft & Larceny",
+  "Burglary & Housebreaking",
+  "Robbery & Dacoity",
+  "Motor Vehicle Theft",
+  "Extortion & Blackmail",
+  "Assault & Grievous Hurt",
+  "Murder & Homicide",
+  "Kidnapping & Abduction",
+  "Riot & Unlawful Assembly",
+  "Arson & Property Destruction",
+  "Narcotics & NDPS Offenses",
+  "Illegal Arms & Ammunition",
+  "Human Trafficking",
+  "Organized Syndicate Gangsterism",
+  "Domestic Violence",
+  "POCSO & Minor Offenses",
+  "Sexual Harassment",
+  "Dowry Harassment",
+  "Forgery & Falsification",
+  "Cheating & Breach of Trust",
+  "Embezzlement & Financial Crime",
+  "Counterfeiting Currency",
+  "Hit and Run",
+  "Reckless & Rash Driving",
+  "Vandalism & Public Disturbance",
+  "Smuggling & Contraband"
+];
 export const DISTRICT_STATIONS_MAP = DISTRICT_STATIONS;
 
 if (typeof window !== 'undefined') {
@@ -1744,10 +1775,9 @@ link.click();
                           onChange={handleInputChange}
                           required
                         >
-                          <option value="Theft">Theft</option>
-                          <option value="Cybercrime">Cybercrime</option>
-                          <option value="Assault">Assault</option>
-                          <option value="Fraud">Fraud</option>
+                          {CRIME_CATEGORIES_LIST.map(cat => (
+                            <option key={cat} value={cat}>{cat}</option>
+                          ))}
                         </select>
                       </div>
 
@@ -2820,8 +2850,8 @@ link.click();
                     onChange={(e) => setFilterCategory(e.target.value)}
                     style={{ width: '100%', background: 'transparent', color: 'var(--text-primary)', border: 'none', fontSize: '0.8rem', fontWeight: '700', outline: 'none', cursor: 'pointer' }}
                   >
-                    <option value="All">All Crime Types</option>
-                    {CRIME_CATEGORIES_LIST.slice(0, 10).map(c => <option key={c} value={c}>{c}</option>)}
+                    <option value="All">All Crime Types ({CRIME_CATEGORIES_LIST.length} Master BNS Types)</option>
+                    {CRIME_CATEGORIES_LIST.map(c => <option key={c} value={c}>{c}</option>)}
                   </select>
                 </div>
 
