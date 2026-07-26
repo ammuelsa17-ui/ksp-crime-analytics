@@ -440,39 +440,51 @@ function App() {
     const query = queryText.trim();
     setChatMessages(prev => [...prev, { sender: 'user', text: query }]);
 
-    setTimeout(() => {
-      const q = query.toLowerCase();
-      let responseText = "";
-      
-      if (q.includes("cybercrime") && q.includes("bengaluru")) {
-        setFilterCategory("Cybercrime");
-        setFilterDistrict("Bengaluru Urban");
-        setSearchQuery("");
-        responseText = "Processed Command: Filtering database to show all Cybercrime FIRs registered in Bengaluru Urban district.";
-      } else if (q.includes("high priority") || q.includes("high-priority")) {
-        setFilterCategory("All");
-        setFilterDistrict("All");
-        setSearchQuery("[Priority: High]");
-        responseText = "Processed Command: Filtering database to show all High Priority investigations.";
-      } else if (q.includes("highest") || q.includes("density") || q.includes("hotspot")) {
-        responseText = `Copilot Insight: Bengaluru currently has the highest crime density, contributing ${aiBengaluruPct}% of all registered cases statewide. Recommend patrol details focus on Koramangala PS.`;
-      } else if (q.includes("reset") || q.includes("clear") || q.includes("all")) {
-        setFilterCategory("All");
-        setFilterDistrict("All");
-        setSearchQuery("");
-        responseText = "Processed Command: All filters and search queries have been reset. Displaying full database.";
-      } else if (q.includes("alerts") || q.includes("anomalies") || q.includes("warnings")) {
-        responseText = `Copilot Insight: Rule-based anomaly engine identified ${anomalies.filter(x => x.level === 'CRITICAL' || x.level === 'WARNING' || x.level === 'NOTICE').length} active alerts. Recommended tactical action: coordinate high-patrol details with local precinct stations immediately.`;
-      } else if (q.includes("analytics") || q.includes("trends")) {
-        responseText = `Copilot Insight: Analytics digest shows '${mostCommonCategory}' is the dominant crime category statewide. Hubballi-Dharwad shows Fraud trend at ${aiHubFraudSign}${aiHubFraudTrend}% over past 7 days.`;
-      } else {
-        setSearchQuery(query);
-        responseText = `Processed Command: Searching statewide FIR records for matching text "${query}".`;
-      }
+    const q = query.toLowerCase();
+    let responseText = "";
+    
+    // Instant NLU Prompt Router:
+    if (q.includes("how many") || q.includes("total case") || q.includes("count") || q.includes("filed today") || q.includes("total fir")) {
+      const cyberCount = cases.filter(c => c.category.toLowerCase().includes('cyber')).length;
+      const blrCount = cases.filter(c => c.district.toLowerCase().includes('bengaluru')).length;
+      responseText = `Copilot Intelligence: A total of ${cases.length} active FIR cases are registered statewide in the database. Out of these, ${blrCount} cases belong to Bengaluru Urban, and ${cyberCount} are Cybercrime investigations. All precincts are fully synchronized with the Catalyst Data Store.`;
+    } else if (q.includes("cyber") || q.includes("phishing") || q.includes("fraud")) {
+      setFilterCategory("Cybercrime");
+      const count = cases.filter(c => c.category.toLowerCase().includes('cyber')).length;
+      responseText = `Copilot Command: Filtered database to show Cybercrime records (${count} active cases). Top alert sector: Koramangala 5th Block Tech Hub.`;
+    } else if (q.includes("bengaluru") || q.includes("bangalore")) {
+      setFilterDistrict("Bengaluru Urban");
+      const count = cases.filter(c => c.district.toLowerCase().includes('bengaluru')).length;
+      responseText = `Copilot Command: Filtered database for Bengaluru Urban district (${count} active cases logged). Current Risk Index: 91 / 100 (HIGH ALERT).`;
+    } else if (q.includes("mysuru") || q.includes("mysore")) {
+      setFilterDistrict("Mysuru");
+      const count = cases.filter(c => c.district.toLowerCase().includes('mysuru')).length;
+      responseText = `Copilot Command: Filtered database for Mysuru district (${count} active cases logged). Devaraja Market Precinct active.`;
+    } else if (q.includes("high priority") || q.includes("high-priority") || q.includes("critical")) {
+      setFilterCategory("All");
+      setFilterDistrict("All");
+      setSearchQuery("[Priority: High]");
+      responseText = "Copilot Command: Filtering database to display all High Priority & Critical investigations requiring urgent dispatch.";
+    } else if (q.includes("highest") || q.includes("density") || q.includes("hotspot")) {
+      responseText = `Copilot Insight: Bengaluru currently has the highest crime density, contributing ${aiBengaluruPct}% of all registered cases statewide. Primary hotspot sector: Koramangala 5th Block.`;
+    } else if (q.includes("reset") || q.includes("clear") || q.includes("all")) {
+      setFilterCategory("All");
+      setFilterDistrict("All");
+      setSearchQuery("");
+      responseText = "Copilot Command: All database filters and search queries have been reset to default statewide view.";
+    } else if (q.includes("alerts") || q.includes("anomalies") || q.includes("warnings")) {
+      responseText = `Copilot Insight: Anomaly detection engine identified ${anomalies.filter(x => x.level === 'CRITICAL' || x.level === 'WARNING' || x.level === 'NOTICE').length} active alerts statewide. Recommended tactical action: dispatch night patrol units to Koramangala and Devaraja Market.`;
+    } else if (q.includes("analytics") || q.includes("trends")) {
+      responseText = `Copilot Insight: Analytics digest shows '${mostCommonCategory}' is the dominant crime category statewide. Hubballi-Dharwad shows Fraud trend at ${aiHubFraudSign}${aiHubFraudTrend}% over past 7 days.`;
+    } else if (q.includes("bns") || q.includes("section") || q.includes("law")) {
+      responseText = "Copilot Legal Advisory: Platform automatically maps FIR complaint narratives to Bharatiya Nyaya Sanhita (BNS 2023) statutes (BNS 318 - Cheating by Personation, BNS 303 - Theft, BNS 115 - Hurt).";
+    } else {
+      setSearchQuery(query);
+      responseText = `Copilot Command: Searching statewide FIR records for matching query "${query}" across all districts and precincts.`;
+    }
 
-      setChatMessages(prev => [...prev, { sender: 'ai', text: responseText }]);
-      showToast("KSP AI Assistant processed query", "info");
-    }, 600);
+    setChatMessages(prev => [...prev, { sender: 'ai', text: responseText }]);
+    showToast("KSP AI Assistant processed query", "info");
   };
 
   const handleChatSubmit = (e) => {
