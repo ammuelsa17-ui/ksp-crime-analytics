@@ -281,7 +281,8 @@ function App() {
 
   const [toasts, setToasts] = useState([])
   const [activityLog, setActivityLog] = useState([])
-  const [mapInstance, setMapInstance] = useState(null)
+  const mapRef = useRef(null);          // Leaflet instance — created once, never destroyed
+  const mapInitialized = useRef(false); // guard: ensures L.map() is called exactly once
   const [aiSummary, setAiSummary] = useState(null)
   const [generatingSummary, setGeneratingSummary] = useState(false)
   const [chatMessages, setChatMessages] = useState([
