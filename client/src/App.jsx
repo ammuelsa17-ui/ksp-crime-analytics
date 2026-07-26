@@ -645,108 +645,101 @@ function App() {
     fetchCases()
   }, [])
 
+  // ─── Leaflet GIS Map Lifecycle ─────────────
   useEffect(() => {
-    let createdMap = null;
-
     if (activeTab !== 'map') {
-      if (mapInstance) {
+      if (mapRef.current) {
         try {
-          mapInstance.remove();
-        } catch (e) {
-          console.log("Map removal error:", e);
-        }
-        setMapInstance(null);
+          mapRef.current.off();
+          mapRef.current.remove();
+        } catch (e) {}
+        mapRef.current = null;
       }
       return;
     }
 
-    // Wait for the container to render in the DOM and Leaflet to be available
-    const waitForLeaflet = (attempts = 0) => {
+    const timer = setTimeout(() => {
+      if (typeof window === 'undefined' || !window.L) return;
+
       const mapContainer = document.getElementById('crime-map');
-      if (!mapContainer || typeof L === 'undefined') {
-        if (attempts < 20) setTimeout(() => waitForLeaflet(attempts + 1), 300);
-        return;
+      if (!mapContainer) return;
+
+      if (mapRef.current) {
+        try {
+          mapRef.current.off();
+          mapRef.current.remove();
+        } catch (e) {}
+        mapRef.current = null;
       }
-      initMap(mapContainer);
-    };
-    const timer = setTimeout(() => waitForLeaflet(), 200);
 
-    const initMap = (mapContainer) => {
-
-      // Ensure fresh container mount by resetting Leaflet internal ID
-      if (mapContainer._leaflet_id) {
-        mapContainer._leaflet_id = null;
+      if (typeof mapContainer.replaceChildren === 'function') {
+        mapContainer.replaceChildren();
+      } else {
         mapContainer.innerHTML = '';
       }
 
-      // Ensure container height before Leaflet mounts
-      if (mapContainer.clientHeight === 0) {
-        mapContainer.style.height = '580px';
-      }
-
-      // Karnataka Center
-      const map = L.map('crime-map', {
+      const map = L.map(mapContainer, {
         center: [14.9754, 76.1368],
         zoom: 7,
-        zoomControl: true
+        zoomControl: true,
+        scrollWheelZoom: true
       });
-      createdMap = map;
+      mapRef.current = map;
 
-      // 🗺️ 4-Theme Base Map Layers (Command Dark, Government Light, Satellite Terrain, OpenStreetMap)
-      // ── Tile Layers (all free, zero-auth public providers) ──────────────
-      // Primary default: OSM – guaranteed 200 responses, no key required
-      const streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        maxZoom: 19
-      });
-
-      // Dark theme: CartoDB dark_matter – free, public, no API key needed
-      const darkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        subdomains: 'abcd',
-        maxZoom: 20
-      });
-
-      // Light theme: CartoDB positron – free, public, no API key needed
-      const lightLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        subdomains: 'abcd',
-        maxZoom: 20
-      });
-
-      // Satellite: Esri World Imagery – free, public, no API key needed
-      const satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
-        maxZoom: 19
-      });
-
-      // On dark tile error → fall back to OSM (catches any CDN issues)
-      darkLayer.on('tileerror', () => {
-        if (!map.hasLayer(streetLayer)) {
-          console.warn('CartoDB dark tile error – falling back to OpenStreetMap');
-          map.removeLayer(darkLayer);
-          streetLayer.addTo(map);
+      requestAnimationFrame(() => {
+        if (mapRef.current) {
+          mapRef.current.invalidateSize(true);
         }
       });
 
-      // Default active base layer
-      if (theme === 'dark') {
-        darkLayer.addTo(map);
-      } else {
-        lightLayer.addTo(map);
-      }
+      setTimeout(() => {
+        if (mapRef.current) {
+          mapRef.current.invalidateSize(true);
+          mapRef.current.setView([14.9754, 76.1368], 7);
+        }
+      }, 800);
 
-      // Add Interactive Layer Switcher Control
-      const baseMaps = {
-        "🌑 Command Dark": darkLayer,
-        "☀️ Government Light": lightLayer,
-        "🛰️ Satellite Terrain": satelliteLayer,
-        "🗺️ OpenStreetMap": streetLayer
+      const darkLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors',
+        maxZoom: 19
+      });
+
+      const cartoDarkLayer = L.tileLayer('https://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap &copy; CARTO',
+        subdomains: 'abcd',
+        maxZoom: 20
+      });
+
+      (theme === 'dark' ? cartoDarkLayer : darkLayer).addTo(map);
+
+      L.control.layers({
+        "🌑 Command Dark": cartoDarkLayer,
+        "🗺️ OpenStreetMap": darkLayer
+      }, null, { position: 'topright' }).addTo(map);
+
+      // Custom SVG Pin Icon generator
+      const createCustomMarkerIcon = (category, priority) => {
+        const isCyber = category?.toLowerCase().includes('cyber');
+        const isHigh = priority?.toLowerCase().includes('high') || priority?.toLowerCase().includes('critical');
+        const pinColor = isHigh ? '#EF4444' : isCyber ? '#0284C7' : '#F59E0B';
+        const iconSvg = `<svg width="28" height="36" viewBox="0 0 30 38" xmlns="http://www.w3.org/2000/svg">
+          <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.5"/>
+          </filter>
+          <path d="M15 0 C6.7 0 0 6.7 0 15 C0 26.2 15 38 15 38 C15 38 30 26.2 30 15 C30 6.7 23.3 0 15 0 Z" fill="${pinColor}" filter="url(#shadow)"/>
+          <circle cx="15" cy="14" r="7" fill="#FFFFFF"/>
+          <circle cx="15" cy="14" r="4" fill="${pinColor}"/>
+        </svg>`;
+        return L.divIcon({
+          html: iconSvg,
+          className: 'custom-ksp-marker',
+          iconSize: [28, 36],
+          iconAnchor: [14, 36],
+          popupAnchor: [0, -32]
+        });
       };
 
-      L.control.layers(baseMaps, null, { position: 'topright' }).addTo(map);
-
-      // District Coordinates Mapping
+      // 1. Draw district circles
       const DISTRICT_MAP_COORDS = {
         'bengaluru': [12.9716, 77.5946],
         'mysuru': [12.2958, 76.6394],
@@ -760,118 +753,78 @@ function App() {
         'davanagere': [14.4644, 75.9218]
       };
 
-      // 1. Draw dynamic district circles based on case volumes/risk scores
       districtRiskScoresWithOverrides.forEach(item => {
         const nameKey = item.district.toLowerCase();
-        const coords = DISTRICT_MAP_COORDS[nameKey] || DISTRICT_MAP_COORDS[Object.keys(DISTRICT_MAP_COORDS).find(k => nameKey.includes(k))] || null;
+        const coords = DISTRICT_MAP_COORDS[nameKey]
+          || DISTRICT_MAP_COORDS[Object.keys(DISTRICT_MAP_COORDS).find(k => nameKey.includes(k))]
+          || null;
         if (!coords) return;
 
-        // Color based on risk level
         const color = item.level === 'HIGH' ? '#EF4444' : item.level === 'MEDIUM' ? '#F59E0B' : '#22C55E';
-
-        // Draw hotspot circle
         const circle = L.circle(coords, {
-          color: color,
-          fillColor: color,
-          fillOpacity: 0.25,
-          radius: 20000 + (item.count * 8000), // radius proportional to count
-          weight: 1.5
+          color, fillColor: color, fillOpacity: 0.25,
+          radius: 18000 + (item.count * 6000), weight: 1.5
         }).addTo(map);
 
-        // Bind interactive popup showing detailed statistics
-        const popupContent = `
-          <div style="font-family: system-ui; min-width: 200px; padding: 5px; color: #1e293b;">
-            <h4 style="margin: 0 0 5px 0; font-size: 1rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 3px;">
-              📍 District: ${item.district}
-            </h4>
-            <div style="margin: 8px 0; font-size: 0.85rem;">
-              <div><strong>Status:</strong> <span style="color: ${color}; font-weight: bold;">${item.level} RISK</span></div>
-              <div><strong>Total Crimes:</strong> ${item.count} case(s)</div>
-              <div><strong>Statewide Share:</strong> ${item.score}%</div>
-              <div><strong>Patrol Status:</strong> ${item.level === 'HIGH' ? '🚨 High Patrol Dispatch' : '🛡️ Standard Patrol'}</div>
-            </div>
-            <div style="font-size: 0.75rem; color: #64748b; font-style: italic;">
-              Click case markers inside for details.
+        circle.bindPopup(`
+          <div style="font-family:system-ui,-apple-system,sans-serif;min-width:200px;padding:6px;color:#0F172A;">
+            <h4 style="margin:0 0 6px 0;font-size:0.95rem;font-weight:800;border-bottom:1px solid #E2E8F0;padding-bottom:4px;color:#0C3258;">📍 ${item.district} Precinct</h4>
+            <div style="font-size:0.82rem;display:flex;flex-direction:column;gap:3px;">
+              <div><strong>Risk Status:</strong> <span style="color:${color};font-weight:800;">${item.level} RISK</span></div>
+              <div><strong>Total Active FIRs:</strong> <strong>${item.count}</strong></div>
+              <div><strong>State Share:</strong> <strong>${item.score}%</strong></div>
             </div>
           </div>
-        `;
-        circle.bindPopup(popupContent);
+        `);
       });
 
-      // 2. Plot exact case pins
+      window.kspViewFir = (firNum) => {
+        setActiveTab('records');
+        setSearchQuery(firNum);
+      };
+
       cases.forEach(c => {
         if (!c.latitude || !c.longitude) return;
+        const lat = parseFloat(c.latitude);
+        const lng = parseFloat(c.longitude);
+        if (isNaN(lat) || isNaN(lng)) return;
 
-        // Create marker
-        // Bind global handler for popup button click
-        window.kspViewFir = (firNum) => {
-          setActiveTab('records');
-          setSearchQuery(firNum);
-        };
+        const meta = parseCaseMetadata(c);
+        const marker = L.marker([lat, lng], {
+          icon: createCustomMarkerIcon(c.category, meta.priority)
+        }).addTo(map);
 
-        const popupContent = `
-          <div style="font-family: system-ui, -apple-system, sans-serif; min-width: 210px; padding: 4px; color: #0F172A;">
-            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #00C6FF; padding-bottom: 5px; margin-bottom: 6px;">
-              <strong style="font-size: 0.88rem; color: #0C3258;">📝 ${c.fir_number}</strong>
-              <span style="background: ${c.category?.toLowerCase().includes('cyber') ? '#0284C7' : '#EF4444'}; color: #FFFFFF; padding: 2px 6px; border-radius: 4px; font-size: 0.65rem; font-weight: 700;">
-                ${c.category}
-              </span>
+        marker.bindPopup(`
+          <div style="font-family:system-ui,-apple-system,sans-serif;min-width:220px;padding:6px;color:#0F172A;">
+            <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid #0284C7;padding-bottom:5px;margin-bottom:6px;">
+              <strong style="font-size:0.88rem;color:#0C3258;">📝 ${c.fir_number}</strong>
+              <span style="background:${c.category?.toLowerCase().includes('cyber')?'#0284C7':'#EF4444'};color:#FFF;padding:2px 6px;border-radius:4px;font-size:0.65rem;font-weight:700;">${c.category}</span>
             </div>
-            <div style="font-size: 0.78rem; margin-bottom: 4px; color: #334155;">
-              <strong>District:</strong> ${c.district} <br>
-              <strong>Police Station:</strong> ${c.police_station}
+            <div style="font-size:0.78rem;margin-bottom:4px;color:#334155;">
+              <strong>District:</strong> ${c.district}<br>
+              <strong>Station:</strong> ${c.police_station}
             </div>
-            <div style="font-size: 0.75rem; color: #475569; margin-bottom: 8px;">
-              <strong>Investigator:</strong> ${meta.officer} <br>
-              <strong>Status:</strong> <span style="color: #0284C7; font-weight: 700;">${meta.status}</span>
+            <div style="font-size:0.75rem;color:#475569;margin-bottom:8px;">
+              <strong>Investigator:</strong> ${meta.officer}<br>
+              <strong>Priority:</strong> <span style="color:${meta.priority==='High'?'#EF4444':'#F59E0B'};font-weight:700;">${meta.priority}</span> | <strong>Status:</strong> <span style="color:#0284C7;font-weight:700;">${meta.status}</span>
             </div>
-            <button 
-              type="button" 
-              onclick="window.kspViewFir('${c.fir_number}')" 
-              style="width: 100%; padding: 6px; background: #1565C0; color: #FFFFFF; border: none; border-radius: 6px; font-size: 0.75rem; font-weight: 700; cursor: pointer; transition: background 0.15s ease;"
-            >
+            <button type="button" onclick="window.kspViewFir('${c.fir_number}')"
+              style="width:100%;padding:6px;background:#1565C0;color:#FFF;border:none;border-radius:6px;font-size:0.75rem;font-weight:700;cursor:pointer;">
               📂 Inspect Full FIR Record
             </button>
           </div>
-        `;
-        marker.bindPopup(popupContent);
+        `);
       });
-
-      setMapInstance(map);
-
-      // Force immediate 100% tile render pass
-      requestAnimationFrame(() => {
-        if (map) map.invalidateSize(true);
-      });
-
-      const resizeObserver = new ResizeObserver(() => {
-        if (map) {
-          map.invalidateSize(true);
-        }
-      });
-      if (mapContainer) {
-        resizeObserver.observe(mapContainer);
-      }
-
-      const resizeInterval = setInterval(() => {
-        if (map) {
-          map.invalidateSize(true);
-        }
-      }, 150);
-      setTimeout(() => clearInterval(resizeInterval), 2500);
-
-      map._resizeObserver = resizeObserver;
-    }; // end initMap
+    }, 600);
 
     return () => {
       clearTimeout(timer);
-      if (createdMap) {
+      if (mapRef.current) {
         try {
-          if (createdMap._resizeObserver) createdMap._resizeObserver.disconnect();
-          createdMap.remove();
-        } catch (e) {
-          console.log("Map cleanup error:", e);
-        }
+          mapRef.current.off();
+          mapRef.current.remove();
+        } catch (e) {}
+        mapRef.current = null;
       }
     };
   }, [activeTab, cases, theme]);
