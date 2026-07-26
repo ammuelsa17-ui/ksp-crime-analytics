@@ -693,32 +693,37 @@ function App() {
       createdMap = map;
 
       // 🗺️ 4-Theme Base Map Layers (Command Dark, Government Light, Satellite Terrain, OpenStreetMap)
-      // OSM is used as primary (100% reliable, no CORS issues). CARTO as alternate.
+      // ── Tile Layers (all free, zero-auth public providers) ──────────────
+      // Primary default: OSM – guaranteed 200 responses, no key required
       const streetLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         maxZoom: 19
       });
 
-      const darkLayer = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      // Dark theme: CartoDB dark_matter – free, public, no API key needed
+      const darkLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
         maxZoom: 20
       });
 
+      // Light theme: CartoDB positron – free, public, no API key needed
       const lightLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
         subdomains: 'abcd',
         maxZoom: 20
       });
 
+      // Satellite: Esri World Imagery – free, public, no API key needed
       const satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
         maxZoom: 19
       });
 
-      // On tile error for dark layer, fall back to streetLayer
+      // On dark tile error → fall back to OSM (catches any CDN issues)
       darkLayer.on('tileerror', () => {
         if (!map.hasLayer(streetLayer)) {
-          console.warn('Dark tile error, falling back to OSM');
+          console.warn('CartoDB dark tile error – falling back to OpenStreetMap');
           map.removeLayer(darkLayer);
           streetLayer.addTo(map);
         }
