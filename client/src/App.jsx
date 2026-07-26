@@ -1335,6 +1335,10 @@ link.click();
       return { ...d, level: overrideLevel, levelClass: cls };
     }
     return d;
+  }).sort((a, b) => {
+    const rank = { 'HIGH': 3, 'MEDIUM': 2, 'LOW': 1 };
+    if (rank[b.level] !== rank[a.level]) return rank[b.level] - rank[a.level];
+    return b.score - a.score || b.count - a.count;
   });
   // ── End AI computations ────────────────────────────────────────────────────
 
@@ -2620,33 +2624,96 @@ link.click();
             </div>
 
             {/* ── MODULE 7: Statewide District Monitor ── */}
-            <div className="analytics-card" style={{ padding: '0.85rem 1.25rem', border: '1px solid #D1D5DB' }}>
+            <div className="analytics-card" style={{ padding: '1.25rem', border: '1px solid var(--border-color)', background: 'var(--bg-card)', borderRadius: '8px' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', cursor: 'pointer' }} onClick={() => toggleIntelPanel('districts')}>
-                <h3 style={{ margin: 0, fontSize: '0.95rem', fontWeight: '700', color: 'var(--police-blue)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <span>🚨</span> 7. Priority District Monitor
+                <h3 style={{ margin: 0, fontSize: '1rem', fontWeight: '800', color: 'var(--police-blue)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <span>🚨</span> 7. Priority District Monitor &amp; Risk Matrix
                 </h3>
-                <button type="button" className="refresh-btn" style={{ padding: '0.3rem 0.6rem', fontSize: '0.72rem' }}>
+                <button type="button" className="refresh-btn" style={{ padding: '0.35rem 0.75rem', fontSize: '0.72rem', fontWeight: '700' }}>
                   {expandedIntelPanels.districts ? '▲ Hide Details' : '▼ View Details'}
                 </button>
               </div>
 
               {expandedIntelPanels.districts && (
-                <div style={{ marginTop: '1rem', borderTop: '1px solid #E5E7EB', paddingTop: '1rem' }}>
-                  <div className="priority-district-grid" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                    {districtRiskScoresWithOverrides.map((item, idx) => {
-                      const isHigh = item.level === 'HIGH';
-                      const isMed = item.level === 'MEDIUM';
-                      const statusLabel = isHigh ? 'HIGH ALERT' : isMed ? 'WATCH' : 'STABLE';
-                      const barColor = isHigh ? 'var(--accent-red)' : isMed ? '#F59E0B' : 'var(--accent-green)';
-                      return (
-                        <div className={`pd-row ${item.levelClass}-row`} key={item.district} style={{ padding: '0.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid #E5E7EB' }}>
-                          <span style={{ fontWeight: '600', fontSize: '0.78rem' }}>{item.district}</span>
-                          <span className={`pd-status-tag ${item.levelClass}`} style={{ fontSize: '0.7rem' }}>{statusLabel}</span>
-                          <span style={{ fontSize: '0.75rem', fontWeight: 'bold' }}>{item.score}%</span>
-                        </div>
-                      );
-                    })}
+                <div style={{ marginTop: '1.25rem', borderTop: '1px solid var(--border-color)', paddingTop: '1.25rem', display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                  
+                  {/* Top Priority Active Precincts (2-Column Grid) */}
+                  <div>
+                    <div style={{ fontSize: '0.72rem', fontWeight: '800', textTransform: 'uppercase', color: 'var(--police-light)', marginBottom: '0.75rem', letterSpacing: '0.5px' }}>
+                      🚨 High Alert &amp; Watch Precincts (Ranked by Risk Score)
+                    </div>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '0.75rem' }}>
+                      {districtRiskScoresWithOverrides.filter(d => d.level === 'HIGH' || d.level === 'MEDIUM' || d.score > 0).map((item, idx) => {
+                        const isHigh = item.level === 'HIGH';
+                        const isMed = item.level === 'MEDIUM';
+                        const statusLabel = isHigh ? 'HIGH ALERT' : isMed ? 'WATCH' : 'ELEVATED';
+                        const badgeBg = isHigh ? 'rgba(239, 68, 68, 0.15)' : isMed ? 'rgba(245, 158, 11, 0.15)' : 'rgba(2, 132, 199, 0.15)';
+                        const badgeColor = isHigh ? '#EF4444' : isMed ? '#F59E0B' : '#60A5FA';
+                        const borderCol = isHigh ? 'rgba(239, 68, 68, 0.3)' : isMed ? 'rgba(245, 158, 11, 0.3)' : 'rgba(2, 132, 199, 0.3)';
+
+                        return (
+                          <div 
+                            key={item.district} 
+                            style={{ 
+                              background: 'var(--bg-primary)', 
+                              border: `1px solid ${borderCol}`, 
+                              borderRadius: '6px', 
+                              padding: '0.85rem 1rem', 
+                              display: 'flex', 
+                              flexDirection: 'column', 
+                              gap: '0.4rem' 
+                            }}
+                          >
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                              <span style={{ fontWeight: '800', fontSize: '0.85rem', color: 'var(--text-primary)' }}>
+                                {idx + 1}. {item.district}
+                              </span>
+                              <span style={{ fontSize: '0.68rem', fontWeight: '800', background: badgeBg, color: badgeColor, border: `1px solid ${borderCol}`, padding: '2px 8px', borderRadius: '4px' }}>
+                                {statusLabel} ({item.score}%)
+                              </span>
+                            </div>
+                            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.72rem', color: 'var(--text-secondary)' }}>
+                              <span>Logged FIRs: <strong>{item.count} Cases</strong></span>
+                              <span>Share: <strong>{item.score}% Statewide</strong></span>
+                            </div>
+                            <div style={{ width: '100%', background: 'var(--bg-card)', height: '6px', borderRadius: '3px', overflow: 'hidden', marginTop: '2px' }}>
+                              <div style={{ width: `${Math.max(item.score, 8)}%`, background: badgeColor, height: '100%', borderRadius: '3px' }} />
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
                   </div>
+
+                  {/* Stable Precincts Grid (Compact 3-Column Display) */}
+                  <div>
+                    <div style={{ fontSize: '0.72rem', fontWeight: '800', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '0.65rem', letterSpacing: '0.5px' }}>
+                      🟢 Stable Baseline Precincts ({districtRiskScoresWithOverrides.filter(d => d.score === 0 && d.level === 'LOW').length} Districts Logged)
+                    </div>
+                    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.5rem' }}>
+                      {districtRiskScoresWithOverrides.filter(d => d.score === 0 && d.level === 'LOW').map((item) => (
+                        <div 
+                          key={item.district} 
+                          style={{ 
+                            background: 'var(--bg-primary)', 
+                            border: '1px solid var(--border-color)', 
+                            borderRadius: '4px', 
+                            padding: '0.45rem 0.75rem', 
+                            display: 'flex', 
+                            justifyContent: 'space-between', 
+                            alignItems: 'center', 
+                            fontSize: '0.75rem' 
+                          }}
+                        >
+                          <span style={{ fontWeight: '600', color: 'var(--text-secondary)' }}>{item.district}</span>
+                          <span style={{ fontSize: '0.65rem', fontWeight: '800', color: '#10B981', background: 'rgba(16, 185, 129, 0.12)', padding: '1px 6px', borderRadius: '3px' }}>
+                            🟢 STABLE
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
                 </div>
               )}
             </div>
