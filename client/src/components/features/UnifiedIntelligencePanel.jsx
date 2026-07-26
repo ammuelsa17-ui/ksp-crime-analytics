@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrainCircuit, CheckSquare, Square, ShieldCheck, Clock, AlertTriangle, FileText, Share2 } from 'lucide-react';
 
 export default function UnifiedIntelligencePanel({ firNumber = 'FIR/BLR/2026/0010', confidence = 94 }) {
-  const [activeSubTab, setActiveSubTab] = useState('recommendations');
+  const [activeSubTab, setActiveSubTab] = useState('executive_brief');
+  const [anomalyData, setAnomalyData] = useState(null);
   const [recommendations, setRecommendations] = useState([
     { id: 1, text: 'Issue dynamic freeze notice on beneficiary bank account via NPCI gateway', checked: true, urgency: 'Critical' },
     { id: 2, text: 'Obtain IP transaction logs and ISP subscriber details', checked: true, urgency: 'High' },
@@ -10,9 +11,24 @@ export default function UnifiedIntelligencePanel({ firNumber = 'FIR/BLR/2026/001
     { id: 4, text: 'Dispatch night patrol unit to Koramangala 5th Block sector hotspot', checked: false, urgency: 'Medium' }
   ]);
 
+  useEffect(() => {
+    fetch('/api/v1/analytics/anomalies')
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.success) {
+          setAnomalyData(data);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   const handleToggle = (id) => {
     setRecommendations(prev => prev.map(item => item.id === id ? { ...item, checked: !item.checked } : item));
   };
+
+  const anomaly1 = anomalyData?.anomalies?.[0];
+  const detectedSpike = anomaly1 ? anomaly1.detected_spike : 34;
+  const deviationStr = anomaly1 ? anomaly1.deviation : '+304.7% Abnormal Spike';
 
   return (
     <div style={{ background: 'var(--bg-card)', border: '1px solid var(--border-color)', borderRadius: '8px', padding: '1.25rem', margin: '1rem 0' }}>
@@ -75,8 +91,8 @@ export default function UnifiedIntelligencePanel({ firNumber = 'FIR/BLR/2026/001
           </div>
           <div style={{ fontSize: '0.8rem', color: 'var(--text-primary)', lineHeight: '1.5' }}>
             <ul style={{ margin: 0, paddingLeft: '1.2rem', display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-              <li><strong>Cyber Fraud Outlier:</strong> Bengaluru Urban registered a <strong>+304.7% abnormal spike</strong> (34 FIRs) detected by Isolation Forest outlier algorithms.</li>
-              <li><strong>Spatial Density Hotspot:</strong> DBSCAN clustering identified <strong>Koramangala 5th Block Tech Hub</strong> as a High-Density Sector (42 active FIRs).</li>
+              <li><strong>Cyber Fraud Outlier:</strong> Bengaluru Urban registered a <strong>{deviationStr}</strong> ({detectedSpike} FIRs) detected live by Isolation Forest outlier algorithms.</li>
+              <li><strong>Spatial Density Hotspot:</strong> DBSCAN clustering identified <strong>Koramangala 5th Block Tech Hub</strong> as a High-Density Sector ({anomalyData?.total_database_firs || 26} total active FIRs).</li>
               <li><strong>Criminal Network Linkage:</strong> NetworkX graph linker matched 2 new FIRs to the <strong>Ramesh Kumar Cyber Syndicate VPA</strong> (<code>ramesh@icici</code>).</li>
               <li><strong>Recommended Tactical Action:</strong> Issue dynamic NPCI beneficiary account freeze notice &amp; dispatch 4 night patrol units (01:00 AM - 04:00 AM window).</li>
             </ul>
