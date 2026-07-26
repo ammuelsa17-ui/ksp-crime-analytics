@@ -1455,6 +1455,21 @@ button:disabled {
   background-color: #0E1625 !important;
 }
 
+/* 🔒 DARK THEME OVERRIDES FOR MODAL TIMELINE & AI SUMMARY MODULE */
+.workflow-stepper-container {
+  background-color: var(--bg-secondary) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+.workflow-stepper-container .label {
+  color: var(--text-secondary) !important;
+}
+
+.ai-summary-module {
+  background: var(--bg-secondary) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
 .section-block-icon {
   font-size: 1.5rem;
   flex-shrink: 0;
