@@ -141,43 +141,10 @@ export default function Topbar({
             boxSizing: 'border-box'
           }}
         />
-        <kbd style={{
-          position: 'absolute',
-          right: '8px',
-          fontSize: '0.62rem',
-          fontFamily: 'monospace',
-          background: 'var(--bg-secondary)',
-          border: '1px solid var(--border-color)',
-          borderRadius: '3px',
-          padding: '1px 5px',
-          color: 'var(--text-secondary)'
-        }}>Ctrl K</kbd>
       </div>
 
       {/* RIGHT: Compact Icons & Officer Profile */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexShrink: 0 }}>
-        
-        {/* Presentation Mode Toggle Pill */}
-        <button
-          onClick={() => setDemoMode && setDemoMode(!demoMode)}
-          style={{
-            background: demoMode ? 'rgba(59, 130, 246, 0.2)' : 'var(--bg-primary)',
-            border: demoMode ? '1px solid var(--police-blue)' : '1px solid var(--border-color)',
-            borderRadius: '6px',
-            padding: '0.35rem 0.65rem',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.35rem',
-            color: demoMode ? 'var(--police-light)' : 'var(--text-secondary)',
-            fontSize: '0.72rem',
-            fontWeight: '700'
-          }}
-          title="Toggle Judge Presentation Mode (Hides debug logs & amplifies presentation views)"
-        >
-          <span>📊</span>
-          <span>{demoMode ? 'PRESENTATION MODE ON' : 'PRESENTATION MODE'}</span>
-        </button>
 
         {/* Theme Switcher */}
         <button
