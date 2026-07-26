@@ -807,18 +807,36 @@ function App() {
       });
 
       setMapInstance(map);
+
+      // Force immediate 100% tile render pass
+      requestAnimationFrame(() => {
+        if (map) map.invalidateSize(true);
+      });
+
+      const resizeObserver = new ResizeObserver(() => {
+        if (map) {
+          map.invalidateSize(true);
+        }
+      });
+      if (mapContainer) {
+        resizeObserver.observe(mapContainer);
+      }
+
       const resizeInterval = setInterval(() => {
         if (map) {
-          map.invalidateSize();
+          map.invalidateSize(true);
         }
-      }, 200);
-      setTimeout(() => clearInterval(resizeInterval), 3000);
-    }, 100);
+      }, 150);
+      setTimeout(() => clearInterval(resizeInterval), 2500);
+
+      map._resizeObserver = resizeObserver;
+    }, 50);
 
     return () => {
       clearTimeout(timer);
       if (createdMap) {
         try {
+          if (createdMap._resizeObserver) createdMap._resizeObserver.disconnect();
           createdMap.remove();
         } catch (e) {
           console.log("Map cleanup error:", e);

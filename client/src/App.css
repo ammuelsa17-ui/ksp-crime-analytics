@@ -1453,6 +1453,19 @@ button:disabled {
   height: 580px !important;
   min-height: 580px !important;
   background-color: #0E1625 !important;
+  position: relative !important;
+  display: block !important;
+  overflow: hidden !important;
+}
+
+#crime-map .leaflet-container,
+#crime-map .leaflet-pane,
+#crime-map .leaflet-map-pane,
+#crime-map .leaflet-tile-pane {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  background-color: #0E1625 !important;
 }
 
 /* 🔒 DARK THEME OVERRIDES FOR MODAL TIMELINE & AI SUMMARY MODULE */
