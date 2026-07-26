@@ -2264,10 +2264,10 @@ link.click();
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.75rem' }}>
                   <div>
                     <h3 style={{ margin: 0, fontSize: '1.1rem', fontWeight: '800', color: 'var(--text-primary)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                      📈 Advanced Incident Spatiotemporal Timeline &amp; Surge Radar
+                      📈 Operational Crime Timeline
                     </h3>
                     <p className="chart-subtitle" style={{ margin: '0.2rem 0 0 0', fontSize: '0.78rem', color: 'var(--text-secondary)' }}>
-                      Chronological FIR registration velocity, peak surge anomaly windows, and precinct incident telemetry
+                      Track crime trends, peak activity periods, and operational alerts across Karnataka.
                     </p>
                   </div>
                   
