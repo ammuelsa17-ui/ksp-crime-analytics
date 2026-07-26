@@ -1431,16 +1431,15 @@ button:disabled {
   margin-bottom: 0.25rem !important;
 }
 
-/* 🔒 LEAFLET CONTAINER DARK THEME & FULL SIZE OVERRIDES */
+/* Leaflet outer container — scoped to #crime-map only to avoid side effects */
 .leaflet-container {
-  background-color: #0E1625 !important;
-  width: 100% !important;
-  height: 100% !important;
-  border-radius: 8px !important;
+  background-color: #0E1625;
+  border-radius: 8px;
 }
 
+/* Tile pane background — do not override dimensions */
 .leaflet-tile-pane {
-  background-color: #0E1625 !important;
+  background-color: #0E1625;
 }
 
 .leaflet-tile-container img {
@@ -1455,18 +1454,19 @@ button:disabled {
   background-color: #0E1625 !important;
   position: relative !important;
   display: block !important;
-  overflow: hidden !important;
+  /* Do NOT use overflow:hidden — it clips tiles outside initial viewport */
 }
 
-#crime-map .leaflet-container,
-#crime-map .leaflet-pane,
-#crime-map .leaflet-map-pane,
-#crime-map .leaflet-tile-pane {
+/* Only constrain the outermost leaflet-container, never internal panes */
+#crime-map .leaflet-container {
   width: 100% !important;
   height: 100% !important;
-  min-height: 100% !important;
   background-color: #0E1625 !important;
 }
+
+/* CRITICAL: Do NOT set width/height on leaflet-pane, leaflet-map-pane,
+   or leaflet-tile-pane. Leaflet uses CSS transforms (translate3d) to
+   position tiles — overriding their dimensions breaks tile placement. */
 
 /* 🔒 DARK THEME OVERRIDES FOR MODAL TIMELINE & AI SUMMARY MODULE */
 .workflow-stepper-container {
