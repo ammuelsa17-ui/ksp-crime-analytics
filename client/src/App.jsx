@@ -764,9 +764,12 @@ function App() {
       });
 
       setMapInstance(map);
-      setTimeout(() => { map && map.invalidateSize(); }, 150);
-      setTimeout(() => { map && map.invalidateSize(); }, 500);
-      setTimeout(() => { map && map.invalidateSize(); }, 1000);
+      const resizeInterval = setInterval(() => {
+        if (map) {
+          map.invalidateSize();
+        }
+      }, 200);
+      setTimeout(() => clearInterval(resizeInterval), 3000);
     }, 100);
 
     return () => {
@@ -2631,12 +2634,14 @@ link.click();
                 </div>
               </div>
 
-              {/* 🗺️ Split Viewport Layout (75% Map + 25% Control Telemetry Sidebar) */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1rem', width: '100%' }}>
-                {/* Map Viewport (75%) */}
+              {/* 🗺️ Split Viewport Layout (70% Map + 30% Control Telemetry Sidebar) */}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', width: '100%' }}>
+                {/* Map Viewport (70%) */}
                 <div 
                   id="crime-map" 
                   style={{ 
+                    flex: '1 1 66%',
+                    minWidth: '320px',
                     height: '580px', 
                     width: '100%', 
                     borderRadius: '8px', 
@@ -2646,8 +2651,8 @@ link.click();
                   }} 
                 />
 
-                {/* Telemetry Control Panel (25%) */}
-                <div style={{ background: 'var(--bg-secondary)', border: '1px solid var(--border-color)', borderRadius: '8px', padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                {/* Telemetry Control Panel (30%) */}
+                <div style={{ flex: '1 1 28%', minWidth: '280px', background: 'var(--bg-secondary)', border: '1px solid var(--border-color)', borderRadius: '8px', padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                   <div style={{ fontSize: '0.75rem', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.5px', color: 'var(--police-blue)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                     <ActivityIcon size={16} />
                     <span>Control Room Telemetry</span>
