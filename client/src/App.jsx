@@ -646,124 +646,80 @@ function App() {
     fetchCases()
   }, [])
 
-  // ─── Leaflet GIS Map — init ONCE, never destroy on tab switch ──────────────
-  //
-  // ROOT CAUSE of the quarter-tile bug:
-  //   Leaflet was calling L.map() while the container had display:none (0×0 px).
-  //   Even though display was toggled before the effect ran, the browser had not
-  //   yet painted, so getBoundingClientRect() returned 0. Leaflet locked that
-  //   0×0 into its internal coordinate system permanently.
-  //
-  // FIX:
-  //   1. Keep #crime-map-wrapper always in the DOM — hide via CSS display toggle.
-  //   2. Initialize Leaflet ONCE inside double-rAF so the browser has painted.
-  //   3. On subsequent tab switches, only call invalidateSize().
-  //   4. On data changes, clearLayers() + re-add markers (no map rebuild).
-  // ─────────────────────────────────────────────────────────────────────────────
+  // ─── Leaflet GIS Map Lifecycle ─────────────
   useEffect(() => {
-    if (typeof L === 'undefined') return;
+    if (typeof window === 'undefined' || typeof L === 'undefined') return;
 
-    // ── Visibility: toggle wrapper display only ──────────────────────────────
-    const wrapper = document.getElementById('crime-map-wrapper');
-    if (wrapper) {
-      wrapper.style.display = activeTab === 'map' ? 'block' : 'none';
-    }
-
-    // ── Tab hidden: just hide, never destroy ─────────────────────────────────
     if (activeTab !== 'map') return;
 
-    // ── Tab visible: if already initialized, just resize + refresh markers ───
-    if (mapInitialized.current && mapRef.current) {
-      // Double-rAF: first frame applies display:block, second frame settles layout
-      requestAnimationFrame(() => requestAnimationFrame(() => {
+    const container = document.getElementById('crime-map');
+    if (!container) return;
+
+    // First-time Map initialization
+    if (!mapRef.current) {
+      // Clear any stale Leaflet markers or container state
+      if (container._leaflet_id) {
+        container._leaflet_id = null;
+      }
+      container.innerHTML = '';
+
+      const map = L.map(container, {
+        center: [14.9754, 76.1368],
+        zoom: 7,
+        zoomControl: true,
+        scrollWheelZoom: true
+      });
+      mapRef.current = map;
+
+      // Base Tile Layers (free, no auth required)
+      const cartoDark = L.tileLayer(
+        'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',
+        { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>', subdomains: 'abcd', maxZoom: 20 }
+      );
+      const cartoLight = L.tileLayer(
+        'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
+        { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>', subdomains: 'abcd', maxZoom: 20 }
+      );
+      const osm = L.tileLayer(
+        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors', maxZoom: 19 }
+      );
+      const satellite = L.tileLayer(
+        'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+        { attribution: 'Tiles &copy; Esri', maxZoom: 19 }
+      );
+
+      (theme === 'dark' ? cartoDark : cartoLight).addTo(map);
+
+      L.control.layers({
+        '🌑 Command Dark': cartoDark,
+        '☀️ Government Light': cartoLight,
+        '🗺️ OpenStreetMap': osm,
+        '🛰️ Satellite': satellite
+      }, null, { position: 'topright' }).addTo(map);
+
+      map._kspLayer = L.layerGroup().addTo(map);
+
+      // Auto-resize listener for responsive container width changes
+      if (window.ResizeObserver) {
+        const ro = new ResizeObserver(() => {
+          if (mapRef.current) mapRef.current.invalidateSize({ animate: false });
+        });
+        ro.observe(container);
+        map._ro = ro;
+      }
+    }
+
+    // Force invalidateSize on tab activation (immediate, +100ms, +300ms, +600ms)
+    const resizeTimers = [0, 100, 300, 600].map(delay => 
+      setTimeout(() => {
         if (mapRef.current) {
           mapRef.current.invalidateSize({ animate: false, pan: false });
         }
-      }));
-      // Fall through to marker update below
-    }
+      }, delay)
+    );
 
-    // ── First time on map tab: initialize Leaflet ────────────────────────────
-    if (!mapInitialized.current) {
-      mapInitialized.current = true;
-
-      // Double-rAF ensures container is painted with real pixel dimensions
-      requestAnimationFrame(() => requestAnimationFrame(() => {
-        const container = document.getElementById('crime-map');
-        if (!container) { mapInitialized.current = false; return; }
-
-        // Confirm real dimensions before init (safety check)
-        const { width, height } = container.getBoundingClientRect();
-        if (width < 10 || height < 10) {
-          // Container still not visible — retry after 300ms
-          mapInitialized.current = false;
-          setTimeout(() => {
-            // Re-trigger by forcing a state read; the effect will rerun
-            const w2 = document.getElementById('crime-map-wrapper');
-            if (w2) w2.style.display = 'none';
-            requestAnimationFrame(() => { if (w2) w2.style.display = 'block'; });
-          }, 300);
-          return;
-        }
-
-        // Build the Leaflet map
-        const map = L.map('crime-map', {
-          center: [14.9754, 76.1368],
-          zoom: 7,
-          zoomControl: true,
-          scrollWheelZoom: true
-        });
-        mapRef.current = map;
-
-        // ── Tile Layers (free, no auth) ──────────────────────────────────────
-        const cartoDark = L.tileLayer(
-          'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',
-          { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>', subdomains: 'abcd', maxZoom: 20 }
-        );
-        const cartoLight = L.tileLayer(
-          'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
-          { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>', subdomains: 'abcd', maxZoom: 20 }
-        );
-        const osm = L.tileLayer(
-          'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-          { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors', maxZoom: 19 }
-        );
-        const satellite = L.tileLayer(
-          'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-          { attribution: 'Tiles &copy; Esri', maxZoom: 19 }
-        );
-
-        // Default layer based on theme
-        (theme === 'dark' ? cartoDark : cartoLight).addTo(map);
-
-        L.control.layers({
-          '🌑 Command Dark': cartoDark,
-          '☀️ Government Light': cartoLight,
-          '🗺️ OpenStreetMap': osm,
-          '🛰️ Satellite': satellite
-        }, null, { position: 'topright' }).addTo(map);
-
-        // Layer group for markers + circles (cleared on data refresh)
-        map._kspLayer = L.layerGroup().addTo(map);
-
-        // Force correct viewport after init
-        map.invalidateSize({ animate: false, pan: false });
-        setTimeout(() => { if (mapRef.current) mapRef.current.invalidateSize({ animate: false, pan: false }); }, 150);
-        setTimeout(() => { if (mapRef.current) mapRef.current.invalidateSize({ animate: false, pan: false }); }, 500);
-
-        // ResizeObserver keeps tiles in sync when sidebar collapses / window resizes
-        if (window.ResizeObserver) {
-          const ro = new ResizeObserver(() => {
-            if (mapRef.current) mapRef.current.invalidateSize({ animate: false, pan: false });
-          });
-          ro.observe(container);
-          map._ro = ro;
-        }
-      }));
-    }
-
-    // ── Marker + circle update (runs every time cases/tab changes) ───────────
-    // We use a small delay so the rAF init block above can finish first
+    // Populate markers & hotspot circles
     const markerTimer = setTimeout(() => {
       const map = mapRef.current;
       if (!map || !map._kspLayer) return;
@@ -850,10 +806,10 @@ function App() {
       });
     }, 50); // small delay so rAF-init block runs first on first render
 
-    return () => clearTimeout(markerTimer);
-    // NOTE: districtRiskScoresWithOverrides is intentionally omitted from deps
-    // (declared after this effect — would cause TDZ crash). It re-computes from
-    // `cases` so the effect naturally re-runs with fresh values when cases change.
+    return () => {
+      clearTimeout(markerTimer);
+      resizeTimers.forEach(t => clearTimeout(t));
+    };
   }, [activeTab, cases, theme]);
 
   const handleInputChange = (e) => {
@@ -1645,27 +1601,6 @@ link.click();
         {/* Command Center Monitor Ribbon & Emergency Mode Bar */}
         <div style={{ padding: '1rem 1.5rem 0 1.5rem' }}>
           <CommandMonitorRibbon />
-        </div>
-
-        {/* ── PERSISTENT MAP CONTAINER ──────────────────────────────────────────
-             Always in the DOM. JS effect toggles display:none/block.
-             NEVER conditionally render this — Leaflet must keep its DOM node.
-        ─────────────────────────────────────────────────────────────────── */}
-        <div
-          id="crime-map-wrapper"
-          style={{ display: 'none', padding: '0 1.5rem 1rem 1.5rem' }}
-        >
-          <div
-            id="crime-map"
-            style={{
-              width: '100%',
-              height: '580px',
-              borderRadius: '8px',
-              border: '1px solid var(--border-color)',
-              position: 'relative',
-              zIndex: 1
-            }}
-          />
         </div>
 
         {/* Workspace Content */}
@@ -2888,8 +2823,11 @@ link.click();
               )}
             </div>
 
-          </section>) : activeTab === 'map' ? (
-          /* GIS Command Center tab */
+          </section>
+        ) : null}
+
+        {/* GIS Command Center Tab Container (Persistent in DOM so Leaflet #crime-map never unmounts) */}
+        <div style={{ display: activeTab === 'map' ? 'block' : 'none', width: '100%', gridColumn: '1 / -1' }}>
           <section className="intelligence-dashboard-view" style={{ width: '100%' }}>
             <div className="analytics-card map-panel-card" style={{ padding: '1.25rem', borderRadius: '8px', border: '1px solid var(--border-color)', background: 'var(--bg-card)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.75rem' }}>
@@ -2964,12 +2902,40 @@ link.click();
                 </div>
               </div>
 
-              {/* 🗺️ Map lives in the persistent #crime-map-wrapper above <main> (always in DOM).
-                   The telemetry sidebar remains here for layout. */}
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', width: '100%' }}>
+              {/* 🗺️ Split Viewport Layout (66% Map Viewport + 34% Control Telemetry Sidebar) */}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', width: '100%', alignItems: 'stretch' }}>
+                
+                {/* 🗺️ Leaflet Map Viewport Container (66%) */}
+                <div 
+                  style={{ 
+                    flex: '1 1 64%', 
+                    minWidth: '320px', 
+                    height: '600px', 
+                    borderRadius: '8px', 
+                    border: '1px solid var(--border-color)', 
+                    position: 'relative', 
+                    overflow: 'hidden',
+                    background: 'var(--bg-primary)'
+                  }}
+                >
+                  <div 
+                    id="crime-map" 
+                    style={{ 
+                      width: '100%', 
+                      height: '100%', 
+                      minHeight: '600px',
+                      position: 'absolute',
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      zIndex: 1
+                    }} 
+                  />
+                </div>
 
-                {/* Telemetry Control Panel (30%) */}
-                <div style={{ flex: '1 1 28%', minWidth: '280px', background: 'var(--bg-secondary)', border: '1px solid var(--border-color)', borderRadius: '8px', padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                {/* Telemetry Control Panel (34%) */}
+                <div style={{ flex: '1 1 30%', minWidth: '280px', background: 'var(--bg-secondary)', border: '1px solid var(--border-color)', borderRadius: '8px', padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                   <div style={{ fontSize: '0.75rem', fontWeight: '800', textTransform: 'uppercase', letterSpacing: '0.5px', color: 'var(--police-blue)', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                     <ActivityIcon size={16} />
                     <span>Control Room Telemetry</span>
@@ -3023,7 +2989,9 @@ link.click();
               </div>
             </div>
           </section>
-        ) : activeTab === 'admin' ? (
+        </div>
+
+        {activeTab === 'admin' ? (
           /* System Admin Console Workspace */
           <section className="intelligence-dashboard-view">
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
