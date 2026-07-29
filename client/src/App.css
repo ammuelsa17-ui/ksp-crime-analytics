@@ -1433,31 +1433,11 @@ button:disabled {
   margin-bottom: 0.25rem !important;
 }
 
-/* 🗺️ CLEAN MINIMAL LEAFLET VIEWPORT ENGINE */
-#crime-map {
+/* 🗺️ CLEAN MINIMAL LEAFLET VIEWPORT ENGINE V2 */
+.gis-map-v2 {
   width: 100%;
   height: 600px;
   min-width: 0;
-  position: relative;
-  overflow: hidden;
-}
-
-#crime-map .leaflet-container {
-  width: 100% !important;
-  height: 100% !important;
-  background: #0E1625 !important;
-}
-
-#crime-map img.leaflet-tile,
-#crime-map .leaflet-tile {
-  width: 256px !important;
-  height: 256px !important;
-  max-width: none !important;
-  max-height: none !important;
-  min-width: 256px !important;
-  min-height: 256px !important;
-  object-fit: fill !important;
-  display: block !important;
 }
 
 .custom-ksp-marker {

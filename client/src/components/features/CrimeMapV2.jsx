@@ -15,173 +15,93 @@ const DISTRICT_COORDS = {
   'davanagere': [14.4644, 75.9218]
 };
 
-export const CrimeMap = ({
+export default function CrimeMapV2({
   cases = [],
   districtRiskScoresWithOverrides = [],
   theme = 'dark',
   setActiveTab,
   setSearchQuery,
   parseCaseMetadata
-}) => {
-  const mapContainerRef = useRef(null);
-  const mapInstanceRef = useRef(null);
-  const baseLayerRef = useRef(null);
+}) {
+  const containerRef = useRef(null);
+  const mapRef = useRef(null);
+  const layerGroupRef = useRef(null);
 
-  // 1. Parent-width and stable-layout initialization gate
+  // 1. Clean Leaflet Map Mount
   useEffect(() => {
-    const container = mapContainerRef.current;
-    if (!container || mapInstanceRef.current) return;
+    const container = containerRef.current;
+    if (!container || mapRef.current) return;
 
-    let cancelled = false;
-    let previousWidth = 0;
-    let stableFrames = 0;
-    let frameId;
+    if (container._leaflet_id) {
+      container._leaflet_id = null;
+    }
+    container.innerHTML = '';
 
-    const waitForFinalLayout = () => {
-      if (cancelled) return;
-
-      const width = container.clientWidth;
-      const height = container.clientHeight;
-      const parentWidth = container.parentElement?.clientWidth ?? 0;
-
-      // Allow initialization only when container has expanded to match parent flex width (>= 500px)
-      const hasFinalWidth =
-        width >= 500 &&
-        parentWidth >= 500 &&
-        Math.abs(width - parentWidth) <= 4;
-
-      const sizeIsStable = Math.abs(width - previousWidth) < 2;
-
-      if (hasFinalWidth && height >= 400 && sizeIsStable) {
-        stableFrames += 1;
-      } else {
-        stableFrames = 0;
-      }
-
-      previousWidth = width;
-
-      if (stableFrames < 5) {
-        frameId = requestAnimationFrame(waitForFinalLayout);
-        return;
-      }
-
-      console.table({
-        containerWidth: width,
-        containerHeight: height,
-        parentWidth,
-        stableFrames,
-      });
-
-      if (container._leaflet_id) {
-        container._leaflet_id = null;
-      }
-      container.innerHTML = '';
-
-      const map = L.map(container, {
-        center: [14.9754, 76.1368],
-        zoom: 7,
-        zoomControl: true,
-        scrollWheelZoom: true,
-        preferCanvas: true,
-      });
-
-      // Base Tile Layers
-      const cartoDark = L.tileLayer(
-        'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',
-        { attribution: '&copy; OpenStreetMap &copy; CARTO', subdomains: 'abcd', maxZoom: 20 }
-      );
-      const cartoLight = L.tileLayer(
-        'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
-        { attribution: '&copy; OpenStreetMap &copy; CARTO', subdomains: 'abcd', maxZoom: 20 }
-      );
-      const osm = L.tileLayer(
-        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-        { attribution: '&copy; OpenStreetMap contributors', maxZoom: 19 }
-      );
-      const satellite = L.tileLayer(
-        'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-        { attribution: 'Tiles &copy; Esri', maxZoom: 19 }
-      );
-
-      const tileLayer = theme === 'dark' ? cartoDark : osm;
-      tileLayer.addTo(map);
-
-      L.control.layers({
-        '🗺️ OpenStreetMap': osm,
-        '🌑 Command Dark': cartoDark,
-        '☀️ Government Light': cartoLight,
-        '🛰️ Satellite': satellite
-      }, null, { position: 'topright' }).addTo(map);
-
-      map._kspLayerGroup = L.layerGroup().addTo(map);
-
-      mapInstanceRef.current = map;
-      baseLayerRef.current = tileLayer;
-
-      requestAnimationFrame(() => {
-        if (mapInstanceRef.current) {
-          mapInstanceRef.current.invalidateSize({
-            animate: false,
-            pan: false,
-          });
-
-          tileLayer.redraw();
-        }
-      });
-    };
-
-    frameId = requestAnimationFrame(waitForFinalLayout);
-
-    return () => {
-      cancelled = true;
-      cancelAnimationFrame(frameId);
-
-      if (mapInstanceRef.current) {
-        try {
-          mapInstanceRef.current.remove();
-        } catch (e) {}
-        mapInstanceRef.current = null;
-      }
-
-      baseLayerRef.current = null;
-    };
-  }, []);
-
-  // 2. ResizeObserver handling after initialization
-  useEffect(() => {
-    const container = mapContainerRef.current;
-    if (!container) return;
-
-    let resizeFrame;
-
-    const observer = new ResizeObserver(() => {
-      const map = mapInstanceRef.current;
-      const layer = baseLayerRef.current;
-
-      if (!map || container.clientWidth < 500) return;
-
-      cancelAnimationFrame(resizeFrame);
-
-      resizeFrame = requestAnimationFrame(() => {
-        map.invalidateSize({ animate: false, pan: false });
-        layer?.redraw();
-      });
+    const map = L.map(container, {
+      center: [14.9754, 76.1368],
+      zoom: 7,
+      zoomControl: true,
     });
 
-    observer.observe(container);
+    const osm = L.tileLayer(
+      'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap contributors',
+      }
+    );
+    const cartoDark = L.tileLayer(
+      'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',
+      { attribution: '&copy; OpenStreetMap &copy; CARTO', subdomains: 'abcd', maxZoom: 20 }
+    );
+    const cartoLight = L.tileLayer(
+      'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
+      { attribution: '&copy; OpenStreetMap &copy; CARTO', subdomains: 'abcd', maxZoom: 20 }
+    );
+    const satellite = L.tileLayer(
+      'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+      { attribution: 'Tiles &copy; Esri', maxZoom: 19 }
+    );
+
+    (theme === 'dark' ? cartoDark : osm).addTo(map);
+
+    L.control.layers({
+      '🗺️ OpenStreetMap': osm,
+      '🌑 Command Dark': cartoDark,
+      '☀️ Government Light': cartoLight,
+      '🛰️ Satellite': satellite
+    }, null, { position: 'topright' }).addTo(map);
+
+    const layerGroup = L.layerGroup().addTo(map);
+    layerGroupRef.current = layerGroup;
+
+    mapRef.current = map;
+
+    const resizeFrame = requestAnimationFrame(() => {
+      if (mapRef.current) {
+        mapRef.current.invalidateSize(false);
+      }
+    });
 
     return () => {
-      observer.disconnect();
       cancelAnimationFrame(resizeFrame);
+      if (mapRef.current) {
+        try {
+          mapRef.current.remove();
+        } catch (e) {}
+        mapRef.current = null;
+      }
+      layerGroupRef.current = null;
     };
   }, []);
 
-  // 3. Update Markers & Hotspot Circles when cases, districtRiskScores, or theme changes
+  // 2. Plot Hotspot Circles & Markers
   useEffect(() => {
-    const map = mapInstanceRef.current;
-    if (!map || !map._kspLayerGroup) return;
+    const map = mapRef.current;
+    const layerGroup = layerGroupRef.current;
+    if (!map || !layerGroup) return;
 
-    map._kspLayerGroup.clearLayers();
+    layerGroup.clearLayers();
 
     const createCustomMarkerIcon = (category, priority) => {
       const isCyber = category?.toLowerCase().includes('cyber');
@@ -198,7 +118,7 @@ export const CrimeMap = ({
       return L.divIcon({ html: svg, className: 'custom-ksp-marker', iconSize: [28, 36], iconAnchor: [14, 36], popupAnchor: [0, -32] });
     };
 
-    // Plot District Hotspot Circles
+    // District Hotspot Circles
     (districtRiskScoresWithOverrides || []).forEach(item => {
       const key = item.district.toLowerCase();
       const coords = DISTRICT_COORDS[key] || DISTRICT_COORDS[Object.keys(DISTRICT_COORDS).find(k => key.includes(k))] || null;
@@ -220,7 +140,7 @@ export const CrimeMap = ({
           </div>
         </div>
       `);
-      map._kspLayerGroup.addLayer(circle);
+      layerGroup.addLayer(circle);
     });
 
     // Global Click Handler for FIR popup buttons
@@ -229,7 +149,7 @@ export const CrimeMap = ({
       if (setSearchQuery) setSearchQuery(firNum);
     };
 
-    // Plot Case Pin Markers
+    // Case Pin Markers
     (cases || []).forEach(c => {
       if (!c.latitude || !c.longitude) return;
       const lat = parseFloat(c.latitude);
@@ -259,38 +179,24 @@ export const CrimeMap = ({
           </button>
         </div>
       `);
-      map._kspLayerGroup.addLayer(marker);
+      layerGroup.addLayer(marker);
     });
   }, [cases, districtRiskScoresWithOverrides, theme, parseCaseMetadata]);
 
   return (
-    <div 
-      style={{ 
-        flex: '1 1 64%', 
-        minWidth: '320px', 
-        height: '600px', 
-        borderRadius: '8px', 
-        border: '1px solid var(--border-color)', 
-        position: 'relative', 
+    <div
+      ref={containerRef}
+      className="gis-map-v2"
+      style={{
+        flex: '1 1 64%',
+        minWidth: '320px',
+        height: '600px',
+        borderRadius: '8px',
+        border: '1px solid var(--border-color)',
+        position: 'relative',
         overflow: 'hidden',
         background: 'var(--bg-primary)'
       }}
-    >
-      <div 
-        ref={mapContainerRef}
-        id="crime-map" 
-        style={{ 
-          width: '100%', 
-          height: '100%', 
-          minHeight: '600px',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          zIndex: 1
-        }} 
-      />
-    </div>
+    />
   );
-};
+}

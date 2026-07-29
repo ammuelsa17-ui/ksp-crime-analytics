@@ -12,7 +12,7 @@ import LiveDispatchBoard from './components/features/LiveDispatchBoard';
 import AIExplainabilityBox from './components/features/AIExplainabilityBox';
 import CommandMonitorRibbon from './components/features/CommandMonitorRibbon';
 import UnifiedIntelligencePanel from './components/features/UnifiedIntelligencePanel';
-import { CrimeMap } from './components/features/CrimeMap';
+import CrimeMapV2 from './components/features/CrimeMapV2';
 import { catalystAuthLogin, catalystLogAuditEvent, catalystSignOut } from './services/catalystService';
 import { maskPhone, maskAadhaar, maskAddress } from './utils/piiMasker';
 import { 
@@ -2742,12 +2742,11 @@ link.click();
               {/* 🗺️ Split Viewport Layout (66% Map Viewport + 34% Control Telemetry Sidebar) */}
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', width: '100%', alignItems: 'stretch' }}>
                 
-                {/* 🗺️ Modular CrimeMap Component Viewport (66%) */}
-                <CrimeMap
+                {/* 🗺️ Modular CrimeMapV2 Component Viewport (66%) */}
+                <CrimeMapV2
                   cases={filteredCases}
                   districtRiskScoresWithOverrides={districtRiskScoresWithOverrides}
                   theme={theme}
-                  activeTab={activeTab}
                   setActiveTab={setActiveTab}
                   setSearchQuery={setSearchQuery}
                   parseCaseMetadata={parseCaseMetadata}
