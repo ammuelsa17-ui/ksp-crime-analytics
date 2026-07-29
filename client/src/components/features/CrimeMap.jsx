@@ -27,7 +27,7 @@ export const CrimeMap = ({
   const mapInstanceRef = useRef(null);
   const baseLayerRef = useRef(null);
 
-  // 1. Stable-size initialization gate
+  // 1. Parent-width and stable-layout initialization gate
   useEffect(() => {
     const container = mapContainerRef.current;
     if (!container || mapInstanceRef.current) return;
@@ -35,19 +35,24 @@ export const CrimeMap = ({
     let cancelled = false;
     let previousWidth = 0;
     let stableFrames = 0;
-    let animationFrame;
+    let frameId;
 
-    const initializeWhenStable = () => {
+    const waitForFinalLayout = () => {
       if (cancelled) return;
 
       const width = container.clientWidth;
       const height = container.clientHeight;
+      const parentWidth = container.parentElement?.clientWidth ?? 0;
 
-      if (
-        width >= 300 &&
-        height >= 300 &&
-        Math.abs(width - previousWidth) < 2
-      ) {
+      // Allow initialization only when container has expanded to match parent flex width (>= 500px)
+      const hasFinalWidth =
+        width >= 500 &&
+        parentWidth >= 500 &&
+        Math.abs(width - parentWidth) <= 4;
+
+      const sizeIsStable = Math.abs(width - previousWidth) < 2;
+
+      if (hasFinalWidth && height >= 400 && sizeIsStable) {
         stableFrames += 1;
       } else {
         stableFrames = 0;
@@ -55,10 +60,17 @@ export const CrimeMap = ({
 
       previousWidth = width;
 
-      if (stableFrames < 3) {
-        animationFrame = requestAnimationFrame(initializeWhenStable);
+      if (stableFrames < 5) {
+        frameId = requestAnimationFrame(waitForFinalLayout);
         return;
       }
+
+      console.table({
+        containerWidth: width,
+        containerHeight: height,
+        parentWidth,
+        stableFrames,
+      });
 
       if (container._leaflet_id) {
         container._leaflet_id = null;
@@ -70,6 +82,7 @@ export const CrimeMap = ({
         zoom: 7,
         zoomControl: true,
         scrollWheelZoom: true,
+        preferCanvas: true,
       });
 
       // Base Tile Layers
@@ -90,8 +103,8 @@ export const CrimeMap = ({
         { attribution: 'Tiles &copy; Esri', maxZoom: 19 }
       );
 
-      const baseLayer = theme === 'dark' ? cartoDark : osm;
-      baseLayer.addTo(map);
+      const tileLayer = theme === 'dark' ? cartoDark : osm;
+      tileLayer.addTo(map);
 
       L.control.layers({
         '🗺️ OpenStreetMap': osm,
@@ -103,21 +116,25 @@ export const CrimeMap = ({
       map._kspLayerGroup = L.layerGroup().addTo(map);
 
       mapInstanceRef.current = map;
-      baseLayerRef.current = baseLayer;
+      baseLayerRef.current = tileLayer;
 
       requestAnimationFrame(() => {
         if (mapInstanceRef.current) {
-          mapInstanceRef.current.invalidateSize(false);
-          baseLayerRef.current?.redraw();
+          mapInstanceRef.current.invalidateSize({
+            animate: false,
+            pan: false,
+          });
+
+          tileLayer.redraw();
         }
       });
     };
 
-    animationFrame = requestAnimationFrame(initializeWhenStable);
+    frameId = requestAnimationFrame(waitForFinalLayout);
 
     return () => {
       cancelled = true;
-      cancelAnimationFrame(animationFrame);
+      cancelAnimationFrame(frameId);
 
       if (mapInstanceRef.current) {
         try {
@@ -141,12 +158,12 @@ export const CrimeMap = ({
       const map = mapInstanceRef.current;
       const layer = baseLayerRef.current;
 
-      if (!map || container.clientWidth < 300) return;
+      if (!map || container.clientWidth < 500) return;
 
       cancelAnimationFrame(resizeFrame);
 
       resizeFrame = requestAnimationFrame(() => {
-        map.invalidateSize(false);
+        map.invalidateSize({ animate: false, pan: false });
         layer?.redraw();
       });
     });
