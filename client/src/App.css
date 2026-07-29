@@ -3834,21 +3834,3 @@ button:disabled {
   }
 }
 
-/* 🗺️ TARGETED LEAFLET RASTER TILE RESET (Overrides any global img width/height/object-fit rules) */
-#crime-map .leaflet-tile {
-  width: 256px !important;
-  height: 256px !important;
-  max-width: none !important;
-  max-height: none !important;
-  object-fit: initial !important;
-  aspect-ratio: auto !important;
-}
-
-#crime-map img.leaflet-tile {
-  display: block !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-}
-
-

@@ -25,50 +25,73 @@ export const CrimeMap = ({
 }) => {
   const mapContainerRef = useRef(null);
   const mapInstanceRef = useRef(null);
+  const baseLayerRef = useRef(null);
 
-  // Clean initialization lifecycle with npm Leaflet import
+  // 1. Stable-size initialization gate
   useEffect(() => {
     const container = mapContainerRef.current;
     if (!container || mapInstanceRef.current) return;
 
-    let map;
+    let cancelled = false;
+    let previousWidth = 0;
+    let stableFrames = 0;
+    let animationFrame;
 
-    const frame = requestAnimationFrame(() => {
-      if (!container || container.clientWidth < 100 || container.clientHeight < 100) return;
+    const initializeWhenStable = () => {
+      if (cancelled) return;
+
+      const width = container.clientWidth;
+      const height = container.clientHeight;
+
+      if (
+        width >= 300 &&
+        height >= 300 &&
+        Math.abs(width - previousWidth) < 2
+      ) {
+        stableFrames += 1;
+      } else {
+        stableFrames = 0;
+      }
+
+      previousWidth = width;
+
+      if (stableFrames < 3) {
+        animationFrame = requestAnimationFrame(initializeWhenStable);
+        return;
+      }
 
       if (container._leaflet_id) {
         container._leaflet_id = null;
       }
       container.innerHTML = '';
 
-      map = L.map(container, {
+      const map = L.map(container, {
         center: [14.9754, 76.1368],
         zoom: 7,
         zoomControl: true,
-        scrollWheelZoom: true
+        scrollWheelZoom: true,
       });
-      mapInstanceRef.current = map;
 
-      // Base Tile Layers (Standard OpenStreetMap + Carto + Satellite)
-      const osm = L.tileLayer(
-        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-        { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors', maxZoom: 19, tileSize: 256, crossOrigin: true }
-      );
+      // Base Tile Layers
       const cartoDark = L.tileLayer(
         'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',
-        { attribution: '&copy; OpenStreetMap &copy; CARTO', subdomains: 'abcd', maxZoom: 20, tileSize: 256, crossOrigin: true }
+        { attribution: '&copy; OpenStreetMap &copy; CARTO', subdomains: 'abcd', maxZoom: 20 }
       );
       const cartoLight = L.tileLayer(
         'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
-        { attribution: '&copy; OpenStreetMap &copy; CARTO', subdomains: 'abcd', maxZoom: 20, tileSize: 256, crossOrigin: true }
+        { attribution: '&copy; OpenStreetMap &copy; CARTO', subdomains: 'abcd', maxZoom: 20 }
+      );
+      const osm = L.tileLayer(
+        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        { attribution: '&copy; OpenStreetMap contributors', maxZoom: 19 }
       );
       const satellite = L.tileLayer(
         'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-        { attribution: 'Tiles &copy; Esri', maxZoom: 19, tileSize: 256, crossOrigin: true }
+        { attribution: 'Tiles &copy; Esri', maxZoom: 19 }
       );
 
-      // Default to OSM or theme tile layer
-      (theme === 'dark' ? cartoDark : osm).addTo(map);
+      const baseLayer = theme === 'dark' ? cartoDark : osm;
+      baseLayer.addTo(map);
 
       L.control.layers({
         '🗺️ OpenStreetMap': osm,
@@ -79,25 +102,64 @@ export const CrimeMap = ({
 
       map._kspLayerGroup = L.layerGroup().addTo(map);
 
+      mapInstanceRef.current = map;
+      baseLayerRef.current = baseLayer;
+
       requestAnimationFrame(() => {
         if (mapInstanceRef.current) {
           mapInstanceRef.current.invalidateSize(false);
+          baseLayerRef.current?.redraw();
         }
       });
-    });
+    };
+
+    animationFrame = requestAnimationFrame(initializeWhenStable);
 
     return () => {
-      cancelAnimationFrame(frame);
+      cancelled = true;
+      cancelAnimationFrame(animationFrame);
+
       if (mapInstanceRef.current) {
         try {
           mapInstanceRef.current.remove();
         } catch (e) {}
         mapInstanceRef.current = null;
       }
+
+      baseLayerRef.current = null;
     };
   }, []);
 
-  // Update Markers & Hotspot Circles when cases, districtRiskScores, or theme changes
+  // 2. ResizeObserver handling after initialization
+  useEffect(() => {
+    const container = mapContainerRef.current;
+    if (!container) return;
+
+    let resizeFrame;
+
+    const observer = new ResizeObserver(() => {
+      const map = mapInstanceRef.current;
+      const layer = baseLayerRef.current;
+
+      if (!map || container.clientWidth < 300) return;
+
+      cancelAnimationFrame(resizeFrame);
+
+      resizeFrame = requestAnimationFrame(() => {
+        map.invalidateSize(false);
+        layer?.redraw();
+      });
+    });
+
+    observer.observe(container);
+
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(resizeFrame);
+    };
+  }, []);
+
+  // 3. Update Markers & Hotspot Circles when cases, districtRiskScores, or theme changes
   useEffect(() => {
     const map = mapInstanceRef.current;
     if (!map || !map._kspLayerGroup) return;
