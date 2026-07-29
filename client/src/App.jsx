@@ -657,6 +657,16 @@ function App() {
 
     // First-time Map initialization
     if (!mapRef.current) {
+      // Ensure layout width is calculated before L.map attaches
+      const rect = container.getBoundingClientRect();
+      if (rect.width < 250) {
+        const retryTimer = setTimeout(() => {
+          // Re-trigger layout check
+          if (mapRef.current) mapRef.current.invalidateSize({ animate: false });
+        }, 100);
+        return () => clearTimeout(retryTimer);
+      }
+
       // Clear any stale Leaflet markers or container state
       if (container._leaflet_id) {
         container._leaflet_id = null;
@@ -710,8 +720,8 @@ function App() {
       }
     }
 
-    // Force invalidateSize on tab activation (immediate, +100ms, +300ms, +600ms)
-    const resizeTimers = [0, 100, 300, 600].map(delay => 
+    // Force invalidateSize on tab activation (immediate, +50ms, +150ms, +300ms, +600ms)
+    const resizeTimers = [0, 50, 150, 300, 600].map(delay => 
       setTimeout(() => {
         if (mapRef.current) {
           mapRef.current.invalidateSize({ animate: false, pan: false });
