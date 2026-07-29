@@ -1442,10 +1442,22 @@ button:disabled {
   overflow: hidden;
 }
 
-.leaflet-container img,
-.leaflet-tile {
+#crime-map .leaflet-container {
+  width: 100% !important;
+  height: 100% !important;
+  background: #0E1625 !important;
+}
+
+#crime-map img.leaflet-tile,
+#crime-map .leaflet-tile {
+  width: 256px !important;
+  height: 256px !important;
   max-width: none !important;
   max-height: none !important;
+  min-width: 256px !important;
+  min-height: 256px !important;
+  object-fit: fill !important;
+  display: block !important;
 }
 
 .custom-ksp-marker {
@@ -3832,5 +3844,17 @@ button:disabled {
     max-width: 100% !important;
     box-sizing: border-box !important;
   }
+}
+
+/* 🗺️ TARGETED RASTER TILE IMAGE RESET (Protects Leaflet tile images from global responsive image rules) */
+#crime-map img.leaflet-tile {
+  width: 256px !important;
+  height: 256px !important;
+  max-width: none !important;
+  max-height: none !important;
+  min-width: 256px !important;
+  min-height: 256px !important;
+  object-fit: fill !important;
+  display: block !important;
 }
 
