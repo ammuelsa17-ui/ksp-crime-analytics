@@ -1,4 +1,6 @@
 import React, { useEffect, useRef } from 'react';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 
 const DISTRICT_COORDS = {
   'bengaluru': [12.9716, 77.5946],
@@ -24,10 +26,10 @@ export const CrimeMap = ({
   const mapContainerRef = useRef(null);
   const mapInstanceRef = useRef(null);
 
-  // Clean initialization lifecycle
+  // Clean initialization lifecycle with npm Leaflet import
   useEffect(() => {
     const container = mapContainerRef.current;
-    if (!container || mapInstanceRef.current || typeof L === 'undefined') return;
+    if (!container || mapInstanceRef.current) return;
 
     let map;
 
@@ -47,30 +49,31 @@ export const CrimeMap = ({
       });
       mapInstanceRef.current = map;
 
-      // Base Tile Layers
+      // Base Tile Layers (Standard OpenStreetMap + Carto + Satellite)
+      const osm = L.tileLayer(
+        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        { attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors', maxZoom: 19, tileSize: 256, crossOrigin: true }
+      );
       const cartoDark = L.tileLayer(
         'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',
-        { attribution: '&copy; OpenStreetMap &copy; CARTO', subdomains: 'abcd', maxZoom: 20 }
+        { attribution: '&copy; OpenStreetMap &copy; CARTO', subdomains: 'abcd', maxZoom: 20, tileSize: 256, crossOrigin: true }
       );
       const cartoLight = L.tileLayer(
         'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
-        { attribution: '&copy; OpenStreetMap &copy; CARTO', subdomains: 'abcd', maxZoom: 20 }
-      );
-      const osm = L.tileLayer(
-        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-        { attribution: '&copy; OpenStreetMap contributors', maxZoom: 19 }
+        { attribution: '&copy; OpenStreetMap &copy; CARTO', subdomains: 'abcd', maxZoom: 20, tileSize: 256, crossOrigin: true }
       );
       const satellite = L.tileLayer(
         'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-        { attribution: 'Tiles &copy; Esri', maxZoom: 19 }
+        { attribution: 'Tiles &copy; Esri', maxZoom: 19, tileSize: 256, crossOrigin: true }
       );
 
-      (theme === 'dark' ? cartoDark : cartoLight).addTo(map);
+      // Default to OSM or theme tile layer
+      (theme === 'dark' ? cartoDark : osm).addTo(map);
 
       L.control.layers({
+        '🗺️ OpenStreetMap': osm,
         '🌑 Command Dark': cartoDark,
         '☀️ Government Light': cartoLight,
-        '🗺️ OpenStreetMap': osm,
         '🛰️ Satellite': satellite
       }, null, { position: 'topright' }).addTo(map);
 
