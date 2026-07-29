@@ -17,7 +17,6 @@ export const CrimeMap = ({
   cases = [],
   districtRiskScoresWithOverrides = [],
   theme = 'dark',
-  activeTab = 'map',
   setActiveTab,
   setSearchQuery,
   parseCaseMetadata
@@ -25,111 +24,83 @@ export const CrimeMap = ({
   const mapContainerRef = useRef(null);
   const mapInstanceRef = useRef(null);
 
-  // 1. Mount Leaflet Instance ONLY when activeTab === 'map' and container is visible (> 100px)
+  // Clean initialization lifecycle
   useEffect(() => {
-    if (typeof window === 'undefined' || typeof L === 'undefined') return;
-    if (activeTab !== 'map') return;
-    if (mapInstanceRef.current) return;
-
     const container = mapContainerRef.current;
-    if (!container) return;
+    if (!container || mapInstanceRef.current || typeof L === 'undefined') return;
 
-    // Ensure layout width is calculated before L.map attaches
-    if (container.clientWidth < 100) return;
+    let map;
 
-    // Clean any previous initialization state on container
-    if (container._leaflet_id) {
-      container._leaflet_id = null;
-    }
-    container.innerHTML = '';
+    const frame = requestAnimationFrame(() => {
+      if (!container || container.clientWidth < 100 || container.clientHeight < 100) return;
 
-    // Initialize Leaflet Map
-    const map = L.map(container, {
-      center: [14.9754, 76.1368],
-      zoom: 7,
-      zoomControl: true,
-      scrollWheelZoom: true
+      if (container._leaflet_id) {
+        container._leaflet_id = null;
+      }
+      container.innerHTML = '';
+
+      map = L.map(container, {
+        center: [14.9754, 76.1368],
+        zoom: 7,
+        zoomControl: true,
+        scrollWheelZoom: true
+      });
+      mapInstanceRef.current = map;
+
+      // Base Tile Layers
+      const cartoDark = L.tileLayer(
+        'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',
+        { attribution: '&copy; OpenStreetMap &copy; CARTO', subdomains: 'abcd', maxZoom: 20 }
+      );
+      const cartoLight = L.tileLayer(
+        'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
+        { attribution: '&copy; OpenStreetMap &copy; CARTO', subdomains: 'abcd', maxZoom: 20 }
+      );
+      const osm = L.tileLayer(
+        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        { attribution: '&copy; OpenStreetMap contributors', maxZoom: 19 }
+      );
+      const satellite = L.tileLayer(
+        'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+        { attribution: 'Tiles &copy; Esri', maxZoom: 19 }
+      );
+
+      (theme === 'dark' ? cartoDark : cartoLight).addTo(map);
+
+      L.control.layers({
+        '🌑 Command Dark': cartoDark,
+        '☀️ Government Light': cartoLight,
+        '🗺️ OpenStreetMap': osm,
+        '🛰️ Satellite': satellite
+      }, null, { position: 'topright' }).addTo(map);
+
+      map._kspLayerGroup = L.layerGroup().addTo(map);
+
+      requestAnimationFrame(() => {
+        if (mapInstanceRef.current) {
+          mapInstanceRef.current.invalidateSize(false);
+        }
+      });
     });
-    mapInstanceRef.current = map;
 
-    // Define Tile Layers with clean options (tileSize: 256, keepBuffer: 4)
-    const cartoDark = L.tileLayer(
-      'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',
-      { attribution: '&copy; OpenStreetMap &copy; CARTO', subdomains: 'abcd', maxZoom: 20, tileSize: 256, updateWhenIdle: false, keepBuffer: 4 }
-    );
-    const cartoLight = L.tileLayer(
-      'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
-      { attribution: '&copy; OpenStreetMap &copy; CARTO', subdomains: 'abcd', maxZoom: 20, tileSize: 256, updateWhenIdle: false, keepBuffer: 4 }
-    );
-    const osm = L.tileLayer(
-      'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-      { attribution: '&copy; OpenStreetMap contributors', maxZoom: 19, tileSize: 256, updateWhenIdle: false, keepBuffer: 4 }
-    );
-    const satellite = L.tileLayer(
-      'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-      { attribution: 'Tiles &copy; Esri', maxZoom: 19, tileSize: 256, updateWhenIdle: false, keepBuffer: 4 }
-    );
-
-    // Apply default theme tile layer
-    (theme === 'dark' ? cartoDark : cartoLight).addTo(map);
-
-    L.control.layers({
-      '🌑 Command Dark': cartoDark,
-      '☀️ Government Light': cartoLight,
-      '🗺️ OpenStreetMap': osm,
-      '🛰️ Satellite': satellite
-    }, null, { position: 'topright' }).addTo(map);
-
-    // Dedicated LayerGroup for markers and circles
-    map._kspLayerGroup = L.layerGroup().addTo(map);
-
-    // Cleanup on component unmount
     return () => {
-      try {
-        map.off();
-        map.remove();
-      } catch (e) {}
-      mapInstanceRef.current = null;
-    };
-  }, [activeTab, theme]);
-
-  // 2. ResizeObserver + tab-switch resize handling
-  useEffect(() => {
-    const container = mapContainerRef.current;
-    const map = mapInstanceRef.current;
-
-    if (!container || !map || activeTab !== 'map') return;
-
-    const observer = new ResizeObserver(() => {
-      if (container.clientWidth > 300 && container.clientHeight > 300) {
-        requestAnimationFrame(() => {
-          map.invalidateSize({
-            animate: false,
-            pan: false,
-          });
-        });
-      }
-    });
-
-    observer.observe(container);
-
-    requestAnimationFrame(() => {
+      cancelAnimationFrame(frame);
       if (mapInstanceRef.current) {
-        mapInstanceRef.current.invalidateSize({ animate: false, pan: false });
+        try {
+          mapInstanceRef.current.remove();
+        } catch (e) {}
+        mapInstanceRef.current = null;
       }
-    });
+    };
+  }, []);
 
-    return () => observer.disconnect();
-  }, [activeTab]);
-
-  // 3. Update Markers & Hotspot Circles when cases, districtRiskScores, or theme changes
+  // Update Markers & Hotspot Circles when cases, districtRiskScores, or theme changes
   useEffect(() => {
     const map = mapInstanceRef.current;
-    if (!map || !map._kspLayerGroup || activeTab !== 'map') return;
+    if (!map || !map._kspLayerGroup) return;
 
     map._kspLayerGroup.clearLayers();
 
-    // Helper for marker pin icons
     const createCustomMarkerIcon = (category, priority) => {
       const isCyber = category?.toLowerCase().includes('cyber');
       const isHigh = priority?.toLowerCase().includes('high') || priority?.toLowerCase().includes('critical');
@@ -208,7 +179,7 @@ export const CrimeMap = ({
       `);
       map._kspLayerGroup.addLayer(marker);
     });
-  }, [cases, districtRiskScoresWithOverrides, theme, activeTab, parseCaseMetadata]);
+  }, [cases, districtRiskScoresWithOverrides, theme, parseCaseMetadata]);
 
   return (
     <div 

@@ -2663,8 +2663,8 @@ link.click();
           </section>
         ) : null}
 
-        {/* GIS Command Center Tab Container (Persistent in DOM so Leaflet #crime-map never unmounts) */}
-        <div style={{ display: activeTab === 'map' ? 'block' : 'none', width: '100%', gridColumn: '1 / -1' }}>
+        {/* GIS Command Center Tab Container (Rendered conditionally when activeTab === 'map') */}
+        {activeTab === 'map' && (
           <section className="intelligence-dashboard-view" style={{ width: '100%' }}>
             <div className="analytics-card map-panel-card" style={{ padding: '1.25rem', borderRadius: '8px', border: '1px solid var(--border-color)', background: 'var(--bg-card)' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.75rem' }}>
@@ -2808,7 +2808,7 @@ link.click();
               </div>
             </div>
           </section>
-        </div>
+        )}
 
         {activeTab === 'admin' ? (
           /* System Admin Console Workspace */
