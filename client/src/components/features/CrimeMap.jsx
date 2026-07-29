@@ -25,12 +25,17 @@ export const CrimeMap = ({
   const mapContainerRef = useRef(null);
   const mapInstanceRef = useRef(null);
 
-  // 1. Mount Leaflet Instance ONCE
+  // 1. Mount Leaflet Instance ONLY when activeTab === 'map' and container is visible (> 100px)
   useEffect(() => {
     if (typeof window === 'undefined' || typeof L === 'undefined') return;
+    if (activeTab !== 'map') return;
+    if (mapInstanceRef.current) return;
 
     const container = mapContainerRef.current;
     if (!container) return;
+
+    // Ensure layout width is calculated before L.map attaches
+    if (container.clientWidth < 100) return;
 
     // Clean any previous initialization state on container
     if (container._leaflet_id) {
@@ -86,9 +91,9 @@ export const CrimeMap = ({
       } catch (e) {}
       mapInstanceRef.current = null;
     };
-  }, []);
+  }, [activeTab, theme]);
 
-  // 2. ResizeObserver + tab-switch resize handling (exact user specification)
+  // 2. ResizeObserver + tab-switch resize handling
   useEffect(() => {
     const container = mapContainerRef.current;
     const map = mapInstanceRef.current;
@@ -108,8 +113,10 @@ export const CrimeMap = ({
 
     observer.observe(container);
 
-    map.whenReady(() => {
-      requestAnimationFrame(() => map.invalidateSize({ animate: false, pan: false }));
+    requestAnimationFrame(() => {
+      if (mapInstanceRef.current) {
+        mapInstanceRef.current.invalidateSize({ animate: false, pan: false });
+      }
     });
 
     return () => observer.disconnect();
