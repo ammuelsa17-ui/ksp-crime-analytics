@@ -1435,28 +1435,35 @@ button:disabled {
 
 /* 🗺️ CLEAN MINIMAL LEAFLET VIEWPORT ENGINE */
 #crime-map,
-#crime-map.leaflet-container,
+.crime-map-container,
 .leaflet-container {
   width: 100% !important;
   height: 600px !important;
-  min-height: 600px !important;
-  position: relative !important;
-  overflow: hidden !important;
-  border-radius: 8px !important;
+  min-width: 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
   background-color: #0E1625 !important;
 }
 
-.leaflet-tile-container img,
-.leaflet-tile {
+.leaflet-container img,
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
   max-width: none !important;
   max-height: none !important;
 }
 
-.leaflet-pane,
+.leaflet-tile {
+  width: 256px !important;
+  height: 256px !important;
+}
+
 .leaflet-map-pane,
 .leaflet-tile-pane,
 .leaflet-overlay-pane,
-.leaflet-marker-pane {
+.leaflet-marker-pane,
+.leaflet-tile-container {
   position: absolute !important;
 }
 

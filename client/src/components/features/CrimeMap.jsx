@@ -47,22 +47,22 @@ export const CrimeMap = ({
     });
     mapInstanceRef.current = map;
 
-    // Define Tile Layers
+    // Define Tile Layers with clean options (tileSize: 256, keepBuffer: 4)
     const cartoDark = L.tileLayer(
       'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png',
-      { attribution: '&copy; OpenStreetMap &copy; CARTO', subdomains: 'abcd', maxZoom: 20 }
+      { attribution: '&copy; OpenStreetMap &copy; CARTO', subdomains: 'abcd', maxZoom: 20, tileSize: 256, updateWhenIdle: false, keepBuffer: 4 }
     );
     const cartoLight = L.tileLayer(
       'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png',
-      { attribution: '&copy; OpenStreetMap &copy; CARTO', subdomains: 'abcd', maxZoom: 20 }
+      { attribution: '&copy; OpenStreetMap &copy; CARTO', subdomains: 'abcd', maxZoom: 20, tileSize: 256, updateWhenIdle: false, keepBuffer: 4 }
     );
     const osm = L.tileLayer(
       'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-      { attribution: '&copy; OpenStreetMap contributors', maxZoom: 19 }
+      { attribution: '&copy; OpenStreetMap contributors', maxZoom: 19, tileSize: 256, updateWhenIdle: false, keepBuffer: 4 }
     );
     const satellite = L.tileLayer(
       'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-      { attribution: 'Tiles &copy; Esri', maxZoom: 19 }
+      { attribution: 'Tiles &copy; Esri', maxZoom: 19, tileSize: 256, updateWhenIdle: false, keepBuffer: 4 }
     );
 
     // Apply default theme tile layer
@@ -78,20 +78,8 @@ export const CrimeMap = ({
     // Dedicated LayerGroup for markers and circles
     map._kspLayerGroup = L.layerGroup().addTo(map);
 
-    // ResizeObserver for automatic reflow when container size changes
-    if (window.ResizeObserver) {
-      const ro = new ResizeObserver(() => {
-        if (mapInstanceRef.current) {
-          mapInstanceRef.current.invalidateSize({ animate: false });
-        }
-      });
-      ro.observe(container);
-      map._ro = ro;
-    }
-
     // Cleanup on component unmount
     return () => {
-      if (map._ro) map._ro.disconnect();
       try {
         map.off();
         map.remove();
@@ -100,20 +88,31 @@ export const CrimeMap = ({
     };
   }, []);
 
-  // 2. Handle Tab Visibility & Staggered invalidateSize()
+  // 2. ResizeObserver + tab-switch resize handling (exact user specification)
   useEffect(() => {
-    if (activeTab !== 'map' || !mapInstanceRef.current) return;
+    const container = mapContainerRef.current;
+    const map = mapInstanceRef.current;
 
-    // Staggered resize calls ensure full width/height calculation after CSS layout reflow
-    const timers = [0, 50, 150, 300, 600].map(delay =>
-      setTimeout(() => {
-        if (mapInstanceRef.current) {
-          mapInstanceRef.current.invalidateSize({ animate: false, pan: false });
-        }
-      }, delay)
-    );
+    if (!container || !map || activeTab !== 'map') return;
 
-    return () => timers.forEach(t => clearTimeout(t));
+    const observer = new ResizeObserver(() => {
+      if (container.clientWidth > 300 && container.clientHeight > 300) {
+        requestAnimationFrame(() => {
+          map.invalidateSize({
+            animate: false,
+            pan: false,
+          });
+        });
+      }
+    });
+
+    observer.observe(container);
+
+    map.whenReady(() => {
+      requestAnimationFrame(() => map.invalidateSize({ animate: false, pan: false }));
+    });
+
+    return () => observer.disconnect();
   }, [activeTab]);
 
   // 3. Update Markers & Hotspot Circles when cases, districtRiskScores, or theme changes
