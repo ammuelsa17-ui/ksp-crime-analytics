@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 
@@ -49,15 +49,14 @@ export default function CrimeMapV3({
 }) {
   const containerRef = useRef(null);
   const mapRef = useRef(null);
+  const [activeMapMode, setActiveMapMode] = useState(theme === 'dark' ? 'dark' : 'light');
 
   // 1. Initialize MapLibre GL WebGL Engine focused strictly on Karnataka
   useEffect(() => {
     const container = containerRef.current;
     if (!container || mapRef.current) return;
 
-    const tileUrl = theme === 'dark'
-      ? 'https://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png'
-      : 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
+    const initialMode = theme === 'dark' ? 'dark' : 'light';
 
     const map = new maplibregl.Map({
       container,
@@ -72,20 +71,43 @@ export default function CrimeMapV3({
       style: {
         version: 8,
         sources: {
-          'base-raster': {
+          'dark-tiles': {
             type: 'raster',
-            tiles: [tileUrl],
+            tiles: ['https://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png'],
             tileSize: 256,
             attribution: '© OpenStreetMap contributors © CARTO',
+          },
+          'light-tiles': {
+            type: 'raster',
+            tiles: ['https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png'],
+            tileSize: 256,
+            attribution: '© OpenStreetMap contributors © CARTO',
+          },
+          'satellite-tiles': {
+            type: 'raster',
+            tiles: ['https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'],
+            tileSize: 256,
+            attribution: 'Tiles © Esri',
           },
         },
         layers: [
           {
-            id: 'base-raster-layer',
+            id: 'dark-base',
             type: 'raster',
-            source: 'base-raster',
-            minzoom: 0,
-            maxzoom: 22,
+            source: 'dark-tiles',
+            layout: { visibility: initialMode === 'dark' ? 'visible' : 'none' },
+          },
+          {
+            id: 'light-base',
+            type: 'raster',
+            source: 'light-tiles',
+            layout: { visibility: initialMode === 'light' ? 'visible' : 'none' },
+          },
+          {
+            id: 'satellite-base',
+            type: 'raster',
+            source: 'satellite-tiles',
+            layout: { visibility: 'none' },
           },
         ],
       },
@@ -96,7 +118,7 @@ export default function CrimeMapV3({
     map.on('load', () => {
       map.resize();
 
-      // Safe Source & Layer Registration: Prevent duplicates
+      // Safe Source & Layer Registration for Hotspots
       if (!map.getSource('hotspots')) {
         map.addSource('hotspots', {
           type: 'geojson',
@@ -276,7 +298,38 @@ export default function CrimeMapV3({
     };
   }, []);
 
-  // 2. Update GeoJSON Sources Instantly when cases or risk scores change
+  // 2. Base-map Switcher Handler
+  const switchBaseMap = (mode) => {
+    const map = mapRef.current;
+    if (!map || !map.isStyleLoaded()) return;
+
+    const visibility = {
+      dark: mode === 'dark' ? 'visible' : 'none',
+      light: mode === 'light' ? 'visible' : 'none',
+      satellite: mode === 'satellite' ? 'visible' : 'none',
+    };
+
+    if (map.getLayer('dark-base')) map.setLayoutProperty('dark-base', 'visibility', visibility.dark);
+    if (map.getLayer('light-base')) map.setLayoutProperty('light-base', 'visibility', visibility.light);
+    if (map.getLayer('satellite-base')) map.setLayoutProperty('satellite-base', 'visibility', visibility.satellite);
+
+    if (map.getLayer('hotspot-core')) {
+      map.setPaintProperty(
+        'hotspot-core',
+        'circle-stroke-color',
+        mode === 'satellite' ? '#ffffff' : '#ffffff'
+      );
+      map.setPaintProperty(
+        'hotspot-core',
+        'circle-stroke-width',
+        mode === 'satellite' ? 3 : 2
+      );
+    }
+
+    setActiveMapMode(mode);
+  };
+
+  // 3. Update GeoJSON Sources Instantly when cases or risk scores change
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
@@ -395,7 +448,7 @@ export default function CrimeMapV3({
       <div ref={containerRef} className="gis-map-v3" style={{ width: '100%', height: '100%' }} />
 
       {/* Control Overlay Button: Reset Karnataka Focus */}
-      <div style={{ position: 'absolute', top: '10px', left: '50px', zIndex: 10 }}>
+      <div style={{ position: 'absolute', top: '12px', left: '50px', zIndex: 10 }}>
         <button
           type="button"
           onClick={handleResetKarnatakaView}
@@ -404,7 +457,7 @@ export default function CrimeMapV3({
             color: 'var(--text-primary)',
             border: '1px solid var(--border-color)',
             borderRadius: '6px',
-            padding: '0.4rem 0.75rem',
+            padding: '0.45rem 0.75rem',
             fontSize: '0.72rem',
             fontWeight: '800',
             cursor: 'pointer',
@@ -415,6 +468,31 @@ export default function CrimeMapV3({
           }}
         >
           🎯 Reset Karnataka Radar View
+        </button>
+      </div>
+
+      {/* 🗺️ 3-Mode Base-Map Layer Selector UI (Top-Right) */}
+      <div className="map-mode-selector">
+        <button
+          type="button"
+          className={activeMapMode === 'dark' ? 'active' : ''}
+          onClick={() => switchBaseMap('dark')}
+        >
+          🌙 Dark
+        </button>
+        <button
+          type="button"
+          className={activeMapMode === 'light' ? 'active' : ''}
+          onClick={() => switchBaseMap('light')}
+        >
+          ☀️ Light
+        </button>
+        <button
+          type="button"
+          className={activeMapMode === 'satellite' ? 'active' : ''}
+          onClick={() => switchBaseMap('satellite')}
+        >
+          🛰️ Satellite
         </button>
       </div>
 
