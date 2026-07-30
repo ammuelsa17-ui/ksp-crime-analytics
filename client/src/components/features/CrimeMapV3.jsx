@@ -49,7 +49,6 @@ export default function CrimeMapV3({
 }) {
   const containerRef = useRef(null);
   const mapRef = useRef(null);
-  const popupRef = useRef(null);
 
   // 1. Initialize MapLibre GL WebGL Engine focused strictly on Karnataka
   useEffect(() => {
@@ -97,14 +96,15 @@ export default function CrimeMapV3({
     map.on('load', () => {
       map.resize();
 
-      // Add GeoJSON Source for Hotspot Precinct Circles
+      // Safe Source & Layer Registration: Prevent duplicates
       if (!map.getSource('hotspots')) {
         map.addSource('hotspots', {
           type: 'geojson',
           data: { type: 'FeatureCollection', features: [] },
         });
+      }
 
-        // Hotspot Outer Radial Glow Layer
+      if (!map.getLayer('hotspot-glow')) {
         map.addLayer({
           id: 'hotspot-glow',
           type: 'circle',
@@ -129,8 +129,9 @@ export default function CrimeMapV3({
             'circle-blur': 0.5,
           },
         });
+      }
 
-        // Hotspot Inner Core Layer
+      if (!map.getLayer('hotspot-core')) {
         map.addLayer({
           id: 'hotspot-core',
           type: 'circle',
@@ -157,13 +158,15 @@ export default function CrimeMapV3({
         });
       }
 
-      // Add GeoJSON Source for FIR Incident Pins
+      // Add GeoJSON Source for FIR Incident Pins (rendered above hotspots)
       if (!map.getSource('fir-points')) {
         map.addSource('fir-points', {
           type: 'geojson',
           data: { type: 'FeatureCollection', features: [] },
         });
+      }
 
+      if (!map.getLayer('fir-points-layer')) {
         map.addLayer({
           id: 'fir-points-layer',
           type: 'circle',
@@ -279,12 +282,20 @@ export default function CrimeMapV3({
     if (!map) return;
 
     const updateMapSources = () => {
+      if (!map.isStyleLoaded()) return;
+
+      const hotspotSource = map.getSource('hotspots');
+      const firSource = map.getSource('fir-points');
+
       // Build GeoJSON Features for Hotspots
       const hotspotFeatures = (districtRiskScoresWithOverrides || [])
         .map(item => {
           const key = item.district.toLowerCase();
           const coords = DISTRICT_COORDINATES[key] || DISTRICT_COORDINATES[Object.keys(DISTRICT_COORDINATES).find(k => key.includes(k))] || null;
-          if (!coords) return null;
+          if (!coords) {
+            console.warn(`[GIS Radar] No valid coordinates for district: ${item.district}`);
+            return null;
+          }
 
           return {
             type: 'Feature',
@@ -305,8 +316,8 @@ export default function CrimeMapV3({
         features: hotspotFeatures
       };
 
-      if (map.getSource('hotspots')) {
-        map.getSource('hotspots').setData(hotspotGeoJson);
+      if (hotspotSource) {
+        hotspotSource.setData(hotspotGeoJson);
       }
 
       // Build GeoJSON Features for FIR Points
@@ -341,8 +352,8 @@ export default function CrimeMapV3({
         features: firFeatures
       };
 
-      if (map.getSource('fir-points')) {
-        map.getSource('fir-points').setData(firGeoJson);
+      if (firSource) {
+        firSource.setData(firGeoJson);
       }
     };
 
