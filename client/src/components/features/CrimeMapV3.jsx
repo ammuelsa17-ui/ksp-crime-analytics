@@ -282,7 +282,10 @@ export default function CrimeMapV3({
     if (!map) return;
 
     const updateMapSources = () => {
-      if (!map.isStyleLoaded()) return;
+      if (!map.isStyleLoaded()) {
+        map.once('idle', updateMapSources);
+        return;
+      }
 
       const hotspotSource = map.getSource('hotspots');
       const firSource = map.getSource('fir-points');
