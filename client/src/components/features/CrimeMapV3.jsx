@@ -49,14 +49,16 @@ export default function CrimeMapV3({
 }) {
   const containerRef = useRef(null);
   const mapRef = useRef(null);
-  const [activeMapMode, setActiveMapMode] = useState(theme === 'dark' ? 'dark' : 'light');
+  const [activeMapMode, setActiveMapMode] = useState(
+    () => localStorage.getItem('ksp-map-mode') || (theme === 'dark' ? 'dark' : 'light')
+  );
 
   // 1. Initialize MapLibre GL WebGL Engine focused strictly on Karnataka
   useEffect(() => {
     const container = containerRef.current;
     if (!container || mapRef.current) return;
 
-    const initialMode = theme === 'dark' ? 'dark' : 'light';
+    const initialMode = localStorage.getItem('ksp-map-mode') || (theme === 'dark' ? 'dark' : 'light');
 
     const map = new maplibregl.Map({
       container,
@@ -327,6 +329,9 @@ export default function CrimeMapV3({
     }
 
     setActiveMapMode(mode);
+    try {
+      localStorage.setItem('ksp-map-mode', mode);
+    } catch (e) {}
   };
 
   // 3. Update GeoJSON Sources Instantly when cases or risk scores change
