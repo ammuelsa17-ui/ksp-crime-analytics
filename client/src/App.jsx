@@ -13,6 +13,7 @@ import AIExplainabilityBox from './components/features/AIExplainabilityBox';
 import CommandMonitorRibbon from './components/features/CommandMonitorRibbon';
 import UnifiedIntelligencePanel from './components/features/UnifiedIntelligencePanel';
 import CrimeMapV3 from './components/features/CrimeMapV3';
+import AIPatrolForecaster from './components/features/AIPatrolForecaster';
 import { catalystAuthLogin, catalystLogAuditEvent, catalystSignOut } from './services/catalystService';
 import { maskPhone, maskAadhaar, maskAddress } from './utils/piiMasker';
 import { 
@@ -2281,6 +2282,8 @@ link.click();
                 </div>
               </div>
 
+              {/* 🤖 AI Patrol Demand Forecasting & Deployment Optimizer */}
+              <AIPatrolForecaster selectedDistrict={districtFilter !== 'all' ? districtFilter : 'Mysuru'} />
             </div>
           </section>
         ) : activeTab === 'intelligence' ? (
