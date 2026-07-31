@@ -55,8 +55,8 @@ preprocessor = ColumnTransformer(
 )
 
 model = RandomForestRegressor(
-    n_estimators=100,
-    max_depth=12,
+    n_estimators=25,
+    max_depth=8,
     random_state=42,
 )
 
@@ -74,7 +74,7 @@ pipeline.fit(
 
 predictions = pipeline.predict(test_data[feature_columns])
 
-joblib.dump(pipeline, MODEL_PATH)
+joblib.dump(pipeline, MODEL_PATH, compress=3)
 
 checksum = hashlib.sha256(MODEL_PATH.read_bytes()).hexdigest()
 
@@ -114,4 +114,5 @@ REPORT_PATH.write_text(
 )
 
 print("Training finished successfully!")
-print(json.dumps(report, indent=2))
+print(f"Model file size: {MODEL_PATH.stat().st_size / 1024:.2f} KB")
+print("Checksum:", checksum)

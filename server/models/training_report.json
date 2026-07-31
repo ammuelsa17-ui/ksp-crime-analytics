@@ -14,14 +14,14 @@
     "precinct_density_score"
   ],
   "model_parameters": {
-    "n_estimators": 100,
-    "max_depth": 12,
+    "n_estimators": 25,
+    "max_depth": 8,
     "random_state": 42
   },
   "evaluation_metrics": {
-    "r2_score": 0.8206,
-    "mae": 0.7707,
-    "rmse": 0.9727
+    "r2_score": 0.7711,
+    "mae": 0.863,
+    "rmse": 1.0987
   },
-  "model_checksum_sha256": "04570e1adeb01e943c8181ad9c82b3d2ae7265be861ee65bf1ab1b8bee1fb3a5"
+  "model_checksum_sha256": "b44008cc94b9cbf17478f44de4a0c1e7e218380016021309cb551c0b37a32d74"
 }
