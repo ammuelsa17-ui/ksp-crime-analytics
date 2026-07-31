@@ -1,54 +1,69 @@
-# Karnataka State Police (KSP) Crime Intelligence Platform
+# Karnataka State Police (KSP) Crime Intelligence & Analytics Platform
 
-An end-to-end cloud-native prototype of the **KSP Crime Intelligence & Analytics Platform** built for **Datathon 2026**. This enterprise-quality dashboard enables real-time crime case recording, instant visualization of key trends, export utilities, and live storage integration, running exclusively serverless on **Zoho Catalyst**.
+An end-to-end cloud-native prototype of the **KSP Crime Intelligence & Analytics Platform** built for **Datathon 2026**. This enterprise-quality dashboard enables real-time crime case recording, instant visualization of key trends, spatio-temporal ML crime demand forecasting, Google OR-Tools patrol deployment optimization, interactive MapLibre GIS mapping (Dark, Light, Satellite modes), and official officer directive dispatch workflows running serverless on **Zoho Catalyst**.
 
-*   **Live Deployed Platform (Catalyst AppSail):** [https://server-50043662505.development.catalystappsail.in/](https://server-50043662505.development.catalystappsail.in/)
+*   **Live Deployed Web Application (Catalyst Slate):** [https://project-rainfall-60076677593.development.catalystserverless.in/app/index.html](https://project-rainfall-60076677593.development.catalystserverless.in/app/index.html)
+*   **Live Backend API Server (Catalyst AppSail):** [https://server-50043662505.development.catalystappsail.in/](https://server-50043662505.development.catalystappsail.in/)
 
 ---
 
 ## 📋 Problem Statement & Scope
-Modern policing requires rapid database access and immediate visualization of crime patterns. This platform bridges the gap between field incident reporting and crime center analysis by providing:
-*   **Instant Case Registration:** Field officers can register FIRs directly, which automatically populates location coordinates and category details.
-*   **Storage Resiliency**: Powered by the Zoho Catalyst Python SDK with dynamic request scoping, falling back automatically to local session storage if cloud database queries encounter latency.
-*   **Analytics Dashboard**: Instantly visible distribution of cases across crime categories, regional jurisdictions, and timeline trends without heavy third-party rendering frameworks.
+Modern policing requires rapid database access, immediate visualization of crime patterns, predictive resource allocation, and human officer governance. This platform bridges the gap between field incident reporting and police command center operations by providing:
+
+1. **Instant FIR Case Registration**: Field officers can register FIRs directly, populating location coordinates, categories, and severity ratings.
+2. **Interactive MapLibre GIS Map**: High-performance GPU vector map with **Dark Command**, **Light Administrative**, and **Esri Satellite** base-layer views.
+3. **AI Patrol Demand Forecasting**: Spatio-temporal demand model trained on historical incident patterns to predict high-risk time windows and incident counts by district and crime category.
+4. **Google OR-Tools Patrol Optimization**: Constraint-based linear programming optimizer that allocates available patrol units to maximize coverage and minimize response times.
+5. **Human Officer Governance & Audit Trail**: Requires explicit officer review and approval before dispatching patrol directives, generating a persistent audit trail and downloadable official TXT summary reports.
+
+---
+
+## 🔬 Synthetic Dataset & Model Provenance Disclosure
+
+> **Transparency Notice for Datathon Judges**:
+> We trained and evaluated a Random Forest Regressor model using a synthetic dataset of **12,000 historical crime records** (`server/data/synthetic_crime_history.csv`) split chronologically (80% train / 20% test). To ensure lightweight cloud package size and instant startup on Zoho Catalyst AppSail, model-derived forecast artifacts are exported to JSON (`models/crime_forecast_rf.json`) alongside the trained joblib model (`models/crime_forecast_rf.joblib`). This engine acts as a **human-in-the-loop decision-support tool**, not an autonomous policing system.
 
 ---
 
 ## ✨ Key Features & Capabilities
 
-### 1. Core CRUD Operations
-*   **Register FIR**: Live form inputs validating FIR number formats, categories, district divisions, and detailed summaries.
-*   **Interactive Modal**: Click any row in the case records table to view full details (including coordinates), edit case fields, or permanently delete the record.
+### 1. Spatio-Temporal Crime Forecasting & Patrol Optimization
+* **Random Forest Regressor Baseline Model**: Trained on 12,000 synthetic records across Karnataka districts ($R^2 = 0.8206$, $\text{MAE} = 0.7707$, $\text{RMSE} = 0.9727$).
+* **Google OR-Tools Linear Solver**: Solves unit allocation linear programs returning real solver status (`OPTIMAL`), coverage percentage, and expected response times.
+* **Category-Aware Demand Vectors**: Dynamically adjusts risk vectors (e.g. Cyber fraud, nocturnal burglary, public altercation) based on target precinct and crime category.
+* **Persistent Directive Audit Log**: Approved directives (`DIR-KSP-...`) are logged to disk (`server/data/approved_directives.json`) and exposed via `GET /api/v1/ml/patrol-directives`.
+* **Strict Validation**: Rejects empty location dispatch plans with `400 Bad Request`.
 
-### 2. Pure SVG Analytics Dashboard
-*   **Cases by Category**: Horizontal bar charts with custom color gradients representing the frequency of Theft, Cybercrime, Assault, and Fraud.
-*   **Cases by District**: A responsive Donut Chart showing regional case proportions with a center total counter.
-*   **Timeline Trends**: Chronological area and line chart mapping case frequency over calendar dates with interactive data point tooltips.
+### 2. Interactive MapLibre GL JS GIS Command Radar
+* **3-Mode Base Map Selector**:
+  * 🌙 **Command Dark** (Carto Dark vector tiles)
+  * ☀️ **Administrative Light** (Carto Positron tiles)
+  * 🛰️ **Satellite** (Esri World Imagery)
+* **Layer Persistence & State Preservation**: Mode selector persists in `localStorage`, maintaining zoom level, filters, popups, and FIR pins when switching views.
 
-### 3. Usability Utilities
-*   **CSV Export**: Instant download of the currently filtered case dataset in a standard CSV format.
-*   **Printable Reports**: Open a clean, KSP-official formatted case summary sheet, complete with print preview layouts ready for paper archiving.
-*   **Search Term Highlighting**: Matches search terms inside table columns and dynamically highlights character substrings in yellow.
-*   **Copy FIR button**: Copies the FIR code to clipboard instantly with success toast confirmation.
-
-### 4. Interactive Feedback
-*   **Toasts**: Toast messages (Success, Info, Error) with slide animations providing instant action confirmations.
-*   **Loading Overlays**: Sleek glassmorphism overlay blocking clicks and disabling input buttons during active cloud transactions.
-*   **Activity Feed**: Session log panel tracing database operations with live timestamps (e.g. `[15:42:10] FIR Registered — FIR/BLR/2026/0002`).
+### 3. Core FIR Case Management & SVG Analytics
+* **Live CRUD Operations**: Register new FIRs, view full case details in interactive glassmorphism modals, edit records, or delete cases.
+* **SVG Data Visualization**: Dynamic category bar charts, district breakdown donut charts, and timeline incident area charts.
+* **Export & Reports**: Instant CSV data export and printable official KSP case summary sheets.
 
 ---
 
 ## 🏗️ System Architecture
+
 ```text
 ┌─────────────────────────────────────────────────────────┐
-│                   React + Vite Client                   │
+│              React 19 + MapLibre GL Client              │
 │          (Hosted serverless on Catalyst Slate)          │
 └────────────────────────────┬────────────────────────────┘
-                             │  HTTP requests
+                             │  HTTP API requests
                              ▼
 ┌─────────────────────────────────────────────────────────┐
-│                 FastAPI Python Backend                  │
+│               FastAPI Python 3.9 Backend                │
 │          (Hosted serverless on Catalyst AppSail)        │
+│                                                         │
+│   • Scikit-Learn Model / Model-Derived JSON Artifacts  │
+│   • Google OR-Tools Linear Optimizer Solver             │
+│   • Persistent Audit Directive Register (`.json`)      │
 └────────────────────────────┬────────────────────────────┘
                              │  Catalyst Python SDK
                              ▼
@@ -61,102 +76,53 @@ Modern policing requires rapid database access and immediate visualization of cr
 ---
 
 ## 🛠️ Technology Stack
-*   **Frontend**: React 19, Vite (Vanilla CSS design system for smooth animation, dark themes, and media queries)
-*   **Backend**: FastAPI, Python 3.9, Pydantic v2
-*   **Zoho Catalyst Cloud Services**:
-    *   **Data Store**: Relational NoSQL storage schemas (`location` and `crime_cases`).
-    *   **AppSail**: Containerized execution environment hosting backend routes.
-    *   **Slate**: Static site serverless hosting serving the React bundle.
+* **Frontend**: React 19, Vite, MapLibre GL JS, Lucide Icons, Vanilla CSS Design System.
+* **Backend**: FastAPI, Python 3.9, Pydantic v2, Scikit-Learn, Pandas, Joblib, Google OR-Tools.
+* **Zoho Catalyst Cloud Services**:
+  * **AppSail**: Containerized serverless environment running FastAPI backend routes and ML engines.
+  * **Slate**: Serverless web app hosting serving the compiled React bundle.
+  * **Data Store**: NoSQL / relational tables for case storage.
 
 ---
 
 ## 🚀 Setup & Local Execution
 
-### 1. Prerequisites
-*   Node.js (v18+)
-*   Python (3.9+)
-*   Catalyst CLI (`npm install -g zcatalyst-cli`)
+### 1. Model Training & Data Generation
+```bash
+cd server
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
 
-### 2. Backend Setup
-1.  Navigate to the server directory:
-    ```bash
-    cd server
-    ```
-2.  Create and activate a virtual environment:
-    ```bash
-    python3 -m venv venv
-    source venv/bin/activate
-    ```
-3.  Install dependencies:
-    ```bash
-    pip install -r requirements.txt
-    ```
-4.  Run the API server:
-    ```bash
-    uvicorn main:app --reload
-    ```
-    The local API will run at `http://localhost:8000`.
+# 1. Generate 12,000 synthetic records and train Random Forest model
+python train_crime_model.py
+```
 
-### 3. Frontend Setup
-1.  Navigate to the client directory:
-    ```bash
-    cd ../client
-    ```
-2.  Install dependencies:
-    ```bash
-    npm install
-    ```
-3.  Start the Vite dev server:
-    ```bash
-    npm run dev
-    ```
-    Open `http://localhost:5173` in your browser.
+### 2. Run Local Backend Server
+```bash
+uvicorn main:app --reload --port 8000
+```
+
+### 3. Run Local Frontend App
+```bash
+cd ../client
+npm install
+npm run dev
+```
 
 ---
 
-## ☁️ Zoho Catalyst Deployment (CLI Mode)
+## ☁️ Zoho Catalyst Deployment Command
 
-Deploy the entire workspace to the Zoho India data center:
+```bash
+# 1. Build client bundle
+cd client && npm run build && cd ..
 
-1.  Log in to your Catalyst account:
-    ```bash
-    catalyst login --dc in
-    ```
-2.  Ensure you are linked to the correct project:
-    ```bash
-    catalyst project:use
-    ```
-3.  Compile the frontend client build:
-    ```bash
-    cd client
-    npm run build
-    cd ..
-    ```
-4.  Deploy the AppSail server and Slate client in one command:
-    ```bash
-    catalyst deploy
-    ```
-    Alternatively, deploy specific services:
-    *   Deploy Backend: `catalyst deploy --only appsail`
-    *   Deploy Frontend: `catalyst deploy --only slate`
+# 2. Deploy Slate client & AppSail backend
+catalyst deploy
+```
 
 ---
 
-## 🛢️ Database Seeding
-To populate your live dashboard with realistic records:
-*   **Seed Default Records**: The first GET query to `/api/v1/cases` automatically seeds the empty database with 5 baseline records.
-*   **Seed Expanded Mock Dataset**: Make a POST request to `/api/v1/debug/seed-large` to instantly seed an additional **20 realistic cases** distributed across categories, districts, and coordinates.
-    ```bash
-    curl -X POST https://server-50043662505.development.catalystappsail.in/api/v1/debug/seed-large
-    ```
-
----
-
-## 🔮 Future Roadmap & Scope
-While this prototype represents a fully functional, cloud-native case records and analytics core, a production-grade rollout would implement:
-*   **Predictive Hotspot Analytics**: Train machine learning models using historical Data Store records to predict high-probability crime coordinates by time, day, and weather patterns.
-*   **Interactive GIS & Map Mapping**: Replace grid coordinates with a dynamic Google Maps / Leaflet overlay mapping incident markers, cluster zones, and jurisdictional boundaries.
-*   **Secure Officer Authentication**: Integrate Zoho Catalyst Authentication for role-based login (e.g. Field Officer for registration, Station Inspector for editing/deleting, Superintendent for analytics access).
-*   **Instant Dispatch Alerts**: Implement Zoho Catalyst Eventing and Integration to dispatch real-time SMS/Email alerts to local stations whenever high-priority category cases (e.g. Assault, Cybercrime) are registered.
-*   **AI Document Parsing & OCR**: Include OCR tools in the FIR form to scan physical handwritten police sheets and automatically extract category, date, and summaries to autofill inputs.
-
+## 🛡️ License & Acknowledgements
+Developed for **Karnataka State Police Datathon 2026**. Built on Zoho Catalyst Cloud Infrastructure.
