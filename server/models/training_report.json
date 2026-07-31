@@ -1,0 +1,27 @@
+{
+  "model_name": "Random Forest Regressor",
+  "model_version": "v1.2.0-prototype",
+  "dataset_source": "Synthetic historical crime dataset (12,000 Records)",
+  "training_records": 9600,
+  "testing_records": 2400,
+  "split_method": "Chronological 80/20 split",
+  "feature_columns": [
+    "district",
+    "crime_category",
+    "hour_of_day",
+    "day_of_week",
+    "recent_7day_count",
+    "precinct_density_score"
+  ],
+  "model_parameters": {
+    "n_estimators": 100,
+    "max_depth": 12,
+    "random_state": 42
+  },
+  "evaluation_metrics": {
+    "r2_score": 0.8206,
+    "mae": 0.7707,
+    "rmse": 0.9727
+  },
+  "model_checksum_sha256": "04570e1adeb01e943c8181ad9c82b3d2ae7265be861ee65bf1ab1b8bee1fb3a5"
+}

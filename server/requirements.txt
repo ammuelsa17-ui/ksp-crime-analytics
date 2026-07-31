@@ -4,4 +4,7 @@ zcatalyst-sdk>=1.4.0
 pydantic
 exceptiongroup
 sniffio
-
+pandas
+scikit-learn
+joblib
+ortools
